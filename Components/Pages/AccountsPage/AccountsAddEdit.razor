@@ -1,0 +1,230 @@
+﻿ @page "/AccountsAddEdit"
+@using Models
+@using MauiAppFB.Services
+@inject StatesService StateService
+@inject CountryService CountryService
+@inject IJSRuntime JS
+
+@if (IsVisible)
+{
+    <div class="modal fade show d-block" tabindex="-1" role="dialog" style="background-color: rgba(0, 0, 0, 0.5);">
+        <div class="modal-dialog"  role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">@Title</h5>
+                    <button type="button" class="btn-close" @onclick="CloseModal"></button>
+                </div>
+
+                <EditForm Model="@Account" OnValidSubmit="HandleValidSubmit">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+                    <div class="modal-body modal-dialog-scrollable" style="overflow-y: scroll; max-height:50%;">
+                        <div style="display: flex; gap: 1rem; align-items: flex-start; flex-wrap: wrap;">
+                            <!-- Account Name -->
+                            <div class="mb-3" style="flex: 1; min-width: 200px;">
+                                <label for="AccountName" style="display: block; font-weight: bold;">Account Name:</label>
+                                <InputText id="AccountName" @bind-Value="Account.AccountName" class="form-control"
+                                           style="width: 100%;" />
+                            </div>
+
+                            <!-- Opening Balance and Dr/Cr -->
+                            <div style="display: flex; gap: 0.5rem; align-items: flex-end; flex: 1; min-width: 200px;">
+                                <!-- Opening Balance Field -->
+                                <div class="mb-3" style="flex: 1;">
+                                    <label for="opbal" style="display: block; font-weight: bold;">Opening Bal:</label>
+                                    <InputNumber id="opbal" @bind-Value="Account.AccountOpening" class="form-control"
+                                                 style="width: 100%;" />
+                                </div>
+
+                                <!-- Dr/Cr Dropdown -->
+                                <div class="mb-3" style="width: 100px;">
+                                    <label for="optype" style="display: block; font-weight: bold;">Type</label>
+                                    <InputSelect id="optype" @bind-Value="Account.AccountBalanceType" class="form-control">
+                                        <option value="Dr">Dr</option>
+                                        <option value="Cr">Cr</option>
+                                    </InputSelect>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- print Name -->
+                        <div class="mb-3" style="flex: 1; min-width: 200px;">
+                            <label for="AccountPrintName" style="display: block; font-weight: bold;">Print Name:</label>
+                            <InputText id="AccountPrintName" @bind-Value="Account.AccountPrintName" class="form-control"
+                                       style="width: 100%;" />
+                        </div>
+                        <!-- print Name -->
+                        <div class="mb-3" style="flex: 1; min-width: 200px;">
+                            <label for="Addres1" style="display: block; font-weight: bold;">Address Line#1:</label>
+                            <InputText id="Addres1" @bind-Value="Account.AccountAddress1" class="form-control"
+                                       style="width: 100%;" />
+                        </div>
+                        <div class="mb-3" style="flex: 1; min-width: 200px;">
+                            <label for="Addres1" style="display: block; font-weight: bold;">Address Line#2:</label>
+                            <InputText id="Addres1" @bind-Value="Account.AccountAddress2" class="form-control"
+                                       style="width: 100%;" />
+                        </div>
+                        <div class="mb-3" style="flex: 1; min-width: 200px;">
+                            <label for="Addres1" style="display: block; font-weight: bold;">Address Line#3:</label>
+                            <InputText id="Addres1" @bind-Value="Account.AccountAddress3" class="form-control"
+                                       style="width: 100%;" />
+                        </div>
+                        <div style="display: flex; gap: 1rem; align-items: flex-start; flex-wrap: wrap;">
+                            <!-- City Field -->
+                            <div class="mb-3" style="flex: 1; min-width: 200px;">
+                                <label for="city" style="display: block; font-weight: bold;">City:</label>
+                                <InputText id="city" @bind-Value="Account.AccountCity" class="form-control"
+                                           style="width: 100%;" />
+                            </div>
+
+                            <!-- Pincode Field -->
+                            <div class="mb-3" style="flex: 1; min-width: 200px;">
+                                <label for="Pincode" style="display: block; font-weight: bold;">Pincode:</label>
+                                <InputText id="Pincode" @bind-Value="Account.AccountPincode" class="form-control"
+                                           style="width: 100%;" />
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem; align-items: flex-start; flex-wrap: wrap;">
+                            <!-- state Field -->
+                            <div class="mb-3" style="flex: 1; min-width: 200px;">
+                                <label for="city" style="display: block; font-weight: bold;">State:</label>
+                                <InputSelect id="city" @bind-Value="Account.AccountStateId" class="form-control" @onclick="Loadstate"
+                                             style="width: 100%;">
+                                    <option value="Select State">Select State</option>
+                                    @foreach (var states in states)
+
+                                    {
+
+                                        <option value="@states.StateId">@states.StateName</option>
+
+                                    }
+
+
+
+                                </InputSelect>
+
+                            </div>
+
+                            <!-- stcode Field -->
+                            <div class="mb-3" style="flex: 1; min-width: 200px;">
+                                <label for="Pincode" style="display: block; font-weight: bold;">St Code:</label>
+                                <InputNumber id="Pincode" @bind-Value="Account.AccountStateId" class="form-control"
+                                             style="width: 100%;" readonly />
+                            </div>
+                        </div>
+
+                        <div class="mb-3" style="flex: 1; min-width: 200px;">
+                            <label for="AccountContactPerson" style="display: block; font-weight: bold;">Contact Person:</label>
+                            <InputText id="AccountContactPerson" @bind-Value="Account.AccountContactPerson" class="form-control"
+                                       style="width: 100%;" />
+                        </div>
+                        <div class="mb-3" style="flex: 1; min-width: 200px;">
+                            <label for="AccountMobile" style="display: block; font-weight: bold;">Contact No:</label>
+                            <InputText id="AccountMobile" @bind-Value="Account.AccountMobile" class="form-control"
+                                       style="width: 100%;" />
+                        </div>
+                        <div class="mb-3" style="flex: 1; min-width: 200px;">
+                            <label for="AccountPhone" style="display: block; font-weight: bold;">Phone No:</label>
+                            <InputText id="AccountPhone" @bind-Value="Account.AccountPhone" class="form-control"
+                                       style="width: 100%;" />
+                        </div>
+                        <div class="mb-3" style="flex: 1; min-width: 200px;">
+                            <label for="AccountEmail" style="display: block; font-weight: bold;">Email Id:</label>
+                            <InputText id="AccountEmail" @bind-Value="Account.AccountEmail" class="form-control"
+                                       style="width: 100%;" />
+                        </div>
+                        <div class="mb-3" style="flex: 1; min-width: 200px;">
+                            <label for="Website" style="display: block; font-weight: bold;">Website:</label>
+                            <InputText id="Website" @bind-Value="Account.AccountWebsite" class="form-control"
+                                       style="width: 100%;" />
+                        </div>
+                        <div class="mb-3" style="flex: 1; min-width: 200px;">
+                            <label for="Country" style="display: block; font-weight: bold;">Country:</label>
+                            <InputSelect id="Country" @bind-Value="Account.AccountCountry" class="form-control" @onclick="Loadcountry"
+                                         style="width: 100%;">
+                                <option value="Select Country">Select Country</option>
+                                @foreach (var country in Countries)
+                                {
+                                    <option value="@country.CountryId">@country.CountryName</option>
+                                }
+                            </InputSelect>
+                        </div>
+
+                        <div class="mb-3" style="flex: 1; min-width: 200px;">
+                            <label for="AccountTanNo" style="display: block; font-weight: bold;">Register Type:</label>
+                            <InputSelect id="AccountTanNo" @bind-Value="Account.AccountRegisterType" class="form-control"
+                                 style="width: 100%;">
+                                <option>N/A</option>
+                                <option>OVERSEA</option>
+                                <option>REGULAR</option>
+                                <option>SEZ</option>
+                                <option>SEZ WITH LUT</option>
+                                <option>COMPOSITION</option>
+                                <option>UNREGISTER</option>
+                            </InputSelect>
+
+
+                        </div>
+                         <div class="mb-3" style="flex: 1; min-width: 200px;">
+                            <label for="AccountGstNo" style="display: block; font-weight: bold;">GST No:</label>
+                            <InputText id="AccountGstNo" @bind-Value="Account.AccountGstNo" class="form-control"
+                                           style="width: 100%;" />
+                            </div>
+
+                        <div class="mb-3" style="flex: 1; min-width: 200px;">
+                            <label for="AccountPan" style="display: block; font-weight: bold;">PAN No:</label>
+                            <InputText id="AccountPan" @bind-Value="Account.AccountPan" class="form-control"
+                                       style="width: 100%;" />
+                        </div>
+                        <div class="mb-3" style="flex: 1; min-width: 200px;">
+                            <label for="AccountTanNo" style="display: block; font-weight: bold;">TAN No:</label>
+                            <InputText id="AccountTanNo" @bind-Value="Account.AccountTanNo" class="form-control"
+                                       style="width: 100%;" />
+                        </div>
+                        <div class="mb-3" style="flex: 1; min-width: 200px;">
+                            <label for="AccountTanNo" style="display: block; font-weight: bold;">MSME No:</label>
+                            <InputText id="AccountTanNo" @bind-Value="Account.AccountMsmeNo" class="form-control"
+                                       style="width: 100%;" />
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">@ButtonText</button>
+                        <button type="button" class="btn btn-secondary" @onclick="CloseModal">Cancel</button>
+                    </div>
+                </EditForm>
+
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter] public Account Account { get; set; } = new Account();
+    [Parameter] public string Title { get; set; } = "Add Account";
+    [Parameter] public string ButtonText { get; set; } = "Add";
+    [Parameter] public bool IsVisible { get; set; }
+    [Parameter] public EventCallback OnClose { get; set; }
+    [Parameter] public EventCallback OnSubmit { get; set; }
+
+    private List<Country> Countries = new();
+    private List<States> states = new();
+
+
+    private async Task Loadstate()
+    {
+        var response = await StateService.GetStatesAsync();
+        states = response;
+    }
+    private async Task Loadcountry()
+    {
+        var response = await CountryService.GetCountriesAsync();
+        Countries = response;
+    }
+    private async Task HandleValidSubmit()
+    {
+        await OnSubmit.InvokeAsync();
+    }
+
+    private async Task CloseModal() => await OnClose.InvokeAsync();
+}

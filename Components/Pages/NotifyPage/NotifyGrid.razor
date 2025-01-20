@@ -1,0 +1,229 @@
+﻿@page "/notifyGrid"
+@using Models
+@using Services
+@inject NotifyService NotificationService
+@inject IJSRuntime JS
+
+<h3>Notification List</h3>
+
+@if (isLoading)
+{
+        <p>Loading...</p>
+}
+else if (!string.IsNullOrEmpty(errorMessage))
+{
+        <p style="color: red;">Error: @errorMessage</p>
+}
+else if (notifications == null || !notifications.Any())
+{
+        <p>No notifications available.</p>
+}
+else
+{
+        <div class="mb-3">
+            <input type="text" placeholder="Search Notification Title" @bind="filterNotificationTitle" class="form-control" />
+            <button class="btn btn-primary mt-2" @onclick="ApplyFilters">Apply Filters</button>
+                <button class="btn btn-success mt-2" @onclick="ShowAddModal">Add Notification</button>
+        </div>
+
+        <table class="table-striped table">
+            <thead>
+                <tr>
+                    <th>Notification ID</th>
+                    <th>city</th>
+                    <th>contacno</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var notification in notifications)
+            {
+                        <tr>
+                            <td>@notification.NotifyId</td>
+                                    <td>@notification.NotifyCity</td>
+                                    <td>@notification.NotifyContactNo</td>
+                            <td>@notification.NotifyCreated.ToString("g")</td>
+                            <td>
+                                <button class="btn btn-warning btn-sm" @onclick="() => ShowEditModal(notification)">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+                                <button class="btn btn-danger btn-sm" @onclick="() => ConfirmDelete(notification.NotifyId)">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </td>
+                        </tr>
+            }
+            </tbody>
+        </table>
+
+        <!-- Pagination Controls -->
+        <div class="pagination">
+            <button class="btn btn-secondary" @onclick="GoToPreviousPage" disabled="@(!CanGoToPreviousPage)">Previous</button>
+            <span>Page @currentPage of @totalPages</span>
+            <button class="btn btn-secondary" @onclick="GoToNextPage" disabled="@(!CanGoToNextPage)">Next</button>
+        </div>
+}
+
+<NotifyAddEdit Notification="selectedNotification"
+               Title="@modalTitle"
+               ButtonText="@modalButtonText"
+               IsVisible="@isModalVisible"
+               OnClose="CloseModal"
+               OnSubmit="SaveNotification" />
+
+@code {
+    private List<Notify> notifications = new();
+    private Notify selectedNotification = new Notify();
+    private string modalTitle = string.Empty;
+    private string modalButtonText = string.Empty;
+    private bool isModalVisible = false;
+    private bool isLoading = true;
+    private string? errorMessage;
+    private string filterNotificationTitle = string.Empty;
+
+    // Pagination variables
+    private int currentPage = 1;
+    private int totalPages = 1;
+    private int pageSize = 10;
+
+    // Sorting variables
+    private string sortColumn = "NotifyId";
+    private bool isSortDescending = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadNotifications();
+    }
+
+    private async Task LoadNotifications()
+    {
+        isLoading = true;
+        errorMessage = null;
+
+        try
+        {
+            var response = await NotificationService.GetNotifyAsync(currentPage, pageSize);
+            notifications = response.Notifies;
+            totalPages = response.TotalPages;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error loading notifications: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task ApplyFilters()
+    {
+        currentPage = 1; // Reset to the first page when filters are applied
+        await LoadNotifications();
+    }
+
+    private void ShowAddModal()
+    {
+        selectedNotification = new Notify();
+        modalTitle = "Add Notification";
+        modalButtonText = "Add Notification";
+        isModalVisible = true;
+    }
+
+    private void ShowEditModal(Notify notification)
+    {
+        selectedNotification = new Notify
+            {
+                NotifyId = notification.NotifyId,
+                NotifyCity = notification.NotifyCity,
+                NotifyContactNo = notification.NotifyContactNo,
+                NotifyCreated = notification.NotifyCreated
+            };
+        modalTitle = "Edit Notification";
+        modalButtonText = "Save";
+        isModalVisible = true;
+    }
+
+    private async Task SaveNotification()
+    {
+        try
+        {
+            if (selectedNotification.NotifyId == 0) // Add new notification
+            {
+                await NotificationService.AddNotifyAsync(selectedNotification);
+            }
+            else // Update existing notification
+            {
+                await NotificationService.UpdateNotifyAsync(selectedNotification);
+            }
+
+            await LoadNotifications(); // Refresh the list
+            CloseModal();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error saving notification: {ex.Message}";
+        }
+    }
+
+    private async Task ConfirmDelete(int notificationId)
+    {
+        bool isConfirmed = await JS.InvokeAsync<bool>("confirm", "Are you sure you want to delete this notification?");
+        if (isConfirmed)
+        {
+            try
+            {
+                await NotificationService.DeleteNotifyAsync(notificationId);
+                notifications = notifications.Where(n => n.NotifyId != notificationId).ToList();
+            }
+            catch (Exception ex)
+            {
+                errorMessage = $"Error deleting notification: {ex.Message}";
+            }
+        }
+    }
+
+    private void CloseModal()
+    {
+        isModalVisible = false;
+    }
+
+    private async Task ApplySorting(string column)
+    {
+        if (sortColumn == column)
+        {
+            isSortDescending = !isSortDescending; // Toggle sort direction
+        }
+        else
+        {
+            sortColumn = column;
+            isSortDescending = false; // Default to ascending for a new column
+        }
+
+        currentPage = 1; // Reset to the first page on sorting
+        await LoadNotifications();
+    }
+
+    // Pagination logic
+    private bool CanGoToPreviousPage => currentPage > 1;
+    private bool CanGoToNextPage => currentPage < totalPages;
+
+    private async Task GoToPreviousPage()
+    {
+        if (CanGoToPreviousPage)
+        {
+            currentPage--;
+            await LoadNotifications();
+        }
+    }
+
+    private async Task GoToNextPage()
+    {
+        if (CanGoToNextPage)
+        {
+            currentPage++;
+            await LoadNotifications();
+        }
+    }
+}

@@ -1,0 +1,1087 @@
+﻿@page "/LRAddEdit"
+
+@using Models
+@using MauiAppFB.Components.Pages.VehiclesPage
+@using MauiAppFB.Components.Pages.CargoPage
+@using MauiAppFB.Components.Pages.LocationPage
+@using MauiAppFB.Services
+@inject VehiclesService VehicleService
+@inject AccountsService AccountService
+@inject LocationService LocationService
+@inject CargoService CargoService
+@inject LRService LRGridService
+
+@inject IJSRuntime JS
+
+
+
+<EditForm Model="@LR" OnValidSubmit="HandleValidSubmit">
+
+
+
+    <DataAnnotationsValidator />
+
+    <ValidationSummary />
+
+
+    <h5 class="">--Booking Details--</h5>
+    <div class="d-flex align-items-center mb-3 flex-wrap">
+
+        <!-- LrNo -->
+
+        <div class="mb-3 me-4">
+
+            <label for="LrNo" >Challan/LR No:</label>
+
+            <InputNumber id="LRNo" @bind-Value="LR.LrNo" step="0.01"
+            class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+
+
+
+        <!-- LrDate -->
+
+        <div class="mb-3 me-4">
+
+            <label for="LRDate" >LrDate:</label>
+
+            <InputDate id="LRDate" @bind-Value="LR.LrDate"
+
+            class="form-control"
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+
+
+
+        <!-- Pay Mode -->
+
+        <div class="mb-3 me-4">
+
+            <label for="payMode" >Pay Mode:</label>
+
+            <InputSelect id="payMode" @bind-Value="LR.LrPaymenttype"
+
+            class="form-control"
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;">
+
+                <option value="To Be Pay">To Be Pay</option>
+
+                <option value="Billed">Billed</option>
+
+            </InputSelect>
+
+        </div>
+
+
+
+        <!-- Select Vehicle -->
+
+        <div class="mb-3 me-4">
+            
+            <label for="LrVehicleId" >Vehicle No:<a @onclick="ShowVehiModal" style="color: black; font-size: 1.7rem; position: relative; bottom: -4px;">+</a></label>
+            <InputSelect id="LrVehicleId" @bind-Value="LR.LrVehicleId"@onclick="LoadVehicles"
+
+            class="form-control"
+
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;">
+
+                <option value="">-- Select Vehicle --</option>
+
+                @foreach (var vehicle in vehicles)
+                {
+
+
+                    <option value="@vehicle.VehicleId">@vehicle.VehicleNo</option>
+
+                }
+
+            </InputSelect>
+
+        </div>
+
+
+
+
+        <!-- Select Party -->
+
+        <div class="mb-3 me-4">
+            
+            <label for="party">Bill To Party:<a @onclick="ShowAccModal" style="color: black; font-size: 1.7rem; position: relative; bottom: -4px;"> + </a></label>
+
+            <InputSelect id="party" @bind-Value="LR.LrPartyAccountId" class="form-control" @onclick="LoadParty"
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;">
+
+                <option value="">-- Select Party --</option>
+
+                @foreach (var accounts in Accounts)
+
+                {
+
+                    <option value="@accounts.AccountId">@accounts.AccountName</option>
+
+                }
+
+            </InputSelect>
+
+        </div>
+
+        <!-- From Location -->
+
+        <div class="mb-3 me-4">
+           
+            <label for="party">From Location: <a @onclick="ShowLocationModal" style="color: black; font-size: 1.7rem; position: relative; bottom: -4px;">+</a></label>
+
+            <InputSelect id="party" @bind-Value="LR.LrFromLocationId" class="form-control" @onclick="Loadlocation"
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;">
+
+                <option value="">-- Select location --</option>
+
+                @foreach (var Locations in locations)
+
+                {
+
+                    <option value="@Locations.LocationId">@Locations.LocationName</option>
+
+                }
+
+            </InputSelect>
+
+        </div>
+
+
+        <!-- To Location -->
+
+
+        <div class="mb-3 me-4">
+            
+            <label for="party"> To Location:<a @onclick="ShowLocationModal" style="color: black; font-size: 1.7rem; position: relative; bottom: -4px;">+</a></label>
+
+            <InputSelect id="party" @bind-Value="LR.LrToLocationId" class="form-control" @onclick="Loadlocation"
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;">
+
+                <option value="">-- Select location --</option>
+
+                @foreach (var Locations in locations)
+
+                {
+
+                    <option value="@Locations.LocationId">@Locations.LocationName</option>
+
+                }
+
+            </InputSelect>
+
+        </div>
+
+
+
+        <!-- Product -->
+
+        <div class="mb-3 me-4">
+            
+                <label >
+                    Product:
+                <a style="color: black; font-size: 1.7rem; padding: 0.25rem;  position: relative; bottom: -2px;"
+                       @onclick="ShowProductModal"> + </a>
+                </label>
+
+            <InputSelect id="Product" @bind-Value="LR.LrProductId" class="form-control"  @onclick="Loadcargo"
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem; top:30cm " >
+                @foreach (var cargos in cargos)
+
+                {
+
+                    <option value="@cargos.CargoId">@cargos.CargoName</option>
+
+                }
+
+            </InputSelect>
+            
+        </div>
+
+
+        <!-- Reference By -->
+
+        <div class="mb-3 me-4">
+
+            <label for="LrRefby">Reference By:</label>
+
+            <InputText id="LrRefby" @bind-Value="LR.LrRefby" class="form-control"
+            style="width: 150px; font-size: 0.9rem; padding: 0.30rem;" />
+
+        </div>
+
+        <!-- Custom Field -->
+
+        <div class="mb-3 me-4">
+
+            <label for="LrCustom1">Gross Weight:</label>
+
+            <InputNumber id="LrCustom1" @bind-Value="LR.LrGrosswt"
+            class="form-control" step="0.01"
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+
+
+
+
+
+        <!-- Lr Tare Weight -->
+
+        <div class="mb-3 me-4">
+
+            <label for="LrTarewt">Tare Weight:</label>
+
+            <InputNumber id="LrTarewt" @bind-Value="LR.LrTarewt" class="form-control" step="0.01"
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+
+
+        <!-- Invoice Number -->
+
+        <div class="mb-3 me-4">
+
+            <label for="LrInvoiceno">Invoice Number:</label>
+
+            <InputText id="LrInvoiceno" @bind-Value="LR.LrInvoiceno" class="form-control"
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+        <!-- Invoice Date -->
+
+        <div class="mb-3 me-4">
+
+            <label for="LrInvoicedate">Invoice Date:</label>
+
+            <InputText id="LrInvoicedate" @bind-Value="LR.LrInvoicedate" class="form-control"
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+        <!-- Invoice Value -->
+
+        <div class="mb-3 me-4">
+
+            <label for="LrInvoicevalue">Invoice Value:</label>
+
+            <InputNumber id="LrInvoicevalue" @bind-Value="LR.LrInvoicevalue" class="form-control" 
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+
+        <!-- E-Way Bill Number -->
+
+        <div class="mb-3 me-4">
+
+            <label for="LrEwaybillno">E-Way Bill Number:</label>
+
+            <InputText id="LrEwaybillno" @bind-Value="LR.LrEwaybillno" class="form-control"
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+        <!-- E-Way Bill Date -->
+
+        <div class="mb-3 me-4">
+
+            <label for="Ewaybilldate">E-Way Bill Date:</label>
+
+            <InputDate id="Ewaybilldate" @bind-Value="LR.ewaybilldate" class="form-control"
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+        <!-- GP/BE NO -->
+
+        <div class="mb-3 me-4">
+
+            <label for="LrEwaybillno">GP/BE NO :</label>
+
+            <InputText id="LrEwaybillno" @bind-Value="LR.LrCustom1" class="form-control"
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+
+
+        <!-- Bill Type -->
+
+        <div class ="mb-3 me-4">
+
+            <label for="billtype class="form-label">Bill Type:</label>
+
+            <InputSelect id="billtype" @bind-Value="LR.LrTriptype"
+            class="form-control"
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;">
+
+                <option value="RATE * WT">RATE * WT</option>
+
+                <option value="FIXED">FIXED</option>
+
+                <option value="RATE * KM">RATE * KM</option>
+
+                <option value="RATE * UNLOADWT">RATE * UNLOADWT</option>
+
+            </InputSelect>
+
+        </div>
+
+
+        <!-- Lr Load Weight -->
+
+        <div class="mb-3 me-4">
+
+            <label for="LrLoadwt">Load Weight:</label>
+
+            <InputNumber id="LrLoadwt" @bind-Value="LR.LrLoadwt" class="form-control"
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+
+
+
+        <!-- Lr Unload Weight -->
+
+        <div class="mb-3 me-4">
+
+            <label for="LrUnloadwt">Unload Weight:</label>
+
+            <InputNumber id="LrUnloadwt" @bind-Value="LR.LrUnloadwt" class="form-control"
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+
+
+
+
+       
+
+
+
+
+        <!-- Lr Ratebill -->
+
+        <div class="mb-3 me-4">
+
+            <label for="LrRatebill">Billing Rate:</label>
+
+            <InputNumber id="LrRatebill" @bind-Value="LR.LrRatebill" class="form-control" step="0.01" @onkeydown="@HandleKeyPress"
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+
+
+        <!-- Gross Weight -->
+
+        <div class="mb-3 me-4">
+
+            <label for="LrGrossfreighttruck">Gross Freight:</label>
+
+            <InputNumber id="LrGrossfreighttruck" @bind-Value="LR.LrGrossfreightbill" class="form-control"
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+
+
+        <!-- Other Charges -->
+
+        <div class="mb-3 me-4">
+
+            <label for="othercharges">Other Charges:</label>
+
+            <InputText id="othercharges" @bind-Value="LR.LrCustom2" class="form-control"
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+
+
+
+        <!-- Net Freight Bill -->
+
+        <div class="mb-3 me-4">
+
+            <label for="netfreight">Net Freight Bill:</label>
+
+            <InputNumber id="netfreight" @bind-Value="LR.LrGrossfreightbill" class="form-control" @onchange="CalculateNetFreight"
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" readonly />
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+    <h5 class="">--Transport/Suppliers Details--</h5>
+
+    <div class="d-flex align-items-center mb-3 flex-wrap">
+        <!-- Supplier Name -->
+
+        <div class="mb-3 me-4">
+           
+            <label for="SupplierName"> Supplier Name:  <a @onclick="ShowAccModal" style="color: black; font-size: 1.7rem; position: relative; bottom: -4px;"> + </a> </label>
+
+            <div class="d-flex">
+
+                <!-- Assuming Supplier Name is a text input -->
+
+                <InputSelect id="SupplierName" @bind-Value="LR.LrSupplierAccountId" class="form-control me-3" @onclick="LoadParty"
+
+                style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" >
+
+                    <option value="">-- Select Supplier --</option>
+
+                    @foreach (var accounts in Accounts)
+
+                    {
+
+                        <option value="@accounts.AccountId">@accounts.AccountName</option>
+
+                    }
+
+                </InputSelect>
+                <!-- Assuming LrSupplierAccountId is a number input -->
+
+                <InputNumber id="SupplierAccountId" @bind-Value="LR.LrSupplierAccountId" class="form-control" style="width: 90px; font-size: 0.9rem; padding: 0.25rem;" />
+
+            </div>
+
+        </div>
+        <div class="mb-3 me-4">
+
+            <label for="PayableRate">Payable Rate:</label>
+
+            <InputNumber id="PayableRatePayableRate" @bind-Value="LR.LrBillratetruck" class="form-control" step="0.01" @onkeydown="@HandleKeyPress"
+
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+
+
+        <!-- Payable Type -->
+
+        <div class="mb-3 me-4">
+
+            <label for="paybletype">Payable Type:</label>
+
+            <InputSelect id="paybletype" @bind-Value="LR.LrBilltypetruck"  class="form-control"
+
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;">
+
+                <option value="RATE * WT">RATE * WT</option>
+
+                <option value="FIXED">FIXED</option>
+
+                <option value="RATE * KM">RATE * KM</option>
+
+                <option value="RATE * UNLOADWT">RATE * UNLOADWT</option>
+
+            </InputSelect>
+
+        </div>
+    </div>
+
+    <div class="d-flex align-items-center mb-3 flex-wrap">
+        <!-- Driver Name -->
+
+        <div class="mb-3 me-4">
+            
+            <label for="DriverName">Driver Name: <a @onclick="ShowAccModal" style="color: black; font-size: 1.7rem; position: relative; bottom: -4px;"> + </a>  </label>
+
+            <InputSelect id="DriverName" @bind-Value="LR.LrVehicleId" class="form-control"
+
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" >
+
+                <option value="">-- Select Driver --</option>
+
+                @foreach (var accounts in Accounts)
+
+                {
+
+                    <option value="@accounts.AccountId">@accounts.AccountName</option>
+
+                }
+
+
+            </InputSelect>
+
+        </div>
+
+
+
+        <!-- Pay Type -->
+
+        <div class="mb-3 me-4">
+
+            <label for="PayTYPE">Pay Type:</label>
+
+            <InputSelect id="PayTYPE" @bind-Value="LR.LrPaymenttype" class="form-control"
+
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;">
+
+                <option value="SINGLE TRIP">SINGLE TRIP</option>
+
+                <option value="MULTIPLE">MULTIPLE</option>
+
+            </InputSelect>
+
+        </div>
+
+    </div>
+
+    <h5>--Driver Allowance--</h5>
+    <div class="d-flex align-items-center mb-3 flex-wrap">
+        <!-- Bhatta -->
+
+        <div class="mb-3 me-4">
+
+            <label for="Bhatta">Bhatta:</label>
+
+            <InputText id="Bhatta" @bind-Value="LR.LrCustom4" class="form-control"
+
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+
+
+
+        <!-- Diesel -->
+
+        <div class="mb-3 me-4">
+
+            <label for="Diesel">Diesel:</label>
+
+            <InputNumber id="Diesel" @bind-Value="LR.LrAllowDieselQty" class="form-control"
+
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+
+
+
+        <!-- Urea -->
+
+        <div class="mb-3 me-4">
+
+            <label for="Urea">Urea:</label>
+
+            <InputText id="Urea" @bind-Value="LR.LrCustom1" class="form-control"
+
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+
+
+
+        <!-- Opening Diesel-Urea -->
+
+        <div class="mb-3 me-4">
+
+            <label for="OpeningDieselUrea">Opening (Diesel - Urea):</label>
+
+            <div class="d-flex">
+
+                <InputText id="OpeningDiesel" @bind-Value="LR.LrCustom1" class="form-control me-3"
+
+                style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+                <InputText id="OpeningUrea" @bind-Value="LR.LrCustom1" class="form-control"
+
+                style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Payable Freight -->
+
+        <div class="mb-3 me-4">
+
+            <label for="payablefreight">Payable Freight:</label>
+
+            <div class="d-flex">
+
+                <InputNumber id="PayableFreight1" @bind-Value="LR.LrGrossfreighttruck" class="form-control me-3" @onchange="CalculatepayableFreight"
+                style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" readonly />
+
+                <InputNumber id="PayableFreight2" @bind-Value="LR.LrGrossfreighttruck" class="form-control" @onchange="CalculatepayableFreight"
+                style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" readonly />
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <h5 class="">--Reporting & Detention--</h5>
+
+
+    <div class="d-flex align-items-center mb-3 flex-wrap">
+
+
+        <div class="mb-3 me-4">
+
+            <label for="ReportDate">ReportDate:</label>
+
+            <InputText id="ReportDate" @bind-Value="LR.LrReportDate" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+
+
+
+        <div class="mb-3 me-4">
+
+            <label for="unoadDate">Unoad Date:</label>
+
+            <InputText id="unoadDate" @bind-Value="LR.LrUnloadDate" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+
+
+
+        <div class="mb-3 me-4">
+
+            <label for="POD">POD Rec.Dt:</label>
+
+            <InputText id="POD" @bind-Value="LR.LrPodDate" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+
+
+
+        <div class="mb-3 me-4">
+
+            <label for="Day(Party)">Day(Party):</label>
+
+            <InputText id="Day(Party)" @bind-Value="LR.LrCustom4" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+
+        <div class="mb-3 me-4">
+
+            <label for="Rate">Rate(Party)</label>
+
+            <InputText id="Rate" @bind-Value="LR.LrCustom4" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+
+        <div class="mb-3 me-4">
+
+            <label for="POD">Amount:</label>
+
+            <InputText id="POD" @bind-Value="LR.LrCustom4" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+
+    </div>
+
+    <div class="d-flex align-items-center mb-3 flex-wrap">
+        <div class="mb-3 me-4">
+
+            <label for="POD">Return Date:</label>
+
+            <InputText id="POD" @bind-Value="LR.LrReturnDate" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+
+        <div class="mb-3 me-4">
+
+            <label for="POD">POD Sub.Dt:</label>
+
+            <InputText id="POD" @bind-Value="LR.LrCustom1" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+
+        <div class="mb-3 me-4">
+
+            <label for="POD">Day(Supplier)</label>
+
+            <InputText id="POD" @bind-Value="LR.LrCustom1" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+
+        <div class="mb-3 me-4">
+
+            <label for="POD">Rate(Supplier)</label>
+
+            <InputText id="POD" @bind-Value="LR.LrCustom1" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+
+        <div class="mb-3 me-4">
+
+            <label for="POD">Amount</label>
+
+            <InputText id="POD" @bind-Value="LR.LrCustom1" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+        </div>
+
+
+    </div>
+
+
+
+
+    <button type="submit" class="btn btn-primary" @onclick="SaveLRGrid">@ButtonText</button>
+
+    <button type="button" class="btn btn-secondary" @onclick="Close">Cancel</button>
+
+
+
+
+
+</EditForm>
+
+<AccountsAddEdit Account="selectedAccount"
+Title="@modalTitle"
+ButtonText="@modalButtonText"
+IsVisible="@IsAccountModalVisible"  
+OnClose="CloseModal"
+OnSubmit="SaveAccount" />
+
+<VehiclesAddEdit   Vehicle="selectedVehicle"
+Title="@modalTitle"
+ButtonText="@modalButtonText"
+IsVisible="@IsVehicleModalVisible"
+OnClose="CloseModal"
+OnSubmit="SaveVehicle" />
+
+<LocationAddEdit Location="selectedLocation"
+Title="@modalTitle"
+ButtonText="@modalButtonText"
+IsVisible="@IsLocationModalVisible"
+OnClose="CloseModal"
+OnSubmit="SaveLocation" />
+
+<CargoAddEdit Cargo="selectedCargo"
+Title="@modalTitle"
+ButtonText="@modalButtonText"
+IsVisible="@IsCargoModalVisible"
+OnClose="CloseModal"
+OnSubmit="SaveCargo" />
+
+@code {
+
+    [Parameter] public Lr LR { get; set; } = new();
+
+    [Parameter] public string Title { get; set; } = "Add LR";
+
+    [Parameter] public string ButtonText { get; set; } = "Add";
+
+    [Parameter] public bool IsVisible { get; set; }
+
+    [Parameter] public EventCallback OnClose { get; set; }
+
+    [Parameter] public EventCallback OnSubmit { get; set; }
+
+    [Inject] private NavigationManager NavigationManager { get; set; }
+
+
+    private async Task HandleValidSubmit()
+
+    {
+
+        await OnSubmit.InvokeAsync();
+
+    }
+
+    private void Close()
+    {
+        NavigationManager.NavigateTo("/LrGRid");
+    }
+
+    private Cargo selectedCargo = new Cargo();
+    private Locations selectedLocation = new Locations();
+    private Vehicles selectedVehicle = new Vehicles();
+    private Account selectedAccount = new Account();
+    private bool IsAccountModalVisible => isModalVisible && activeModal == "Account";
+    private bool IsVehicleModalVisible => isModalVisible && activeModal == "Vehicle";
+    private bool IsLocationModalVisible => isModalVisible && activeModal == "Location";
+    private bool IsCargoModalVisible => isModalVisible && activeModal == "Product";
+
+
+    private string modalTitle = string.Empty;
+    private string modalButtonText = string.Empty;
+    private bool isModalVisible = false;
+    private string activeModal = string.Empty;
+
+
+
+    private void ShowAccModal()
+    {
+        selectedAccount = new Account();
+        modalTitle = "Add Account";
+        modalButtonText = "Add";
+        isModalVisible = true;
+        activeModal = "Account";
+    }
+    private void ShowVehiModal()
+    { 
+        selectedVehicle = new Vehicles();
+        modalTitle = "Add Vehicle";
+        modalButtonText = "Add";
+        isModalVisible = true;
+        activeModal = "Vehicle";
+    }
+    private void ShowLocationModal()
+    {
+        selectedLocation = new Locations();
+        modalTitle = "Add Location";
+        modalButtonText = "Add";
+        isModalVisible = true;
+        activeModal = "Location";
+    }
+    private void ShowProductModal()
+    {
+        selectedCargo = new Cargo();
+        modalTitle = "Add Cargo";
+        modalButtonText = "Add";
+        isModalVisible = true;
+        activeModal = "Product";
+    }
+
+    private void CloseModal()
+    {
+        isModalVisible = false;
+    }
+    private async Task SaveAccount()
+    {
+        try
+        {
+            if (selectedAccount.AccountId == 0) // Add new account
+            {
+                await AccountService.AddAccountsAsync(selectedAccount);
+            }
+            else // Update existing account
+            {
+                await AccountService.UpdateAccountsAsync(selectedAccount);
+            }
+
+            // Refresh the list
+            CloseModal();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error saving account: {ex.Message}";
+        }
+    }
+
+    private async Task SaveVehicle()
+    {
+        try
+        {
+            if (selectedVehicle.VehicleId == 0) // Add new vehicle
+            {
+                await VehicleService.AddVehicleAsync(selectedVehicle);
+            }
+            else // Update existing vehicle
+            {
+                await VehicleService.UpdateVehicleAsync(selectedVehicle);
+            }
+
+            // Refresh the list
+            CloseModal();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error saving vehicle: {ex.Message}";
+        }
+    }
+    private async Task SaveLocation()
+    {
+        try
+        {
+            if (selectedLocation.LocationId == 0) // Add new location
+            {
+                await LocationService.AddLocationAsync(selectedLocation);
+            }
+            else // Update existing location
+            {
+                await LocationService.UpdateLocationAsync(selectedLocation);
+            }
+
+            // Refresh the list
+            CloseModal();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error saving location: {ex.Message}";
+        }
+    }
+
+    private async Task SaveCargo()
+    {
+        try
+        {
+            if (selectedCargo.CargoId == 0) // Add new cargo
+            {
+                await CargoService.AddCargoAsync(selectedCargo);
+            }
+            else // Update existing cargo
+            {
+                await CargoService.UpdateCargoAsync(selectedCargo);
+            }
+
+            // Refresh the list
+            CloseModal();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error saving cargo: {ex.Message}";
+        }
+    }
+    // The list of vehicles
+
+    private List<Vehicles> vehicles = new List<Vehicles>();
+    private List<Account> Accounts = new List<Account>();
+    private List<Locations> locations = new List<Locations>();
+    private List<Cargo> cargos = new List<Cargo>();
+
+    private Lr selectedLRGrid = new Lr();
+    private string? errorMessage;
+
+    protected override async Task OnInitializedAsync()
+
+    {
+
+        // Fetch the list of vehicles from your backend (replace with your data fetch logic)
+
+
+
+        //  var response = await AccountService.GetAccountsAsync();
+
+        // Accounts = response.Accounts;
+
+
+
+    }
+
+    // Simulate fetching vehicles from a backend or service
+    private async Task LoadVehicles()
+    {
+
+        var response = await VehicleService.GetVehiclelistAsync();
+        vehicles = response.vehicles;
+
+
+
+    }
+
+    private async Task LoadParty()
+    {
+
+        var response = await AccountService.GetAccountslistAsync();
+        Accounts = response.Accounts;
+
+
+
+    }
+    private async Task Loadlocation()
+    {
+
+        var response = await LocationService.GetLocationslistAsync();
+        locations = response.locations;
+
+    }
+    private async Task Loadcargo()
+    {
+
+        var response = await CargoService.GetCargoslistAsync();
+        cargos = response.Cargos;
+
+    }
+
+
+
+    private async Task SaveLRGrid()
+    {
+        try
+        {
+            if (selectedLRGrid.LRId == 0) // Add new LRGrid
+            {
+                await LRGridService.AddLRAsync(selectedLRGrid);
+            }
+            else // Update existing LRGrid
+            {
+                await LRGridService.UpdateLRAsync(selectedLRGrid);
+            }
+
+            // Refresh the list
+            Close();
+        }
+
+        catch (Exception ex)
+        {
+            errorMessage = $"Error saving LRGrid: {ex.Message}";
+        }
+    }
+
+
+
+
+
+    private void HandleKeyPress(KeyboardEventArgs e)
+    {
+        if (e.Key == "Tab" || e.Key == "Enter")
+        {
+            CalculateNetFreight();
+            CalculatepayableFreight();
+        }
+    }
+
+
+
+ private void CalculateNetFreight()
+{
+    // Update based on the selected Bill Type
+   
+            // Calculate Net Freight Bill using Rate and Load Weight
+            LR.LrGrossfreightbill = LR.LrRatebill.GetValueOrDefault() * LR.LrLoadwt.GetValueOrDefault();
+        
+}
+    private void CalculatepayableFreight()
+    {
+        // Update based on the selected Bill Type
+
+        // Calculate Net Freight Bill using Rate and Load Weight
+        LR.LrGrossfreighttruck = LR.LrBillratetruck.GetValueOrDefault() * LR.LrLoadwt.GetValueOrDefault();
+
+    }
+
+
+}
+
+
+
+            <style>
+
+
+                .small-circle-button {
+    background-color: #007bff; /* Primary blue */
+    color: white; /* Button text color */
+    border: none; /* Remove border */
+    border-radius: 50%; /* Circular shape */
+    width: 30px; /* Button width */
+    height:30px; /* Button height */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    font-size: 14px; /* Font size */
+    display: flex; /* Center the text */
+        align-items: center;
+    justify-content: center;
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.small-circle-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+    .form-label.mb-0 {
+        margin-bottom: 0; /* Aligns label vertically with the input */
+    }
+
+            </style>

@@ -1,0 +1,232 @@
+﻿@page "/LrGRid"
+@using System.Collections.Generic;
+@using MauiAppFB.Models
+@using MauiAppFB.Services
+@inject LRService LRGridService
+@inject IJSRuntime JS
+
+<h3>LRGrid List</h3>
+
+@if (isLoading)
+{
+    <p>Loading...</p>
+}
+else if (!string.IsNullOrEmpty(errorMessage))
+{
+    <p style="color: red;">Error: @errorMessage</p>
+}
+else if (LRGrids == null || !LRGrids.Any())
+{
+    <p>No LRGrids available.</p>
+}
+else
+{
+    <div class="mb-3">
+        <input type="text" placeholder="Search LRGrid Name" @bind="filterLRGridName" class="form-control" />
+        <button class="btn btn-primary mt-2" @onclick="ApplyFilters">Apply Filters</button>
+        <button class="btn btn-success mt-2" @onclick="NavigateToLRGrid">
+            Add LRGrid
+        </button>
+    </div>
+
+    <table class="table-striped table">
+        <thead>
+            <tr>
+                <th>LRGrid ID</th>
+                <th>LRGrid Container1</th>
+                <th>LRGrid No</th>
+                <th>Remarks</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var lrgrid in LRGrids)
+            {
+                <tr>
+                    <td>@lrgrid.LRId</td>
+                    <td>@lrgrid.LrContainer1</td>
+                    <td>@lrgrid.LrNo</td>
+                    <td>@lrgrid.LrRemarks</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" @onclick="() => ShowEditModal(lrgrid)">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => ConfirmDelete(lrgrid.LRId)">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Pagination Controls -->
+    <div class="pagination">
+        <button class="btn btn-secondary" @onclick="GoToPreviousPage" disabled="@(!CanGoToPreviousPage)">Previous</button>
+        <span>Page @currentPage of @totalPages</span>
+        <button class="btn btn-secondary" @onclick="GoToNextPage" disabled="@(!CanGoToNextPage)">Next</button>
+    </div>
+}
+
+
+
+@code {
+
+
+    [Inject] private NavigationManager NavigationManager { get; set; }
+
+
+
+    private void NavigateToLRGrid()
+    {
+        NavigationManager.NavigateTo("/LRAddEdit");
+    }
+
+
+
+
+
+
+
+    private List<Lr> LRGrids = new();
+    private Lr selectedLRGrid = new Lr();
+    private string modalTitle = string.Empty;
+    private string modalButtonText = string.Empty;
+    private bool isModalVisible = false;
+    private bool isLoading = true;
+    private string? errorMessage;
+    private string filterLRGridName = string.Empty;
+
+    // Pagination variables
+    private int currentPage = 1;
+    private int totalPages = 1;
+    private int pageSize = 10;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadLRGrids();
+    }
+
+    private async Task LoadLRGrids()
+    {
+        isLoading = true;
+        errorMessage = null;
+
+        try
+        {
+            var response = await LRGridService.GetLRsAsync(currentPage, pageSize);
+            if (response != null)
+            {
+                LRGrids = response.Records; // Assuming LRGrids is the list to hold the fetched data
+               // totalPages = response.TotalPages;        // totalPages = (int)Math.Ceiling((double)totalCount / pageSize); // if your API provides the total count
+            }
+            else
+            {
+                errorMessage = "No LRGrids found.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error loading LRGrids: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task ApplyFilters()
+    {
+        currentPage = 1; // Reset to the first page when filters are applied
+        await LoadLRGrids();
+    }
+
+    private void ShowAddModal()
+    {
+        selectedLRGrid = new Models.Lr();
+        modalTitle = "Add LRGrid";
+        modalButtonText = "Add";
+        isModalVisible = true;
+    }
+
+    private void ShowEditModal(Models.Lr lrgrid)
+    {
+        selectedLRGrid = new Models.Lr
+        {
+            LRId = lrgrid.LRId,
+       
+           
+                LrRemarks = lrgrid.LrRemarks,
+                LrContainer1 = lrgrid.LrContainer1
+        };
+        modalTitle = "Edit LRGrid";
+        modalButtonText = "Save";
+        isModalVisible = true;
+    }
+
+    private async Task SaveLRGrid()
+    {
+        try
+        {
+            if (selectedLRGrid.LRId == 0) // Add new LRGrid
+            {
+                await LRGridService.AddLRAsync(selectedLRGrid);
+            }
+            else // Update existing LRGrid
+            {
+                await LRGridService.UpdateLRAsync(selectedLRGrid);
+            }
+
+            await LoadLRGrids(); // Refresh the list
+            CloseModal();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error saving LRGrid: {ex.Message}";
+        }
+    }
+
+    private async Task ConfirmDelete(int lrgridId)
+    {
+        bool isConfirmed = await JS.InvokeAsync<bool>("confirm", "Are you sure you want to delete this LRGrid?");
+        if (isConfirmed)
+        {
+            try
+            {
+                await LRGridService.DeleteLRAsync(lrgridId);
+                LRGrids = LRGrids.Where(l => l.LRId != lrgridId).ToList();
+            }
+            catch (Exception ex)
+            {
+                errorMessage = $"Error deleting LRGrid: {ex.Message}";
+            }
+        }
+    }
+
+    private void CloseModal()
+    {
+        isModalVisible = false;
+    }
+
+    // Pagination logic
+    private bool CanGoToPreviousPage => currentPage > 1;
+    private bool CanGoToNextPage => currentPage < totalPages;
+
+    private async Task GoToPreviousPage()
+    {
+        if (CanGoToPreviousPage)
+        {
+            currentPage--;
+            await LoadLRGrids();
+        }
+    }
+
+    private async Task GoToNextPage()
+    {
+        if (CanGoToNextPage)
+        {
+            currentPage++;
+            await LoadLRGrids();
+        }
+    }
+}

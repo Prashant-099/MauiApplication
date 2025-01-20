@@ -1,0 +1,216 @@
+﻿@page "/currencies"
+@using Models
+@using Services
+@inject CurrenciesService CurrencyService
+@inject IJSRuntime JS
+
+<h3>Currency List</h3>
+
+@if (isLoading)
+{
+    <p>Loading...</p>
+}
+else if (!string.IsNullOrEmpty(errorMessage))
+{
+    <p style="color: red;">Error: @errorMessage</p>
+}
+else if (currencie == null || !currencie.Any())
+{
+    <p>No currencies available.</p>
+}
+else
+{
+    <div class="mb-3">
+        <input type="text" placeholder="Search Currency Name" @bind="filterCurrencyName" class="form-control" />
+        <button class="btn btn-primary mt-2" @onclick="ApplyFilters">Apply Filters</button>
+        <button class="btn btn-success mt-2" @onclick="ShowAddModal">Add Currency</button>
+    </div>
+
+    <table class="table-striped table">
+        <thead>
+            <tr>
+                <th>Currency ID</th>
+                <th>Currency Name</th>
+               
+           
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var currency in currencie)
+            {
+                <tr>
+                    <td>@currency.CurrencyId</td>
+                    <td>@currency.CurrencyName</td>
+                
+                   
+                    <td>
+                        <button class="btn btn-warning btn-sm" @onclick="() => ShowEditModal(currency)">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => ConfirmDelete(currency.CurrencyId)">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Pagination Controls -->
+    <div class="pagination">
+        <button class="btn btn-secondary" @onclick="GoToPreviousPage" disabled="@(!CanGoToPreviousPage)">Previous</button>
+        <span>Page @currentPage of @totalPages</span>
+        <button class="btn btn-secondary" @onclick="GoToNextPage" disabled="@(!CanGoToNextPage)">Next</button>
+    </div>
+}
+
+<CurrencyAddEdit Currency="selectedCurrency"
+                 Title="@modalTitle"
+                 ButtonText="@modalButtonText"
+                 IsVisible="@isModalVisible"
+                 OnClose="CloseModal"
+                 OnSubmit="SaveCurrency" />
+
+@code {
+    private List<Currencies> currencie = new();
+    private Currencies selectedCurrency = new Currencies();
+    private string modalTitle = string.Empty;
+    private string modalButtonText = string.Empty;
+    private bool isModalVisible = false;
+    private bool isLoading = true;
+    private string? errorMessage;
+    private string filterCurrencyName = string.Empty;
+
+    // Pagination variables
+    private int currentPage = 1;
+    private int totalPages = 1;
+    private int pageSize = 10;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadCurrencies();
+    }
+
+    private async Task LoadCurrencies()
+    {
+        isLoading = true;
+        errorMessage = null;
+
+        try
+        {
+            var response = await CurrencyService.GetCurrenciesAsync(currentPage, pageSize);
+            if (response != null)
+            {
+                currencie = response;
+                // totalPages = (int)Math.Ceiling((double)totalCount / pageSize); // Use if API provides total count
+            }
+            else
+            {
+                errorMessage = "No currencies found.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error loading currencies: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task ApplyFilters()
+    {
+        currentPage = 1; // Reset to the first page when filters are applied
+        await LoadCurrencies();
+    }
+
+    private void ShowAddModal()
+    {
+        selectedCurrency = new Currencies();
+        modalTitle = "Add Currency";
+        modalButtonText = "Add";
+        isModalVisible = true;
+    }
+
+    private void ShowEditModal(Currencies currency)
+    {
+        selectedCurrency = new Currencies
+            {
+                CurrencyId = currency.CurrencyId,
+                CurrencyName = currency.CurrencyName,
+              
+               
+            };
+        modalTitle = "Edit Currency";
+        modalButtonText = "Save";
+        isModalVisible = true;
+    }
+
+    private async Task SaveCurrency()
+    {
+        try
+        {
+            if (selectedCurrency.CurrencyId == 0) // Add new currency
+            {
+                await CurrencyService.AddCurrencyAsync(selectedCurrency);
+            }
+            else // Update existing currency
+            {
+                await CurrencyService.UpdateCurrencyAsync(selectedCurrency);
+            }
+
+            await LoadCurrencies(); // Refresh the list
+            CloseModal();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error saving currency: {ex.Message}";
+        }
+    }
+
+    private async Task ConfirmDelete(int currencyId)
+    {
+        bool isConfirmed = await JS.InvokeAsync<bool>("confirm", "Are you sure you want to delete this currency?");
+        if (isConfirmed)
+        {
+            try
+            {
+                await CurrencyService.DeleteCurrencyAsync(currencyId);
+                currencie = currencie.Where(c => c.CurrencyId != currencyId).ToList();
+            }
+            catch (Exception ex)
+            {
+                errorMessage = $"Error deleting currency: {ex.Message}";
+            }
+        }
+    }
+
+    private void CloseModal()
+    {
+        isModalVisible = false;
+    }
+
+    // Pagination logic
+    private bool CanGoToPreviousPage => currentPage > 1;
+    private bool CanGoToNextPage => currentPage < totalPages;
+
+    private async Task GoToPreviousPage()
+    {
+        if (CanGoToPreviousPage)
+        {
+            currentPage--;
+            await LoadCurrencies();
+        }
+    }
+
+    private async Task GoToNextPage()
+    {
+        if (CanGoToNextPage)
+        {
+            currentPage++;
+            await LoadCurrencies();
+        }
+    }
+}

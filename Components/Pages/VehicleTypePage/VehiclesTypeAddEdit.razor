@@ -1,0 +1,57 @@
+﻿@page "/VehiclesTypeAddEdit"
+@using Models
+@inject IJSRuntime JS
+
+@if (IsVisible)
+{
+    <div class="modal fade show d-block" tabindex="-1" role="dialog" style="background-color: rgba(0, 0, 0, 0.5);">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">@Title</h5>
+                    <button type="button" class="btn-close" @onclick="CloseModal"></button>
+                </div>
+                <div class="modal-body">
+                    <EditForm Model="@Vehicletype" OnValidSubmit="HandleValidSubmit">
+                        <DataAnnotationsValidator />
+                        <ValidationSummary />
+
+                        <div class="mb-3">
+                            <label for="VehicleTypeName">VehicleType Name:</label>
+                            <InputText id="VehicleTypeName" @bind-Value="Vehicletype.VehicleTypeName" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                                <label for="VehicleTypeCode">VehicleType CompanyId:</label>
+                                <InputText id="VehicleTypeCode" @bind-Value="Vehicletype.VehicleTypeCompanyId" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                                <label for="VehicleRemarks">VehicleType UpdatedByUserId:</label>
+                                <InputText id="VehicleRemarks" @bind-Value="Vehicletype.VehicleTypeUpdatedByUserId" class="form-control" />
+                        </div>
+
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-primary">@ButtonText</button>
+                            <button type="button" class="btn btn-secondary" @onclick="CloseModal">Cancel</button>
+                        </div>
+                    </EditForm>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter] public VehicleType Vehicletype { get; set; } // Assuming a VehicleTypes model exists
+    [Parameter] public string Title { get; set; } = "Add Vehicle Type";
+    [Parameter] public string ButtonText { get; set; } = "Add";
+    [Parameter] public bool IsVisible { get; set; }
+    [Parameter] public EventCallback OnClose { get; set; }
+    [Parameter] public EventCallback OnSubmit { get; set; }
+
+    private async Task HandleValidSubmit()
+    {
+        await OnSubmit.InvokeAsync();
+    }
+
+    private async Task CloseModal() => await OnClose.InvokeAsync();
+}

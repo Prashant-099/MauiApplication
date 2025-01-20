@@ -1,0 +1,212 @@
+﻿@page "/GroupGrid"
+@using Models
+@using Services
+@inject AccountGroupService AccountGroupService
+@inject IJSRuntime JS
+
+<h3>Account Group List</h3>
+
+@if (isLoading)
+{
+    <p>Loading...</p>
+}
+else if (!string.IsNullOrEmpty(errorMessage))
+{
+    <p style="color: red;">Error: @errorMessage</p>
+}
+else if (AccountGroups == null || !AccountGroups.Any())
+{
+    <p>No account groups available.</p>
+}
+else
+{
+    <div class="mb-3">
+        <input type="text" placeholder="Search Account Group Name" @bind="filterAccountGroupName" class="form-control" />
+        <button class="btn btn-primary mt-2" @onclick="ApplyFilters">Apply Filters</button>
+        <button class="btn btn-success mt-2" @onclick="ShowAddModal">Add Account Group</button>
+    </div>
+
+    <table class="table-striped table">
+        <thead>
+            <tr>
+                <th>Group ID</th>
+                <th>Group Name</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var group in AccountGroups)
+            {
+                <tr>
+                    <td>@group.AccountGroupId</td>
+                            <td>@group.AccountGroupName</td>
+                                    <td>@group.AccountGroupParent</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" @onclick="() => ShowEditModal(group)">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => ConfirmDelete(group.AccountGroupId)">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Pagination Controls -->
+    <div class="pagination">
+        <button class="btn btn-secondary" @onclick="GoToPreviousPage" disabled="@(!CanGoToPreviousPage)">Previous</button>
+        <span>Page @currentPage of @totalPages</span>
+        <button class="btn btn-secondary" @onclick="GoToNextPage" disabled="@(!CanGoToNextPage)">Next</button>
+    </div>
+}
+
+<AccountGroupAddEdit AccountGroup="selectedAccountGroup"
+                     Title="@modalTitle"
+                     ButtonText="@modalButtonText"
+                     IsVisible="@isModalVisible"
+                     OnClose="CloseModal"
+                     OnSubmit="SaveAccountGroup" />
+
+@code {
+    private List<AccountGroup> AccountGroups = new();
+    private AccountGroup selectedAccountGroup = new AccountGroup();
+    private string modalTitle = string.Empty;
+    private string modalButtonText = string.Empty;
+    private bool isModalVisible = false;
+    private bool isLoading = true;
+    private string? errorMessage;
+    private string filterAccountGroupName = string.Empty;
+
+    // Pagination variables
+    private int currentPage = 1;
+    private int totalPages = 1;
+    private int pageSize = 10;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadAccountGroups();
+    }
+
+    private async Task LoadAccountGroups()
+    {
+        isLoading = true;
+        errorMessage = null;
+
+        try
+        {
+            var response = await AccountGroupService.GetAccountGroupsAsync(currentPage, pageSize);
+            if (response != null)
+            {
+                AccountGroups = response;
+            }
+            else
+            {
+                errorMessage = "No account groups found.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error loading account groups: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task ApplyFilters()
+    {
+        currentPage = 1; // Reset to the first page when filters are applied
+        await LoadAccountGroups();
+    }
+
+    private void ShowAddModal()
+    {
+        selectedAccountGroup = new AccountGroup();
+        modalTitle = "Add Account Group";
+        modalButtonText = "Add";
+        isModalVisible = true;
+    }
+
+    private void ShowEditModal(AccountGroup group)
+    {
+        selectedAccountGroup = new AccountGroup
+        {
+            AccountGroupId = group.AccountGroupId,
+                AccountGroupName = group.AccountGroupName,
+                AccountGroupParent = group.AccountGroupParent
+        };
+        modalTitle = "Edit Account Group";
+        modalButtonText = "Save";
+        isModalVisible = true;
+    }
+
+    private async Task SaveAccountGroup()
+    {
+        try
+        {
+            if (selectedAccountGroup.AccountGroupId == 0) // Add new account group
+            {
+                await AccountGroupService.AddAccountGroupAsync(selectedAccountGroup);
+            }
+            else // Update existing account group
+            {
+                await AccountGroupService.UpdateAccountGroupAsync(selectedAccountGroup);
+            }
+
+            await LoadAccountGroups(); // Refresh the list
+            CloseModal();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error saving account group: {ex.Message}";
+        }
+    }
+
+    private async Task ConfirmDelete(int accountGroupId)
+    {
+        bool isConfirmed = await JS.InvokeAsync<bool>("confirm", "Are you sure you want to delete this account group?");
+        if (isConfirmed)
+        {
+            try
+            {
+                await AccountGroupService.DeleteAccountGroupAsync(accountGroupId);
+                AccountGroups = AccountGroups.Where(g => g.AccountGroupId != accountGroupId).ToList();
+            }
+            catch (Exception ex)
+            {
+                errorMessage = $"Error deleting account group: {ex.Message}";
+            }
+        }
+    }
+
+    private void CloseModal()
+    {
+        isModalVisible = false;
+    }
+
+    // Pagination logic
+    private bool CanGoToPreviousPage => currentPage > 1;
+    private bool CanGoToNextPage => currentPage < totalPages;
+
+    private async Task GoToPreviousPage()
+    {
+        if (CanGoToPreviousPage)
+        {
+            currentPage--;
+            await LoadAccountGroups();
+        }
+    }
+
+    private async Task GoToNextPage()
+    {
+        if (CanGoToNextPage)
+        {
+            currentPage++;
+            await LoadAccountGroups();
+        }
+    }
+}

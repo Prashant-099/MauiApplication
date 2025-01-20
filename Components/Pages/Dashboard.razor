@@ -1,0 +1,18 @@
+﻿@page "/dashboard"
+
+<h1>Dashboard</h1>
+<p>Welcome to your dashboard!</p>
+<CargoGrid />
+@code {
+    [Inject] private NavigationManager NavigationManager { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var token = await SecureStorage.GetAsync("authToken");
+
+        if (string.IsNullOrEmpty(token))
+        {
+            NavigationManager.NavigateTo("/login");
+        }
+    }
+}

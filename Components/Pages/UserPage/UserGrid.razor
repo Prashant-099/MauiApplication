@@ -1,0 +1,229 @@
+﻿@page "/User1"
+@using Models
+@using Services
+@inject UserService UserService
+@inject IJSRuntime JS
+
+<h3>User Grid</h3>
+
+@if (isLoading)
+{
+    <p>Loading...</p>
+}
+else if (!string.IsNullOrEmpty(errorMessage))
+{
+    <p style="color: red;">Error: @errorMessage</p>
+}
+else if (data == null || !data.Any())
+{
+    <p>No users available.</p>
+}
+else
+{
+    <div class="mb-3">
+        <input type="text" placeholder="Search User Name" @bind="filterUserName" class="form-control" />
+        <button class="btn btn-primary mt-2" @onclick="ApplyFilters">Apply Filters</button>
+        <button class="btn btn-success mt-2" @onclick="ShowAddModal">Add User</button>
+    </div>
+
+    <table class="table-striped table">
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>UserFirstName</th>
+                <th>UserLastName</th>
+                <th>UserEmail</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in data)
+            {
+                <tr>
+                    <td>@user.UserId</td>
+                            <td>@user.UserFirstName</td>
+                            <td>@user.UserLastName</td>
+                            <td>@user.UserEmail</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" @onclick="() => ShowEditModal(user)">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => ConfirmDelete(user.UserId)">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Pagination Controls -->
+    <div class="pagination">
+        <button class="btn btn-secondary" @onclick="GoToPreviousPage" disabled="@(!CanGoToPreviousPage)">Previous</button>
+        <span>Page @currentPage of @totalPages</span>
+        <button class="btn btn-secondary" @onclick="GoToNextPage" disabled="@(!CanGoToNextPage)">Next</button>
+    </div>
+}
+
+<UserAddEdit User="selectedUser"
+             Title="@modalTitle"
+             ButtonText="@modalButtonText"
+             IsVisible="@isModalVisible"
+             OnClose="CloseModal"
+             OnSubmit="SaveUser" />
+
+@code {
+    private List<User> data = new();
+    private User selectedUser = new User();
+    private string modalTitle = string.Empty;
+    private string modalButtonText = string.Empty;
+    private bool isModalVisible = false;
+    private bool isLoading = true;
+    private string? errorMessage;
+    private string filterUserName = string.Empty;
+
+    // Pagination variables
+    private int currentPage = 1;
+    private int totalPages = 1;
+    private int pageSize = 10;
+
+    // Sorting variables
+    private string sortColumn = "UserId";
+    private bool isSortDescending = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadUsers();
+    }
+
+    private async Task LoadUsers()
+    {
+        isLoading = true;
+        errorMessage = null;
+
+        try
+        {
+            var response = await UserService.GetUsersAsync(currentPage, pageSize);
+            data = response.data;
+            totalPages = response.TotalPages;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error loading users: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task ApplyFilters()
+    {
+        currentPage = 1; // Reset to the first page when filters are applied
+        await LoadUsers();
+    }
+
+    private void ShowAddModal()
+    {
+        selectedUser = new User();
+        modalTitle = "Add User";
+        modalButtonText = "Add";
+        isModalVisible = true;
+    }
+
+    private void ShowEditModal(User user)
+    {
+        selectedUser = new User
+        {
+            UserId = user.UserId,
+            UserName = user.UserName,
+                UserEmail = user.UserEmail,
+                UserRoleName = user.UserRoleName
+        };
+        modalTitle = "Edit User";
+        modalButtonText = "Save";
+        isModalVisible = true;
+    }
+
+    private async Task SaveUser()
+    {
+        try
+        {
+            if (selectedUser.UserId == 0) // Add new user
+            {
+                await UserService.AddUserAsync(selectedUser);
+            }
+            else // Update existing user
+            {
+                await UserService.UpdateUserAsync(selectedUser);
+            }
+
+            await LoadUsers(); // Refresh the list
+            CloseModal();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error saving user: {ex.Message}";
+        }
+    }
+
+    private async Task ConfirmDelete(int userId)
+    {
+        bool isConfirmed = await JS.InvokeAsync<bool>("confirm", "Are you sure you want to delete this user?");
+        if (isConfirmed)
+        {
+            try
+            {
+                await UserService.DeleteUserAsync(userId);
+                data = data.Where(u => u.UserId != userId).ToList();
+            }
+            catch (Exception ex)
+            {
+                errorMessage = $"Error deleting user: {ex.Message}";
+            }
+        }
+    }
+
+    private void CloseModal()
+    {
+        isModalVisible = false;
+    }
+
+    private async Task ApplySorting(string column)
+    {
+        if (sortColumn == column)
+        {
+            isSortDescending = !isSortDescending; // Toggle sort direction
+        }
+        else
+        {
+            sortColumn = column;
+            isSortDescending = false; // Default to ascending for a new column
+        }
+
+        currentPage = 1; // Reset to the first page on sorting
+        await LoadUsers();
+    }
+
+    // Pagination logic
+    private bool CanGoToPreviousPage => currentPage > 1;
+    private bool CanGoToNextPage => currentPage < totalPages;
+
+    private async Task GoToPreviousPage()
+    {
+        if (CanGoToPreviousPage)
+        {
+            currentPage--;
+            await LoadUsers();
+        }
+    }
+
+    private async Task GoToNextPage()
+    {
+        if (CanGoToNextPage)
+        {
+            currentPage++;
+            await LoadUsers();
+        }
+    }
+}

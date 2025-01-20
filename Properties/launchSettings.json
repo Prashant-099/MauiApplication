@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Windows Machine": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\rajin\\Desktop\\project1",
+      "nativeDebugging": false
+    }
+  }
+}

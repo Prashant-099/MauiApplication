@@ -1,0 +1,152 @@
+﻿@page "/login"
+
+<div class="login-container">
+    <div class="login-card">
+        <h3>Login to Your Account</h3>
+        <p class="subtitle">Please enter your credentials to continue.</p>
+
+        <EditForm Model="@loginModel" OnValidSubmit="HandleLogin">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <InputText id="email" @bind-Value="loginModel.Email" class="form-control" placeholder="Enter your email" />
+                <ValidationMessage For="@(() => loginModel.Email)" />
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <InputText id="password" @bind-Value="loginModel.Password" type="password" class="form-control" placeholder="Enter your password" />
+                <ValidationMessage For="@(() => loginModel.Password)" />
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </EditForm>
+
+        @if (!string.IsNullOrEmpty(errorMessage))
+        {
+            <p class="error-message">@errorMessage</p>
+        }
+
+        <p class="footer-text">Don't have an account? <a href="/register">Sign up</a></p>
+    </div>
+</div>
+<style>
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #f5f5f5;
+        padding: 1rem;
+    }
+
+    .login-card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        max-width: 400px;
+        width: 100%;
+        text-align: center;
+    }
+
+        .login-card h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .login-card .subtitle {
+            margin-bottom: 2rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+    .form-group {
+        margin-bottom: 1rem;
+        text-align: left;
+    }
+
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+    .form-control {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .btn-block {
+        width: 100%;
+        padding: 0.75rem;
+    }
+
+    .error-message {
+        color: #e74c3c;
+        font-size: 0.9rem;
+        margin-top: 1rem;
+    }
+
+    .footer-text {
+        margin-top: 1.5rem;
+        font-size: 0.9rem;
+        color: #888;
+    }
+
+        .footer-text a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+            .footer-text a:hover {
+                text-decoration: underline;
+            }
+</style>
+
+@code {
+    @using MauiAppFB.Services
+    @using System.ComponentModel.DataAnnotations
+    //private string email = string.Empty;
+    //private string password = string.Empty;
+    private string errorMessage = string.Empty;
+    private LoginModel loginModel = new LoginModel();
+   
+
+    [Inject] private AuthService AuthService { get; set; }
+    [Inject] private NavigationManager NavigationManager { get; set; }
+     
+    private async Task HandleLogin()
+    {
+        try
+        {
+            errorMessage = string.Empty;
+
+            // Authenticate and get the token
+            var token = await AuthService.LoginAsync(loginModel.Email, loginModel.Password);
+
+            // Save the token securely
+            await SecureStorage.SetAsync("authToken", token);
+
+            // Navigate to dashboard
+            NavigationManager.NavigateTo("/");
+        }
+        catch (Exception ex)
+        {
+            errorMessage = ex.Message;
+        }
+    }
+    public class LoginModel
+    {
+        [Required(ErrorMessage = "Email is required.")]
+        [EmailAddress(ErrorMessage = "Enter a valid email address.")]
+        public string Email { get; set; }
+
+        [Required(ErrorMessage = "Password is required.")]
+        public string Password { get; set; }
+    }
+}

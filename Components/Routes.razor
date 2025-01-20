@@ -1,0 +1,15 @@
+﻿<Router AppAssembly="@typeof(App).Assembly">
+    <Found Context="routeData">
+        @if (routeData.PageType == typeof(Components.Pages.Login))
+        {
+                <RouteView RouteData="@routeData" />
+        }
+        else
+        {
+                <RouteView RouteData="@routeData" DefaultLayout="@typeof(Layout.MainLayout)" />
+        }
+    </Found>
+    <NotFound>
+        <h1>Page not found</h1>
+    </NotFound>
+</Router>

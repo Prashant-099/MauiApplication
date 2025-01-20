@@ -1,0 +1,57 @@
+﻿@page "/StateAddEdit"
+@using Models
+@inject IJSRuntime JS
+
+@if (IsVisible)
+{
+            <div class="modal fade show d-block" tabindex="-1" role="dialog" style="background-color: rgba(0, 0, 0, 0.5);">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">@Title</h5>
+                            <button type="button" class="btn-close" @onclick="CloseModal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <EditForm Model="@State" OnValidSubmit="HandleValidSubmit">
+                                <DataAnnotationsValidator />
+                                <ValidationSummary />
+
+                                <div class="mb-3">
+                                    <label for="StateName">State Name:</label>
+                                    <InputText id="StateName" @bind-Value="State.StateName" class="form-control" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="StateCode">State Code:</label>
+                                    <InputText id="StateCode" @bind-Value="State.StateCode" class="form-control" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="StateRemarks">StateCompanyId:</label>
+                                                <InputText id="StateRemarks" @bind-Value="State.StateCompanyId" class="form-control" />
+                                </div>
+
+                                <div class="mt-3">
+                                    <button type="submit" class="btn btn-primary">@ButtonText</button>
+                                    <button type="button" class="btn btn-secondary" @onclick="CloseModal">Cancel</button>
+                                </div>
+                            </EditForm>
+                        </div>
+                    </div>
+                </div>
+            </div>
+}
+
+@code {
+    [Parameter] public States State { get; set; }
+    [Parameter] public string Title { get; set; } = "Add State";
+    [Parameter] public string ButtonText { get; set; } = "Add";
+    [Parameter] public bool IsVisible { get; set; }
+    [Parameter] public EventCallback OnClose { get; set; }
+    [Parameter] public EventCallback OnSubmit { get; set; }
+
+    private async Task HandleValidSubmit()
+    {
+        await OnSubmit.InvokeAsync();
+    }
+
+    private async Task CloseModal() => await OnClose.InvokeAsync();
+}

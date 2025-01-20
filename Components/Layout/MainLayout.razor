@@ -1,0 +1,104 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page" >
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+    
+    <main>
+        
+            
+        <div class="top-row px-4">
+            <div class="dropdown">
+                <button class="dropdown-toggle btn btn-link">
+                    <img src=""  class="menu-icon" />
+                </button>
+                <ul class="dropdown-menu">
+
+                    <li>
+                        <a href="/about" target="_blank">
+                         
+                            About
+                        </a>
+                    </li>
+                    <hr>
+                    <li>
+                        <a href="#" @onclick="HandleLogout">
+                          
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+@code {
+
+    @using MauiAppFB.Services
+    [Inject] private AuthService AuthService { get; set; }
+    [Inject] private NavigationManager NavigationManager { get; set; }
+
+    private async Task HandleLogout()
+    {
+        // Perform logout by removing the token
+        await AuthService.LogoutAsync();
+
+        // Redirect to the login page
+        NavigationManager.NavigateTo("/login", true);
+    }
+}
+<style>
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-toggle {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        min-width: 150px;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-menu li {
+        padding: 10px;
+        cursor: pointer;
+    }
+
+        .dropdown-menu li a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #000;
+        }
+
+    .menu-icon {
+        background-image: url('css/icon.jpg');
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+    }
+
+</style>

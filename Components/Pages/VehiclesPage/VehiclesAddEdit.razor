@@ -1,0 +1,132 @@
+﻿@page "/VehicleAddEdit"
+@using Models
+@using MauiAppFB.Services
+@inject AccountsService AccountService
+@inject VehicleTypeService VehicleService
+@inject IJSRuntime JS
+
+@if (IsVisible)
+{
+        <div class="modal fade show d-block" tabindex="-1" role="dialog" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">@Title</h5>
+                        <button type="button" class="btn-close" @onclick="CloseModal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <EditForm Model="@Vehicle" OnValidSubmit="HandleValidSubmit">
+                            <DataAnnotationsValidator />
+                            <ValidationSummary />
+
+                            <div class="mb-3">
+                                <label for="VehicleName">Vehicle No:</label>
+                                    <InputText id="VehicleName" @bind-Value="Vehicle.VehicleNo" class="form-control" />
+                            </div>
+                      
+                            <div class="mb-3">
+                                <label for="VehicleType">Self Vehicle:</label>
+                                    <InputSelect id="VehicleType" @bind-Value="Vehicle.VehicleOwnerType" class="form-control" >
+                                <option value=" YES">YES</option>
+                                <option value="NO">NO</option>
+                                    </InputSelect>
+                            </div>
+                        <div class="mb-3">
+                            <label for="VehicleType">Vehicle Owner Name:</label>
+                            <InputSelect id="VehicleType" @bind-Value="Vehicle.VehicleAccountId" class="form-control" @onclick="LoadParty">
+                                <option >-- Select Owner --</option>
+
+                                @foreach (var accounts in Accounts)
+
+                                {
+
+                                    <option value="@accounts.AccountId">@accounts.AccountName</option>
+
+                                }
+                            </InputSelect>
+                        </div>
+                            
+                             <div class="mb-3">
+                            <label for="vehicle Type">Vehicle Type:</label>
+                            <InputSelect id="vehicle Type" @bind-Value="Vehicle.VehicleTypeId" class="form-control" @onclick="LoadVehicleType">
+                                @foreach (var vehtype in vehicleType)
+
+                                {
+
+                                    <option value="@vehtype.VehicleTypeId">@vehtype.VehicleTypeName</option>
+
+                                }
+
+                                </InputSelect>
+                            </div>
+
+                        <div class="mb-3">
+                            <label for="VehicleType">Driver Name:</label>
+                            <InputSelect id="VehicleType" @bind-Value="Vehicle.VehicleDriverId" class="form-control" @onclick="LoadParty">
+                                <option >-- Select Driver --</option>
+
+                                @foreach (var accounts in Accounts)
+
+                                {
+
+                                    <option value="@accounts.AccountId">@accounts.AccountName</option>
+
+                                }
+                            </InputSelect>
+                        </div>
+                            <div class="mb-3">
+                                <label for="Remarks">Remarks:</label>
+                                    <InputText id="Remarks" @bind-Value="Vehicle.VehicleRemarks" class="form-control" />
+                            </div>
+
+                            <div class="mt-3">
+                                <button type="submit" class="btn btn-primary">@ButtonText</button>
+                                <button type="button" class="btn btn-secondary" @onclick="CloseModal">Cancel</button>
+                            </div>
+                        </EditForm>
+                    </div>
+                </div>
+            </div>
+        </div>
+}
+
+@code {
+    [Parameter] public Vehicles Vehicle { get; set; }
+    [Parameter] public string Title { get; set; } = "Add Vehicle";
+    [Parameter] public string ButtonText { get; set; } = "Add";
+    [Parameter] public bool IsVisible { get; set; }
+    [Parameter] public EventCallback OnClose { get; set; }
+    [Parameter] public EventCallback OnSubmit { get; set; }
+
+
+    private List<VehicleType> vehicleType = new();
+    private List<Account> Accounts = new List<Account>();
+
+    private async Task HandleValidSubmit()
+    {
+        await OnSubmit.InvokeAsync();
+    }
+
+    private async Task CloseModal() => await OnClose.InvokeAsync();
+
+
+
+    private async Task LoadParty()
+    {
+
+        var response = await AccountService.GetAccountslistAsync();
+        Accounts = response.Accounts;
+
+
+
+    }
+
+    private async Task LoadVehicleType()
+    {
+        var response = await VehicleService.GetVehicleTypesAsync();
+        vehicleType = response.VehicleTypes;
+    }
+}
+
+
+   

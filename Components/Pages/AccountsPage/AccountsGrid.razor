@@ -1,0 +1,227 @@
+﻿@page "/accounts"
+@using Models
+@using Services
+@using MauiAppFB.Components.Pages.AccountsPage
+@inject AccountsService AccountService
+@inject IJSRuntime JS
+
+<h3>Accounts List</h3>
+
+@if (isLoading)
+{
+    <p>Loading...</p>
+}
+else if (!string.IsNullOrEmpty(errorMessage))
+{
+    <p style="color: red;">Error: @errorMessage</p>
+}
+else if (accounts == null || !accounts.Any())
+{
+    <p>No accounts available.</p>
+}
+else
+{
+    <div class="mb-3">
+        <input type="text" placeholder="Search Account Name" @bind="filterAccountName" class="form-control" />
+        <button class="btn btn-primary mt-2" @onclick="ApplyFilters">Apply Filters</button>
+        <button class="btn btn-success mt-2" @onclick="ShowAddModal">Add Account</button>
+    </div>
+
+    <table class="table-striped table">
+        <thead>
+            <tr>
+                <th @onclick="() => ApplySorting(nameof(Account.AccountId))">Account ID</th>
+                <th @onclick="() => ApplySorting(nameof(Account.AccountName))">Account Name</th>
+               
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var account in accounts)
+            {
+                <tr>
+                    <td>@account.AccountId</td>
+                    <td>@account.AccountName</td>
+                   
+                    <td>
+                        <button class="btn btn-warning btn-sm" @onclick="() => ShowEditModal(account)">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => ConfirmDelete(account.AccountId)">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Pagination Controls -->
+    <div class="pagination">
+        <button class="btn btn-secondary" @onclick="GoToPreviousPage" disabled="@(!CanGoToPreviousPage)">Previous</button>
+        <span>Page @currentPage of @totalPages</span>
+        <button class="btn btn-secondary" @onclick="GoToNextPage" disabled="@(!CanGoToNextPage)">Next</button>
+    </div>
+}
+
+<AccountsAddEdit Account="selectedAccount"
+                Title="@modalTitle"
+                ButtonText="@modalButtonText"
+                IsVisible="@isModalVisible"
+                OnClose="CloseModal"
+                OnSubmit="SaveAccount" />
+
+@code {
+    private List<Account> accounts = new();
+    private Account selectedAccount = new Account();
+    private string modalTitle = string.Empty;
+    private string modalButtonText = string.Empty;
+    private bool isModalVisible = false;
+    private bool isLoading = true;
+    private string? errorMessage;
+    private string filterAccountName = string.Empty;
+
+    // Pagination variables
+    private int currentPage = 1;
+    private int totalPages = 1;
+    private int pageSize = 10;
+
+    // Sorting variables
+    private string sortColumn = nameof(Account.AccountId);
+    private bool isSortDescending = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadAccounts();
+    }
+
+    private async Task LoadAccounts()
+    {
+        isLoading = true;
+        errorMessage = null;
+
+        try
+        {
+            var response = await AccountService.GetAccountsAsync(currentPage, pageSize);
+            accounts = response.Accounts;
+            totalPages = response.TotalPages;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error loading accounts: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task ApplyFilters()
+    {
+        currentPage = 1; // Reset to the first page when filters are applied
+        await LoadAccounts();
+    }
+
+    private void ShowAddModal()
+    {
+        selectedAccount = new Account();
+        modalTitle = "Add Account";
+        modalButtonText = "Add";
+        isModalVisible = true;
+    }
+
+    private void ShowEditModal(Account account)
+    {
+        selectedAccount = new Account
+        {
+            AccountId = account.AccountId,
+            AccountName = account.AccountName,
+        
+        };
+        modalTitle = "Edit Account";
+        modalButtonText = "Save";
+        isModalVisible = true;
+    }
+
+    private async Task SaveAccount()
+    {
+        try
+        {
+            if (selectedAccount.AccountId == 0) // Add new account
+            {
+                await AccountService.AddAccountsAsync(selectedAccount);
+            }
+            else // Update existing account
+            {
+                await AccountService.UpdateAccountsAsync(selectedAccount);
+            }
+
+            await LoadAccounts(); // Refresh the list
+            CloseModal();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error saving account: {ex.Message}";
+        }
+    }
+
+    private async Task ConfirmDelete(int accountId)
+    {
+        bool isConfirmed = await JS.InvokeAsync<bool>("confirm", "Are you sure you want to delete this account?");
+        if (isConfirmed)
+        {
+            try
+            {
+                await AccountService.DeleteAccountsAsync(accountId);
+                accounts = accounts.Where(a => a.AccountId != accountId).ToList();
+            }
+            catch (Exception ex)
+            {
+                errorMessage = $"Error deleting account: {ex.Message}";
+            }
+        }
+    }
+
+    private void CloseModal()
+    {
+        isModalVisible = false;
+    }
+
+    private async Task ApplySorting(string column)
+    {
+        if (sortColumn == column)
+        {
+            isSortDescending = !isSortDescending; // Toggle sort direction
+        }
+        else
+        {
+            sortColumn = column;
+            isSortDescending = false; // Default to ascending for a new column
+        }
+
+        currentPage = 1; // Reset to the first page on sorting
+        await LoadAccounts();
+    }
+
+    // Pagination logic
+    private bool CanGoToPreviousPage => currentPage > 1;
+    private bool CanGoToNextPage => currentPage < totalPages;
+
+    private async Task GoToPreviousPage()
+    {
+        if (CanGoToPreviousPage)
+        {
+            currentPage--;
+            await LoadAccounts();
+        }
+    }
+
+    private async Task GoToNextPage()
+    {
+        if (CanGoToNextPage)
+        {
+            currentPage++;
+            await LoadAccounts();
+        }
+    }
+}

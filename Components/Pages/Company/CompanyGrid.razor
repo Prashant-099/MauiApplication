@@ -1,0 +1,229 @@
+﻿@page "/company"
+@using Models
+@using Services
+@inject CompanyService CompanyService
+@inject IJSRuntime JS
+
+<h3>Company List</h3>
+
+@if (isLoading)
+{
+    <p>Loading...</p>
+}
+else if (!string.IsNullOrEmpty(errorMessage))
+{
+    <p style="color: red;">Error: @errorMessage</p>
+}
+else if (company == null || !company.Any())
+{
+    <p>No companies available.</p>
+}
+else
+{
+    <div class="mb-3">
+        <input type="text" placeholder="Search Company Name" @bind="filterCompanyName" class="form-control" />
+        <button class="btn btn-primary mt-2" @onclick="ApplyFilters">Apply Filters</button>
+        <button class="btn btn-success mt-2" @onclick="ShowAddModal">Add Company</button>
+    </div>
+
+    <table class="table-striped table">
+        <thead>
+            <tr>
+                <th>Company ID</th>
+                <th>Company Name</th>
+
+                <th>Remarks</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var company in company)
+            {
+                <tr>
+                    <td>@company.CompanyId</td>
+                    <td>@company.CompanyName</td>
+
+                    <td>@company.CompanyRemarks</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" @onclick="() => ShowEditModal(company)">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => ConfirmDelete(company.CompanyId)">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Pagination Controls -->
+    <div class="pagination">
+        <button class="btn btn-secondary" @onclick="GoToPreviousPage" disabled="@(!CanGoToPreviousPage)">Previous</button>
+        <span>Page @currentPage of @totalPages</span>
+        <button class="btn btn-secondary" @onclick="GoToNextPage" disabled="@(!CanGoToNextPage)">Next</button>
+    </div>
+}
+
+<CompanyAddEdit Company="selectedCompany"
+Title="@modalTitle"
+ButtonText="@modalButtonText"
+IsVisible="@isModalVisible"
+OnClose="CloseModal"
+OnSubmit="SaveCompany" />
+
+@code {
+    private List<Company> company = new();
+    private Company selectedCompany = new Company();
+    private string modalTitle = string.Empty;
+    private string modalButtonText = string.Empty;
+    private bool isModalVisible = false;
+    private bool isLoading = true;
+    private string? errorMessage;
+    private string filterCompanyName = string.Empty;
+
+    // Pagination variables
+    private int currentPage = 1;
+    private int totalPages = 1;
+    private int pageSize = 10;
+
+    // Sorting variables
+    private string sortColumn = "CompanyId";
+    private bool isSortDescending = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadCompanies();
+    }
+
+    private async Task LoadCompanies()
+    {
+        isLoading = true;
+        errorMessage = null;
+
+        try
+        {
+            var response = await CompanyService.GetCompanyAsync(currentPage, pageSize);
+            company = response;
+            //totalPages = response.TotalPages;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error loading companies: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task ApplyFilters()
+    {
+        currentPage = 1; // Reset to the first page when filters are applied
+        await LoadCompanies();
+    }
+
+    private void ShowAddModal()
+    {
+        selectedCompany = new Company();
+        modalTitle = "Add Company";
+        modalButtonText = "Add";
+        isModalVisible = true;
+    }
+
+    private void ShowEditModal(Company company)
+    {
+        selectedCompany = new Company
+            {
+                CompanyId = company.CompanyId,
+                CompanyName = company.CompanyName,
+            
+                CompanyRemarks = company.CompanyRemarks
+            };
+        modalTitle = "Edit Company";
+        modalButtonText = "Save";
+        isModalVisible = true;
+    }
+
+    private async Task SaveCompany()
+    {
+        try
+        {
+            if (selectedCompany.CompanyId == 0) // Add new company
+            {
+                await CompanyService.AddCompanyAsync(selectedCompany);
+            }
+            else // Update existing company
+            {
+                await CompanyService.UpdateCompanyAsync(selectedCompany);
+            }
+
+            await LoadCompanies(); // Refresh the list
+            CloseModal();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error saving company: {ex.Message}";
+        }
+    }
+
+    private async Task ConfirmDelete(int companyId)
+    {
+        bool isConfirmed = await JS.InvokeAsync<bool>("confirm", "Are you sure you want to delete this company?");
+        if (isConfirmed)
+        {
+            try
+            {
+                await CompanyService.DeleteCompanyAsync(companyId);
+                company = company.Where(c => c.CompanyId != companyId).ToList();
+            }
+            catch (Exception ex)
+            {
+                errorMessage = $"Error deleting company: {ex.Message}";
+            }
+        }
+    }
+
+    private void CloseModal()
+    {
+        isModalVisible = false;
+    }
+
+    private async Task ApplySorting(string column)
+    {
+        if (sortColumn == column)
+        {
+            isSortDescending = !isSortDescending; // Toggle sort direction
+        }
+        else
+        {
+            sortColumn = column;
+            isSortDescending = false; // Default to ascending for a new column
+        }
+
+        currentPage = 1; // Reset to the first page on sorting
+        await LoadCompanies();
+    }
+
+    // Pagination logic
+    private bool CanGoToPreviousPage => currentPage > 1;
+    private bool CanGoToNextPage => currentPage < totalPages;
+
+    private async Task GoToPreviousPage()
+    {
+        if (CanGoToPreviousPage)
+        {
+            currentPage--;
+            await LoadCompanies();
+        }
+    }
+
+    private async Task GoToNextPage()
+    {
+        if (CanGoToNextPage)
+        {
+            currentPage++;
+            await LoadCompanies();
+        }
+    }
+}

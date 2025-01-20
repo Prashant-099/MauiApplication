@@ -1,0 +1,207 @@
+﻿@page "/vehicle"
+@using MauiAppFB.Models
+@using MauiAppFB.Services
+@inject VehiclesService VehicleService
+@inject IJSRuntime JS
+
+<h3>Vehicle List</h3>
+
+@if (isLoading)
+{
+    <p>Loading...</p>
+}
+else if (!string.IsNullOrEmpty(errorMessage))
+{
+    <p style="color: red;">Error: @errorMessage</p>
+}
+else if (vehicles == null || !vehicles.Any())
+{
+    <p>No vehicles available.</p>
+}
+else
+{
+    <div class="mb-3">
+        <input type="text" placeholder="Search Vehicle Number" @bind="filterVehicleNumber" class="form-control" />
+        <button class="btn btn-primary mt-2" @onclick="ApplyFilters">Apply Filters</button>
+        <button class="btn btn-success mt-2" @onclick="ShowAddModal">Add Vehicle</button>
+    </div>
+
+    <table class="table-striped table">
+        <thead>
+            <tr>
+                <th>Vehicle ID</th>
+                <th>Vehicle Number</th>
+                
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var vehicle in vehicles)
+            {
+                <tr>
+                            <td>@vehicle.VehicleId</td>
+                            <td>@vehicle.VehicleNo</td>
+                  
+                
+                    <td>
+                        <button class="btn btn-warning btn-sm" @onclick="() => ShowEditModal(vehicle)">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => ConfirmDelete(vehicle.VehicleId)">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Pagination Controls -->
+    <div class="pagination">
+        <button class="btn btn-secondary" @onclick="GoToPreviousPage" disabled="@(!CanGoToPreviousPage)">Previous</button>
+        <span>Page @currentPage of @totalPages</span>
+        <button class="btn btn-secondary" @onclick="GoToNextPage" disabled="@(!CanGoToNextPage)">Next</button>
+    </div>
+}
+
+<VehiclesAddEdit Vehicle="selectedVehicle"
+                Title="@modalTitle"
+                ButtonText="@modalButtonText"
+                IsVisible="@isModalVisible"
+                OnClose="CloseModal"
+                OnSubmit="SaveVehicle" />
+
+@code {
+    private List<Vehicles> vehicles = new();
+    private Vehicles selectedVehicle = new Vehicles();
+    private string modalTitle = string.Empty;
+    private string modalButtonText = string.Empty;
+    private bool isModalVisible = false;
+    private bool isLoading = true;
+    private string? errorMessage;
+    private string filterVehicleNumber = string.Empty;
+
+    // Pagination variables
+    private int currentPage = 1;
+    private int totalPages = 1;
+    private int pageSize = 10;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadVehicles();
+    }
+
+    private async Task LoadVehicles()
+    {
+        isLoading = true;
+        errorMessage = null;
+
+        try
+        {
+            var response = await VehicleService.GetVehicleAsync(currentPage, pageSize);
+            vehicles = response.vehicles;
+            //totalPages = response.TotalPages;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error loading vehicles: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task ApplyFilters()
+    {
+        currentPage = 1; // Reset to the first page when filters are applied
+        await LoadVehicles();
+    }
+
+    private void ShowAddModal()
+    {
+        selectedVehicle = new Vehicles();
+        modalTitle = "Add Vehicle";
+        modalButtonText = "Add";
+        isModalVisible = true;
+    }
+
+    private void ShowEditModal(Vehicles vehicle)
+    {
+        selectedVehicle = new Vehicles
+        {
+                VehicleId = vehicle.VehicleId,
+                VehicleNo = vehicle.VehicleNo,
+           
+        };
+        modalTitle = "Edit Vehicle";
+        modalButtonText = "Save";
+        isModalVisible = true;
+    }
+
+    private async Task SaveVehicle()
+    {
+        try
+        {
+            if (selectedVehicle.VehicleId == 0) // Add new vehicle
+            {
+                await VehicleService.AddVehicleAsync(selectedVehicle);
+            }
+            else // Update existing vehicle
+            {
+                await VehicleService.UpdateVehicleAsync(selectedVehicle);
+            }
+
+            await LoadVehicles(); // Refresh the list
+            CloseModal();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error saving vehicle: {ex.Message}";
+        }
+    }
+
+    private async Task ConfirmDelete(int vehicleId)
+    {
+        bool isConfirmed = await JS.InvokeAsync<bool>("confirm", "Are you sure you want to delete this vehicle?");
+        if (isConfirmed)
+        {
+            try
+            {
+                await VehicleService.DeleteVehicleAsync(vehicleId);
+                vehicles = vehicles.Where(v => v.VehicleId != vehicleId).ToList();
+            }
+            catch (Exception ex)
+            {
+                errorMessage = $"Error deleting vehicle: {ex.Message}";
+            }
+        }
+    }
+
+    private void CloseModal()
+    {
+        isModalVisible = false;
+    }
+    
+    // Pagination logic
+    private bool CanGoToPreviousPage => currentPage > 1;
+    private bool CanGoToNextPage => currentPage < totalPages;
+
+    private async Task GoToPreviousPage()
+    {
+        if (CanGoToPreviousPage)
+        {
+            currentPage--;
+            await LoadVehicles();
+        }
+    }
+
+    private async Task GoToNextPage()
+    {
+        if (CanGoToNextPage)
+        {
+            currentPage++;
+            await LoadVehicles();
+        }
+    }
+}

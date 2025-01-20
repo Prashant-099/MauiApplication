@@ -1,0 +1,229 @@
+﻿@page "/location"
+@using Models
+@using Services
+@inject LocationService LocationService
+@inject IJSRuntime JS
+
+<h3>Location List</h3>
+
+@if (isLoading)
+{
+    <p>Loading...</p>
+}
+else if (!string.IsNullOrEmpty(errorMessage))
+{
+    <p style="color: red;">Error: @errorMessage</p>
+}
+else if (locations == null || !locations.Any())
+{
+    <p>No locations available.</p>
+}
+else
+{
+    <div class="mb-3">
+        <input type="text" placeholder="Search Location Name" @bind="filterLocationName" class="form-control" />
+        <button class="btn btn-primary mt-2" @onclick="ApplyFilters">Apply Filters</button>
+        <button class="btn btn-success mt-2" @onclick="ShowAddModal">Add Location</button>
+    </div>
+
+    <table class="table-striped table">
+        <thead>
+            <tr>
+                <th>Location ID</th>
+                <th>Location Name</th>
+                <th>Location Type</th>
+        
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var location in locations)
+            {
+                <tr>
+                                    <td>@location.LocationId</td>
+                                    <td>@location.LocationName</td>
+                                    <td>@location.LocationType</td>
+                 
+                    <td>
+                                        <button class="btn btn-warning btn-sm" @onclick="() => ShowEditModal(location)">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                                        <button class="btn btn-danger btn-sm" @onclick="() => ConfirmDelete(location.LocationId)">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Pagination Controls -->
+    <div class="pagination">
+        <button class="btn btn-secondary" @onclick="GoToPreviousPage" disabled="@(!CanGoToPreviousPage)">Previous</button>
+        <span>Page @currentPage of @totalPages</span>
+        <button class="btn btn-secondary" @onclick="GoToNextPage" disabled="@(!CanGoToNextPage)">Next</button>
+    </div>
+}
+
+<LocationAddEdit Location="selectedLocation"
+                 Title="@modalTitle"
+                 ButtonText="@modalButtonText"
+                 IsVisible="@isModalVisible"
+                 OnClose="CloseModal"
+                 OnSubmit="SaveLocation" />
+
+@code {
+    private List<Locations> locations = new();
+    private Locations selectedLocation = new Locations();
+    private string modalTitle = string.Empty;
+    private string modalButtonText = string.Empty;
+    private bool isModalVisible = false;
+    private bool isLoading = true;
+    private string? errorMessage;
+    private string filterLocationName = string.Empty;
+
+    // Pagination variables
+    private int currentPage = 1;
+    private int totalPages = 1;
+    private int pageSize = 10;
+
+    // Sorting variables
+    private string sortColumn = "LocationId";
+    private bool isSortDescending = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadLocations();
+    }
+
+    private async Task LoadLocations()
+    {
+        isLoading = true;
+        errorMessage = null;
+
+        try
+        {
+            var response = await LocationService.GetLocationsAsync(currentPage, pageSize);
+            locations = response.locations;
+            totalPages = response.TotalPages;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error loading locations: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task ApplyFilters()
+    {
+        currentPage = 1; // Reset to the first page when filters are applied
+        await LoadLocations();
+    }
+
+    private void ShowAddModal()
+    {
+        selectedLocation = new Locations();
+        modalTitle = "Add Location";
+        modalButtonText = "Add";
+        isModalVisible = true;
+    }
+
+    private void ShowEditModal(Locations location)
+    {
+        selectedLocation = new Locations
+        {
+            LocationId = location.LocationId,
+            LocationName = location.LocationName,
+            LocationType = location.LocationType,
+         
+        };
+        modalTitle = "Edit Location";
+        modalButtonText = "Save";
+        isModalVisible = true;
+    }
+
+    private async Task SaveLocation()
+    {
+        try
+        {
+            if (selectedLocation.LocationId == 0) // Add new location
+            {
+                await LocationService.AddLocationAsync(selectedLocation);
+            }
+            else // Update existing location
+            {
+                await LocationService.UpdateLocationAsync(selectedLocation);
+            }
+
+            await LoadLocations(); // Refresh the list
+            CloseModal();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error saving location: {ex.Message}";
+        }
+    }
+
+    private async Task ConfirmDelete(int locationId)
+    {
+        bool isConfirmed = await JS.InvokeAsync<bool>("confirm", "Are you sure you want to delete this location?");
+        if (isConfirmed)
+        {
+            try
+            {
+                await LocationService.DeleteLocationAsync(locationId);
+                locations = locations.Where(l => l.LocationId != locationId).ToList();
+            }
+            catch (Exception ex)
+            {
+                errorMessage = $"Error deleting location: {ex.Message}";
+            }
+        }
+    }
+
+    private void CloseModal()
+    {
+        isModalVisible = false;
+    }
+
+    private async Task ApplySorting(string column)
+    {
+        if (sortColumn == column)
+        {
+            isSortDescending = !isSortDescending; // Toggle sort direction
+        }
+        else
+        {
+            sortColumn = column;
+            isSortDescending = false; // Default to ascending for a new column
+        }
+
+        currentPage = 1; // Reset to the first page on sorting
+        await LoadLocations();
+    }
+
+    // Pagination logic
+    private bool CanGoToPreviousPage => currentPage > 1;
+    private bool CanGoToNextPage => currentPage < totalPages;
+
+    private async Task GoToPreviousPage()
+    {
+        if (CanGoToPreviousPage)
+        {
+            currentPage--;
+            await LoadLocations();
+        }
+    }
+
+    private async Task GoToNextPage()
+    {
+        if (CanGoToNextPage)
+        {
+            currentPage++;
+            await LoadLocations();
+        }
+    }
+}
