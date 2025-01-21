@@ -111,7 +111,7 @@
             <label for="party">Bill To Party:<a @onclick="ShowAccModal" style="color: black; font-size: 1.7rem; position: relative; bottom: -4px;"> + </a></label>
 
             <InputSelect id="party" @bind-Value="LR.LrPartyAccountId" class="form-control" @onclick="LoadParty"
-            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;">
+                         style="width: 230px; font-size: 0.9rem; padding: 0.25rem;">
 
                 <option value="">-- Select Party --</option>
 
@@ -430,7 +430,7 @@
 
                 <InputSelect id="SupplierName" @bind-Value="LR.LrSupplierAccountId" class="form-control me-3" @onclick="LoadParty"
 
-                style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" >
+                style="width: 230px; font-size: 0.9rem; padding: 0.25rem;" >
 
                     <option value="">-- Select Supplier --</option>
 
@@ -445,7 +445,7 @@
                 </InputSelect>
                 <!-- Assuming LrSupplierAccountId is a number input -->
 
-                <InputNumber id="SupplierAccountId" @bind-Value="LR.LrSupplierAccountId" class="form-control" style="width: 90px; font-size: 0.9rem; padding: 0.25rem;" />
+                <InputNumber id="SupplierAccountId" @bind-Value="LR.LrSupplierAccountId" class="form-control" style="width: 90px; font-size: 0.9rem; padding: 0.25rem;" readonly />
 
             </div>
 
@@ -493,7 +493,7 @@
 
             <InputSelect id="DriverName" @bind-Value="LR.LrVehicleId" class="form-control"
 
-            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" >
+            style="width: 230px; font-size: 0.9rem; padding: 0.25rem;" >
 
                 <option value="">-- Select Driver --</option>
 
@@ -520,7 +520,7 @@
 
             <InputSelect id="PayTYPE" @bind-Value="LR.LrPaymenttype" class="form-control"
 
-            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;">
+            style="width: 150px; font-size: 0.9rem; padding: 0.700rem;">
 
                 <option value="SINGLE TRIP">SINGLE TRIP</option>
 
