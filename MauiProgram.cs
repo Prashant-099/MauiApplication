@@ -15,6 +15,12 @@ namespace MauiAppFB
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 });
+
+
+            builder.ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("bootstrap-icons.woff2", "BootstrapIcons");
+            });
             // Register HttpClient as Singleton with a base URL
             builder.Services.AddSingleton(sp =>
             {
