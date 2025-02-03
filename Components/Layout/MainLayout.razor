@@ -23,16 +23,18 @@
                     </li>
                     <hr>
                     <li>
-                        <a href="#" @onclick="HandleLogout">
-                          
-                            Logout
-                        </a>
+                      
+                        <div class="actions">
+                            <button class="logout-btn" @onclick="HandleLogout">Logout</button>
+                        </div>
                     </li>
                 </ul>
             </div>
         </div>
         <article class="content px-4">
             @Body
+            
+
         </article>
     </main>
 </div>
@@ -100,5 +102,26 @@
         height: 20px;
         object-fit: contain;
     }
+
+    .actions {
+        text-align: center;
+    }
+
+    .logout-btn {
+        background-color: #ff6b6b;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 30px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+    }
+
+        .logout-btn:hover {
+            background-color: #f03e3e;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
 
 </style>
