@@ -1,19 +1,107 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
+    <div class="flex-layout">
 
-Welcome to your new app.
+        <h1 class="page-title">Welcome Back SIR  </h1>
+    <div class="card" @onclick="lrpage">
+        <p class="card-title">TOTAL LR</p>
+        <p class="card-value">@LRGrids.Count</p>
+    </div>
+    </div>
+
+
 
 @code {
-    [Inject] private NavigationManager NavigationManager { get; set; }
+    @using MauiAppFB.Models
+    @using MauiAppFB.Services
+    @using MauiAppFB.Components.Pages
+    private List<Lr> LRGrids = new(); // Initialize the list for storing fetched data
+    private Login loginModel = new ();
+
+    private string? token;
+    private string? errorMessage;
+    private bool isLoading = true;
+
+
+    [Inject] private LRService LRGridService { get; set; } = default!;
+    [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     protected override async Task OnInitializedAsync()
     {
+        // Retrieve authentication token
         var token = await SecureStorage.GetAsync("authToken");
 
-        if (string.IsNullOrEmpty(token))
+        // Redirect to login if token is missing
+        @if (string.IsNullOrEmpty(token))
         {
             NavigationManager.NavigateTo("/login");
+            return;
+
         }
+
+        // Fetch LR data from the service
+     
+        var response = await LRGridService.GetLRsAsync();
+        if (response != null)
+        {
+            LRGrids = response.Records; // Assuming LRGrids is the list to hold the fetched data
+                                        // totalPages = response.TotalPages;        // totalPages = (int)Math.Ceiling((double)totalCount / pageSize); // if your API provides the total count
+        }
+
     }
+    private void lrpage()
+    {
+        NavigationManager.NavigateTo("/LrGRid");
+    }
+
+  
 }
+
+<style>
+    .page-title {
+        font-size: 2rem;
+        text-align: center;
+        margin-bottom: 40px;
+        color: #333;
+        font-weight: 600;
+    }
+
+  .flex-layout {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+    }
+
+    .card {
+        background: linear-gradient(145deg, #6dd5ed, #2193b0);
+        border-radius: 15px;
+        padding: 20px;
+        width: 250px;
+        text-align: center;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+    .card-title {
+        font-size: 16px;
+        color: white;
+        margin-bottom: 10px;
+    }
+
+    .card-value {
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+    }
+
+
+
+
+</style>
