@@ -116,10 +116,48 @@ namespace MauiAppFB.Services
                 throw new Exception($"Error deleting LR with ID {lrId}: {ex.Message}", ex);
             }
         }
+
+
+
+        public async Task <Lr> GetLRsIDAsync(int lrId)
+        {
+            try
+            {
+                await SetAuthorizationHeaderIfNeeded();
+                var response = await _httpClient.GetAsync($"api/Lr/{lrId}");
+                response.EnsureSuccessStatusCode();
+
+                var lrResponse = await response.Content.ReadFromJsonAsync<Lr>();
+                if (lrResponse == null)
+                {
+                    throw new Exception("Failed to parse LR data.");
+                }
+
+                return lrResponse;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error fetching LRs: {ex.Message}", ex);
+            }
+        }
+
+
+
+
+
+
+
+
+
     }
 
-    /// <summary>
-    /// Represents the response for fetching LRs.
-    /// </summary>
-  
-    } 
+
+
+
+
+   
+        /// <summary>
+        /// Represents the response for fetching LRs.
+        /// </summary>
+
+    }

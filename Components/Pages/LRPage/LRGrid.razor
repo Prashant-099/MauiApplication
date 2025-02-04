@@ -118,7 +118,7 @@ else
             if (response != null)
             {
                 LRGrids = response.Records; // Assuming LRGrids is the list to hold the fetched data
-               // totalPages = response.TotalPages;        // totalPages = (int)Math.Ceiling((double)totalCount / pageSize); // if your API provides the total count
+                                            // totalPages = response.TotalPages;        // totalPages = (int)Math.Ceiling((double)totalCount / pageSize); // if your API provides the total count
             }
             else
             {
@@ -151,17 +151,33 @@ else
 
     private void ShowEditModal(Models.Lr lrgrid)
     {
-        selectedLRGrid = new Models.Lr
+        try
         {
-            LRId = lrgrid.LRId,
+            if (lrgrid?.LRId > 0) // Ensure LRId exists
+            {
+
+
+                selectedLRGrid = new Models.Lr
+                    {
+                        LRId = lrgrid.LRId,
+                        LrNo = lrgrid.LrNo,
+
+                        LrRemarks = lrgrid.LrRemarks,
+                        LrContainer1 = lrgrid.LrContainer1
+
+                    };
+                NavigationManager.NavigateTo($"/LRAddEdit/{lrgrid.LRId}");
+
+                modalButtonText = "Save";
+
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error loading LRGrids: {ex.Message}";
+        }
+
        
-           
-                LrRemarks = lrgrid.LrRemarks,
-                LrContainer1 = lrgrid.LrContainer1
-        };
-        modalTitle = "Edit LRGrid";
-        modalButtonText = "Save";
-        isModalVisible = true;
     }
 
     private async Task SaveLRGrid()

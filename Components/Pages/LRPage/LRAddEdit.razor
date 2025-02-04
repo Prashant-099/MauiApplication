@@ -1,4 +1,4 @@
-﻿@page "/LRAddEdit"
+﻿@page "/LRAddEdit/{LRId:int?}"
 
 @using Models
 @using MauiAppFB.Components.Pages.VehiclesPage
@@ -805,6 +805,8 @@ OnSubmit="SaveCargo" />
         activeTab = "TAB3";
     }
 
+    [Parameter] public int? LRId { get; set; }
+
 
 
 
@@ -990,9 +992,37 @@ OnSubmit="SaveCargo" />
 
     {
 
-        // Fetch the list of vehicles from your backend (replace with your data fetch logic)
 
-
+        if (LRId.HasValue && LRId.Value > 0) // Check if LRId is present (Edit Mode)
+        {
+            try
+            {
+                var response = await LRGridService.GetLRsIDAsync(LRId.Value); // Fetch existing LR
+                if (response != null && response != null)  // Check if response contains LR
+                {
+                    LR = response;
+                    // Assign the actual Lr object
+                    Title = "Edit LR";
+                    ButtonText = "Update";
+                }
+                else
+                {
+                    LR = new Lr(); // Ensure LR is not null
+                    Title = "Add LR";
+                    ButtonText = "Add";
+                }
+            }
+            catch (Exception ex)
+            {
+                errorMessage = $"Error loading LR data: {ex.Message}";
+            }
+        }
+        else // Add Mode (New Entry)
+        {
+            LR = new Lr(); // Initialize an empty LR object
+            Title = "Add LR";
+            ButtonText = "Add";
+        }
 
         //  var response = await AccountService.GetAccountsAsync();
 

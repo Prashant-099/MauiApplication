@@ -35,16 +35,16 @@
         @if (string.IsNullOrEmpty(token))
         {
             NavigationManager.NavigateTo("/login");
-            return;
+            
 
         }
 
         // Fetch LR data from the service
      
-        var response = await LRGridService.GetLRsAsync();
-        if (response != null)
+      //  var response = await LRGridService.GetLRsAsync();
+      //  if (response != null)
         {
-            LRGrids = response.Records; // Assuming LRGrids is the list to hold the fetched data
+       //     LRGrids = response.Records; // Assuming LRGrids is the list to hold the fetched data
                                         // totalPages = response.TotalPages;        // totalPages = (int)Math.Ceiling((double)totalCount / pageSize); // if your API provides the total count
         }
 
