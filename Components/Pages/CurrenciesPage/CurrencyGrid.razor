@@ -14,10 +14,7 @@ else if (!string.IsNullOrEmpty(errorMessage))
 {
     <p style="color: red;">Error: @errorMessage</p>
 }
-else if (currencie == null || !currencie.Any())
-{
-    <p>No currencies available.</p>
-}
+
 else
 {
     <div class="mb-3">
@@ -36,6 +33,14 @@ else
                 <th>Actions</th>
             </tr>
         </thead>
+        @if (currencie == null || !currencie.Any())
+        {
+            <div style="text-align:center;left:300px; position:relative; font-weight: bold; margin-top: 20px; color:red">
+                <p>No currencies available.</p>
+            </div>
+       
+        }
+        else{
         <tbody>
             @foreach (var currency in currencie)
             {
@@ -55,6 +60,7 @@ else
                 </tr>
             }
         </tbody>
+        }
     </table>
 
     <!-- Pagination Controls -->

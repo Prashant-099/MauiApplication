@@ -15,10 +15,7 @@ else if (!string.IsNullOrEmpty(errorMessage))
 {
     <p style="color: red;">Error: @errorMessage</p>
 }
-else if (LRGrids == null || !LRGrids.Any())
-{
-    <p>No LRGrids available.</p>
-}
+
 else
 {
     <div class="mb-3">
@@ -39,6 +36,14 @@ else
                 <th>Actions</th>
             </tr>
         </thead>
+        @if (LRGrids == null || !LRGrids.Any())
+        {
+            <div style="text-align:center;left:300px; position:relative; font-weight: bold; margin-top: 20px; color:red">
+                <p>No LR available.</p>
+            </div>
+        
+        }
+        else{
         <tbody>
             @foreach (var lrgrid in LRGrids)
             {
@@ -58,6 +63,7 @@ else
                 </tr>
             }
         </tbody>
+        }
     </table>
 
     <!-- Pagination Controls -->

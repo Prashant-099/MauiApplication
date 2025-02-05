@@ -14,10 +14,7 @@ else if (!string.IsNullOrEmpty(errorMessage))
 {
     <p style="color: red;">Error: @errorMessage</p>
 }
-else if (roles == null || !roles.Any())
-{
-    <p>No user roles available.</p>
-}
+
 else
 {
     <div class="mb-3">
@@ -35,6 +32,14 @@ else
                 <th>Actions</th>
             </tr>
         </thead>
+        @if (roles == null || !roles.Any())
+        {
+            <div style="text-align:center;left:300px; position:relative; font-weight: bold; margin-top: 20px; color:red">
+                <p>No user roles available.</p>
+            </div>
+        
+        }
+        else{
         <tbody>
             @foreach (var role in roles)
             {
@@ -53,6 +58,7 @@ else
                 </tr>
             }
         </tbody>
+        }
     </table>
 
     <!-- Pagination Controls -->

@@ -15,10 +15,7 @@ else if (!string.IsNullOrEmpty(errorMessage))
 {
     <p style="color: red;">Error: @errorMessage</p>
 }
-else if (accounts == null || !accounts.Any())
-{
-    <p>No accounts available.</p>
-}
+
 else
 {
     <div class="mb-3">
@@ -36,6 +33,15 @@ else
                 <th>Actions</th>
             </tr>
         </thead>
+        @if (accounts == null || !accounts.Any())
+        {
+
+            <div style="text-align:center;left:300px; position:relative; font-weight: bold; margin-top: 20px; color:red">
+                <p>No Accounts available.</p>
+            </div>
+       
+        }
+        else{
         <tbody>
             @foreach (var account in accounts)
             {
@@ -54,6 +60,7 @@ else
                 </tr>
             }
         </tbody>
+        }
     </table>
 
     <!-- Pagination Controls -->
