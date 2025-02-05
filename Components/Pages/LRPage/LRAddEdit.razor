@@ -24,15 +24,15 @@
     <ValidationSummary />
 
     <div class="tabs">
-        <button class="tab-button" @onclick="t1">TAB1</button>
-        <button class="tab-button" @onclick="t2">TAB2</button>
-        <button class="tab-button" @onclick="t3">TAB3</button>
+        <button class="tab-button" @onclick="t1">BASIC</button>
+        <button class="tab-button" @onclick="t2">SUPPLIER</button>
+        <button class="tab-button" @onclick="t3">UNLOAD</button>
     </div>
     @if (activeTab == "TAB1")
     {
 
 
-        <h5 class="">--Booking Details--</h5>
+      //  <h5 class="">--Booking Details--</h5>
         <div class="d-flex align-items-center mb-3 flex-wrap">
 
             <!-- LrNo -->
@@ -348,7 +348,7 @@
 
 
 
-            <!-- Lr Unload Weight -->
+            <!-- Lr Unload Weight
 
             <div class="mb-3 me-4">
 
@@ -358,7 +358,7 @@
                 style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
             </div>
-
+             -->
 
 
 
@@ -431,7 +431,7 @@
 
 
 
-        <h5 class="">--Transport/Suppliers Details--</h5>
+       // <h5 class="">--Transport/Suppliers Details--</h5>
 
         <div class="d-flex align-items-center mb-3 flex-wrap">
             <!-- Supplier Name -->
@@ -642,7 +642,7 @@
     @if (activeTab == "TAB3")
     {
 
-        <h5 class="">--Reporting & Detention--</h5>
+        //<h5 class="">--Reporting & Detention--</h5>
 
 
         <div class="d-flex align-items-center mb-3 flex-wrap">
