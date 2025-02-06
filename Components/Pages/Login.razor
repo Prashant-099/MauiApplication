@@ -2,7 +2,7 @@
 
 <div class="login-container">
     <div class="login-card">
-        <img src="css\img/freightbook.jpg" alt="App Logo" class="app-logo" />
+        <img src="css/img/freightbook.jpg" alt="App Logo" class="app-logo" />
         <h3>FREIGHT BOOK</h3>
         <p class="subtitle">Login to access your account</p>
 
@@ -37,44 +37,57 @@
 <style>
     body {
         margin: 0;
-        font-family: "Arial", sans-serif;
+        font-family: "Poppins", sans-serif;
         background: linear-gradient(135deg, #6a11cb, #2575fc);
+        backdrop-filter: blur(10px);
         color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
     }
 
     .login-container {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        max-height: 100vh;
-        padding: 1.5rem;
+        width: 100%;
     }
 
     .login-card {
-        background: rgba(255, 255, 255, 0.9);
-        border-radius: 16px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        padding: 2rem;
-        max-width: 360px;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        padding: 2.5rem;
+        max-width: 400px;
         width: 100%;
         text-align: center;
+        animation: fadeIn 0.5s ease-in-out;
+        border: 1px solid rgba(255,255,255,0.3);
     }
+
+
 
     .app-logo {
         width: 100px;
-        margin-bottom: 1rem;
-        border-radius: 25%;
+        margin-bottom: 1.5rem;
+        border-radius: 50%;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     }
 
     .login-card h3 {
-        color: #333;
+        color: #fff;
+        font-size: 1.8rem;
+        font-weight: 700;
         margin-bottom: 0.5rem;
     }
 
     .login-card .subtitle {
-        color: #666;
+        color: #ddd;
         margin-bottom: 1.5rem;
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
     .form-group {
@@ -83,10 +96,9 @@
     }
 
         .form-group label {
-            font-size: 0.85rem;
-            color: #555;
+            font-size: 0.9rem;
+            color: #ddd;
             font-weight: bold;
-            margin-bottom: 0.5rem;
             display: block;
         }
 
@@ -94,18 +106,21 @@
         width: 100%;
         padding: 0.75rem;
         border-radius: 8px;
-        border: 1px solid #ddd;
-        font-size: 0.9rem;
-        box-sizing: border-box;
+        border: 1px solid rgba(255,255,255,0.3);
+        font-size: 1rem;
+        background-color: rgba(255,255,255,0.2);
+        color: white;
+        transition: all 0.3s ease-in-out;
     }
 
         .form-control:focus {
-            border-color: #6a11cb;
+            border-color: #fff;
             outline: none;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
     .btn-primary {
-        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        background: linear-gradient(135deg, #ff416c, #ff4b2b);
         color: white;
         border: none;
         padding: 0.75rem;
@@ -113,28 +128,34 @@
         border-radius: 12px;
         cursor: pointer;
         transition: all 0.3s ease-in-out;
+        width: 100%;
+        font-weight: bold;
     }
 
         .btn-primary:hover {
-            background: linear-gradient(135deg, #2575fc, #6a11cb);
-            transform: scale(1.02);
+            background: linear-gradient(135deg, #ff4b2b, #ff416c);
+            transform: scale(1.05);
         }
 
     .error-message {
-        color: #e74c3c;
-        font-size: 0.85rem;
+        color: #ff4b2b;
+        font-size: 0.9rem;
         margin-top: 1rem;
+        background-color: rgba(255, 75, 43, 0.1);
+        padding: 0.75rem;
+        border-radius: 8px;
     }
 
     .footer-text {
         margin-top: 1.5rem;
         font-size: 0.9rem;
-        color: #666;
+        color: #ddd;
     }
 
         .footer-text a {
-            color: #2575fc;
+            color: #ff4b2b;
             text-decoration: none;
+            font-weight: bold;
         }
 
             .footer-text a:hover {
@@ -142,18 +163,16 @@
             }
 </style>
 
+
 @code {
     @using MauiAppFB.Services
     @using System.ComponentModel.DataAnnotations
-    //private string email = string.Empty;
-    //private string password = string.Empty;
+
     private string errorMessage = string.Empty;
     private LoginModel loginModel = new LoginModel();
 
-
     [Inject] private AuthService AuthService { get; set; }
     [Inject] private NavigationManager NavigationManager { get; set; }
-
 
     private async Task HandleLogin()
     {
@@ -178,7 +197,7 @@
 
     public class LoginModel
     {
-        [Required (ErrorMessage = "Email is required.")]
+        [Required(ErrorMessage = "Email is required.")]
         [EmailAddress(ErrorMessage = "Enter a valid email address.")]
         public string Email { get; set; }
 

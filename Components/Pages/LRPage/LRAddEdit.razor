@@ -32,7 +32,7 @@
     {
 
 
-      //  <h5 class="">--Booking Details--</h5>
+        //  <h5 class="">--Booking Details--</h5>
         <div class="d-flex align-items-center mb-3 flex-wrap">
 
             <!-- LrNo -->
@@ -352,13 +352,13 @@
 
             <div class="mb-3 me-4">
 
-                <label for="LrUnloadwt">Unload Weight:</label>
+            <label for="LrUnloadwt">Unload Weight:</label>
 
-                <InputNumber id="LrUnloadwt" @bind-Value="LR.LrUnloadwt" class="form-control"
-                style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+            <InputNumber id="LrUnloadwt" @bind-Value="LR.LrUnloadwt" class="form-control"
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
             </div>
-             -->
+            -->
 
 
 
@@ -373,7 +373,7 @@
 
                 <label for="LrRatebill">Billing Rate:</label>
 
-                <InputNumber id="LrRatebill" @bind-Value="LR.LrRatebill" class="form-control" step="0.01" @onkeydown="@HandleKeyPress"
+                <InputNumber id="LrRatebill" @bind-Value="LR.LrRatebill" class="form-control" step="0.01" @onclick="CalculateNetFreight"
                 style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
             </div>
@@ -431,7 +431,7 @@
 
 
 
-       // <h5 class="">--Transport/Suppliers Details--</h5>
+        // <h5 class="">--Transport/Suppliers Details--</h5>
 
         <div class="d-flex align-items-center mb-3 flex-wrap">
             <!-- Supplier Name -->
@@ -466,15 +466,6 @@
                 </div>
 
             </div>
-            <div class="mb-3 me-4">
-
-                <label for="PayableRate">Payable Rate:</label>
-
-                <InputNumber id="PayableRatePayableRate" @bind-Value="LR.LrBillratetruck" class="form-control" step="0.01" @onkeydown="@HandleKeyPress"
-
-                style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
-
-            </div>
 
 
             <!-- Payable Type -->
@@ -483,9 +474,8 @@
 
                 <label for="paybletype">Payable Type:</label>
 
-                <InputSelect id="paybletype" @bind-Value="LR.LrBilltypetruck"  class="form-control"
-
-                style="width: 150px; font-size: 0.9rem; padding: 0.25rem;">
+                <InputSelect id="paybletype" @bind-Value="LR.LrBilltypetruck" class="form-control"
+                             style="width: 150px; font-size: 0.9rem; padding: 0.25rem;">
 
                     <option value="RATE * WT">RATE * WT</option>
 
@@ -498,6 +488,24 @@
                 </InputSelect>
 
             </div>
+
+
+
+
+
+
+
+            <div class="mb-3 me-4">
+
+                <label for="PayableRate">Payable Rate:</label>
+
+                <InputNumber id="PayableRatePayableRate" @bind-Value="LR.LrBillratetruck" class="form-control" step="0.01" @onclick="CalculatepayableFreight"
+
+                style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+            </div>
+
+
         </div>
 
         <div class="d-flex align-items-center mb-3 flex-wrap">
@@ -1096,23 +1104,21 @@ OnSubmit="SaveCargo" />
 
 
 
-    private void HandleKeyPress(KeyboardEventArgs e)
+  
+
+
+    private void CalculateNetFreight()
     {
-        if (e.Key == "Tab" || e.Key == "Enter")
-        {
-            CalculateNetFreight();
-            CalculatepayableFreight();
-        }
-    }
-
-
-
- private void CalculateNetFreight()
-{
-    // Update based on the selected Bill Type
-   
+        // Update based on the selected Bill Type
+        @if (LR.LrTriptype == "RATE * WT"){
             // Calculate Net Freight Bill using Rate and Load Weight
             LR.LrGrossfreightbill = LR.LrRatebill.GetValueOrDefault() * LR.LrLoadwt.GetValueOrDefault();
+        }
+        else if(LR.LrTriptype=="FIXED")
+        {
+            LR.LrGrossfreightbill = LR.LrRatebill.GetValueOrDefault();
+        }
+        
         
 }
     private void CalculatepayableFreight()
