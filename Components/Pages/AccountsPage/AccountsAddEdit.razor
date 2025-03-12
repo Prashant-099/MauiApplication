@@ -214,7 +214,7 @@
     private async Task Loadstate()
     {
         var response = await StateService.GetStatesAsync();
-        states = response;
+        states = response.states;
     }
     private async Task Loadcountry()
     {

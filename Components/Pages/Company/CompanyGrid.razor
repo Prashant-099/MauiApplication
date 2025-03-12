@@ -20,13 +20,13 @@ else
     <div class="mb-3">
         <input type="text" placeholder="Search Company Name" @bind="filterCompanyName" class="form-control" />
         <button class="btn btn-primary mt-2" @onclick="ApplyFilters">Apply Filters</button>
-        <button class="btn btn-success mt-2" @onclick="ShowAddModal">Add Company</button>
+        <!--  <button class="btn btn-success mt-2" @onclick="ShowAddModal">Add Company</button> -->
     </div>
 
     <table class="table-striped table">
         <thead>
             <tr>
-                <th>Company ID</th>
+                
                 <th>Company Name</th>
 
                 <th>Remarks</th>
@@ -45,16 +45,16 @@ else
             @foreach (var company in company)
             {
                 <tr>
-                    <td>@company.CompanyId</td>
+                   
                     <td>@company.CompanyName</td>
 
                     <td>@company.CompanyRemarks</td>
                     <td>
-                        <button class="btn btn-warning btn-sm" @onclick="() => ShowEditModal(company)">
-                            <i class="fas fa-edit"></i> Edit
+                        <button  @onclick="() => ShowEditModal(company)">
+                                <img src="Icon/icons8-edit-50.png" style="height:25px" />
                         </button>
-                        <button class="btn btn-danger btn-sm" @onclick="() => ConfirmDelete(company.CompanyId)">
-                            <i class="fas fa-trash"></i> Delete
+                        <button  @onclick="() => ConfirmDelete(company.CompanyId)">
+                                <img src="Icon/icons8-delete-50.png" style="height:25px" />
                         </button>
                     </td>
                 </tr>

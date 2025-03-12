@@ -26,7 +26,7 @@ else
     <table class="table-striped table">
         <thead>
             <tr>
-                <th>Currency ID</th>
+                
                 <th>Currency Name</th>
                
            
@@ -45,16 +45,16 @@ else
             @foreach (var currency in currencie)
             {
                 <tr>
-                    <td>@currency.CurrencyId</td>
+                   
                     <td>@currency.CurrencyName</td>
                 
                    
                     <td>
-                        <button class="btn btn-warning btn-sm" @onclick="() => ShowEditModal(currency)">
-                            <i class="fas fa-edit"></i> Edit
+                        <button  @onclick="() => ShowEditModal(currency)">
+                                <img src="Icon/icons8-edit-50.png"  style="height:25px" />
                         </button>
-                        <button class="btn btn-danger btn-sm" @onclick="() => ConfirmDelete(currency.CurrencyId)">
-                            <i class="fas fa-trash"></i> Delete
+                        <button  @onclick="() => ConfirmDelete(currency.CurrencyId)">
+                                <img src="Icon/icons8-delete-50.png" style="height:25px" />
                         </button>
                     </td>
                 </tr>

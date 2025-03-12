@@ -16,6 +16,7 @@ namespace MauiAppFB.Models
         public string NotifyAddress1 { get; set; } = "1";
         public string NotifyAddress2 { get; set; } = "1";
         public string NotifyAddress3 { get; set; } = "1";
+        public string NotifyAddressfull => $"{NotifyAddress1 }{NotifyAddress2}{NotifyAddress3}".Trim();
         public string NotifyCity { get; set; } = string.Empty;
         public string NotifyTel { get; set; } = "1";
         public string NotifyEmail { get; set; } = "1";

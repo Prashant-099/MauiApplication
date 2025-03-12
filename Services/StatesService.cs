@@ -32,7 +32,7 @@ namespace MauiAppFB.Services
         /// <summary>
         /// Fetches a paginated list of states from the API.
         /// </summary>
-        public async Task<List<States>>GetStatesAsync(int page = 1, int pageSize = 10)
+        public async Task<StatesResponse>GetStatesAsync(int page = 1, int pageSize = 10)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace MauiAppFB.Services
                     PropertyNameCaseInsensitive = true  // Make property names case-insensitive
                 };
 
-                var StatesResponse = await response.Content.ReadFromJsonAsync<List<States>>(options);
+                var StatesResponse = await response.Content.ReadFromJsonAsync<StatesResponse>(options);
 
                 // If the deserialization fails (returns null), throw an exception
                 if (StatesResponse == null)

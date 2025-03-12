@@ -26,13 +26,13 @@ else
     <table class="table-striped table">
         <thead>
             <tr>
-                <th>State ID</th>
+               
                 <th>State Name</th>
-                <th>Description</th>
+                
                 <th>Actions</th>
             </tr>
         </thead>
-        @if (states == null || !states.Any())
+        @if (state == null || !state.Any())
         {
             <div style="text-align:center;left:300px; position:relative; font-weight: bold; margin-top: 20px; color:red">
                 <p>No States available.</p>
@@ -41,18 +41,18 @@ else
         }
         else{
         <tbody>
-            @foreach (var state in states)
+            @foreach (var state in state)
             {
                 <tr>
-                    <td>@state.StateId</td>
+                   
                     <td>@state.StateName</td>
 
                     <td>
-                        <button class="btn btn-warning btn-sm" @onclick="() => ShowEditModal(state)">
-                            <i class="fas fa-edit"></i> Edit
+                        <button  @onclick="() => ShowEditModal(state)">
+                                <img src="Icon/icons8-edit-50.png" style="height:25px" />
                         </button>
-                        <button class="btn btn-danger btn-sm" @onclick="() => ConfirmDelete(state.StateId)">
-                            <i class="fas fa-trash"></i> Delete
+                        <button  @onclick="() => ConfirmDelete(state.StateId)">
+                                <img src="Icon/icons8-delete-50.png" style="height:25px" />
                         </button>
                     </td>
                 </tr>
@@ -77,7 +77,7 @@ OnClose="CloseModal"
 OnSubmit="SaveState" />
 
 @code {
-    private List<States> states = new();
+    private List<States> state = new();
     private States selectedState = new States();
     private string modalTitle = string.Empty;
     private string modalButtonText = string.Empty;
@@ -106,7 +106,7 @@ OnSubmit="SaveState" />
             var response = await StateService.GetStatesAsync(currentPage, pageSize);
             if (response != null)
             {
-                states = response; // Directly assign the list of states
+                state = response.states; // Directly assign the list of states
             }
             else
             {
@@ -180,7 +180,7 @@ OnSubmit="SaveState" />
             try
             {
                 await StateService.DeleteStateAsync(stateId);
-                states = states.Where(s => s.StateId != stateId).ToList();
+                state = state.Where(s => s.StateId != stateId).ToList();
             }
             catch (Exception ex)
             {

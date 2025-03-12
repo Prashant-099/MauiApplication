@@ -26,7 +26,7 @@ else
     <table class="table-striped table">
         <thead>
             <tr>
-                <th>Vehicle ID</th>
+                
                 <th>Vehicle Number</th>
                 
                 <th>Actions</th>
@@ -44,16 +44,16 @@ else
             @foreach (var vehicle in vehicles)
             {
                 <tr>
-                            <td>@vehicle.VehicleId</td>
+                            
                             <td>@vehicle.VehicleNo</td>
                   
                 
                     <td>
-                        <button class="btn btn-warning btn-sm" @onclick="() => ShowEditModal(vehicle)">
-                            <i class="fas fa-edit"></i> Edit
+                        <button  @onclick="() => ShowEditModal(vehicle)">
+                                <img src="Icon/icons8-edit-50.png" style="height:25px" />
                         </button>
-                        <button class="btn btn-danger btn-sm" @onclick="() => ConfirmDelete(vehicle.VehicleId)">
-                            <i class="fas fa-trash"></i> Delete
+                            <button c @onclick="() => ConfirmDelete(vehicle.VehicleId)">
+                                <img src="Icon/icons8-delete-50.png" style="height:25px" />
                         </button>
                     </td>
                 </tr>

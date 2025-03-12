@@ -15,31 +15,34 @@
      
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+                <img src="Icon/house.png" class="menu-icon" style="height:25px"/>&nbsp;Home
             </NavLink>
         </div>
+
 
       
 
              <div class="nav-item px-3">
             <NavLink class="nav-link" href="LrGRid">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> LR
+                <img src="Icon/icons8-form-50.png" class="menu-icon" style="height:25px" />&nbsp; LR
             </NavLink>
            
                 
      
         </div>
-             <div class="nav-item px-3"onclick="@Showmenu">
+        <div class="dropdown">
+             <div class="nav-item px-3">
      
                   <NavLink class="nav-link" >
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true" ></span> Master
+                <img src="Icon/icons8-arrow-50.png" class="menu-icon" style="height:25px" />&nbsp; Master
            </NavLink>
            
         </div>
-           <div class="nav-item px-3"style="visibility:@CssStyle">
+            <div class="dropdown-content">
+           <div class="nav-item px-3" >
             <NavLink class="nav-link" href="cargolist" >
 
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true" ></span> cargolist
+                <img src="Icon/products.png" class="menu-icon" style="height:25px" />&nbsp; Cargo list
           
             </NavLink>
         </div>
@@ -50,95 +53,65 @@
            
      
 
-        <div class="nav-item px-3" style="visibility:@CssStyle" >
-            <NavLink class="nav-link p-2" href="company">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> company
-            </NavLink>
-        </div>
-         <div class="nav-item px-3"style="visibility:@CssStyle">
+       
+        <!-- <div class="nav-item px-3"style="visibility:@CssStyle">
             <NavLink class="nav-link" href="accounts">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Accounts
+                <img src="Icon/users.png" class="menu-icon" style="height:25px" />&nbsp; Accounts
             </NavLink>
-        </div>
+        </div> -->
       
-        <div class="nav-item px-3"style="visibility:@CssStyle">
+        <div class="nav-item px-3" >
             <NavLink class="nav-link" href="country">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Country
+                <img src="Icon/icons8-asia-50.png" class="menu-icon" style="height:25px" />&nbsp; Country
             </NavLink>
         </div>
-         <div class="nav-item px-3"style="visibility:@CssStyle">
+        <!--  <div class="nav-item px-3"style="visibility:@CssStyle">
             <NavLink class="nav-link" href="GroupGrid">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> AccountGroup
+                <img src="Icon/people.png" class="menu-icon" style="height:25px" />&nbsp; AccountGroup
             </NavLink>
-        </div>
-        <div class="nav-item px-3"style="visibility:@CssStyle">
+        </div> -->
+       <!--  <div class="nav-item px-3" style="visibility:@CssStyle">
             <NavLink class="nav-link" href="currencies">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Currency
+                <img src="Icon/money.png" class="menu-icon" style="height:25px" />&nbsp; Currency
             </NavLink>
-        </div>
-         <div class="nav-item px-3"style="visibility:@CssStyle">
+        </div>   -->
+        <div class="nav-item px-3" >
             <NavLink class="nav-link" href="location">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> location
+                <img src="Icon/map.png" class="menu-icon" style="height:25px" />&nbsp;  Location
             </NavLink>
         </div>
-        <div class="nav-item px-3"style="visibility:@CssStyle">
+        <div class="nav-item px-3" >
             <NavLink class="nav-link" href="notifyGrid">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> notify
+                <img src="Icon/bell.png" class="menu-icon" style="height:25px" />&nbsp; Notify
             </NavLink>
         </div>
-          <div class="nav-item px-3"style="visibility:@CssStyle">
+     <!--   <div class="nav-item px-3"style="visibility:@CssStyle">
             <NavLink class="nav-link" href="state">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> state
+                <img src="Icon/india.png" class="menu-icon" style="height:25px" />&nbsp;  State
             </NavLink>
-        </div>
-           <div class="nav-item px-3"style="visibility:@CssStyle">
+           </div> -->
+           <div class="nav-item px-3" >
             <NavLink class="nav-link" href="vehicle">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> vehicle
+                <img src="Icon/icons8-vehicle-100.png" class="menu-icon" style="height:30px" />&nbsp;  Vehicle
             </NavLink>
         </div>
-        <div class="nav-item px-3"style="visibility:@CssStyle">
+        <div class="nav-item px-3" >
             <NavLink class="nav-link" href="vehicleType">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> vehicleType
+                <img src="Icon/vehicles.png" class="menu-icon" style="height:30px" />&nbsp; Vehicle Type
             </NavLink>
         </div>
-         <div class="nav-item px-3"style="visibility:@CssStyle">
-            <NavLink class="nav-link" href="User1">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> User1
-            </NavLink>
-        </div>
-        <div class="nav-item px-3"style="visibility:@CssStyle">
-            <NavLink class="nav-link" href="userrole">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> userrole
-            </NavLink>
-        </div>
+    
       
-
+        </div>
+        </div>
 
 
 
 
     </nav>
 </div>
+
 @code {
-    public string Menu { get; set; } = "-3.5rem";
-    private string CssStyle = "hidden";
-    public bool ShowHide { get; set; } = false;
-
-    private void Showmenu()
-    {
-        ShowHide = !ShowHide;
-        if (ShowHide)
-        {
-            Menu = "0";
-            CssStyle = "visible";
-        }
-        else
-        {
-            Menu = "-3.5rem";
-            CssStyle = "hidden";
-
-        }
-    }
 
 
 }

@@ -26,7 +26,7 @@ else
     <table class="table-striped table">
         <thead>
             <tr>
-                <th>Country ID</th>
+                
                 <th>Country Name</th>
                 <th>Country Code</th>
                 <th>Remarks</th>
@@ -45,16 +45,16 @@ else
             @foreach (var country in Countries)
             {
                 <tr>
-                    <td>@country.CountryId</td>
+                  
                     <td>@country.CountryName</td>
                     <td>@country.CountryCode</td>
                     <td>@country.CountryRemarks</td>
                     <td>
-                        <button class="btn btn-warning btn-sm" @onclick="() => ShowEditModal(country)">
-                            <i class="fas fa-edit"></i> Edit
+                        <button  @onclick="() => ShowEditModal(country)">
+                                <img src="Icon/icons8-edit-50.png" style="height:25px" />
                         </button>
-                        <button class="btn btn-danger btn-sm" @onclick="() => ConfirmDelete(country.CountryId)">
-                            <i class="fas fa-trash"></i> Delete
+                        <button  @onclick="() => ConfirmDelete(country.CountryId)">
+                                 <img src="Icon/icons8-delete-50.png"  style="height:25px" />
                         </button>
                     </td>
                 </tr>

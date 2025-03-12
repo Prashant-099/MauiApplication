@@ -20,20 +20,20 @@
                             <ValidationSummary />
 
                             <div class="mb-3">
-                                <label for="VehicleName">Vehicle No:</label>
-                                    <InputText id="VehicleName" @bind-Value="Vehicle.VehicleNo" class="form-control" />
+                            <label for="VehicleNo">Vehicle No:</label>
+                            <InputText id="VehicleNo" @bind-Value="Vehicle.VehicleNo" class="form-control" />
                             </div>
                       
                             <div class="mb-3">
-                                <label for="VehicleType">Self Vehicle:</label>
-                                    <InputSelect id="VehicleType" @bind-Value="Vehicle.VehicleOwnerType" class="form-control" >
-                                <option value=" YES">YES</option>
-                                <option value="NO">NO</option>
+                            <label for="VehicleOwnerType">Self Vehicle:</label>
+                            <InputSelect id="VehicleOwnerType" @bind-Value="Vehicle.VehicleOwnerType" class="form-control">
+                                <option>Yes</option>
+                                <option>No</option>
                                     </InputSelect>
                             </div>
                         <div class="mb-3">
-                            <label for="VehicleType">Vehicle Owner Name:</label>
-                            <InputSelect id="VehicleType" @bind-Value="Vehicle.VehicleAccountId" class="form-control" @onclick="LoadParty">
+                            <label for="VehicleAccountId">Vehicle Owner Name:</label>
+                            <InputSelect id="VehicleAccountId" @bind-Value="Vehicle.VehicleAccountId" class="form-control" @onclick="LoadParty">
                                 <option >-- Select Owner --</option>
 
                                 @foreach (var accounts in Accounts)
@@ -47,8 +47,8 @@
                         </div>
                             
                              <div class="mb-3">
-                            <label for="vehicle Type">Vehicle Type:</label>
-                            <InputSelect id="vehicle Type" @bind-Value="Vehicle.VehicleTypeId" class="form-control" @onclick="LoadVehicleType">
+                            <label for="VehicleTypeId">Vehicle Type:</label>
+                            <InputSelect id="VehicleTypeId" @bind-Value="Vehicle.VehicleTypeId" class="form-control" @onclick="LoadVehicleType">
                                 @foreach (var vehtype in vehicleType)
 
                                 {
@@ -61,8 +61,8 @@
                             </div>
 
                         <div class="mb-3">
-                            <label for="VehicleType">Driver Name:</label>
-                            <InputSelect id="VehicleType" @bind-Value="Vehicle.VehicleDriverId" class="form-control" @onclick="LoadParty">
+                            <label for="VehicleDriverId">Driver Name:</label>
+                            <InputSelect id="VehicleDriverId" @bind-Value="Vehicle.VehicleDriverId" class="form-control" @onclick="LoadParty">
                                 <option >-- Select Driver --</option>
 
                                 @foreach (var accounts in Accounts)
@@ -75,8 +75,8 @@
                             </InputSelect>
                         </div>
                             <div class="mb-3">
-                                <label for="Remarks">Remarks:</label>
-                                    <InputText id="Remarks" @bind-Value="Vehicle.VehicleRemarks" class="form-control" />
+                            <label for="VehicleRemarks">Remarks:</label>
+                            <InputText id="VehicleRemarks" @bind-Value="Vehicle.VehicleRemarks" class="form-control" />
                             </div>
 
                             <div class="mt-3">

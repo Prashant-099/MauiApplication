@@ -43,7 +43,7 @@ namespace MauiAppFB.Services
             {
                 await SetAuthorizationHeaderIfNeeded();
 
-                var response = await _httpClient.GetAsync("api/Vehicle");
+                var response = await _httpClient.GetAsync($"api/Vehicle?page={page}&pageSize={pageSize}");
                 response.EnsureSuccessStatusCode();
 
                 var rawJson = await response.Content.ReadAsStringAsync();

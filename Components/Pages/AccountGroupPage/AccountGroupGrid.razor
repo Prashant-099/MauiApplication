@@ -26,7 +26,7 @@ else
     <table class="table-striped table">
         <thead>
             <tr>
-                <th>Group ID</th>
+                
                 <th>Group Name</th>
                 <th>Description</th>
                 <th>Actions</th>
@@ -44,15 +44,15 @@ else
             @foreach (var group in AccountGroups)
             {
                 <tr>
-                    <td>@group.AccountGroupId</td>
+                   
                             <td>@group.AccountGroupName</td>
                                     <td>@group.AccountGroupParent</td>
                     <td>
-                        <button class="btn btn-warning btn-sm" @onclick="() => ShowEditModal(group)">
-                            <i class="fas fa-edit"></i> Edit
+                        <button  @onclick="() => ShowEditModal(group)">
+                                <img src="Icon/icons8-edit-50.png" style="height:25px" />
                         </button>
-                        <button class="btn btn-danger btn-sm" @onclick="() => ConfirmDelete(group.AccountGroupId)">
-                            <i class="fas fa-trash"></i> Delete
+                        <button  @onclick="() => ConfirmDelete(group.AccountGroupId)">
+                                <img src="Icon/icons8-delete-50.png" style="height:25px" />
                         </button>
                     </td>
                 </tr>

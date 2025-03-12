@@ -47,6 +47,6 @@ namespace MauiAppFB.Models
         public int PageSize { get; set; }
 
         [JsonPropertyName("states")]
-        public List<States> States { get; set; } = new();
+        public List<States> states { get; set; } = new();
     }
 }

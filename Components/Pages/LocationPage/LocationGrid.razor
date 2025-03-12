@@ -26,7 +26,7 @@ else
     <table class="table-striped table">
         <thead>
             <tr>
-                <th>Location ID</th>
+               
                 <th>Location Name</th>
                 <th>Location Type</th>
         
@@ -45,16 +45,16 @@ else
             @foreach (var location in locations)
             {
                 <tr>
-                                    <td>@location.LocationId</td>
+                                    
                                     <td>@location.LocationName</td>
                                     <td>@location.LocationType</td>
                  
                     <td>
-                                        <button class="btn btn-warning btn-sm" @onclick="() => ShowEditModal(location)">
-                            <i class="fas fa-edit"></i> Edit
+                                        <button  @onclick="() => ShowEditModal(location)">
+                                <img src="Icon/icons8-edit-50.png" style="height:25px" />
                         </button>
-                                        <button class="btn btn-danger btn-sm" @onclick="() => ConfirmDelete(location.LocationId)">
-                            <i class="fas fa-trash"></i> Delete
+                                        <button @onclick="() => ConfirmDelete(location.LocationId)">
+                                <img src="Icon/icons8-delete-50.png" style="height:25px" />
                         </button>
                     </td>
                 </tr>
@@ -78,7 +78,7 @@ else
                  OnClose="CloseModal"
                  OnSubmit="SaveLocation" />
 
-@code {
+@code{
     private List<Locations> locations = new();
     private Locations selectedLocation = new Locations();
     private string modalTitle = string.Empty;
@@ -144,6 +144,7 @@ else
             LocationId = location.LocationId,
             LocationName = location.LocationName,
             LocationType = location.LocationType,
+                LocationCode = location.LocationCode,
          
         };
         modalTitle = "Edit Location";

@@ -58,7 +58,7 @@ namespace MauiAppFB.Services
                     PropertyNameCaseInsensitive = true  // Make property names case-insensitive
                 };
 
-                var accountsResponse = await response.Content.ReadFromJsonAsync<UserRolesResponse>(options);
+                var accountsResponse = await response.Content.ReadFromJsonAsync<UserRolesResponse>();
 
                 // If the deserialization fails (returns null), throw an exception
                 if (accountsResponse == null)

@@ -26,10 +26,10 @@ else
         <table class="table-striped table">
             <thead>
                 <tr>
-                    <th>Notification ID</th>
-                    <th>city</th>
-                    <th>contacno</th>
-                    <th>Created At</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Adresses</th>
+                    <th>GST No</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -45,16 +45,16 @@ else
             @foreach (var notification in notifications)
             {
                         <tr>
-                            <td>@notification.NotifyId</td>
-                                    <td>@notification.NotifyCity</td>
-                                    <td>@notification.NotifyContactNo</td>
-                            <td>@notification.NotifyCreated.ToString("g")</td>
+                            <td>@notification.NotifyName</td>
+                                    <td>@notification.NotifyType</td>
+                        <td>@notification.NotifyAddressfull</td>
+                            <td>@notification.NotifyGstNo</td>
                             <td>
-                                <button class="btn btn-warning btn-sm" @onclick="() => ShowEditModal(notification)">
-                                    <i class="fas fa-edit"></i> Edit
+                                <button  @onclick="() => ShowEditModal(notification)">
+                                <img src="Icon/icons8-edit-50.png" style="height:25px" />
                                 </button>
-                                <button class="btn btn-danger btn-sm" @onclick="() => ConfirmDelete(notification.NotifyId)">
-                                    <i class="fas fa-trash"></i> Delete
+                                <button  @onclick="() => ConfirmDelete(notification.NotifyId)">
+                                <img src="Icon/icons8-delete-50.png" style="height:25px" />
                                 </button>
                             </td>
                         </tr>
@@ -132,8 +132,8 @@ else
     private void ShowAddModal()
     {
         selectedNotification = new Notify();
-        modalTitle = "Add Notification";
-        modalButtonText = "Add Notification";
+        modalTitle = "Add Consignee/Consignor";
+        modalButtonText = "Add";
         isModalVisible = true;
     }
 

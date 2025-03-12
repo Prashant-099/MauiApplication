@@ -8,28 +8,28 @@ namespace MauiAppFB.Models
 {
     public class User
     {
-        public string UserFirstName { get; set; } = "1";
-        public string UserLastName { get; set; } = "1";
-        public string UserEmail { get; set; } = "1";
-        public string UserName { get; set; } = "1";
-        public string UserPhone { get; set; } = "1";
+        public string UserFirstName { get; set; } 
+        public string UserLastName { get; set; } 
+        public string UserEmail { get; set; }
+        public string UserName { get; set; } = "str";
+        public string UserPhone { get; set; } = "str";
         public string UserCountryCode { get; set; } = "1";
-        public string UserMobile { get; set; } = "1";
+        public string UserMobile { get; set; } 
         public bool UserStatus { get; set; } = true;
         public DateTime UserCreated { get; set; } = DateTime.UtcNow.Date;
         public DateTime UserDob { get; set; } = DateTime.UtcNow.Date;
-        public int UserId { get; set; } 
-        public string UserRoleName { get; set; } = "Admin";
-        public string UserCompanyId { get; set; } = "1";
+        public int UserId { get; set; }
+        public string UserRoleName { get; set; } = "str";
+        public string UserCompanyId { get; set; } = "1"; 
         public string UserAddbyUserId { get; set; } = "1";
-        public string UserGender { get; set; } = "1";
-        
-public string UserAddress { get; set; } = "1";
-        public string UserImage { get; set; } = "1";
-        public string UserZipcode { get; set; } = "1";
-        public string UserPassword { get; set; } = "Admin";
+        public string UserGender { get; set; } 
+
+        public string UserAddress { get; set; }
+        public string UserImage { get; set; } = "st";
+        public string UserZipcode { get; set; } = "st";
+        public string UserPassword { get; set; } 
         public int UserParentId { get; set; } = 1;
-        public string UserRoleId { get; set; } = "1";
+        public string UserRoleId { get; set; } 
     }
 
     public class UserResponse

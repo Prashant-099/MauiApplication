@@ -50,10 +50,12 @@ namespace MauiAppFB
             builder.Services.AddScoped<VehicleTypeService>();
             builder.Services.AddScoped<CompanyService>();
             builder.Services.AddScoped<LRService>();
+            builder.Services.AddScoped<PrintService>();
+            builder.Services.AddScoped<PaytypeService>();
 
             // Register Maui Blazor WebView
             builder.Services.AddMauiBlazorWebView();
-          
+            
 
 #if DEBUG
             builder.Services.AddBlazorWebViewDeveloperTools();

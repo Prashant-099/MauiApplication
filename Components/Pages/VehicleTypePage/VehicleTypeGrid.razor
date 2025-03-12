@@ -4,7 +4,7 @@
 @inject VehicleTypeService VehicleService
 @inject IJSRuntime JS
 
-<h3>Vehicle List</h3>
+<h3>Vehicle Type List</h3>
 
 @if (isLoading)
 {
@@ -26,8 +26,8 @@ else
     <table class="table-striped table">
         <thead>
             <tr>
-                <th>Vehicle ID</th>
-                <th>Vehicle Name</th>
+             
+                <th>Vehicle Type</th>
                 
                 <th>Actions</th>
             </tr>
@@ -44,15 +44,15 @@ else
             @foreach (var vehicle in vehicle)
             {
                 <tr>
-                    <td>@vehicle.VehicleTypeId</td>
+                    
                     <td>@vehicle.VehicleTypeName</td>
                  
                     <td>
-                        <button class="btn btn-warning btn-sm" @onclick="() => ShowEditModal(vehicle)">
-                            <i class="fas fa-edit"></i> Edit
+                        <button  @onclick="() => ShowEditModal(vehicle)">
+                                <img src="Icon/icons8-edit-50.png" style="height:25px" />
                         </button>
-                        <button class="btn btn-danger btn-sm" @onclick="() => ConfirmDelete(vehicle.VehicleTypeId)">
-                            <i class="fas fa-trash"></i> Delete
+                        <button  @onclick="() => ConfirmDelete(vehicle.VehicleTypeId)">
+                                <img src="Icon/icons8-delete-50.png" style="height:25px" />
                         </button>
                     </td>
                 </tr>

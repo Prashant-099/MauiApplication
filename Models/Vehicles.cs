@@ -11,101 +11,69 @@ namespace MauiAppFB.Models
     {
 
 
-        [JsonPropertyName("vehicleId")]
         public int VehicleId { get; set; }
 
-        [JsonPropertyName("vehicleCompanyId")]
-        public int? VehicleCompanyId { get; set; } = 1;
+        public int VehicleCompanyId { get; set; } = 1;
 
-        [JsonPropertyName("vehicleAddByUserId")]
-        public int? VehicleAddByUserId { get; set; } = 1;
+        public int VehicleAddByUserId { get; set; } = 1;
 
-        [JsonPropertyName("vehicleUpdatedByUserId")]
-        public int? VehicleUpdatedByUserId { get; set; } = 1;
+        public int? VehicleUpdatedByUserId { get; set; }
 
-        [JsonPropertyName("vehicleNo")]
-        public string? VehicleNo { get; set; } 
+        public string VehicleNo { get; set; }
 
-        [JsonPropertyName("vehicleOwnerType")]
-        public string? VehicleOwnerType { get; set; }
+        public string VehicleOwnerType { get; set; } = "Yes";
 
-        [JsonPropertyName("vehicleAccountId")]
-        public int? VehicleAccountId { get; set; } = 1;
+        public int VehicleAccountId { get; set; } = 0;
 
-        [JsonPropertyName("vehicleTypeId")]
-        public int? VehicleTypeId { get; set; } = 1;
+        public int? VehicleTypeId { get; set; } = 0;
 
-        [JsonPropertyName("vehicleGroupId")]
-        public int? VehicleGroupId { get; set; } = 1;
+        public int? VehicleGroupId { get; set; } = 0;
 
-        [JsonPropertyName("vehicleAverage")]
-        public int? VehicleAverage { get; set; } = 0;
+        public int? VehicleAverage { get; set; }
 
-        [JsonPropertyName("vehicleRTO")]
-        public string? VehicleRTO { get; set; } 
+        public string? VehicleRTO { get; set; } = "";
 
-        [JsonPropertyName("vehicleEngineNo")]
-        public string? VehicleEngineNo { get; set; } = "test";
+        public string? VehicleEngineNo { get; set; } = "";
 
-        [JsonPropertyName("vehicleChassisNo")]
-        public string? VehicleChassisNo { get; set; } = "test";
+        public string? VehicleChassisNo { get; set; } = "";
 
-        [JsonPropertyName("vehicleLoadCapacity")]
-        public double? VehicleLoadCapacity { get; set; } = 1.1;
+        public double? VehicleLoadCapacity { get; set; }
 
-        [JsonPropertyName("vehicleMake")]
-        public string? VehicleMake { get; set; } = "test";
+        public string? VehicleMake { get; set; } = "";
 
-        [JsonPropertyName("vehicleModel")]
-        public string? VehicleModel { get; set; } = "test";
+        public string? VehicleModel { get; set; } = "";
 
-        [JsonPropertyName("vehicleRemarks")]
-        public string? VehicleRemarks { get; set; } = "test";
+        public string? VehicleRemarks { get; set; } = "ok";
 
-        [JsonPropertyName("vehicleStatus")]
-        public int? VehicleStatus { get; set; } = 1;
+        public int VehicleStatus { get; set; } = 0;
 
-        [JsonPropertyName("vehicleFastage")]
-        public string? VehicleFastage { get; set; } = "test";
+        public string? VehicleFastage { get; set; } = "";
 
-        [JsonPropertyName("vehicleGpsNo")]
-        public string? VehicleGpsNo { get; set; } = "test";
+        public string? VehicleGpsNo { get; set; } = "";
 
-        [JsonPropertyName("vehicleCreated")]
         public DateTime? VehicleCreated { get; set; } = DateTime.UtcNow.Date;
 
-        [JsonPropertyName("vehicleUpdated")]
         public DateTime? VehicleUpdated { get; set; } = DateTime.UtcNow.Date;
 
-        [JsonPropertyName("vehicleTax")]
         public DateTime? VehicleTax { get; set; } = DateTime.UtcNow.Date;
 
-        [JsonPropertyName("vehicleFitness")]
         public DateTime? VehicleFitness { get; set; } = DateTime.UtcNow.Date;
 
-        [JsonPropertyName("vehicleStatePermit")]
         public DateTime? VehicleStatePermit { get; set; } = DateTime.UtcNow.Date;
 
-        [JsonPropertyName("vehicleNational")]
         public DateTime? VehicleNational { get; set; } = DateTime.UtcNow.Date;
 
-            [JsonPropertyName("vehicleInsurance")]
-        public DateTime? VehicleInsurance { get; set; }= DateTime.UtcNow.Date;
+        public DateTime? VehicleInsurance { get; set; } = DateTime.UtcNow.Date;
 
-            [JsonPropertyName("vehiclePUC")]
         public DateTime? VehiclePUC { get; set; } = DateTime.UtcNow.Date;
 
-        [JsonPropertyName("vehicleForm9")]
         public DateTime? VehicleForm9 { get; set; } = DateTime.UtcNow.Date;
 
-        [JsonPropertyName("vehicleCalibration")]
         public DateTime? VehicleCalibration { get; set; } = DateTime.UtcNow.Date;
 
-        [JsonPropertyName("vehicleEMI")]
         public DateTime? VehicleEMI { get; set; } = DateTime.UtcNow.Date;
 
-        [JsonPropertyName("vehicleDriverId")]
-        public int? VehicleDriverId { get; set; } = 1;
+        public int? VehicleDriverId { get; set; }
     }
 
     public class VehicleResponse
@@ -115,7 +83,6 @@ namespace MauiAppFB.Models
         public int CurrentPage { get; set; }
         public int PageSize { get; set; }
 
-        [JsonPropertyName("Vehicles")]
         public List<Vehicles> vehicles { get; set; } = new();
 
     }

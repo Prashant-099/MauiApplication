@@ -27,7 +27,7 @@ else
     <table class="table-striped table">
         <thead>
             <tr>
-                <th @onclick="() => ApplySorting(nameof(Account.AccountId))">Account ID</th>
+               
                 <th @onclick="() => ApplySorting(nameof(Account.AccountName))">Account Name</th>
                
                 <th>Actions</th>
@@ -46,15 +46,15 @@ else
             @foreach (var account in accounts)
             {
                 <tr>
-                    <td>@account.AccountId</td>
+                   
                     <td>@account.AccountName</td>
                    
                     <td>
-                        <button class="btn btn-warning btn-sm" @onclick="() => ShowEditModal(account)">
-                            <i class="fas fa-edit"></i> Edit
+                        <button  @onclick="() => ShowEditModal(account)">
+                                <img src="Icon/icons8-edit-50.png" style="height:25px" />
                         </button>
-                        <button class="btn btn-danger btn-sm" @onclick="() => ConfirmDelete(account.AccountId)">
-                            <i class="fas fa-trash"></i> Delete
+                        <button  @onclick="() => ConfirmDelete(account.AccountId)">
+                                <img src="Icon/icons8-delete-50.png" style="height:25px" />
                         </button>
                     </td>
                 </tr>

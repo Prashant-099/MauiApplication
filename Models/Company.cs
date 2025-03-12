@@ -31,8 +31,8 @@ namespace MauiAppFB.Models
         public string CompanyAddress1 { get; set; }  = "1";                     
         public string CompanyAddress2 { get; set; }  = "1";
         public string CompanyAddress3 { get; set; }  = "1";
-        public string CompanyStateId { get; set; }  = "1";
-        public string CompanyStateCode { get; set; }  = "1";
+        public string CompanyStateId { get; set; }  = "24";
+        public string CompanyStateCode { get; set; }  = "24";
         public string CompanyEmail { get; set; }  = "1";
         public string CompanyMobile { get; set; }  = "1";
         public string CompanyTelephone { get; set; }  = "1";
@@ -65,7 +65,7 @@ namespace MauiAppFB.Models
         public string CompanyDecimal { get; set; }  = "1";
         public string CompanyDateFormat { get; set; }  = "1";
         public string CompanyRemarks { get; set; } 
-        public string CompanyLogo { get; set; }  = "1";
+        public string CompanyLogo { get; set; }  = "null";
         public string CompanyCity { get; set; }  = "1";
         public string CompanyCountry { get; set; }  = "1";
         public string CompanyTagline1 { get; set; }  = "1";

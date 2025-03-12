@@ -17,15 +17,18 @@
                         <ValidationSummary />
 
                         <div class="mb-3">
-                                <label for="NotifyTitle"> NotifyCity:</label>
-                                <InputText id="NotifyTitle" @bind-Value="Notification.NotifyCity" class="form-control" />
+                                <label for="NotifyTitle"> Name:</label>
+                                <InputText id="NotifyTitle" @bind-Value="Notification.NotifyName" class="form-control" />
                         </div>
                         <div class="mb-3">
-                                <label for="NotifyMessage">NotifyContactNo :</label>
-                                <InputText id="NotifyMessage" @bind-Value="Notification.NotifyContactNo" class="form-control" />
+                                <label for="NotifyMessage">Type :</label>
+                                <InputSelect id="NotifyMessage" @bind-Value="Notification.NotifyType" class="form-control" >
+                                <option>CONSIGNOR</option>
+                                <option>Consignee</option>
+                                </InputSelect>
                         </div>
                         <div class="mb-3">
-                                    <label for="NotifyType">NotifyGstNo:</label>
+                                    <label for="NotifyType">GstNo:</label>
                                     <InputText id="NotifyType" @bind-Value="Notification.NotifyGstNo" class="form-control" />
                         </div>
 

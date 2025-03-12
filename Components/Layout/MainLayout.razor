@@ -1,5 +1,5 @@
 ﻿@inherits LayoutComponentBase
-
+@inject IJSRuntime JS
 <div class="page" >
     <div class="sidebar">
         <NavMenu />
@@ -11,25 +11,41 @@
         <div class="top-row px-4">
             <div class="dropdown">
                 <button class="dropdown-toggle btn btn-link">
-                    <img src=""  class="menu-icon" />
+                    <img src="css/icon.jpg"  class="menu-icon" />
                 </button>
-                <ul class="dropdown-menu">
+                <div class="dropdown-menu">
 
-                    <li>
-                        <a href="/about" target="_blank">
-                         
-                            About
-                        </a>
-                    </li>
-                    <hr>
-                    <li>
-                      
-                        <div class="actions">
-                            <button class="logout-btn" @onclick="HandleLogout">Logout</button>
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="User1">
+                            <img src="Icon/man.png" class="menu-icon" style="height:25px;color:black" />&nbsp;User
+                        </NavLink>
+                    </div>
+                    <!--  <div class="nav-item px-3"  >
+                          <NavLink class="nav-link" href="userrole">
+                              <img src="Icon/people.png" class="menu-icon" style="height:25px" />&nbsp; User role
+                          </NavLink>
+                                </div> -->
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="company">
+                            <img src="Icon/office-building.png" class="menu-icon" style="height:25px ;color:black" />&nbsp; Company
+                        </NavLink>
+                    </div>
+
+                      <div class="nav-item px-3">
+                        <NavLink class="nav-link" @onclick="HandleLogout">
+                            <img src="Icon/user-logout.png" class="menu-icon" style="height:25px;color:black" />&nbsp; Logout
+                        </NavLink>
                         </div>
-                    </li>
-                </ul>
+                    
+                </div>
             </div>
+
+
+            
+
+
+
+
         </div>
         <article class="content px-4">
             @Body
@@ -38,7 +54,13 @@
         </article>
     </main>
 </div>
+
+
+
 @code {
+
+   
+
 
     @using MauiAppFB.Services
     [Inject] private AuthService AuthService { get; set; }
@@ -97,9 +119,9 @@
         }
 
     .menu-icon {
-        background-image: url('css/icon.jpg');
-        width: 20px;
-        height: 20px;
+        
+        width: 40px;
+        height: 40px;
         object-fit: contain;
     }
 

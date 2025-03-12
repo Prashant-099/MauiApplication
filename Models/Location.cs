@@ -10,7 +10,7 @@ namespace MauiAppFB.Models
 {
     public class Locations
     {
-        public int LocationId { get; set; } 
+        public int LocationId { get; set; }
         public string LocationCompanyId { get; set; } = "1";
         public string LocationAddedByUserId { get; set; } = "1";
         public string LocationUpdatedByUserId { get; set; } = "1";
@@ -24,9 +24,8 @@ namespace MauiAppFB.Models
         public DateTime LocationCreated { get; set; } = DateTime.UtcNow.Date;
         public DateTime LocationUpdated { get; set; } = DateTime.UtcNow.Date;
         public string LocationCode { get; set; }
-        public int LocationCountryId { get; set; } = 1;
-        public string LocationType { get; set; } 
-
+        public int locationCountryId { get; set; }
+        public string LocationType { get; set; } = "station";
     }
     public class LocationResponse
     {

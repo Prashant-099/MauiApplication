@@ -81,7 +81,7 @@ namespace MauiAppFB.Services
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error adding vehicle type: {ex.Message}", ex);
+                throw new Exception($"Error adding : {ex.Message}", ex);
             }
         }
 

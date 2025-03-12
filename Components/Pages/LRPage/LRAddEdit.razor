@@ -1,18 +1,18 @@
-﻿@page "/LRAddEdit/{LRId:int?}"
-
+﻿@page "/LRAddEdit/{LrID:int?}"
 @using Models
 @using MauiAppFB.Components.Pages.VehiclesPage
 @using MauiAppFB.Components.Pages.CargoPage
 @using MauiAppFB.Components.Pages.LocationPage
+@using MauiAppFB.Components.Pages.NotifyPage
 @using MauiAppFB.Services
 @inject VehiclesService VehicleService
 @inject AccountsService AccountService
 @inject LocationService LocationService
 @inject CargoService CargoService
 @inject LRService LRGridService
-
+@inject NotifyService NotificationService
+@inject PaytypeService  paytypeService
 @inject IJSRuntime JS
-
 
 
 <EditForm Model="@LR" OnValidSubmit="HandleValidSubmit">
@@ -39,14 +39,24 @@
 
             <div class="mb-3 me-4">
 
-                <label for="LrNo" >Challan/LR No:</label>
+                <label for="LrNo" >Challan/LR Nostr:</label>
 
-                <InputNumber id="LRNo" @bind-Value="LR.LrNo" step="0.01"
+                <InputText id="LrNostr" @bind-Value="LR.LrNostr" step="0.01"
                 class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
             </div>
 
 
+            <!-- LrNo -->
+
+            <div class="mb-3 me-4">
+
+                <label for="LrNo">Challan/LR No:</label>
+
+                <InputNumber id="LrNo" @bind-Value="LR.LrNo" step="0.01"
+                           class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+
+            </div>
 
             <!-- LrDate -->
 
@@ -63,13 +73,13 @@
 
 
 
-            <!-- Pay Mode -->
+            <!-- Pay Mode  -->
 
             <div class="mb-3 me-4">
 
                 <label for="payMode" >Pay Mode:</label>
 
-                <InputSelect id="payMode" @bind-Value="LR.LrPaymenttype"
+                <InputSelect id="LrPaymenttype" @bind-Value="LR.LrPaymenttype"
 
                 class="form-control"
                 style="width: 150px; font-size: 0.9rem; padding: 0.25rem;">
@@ -89,7 +99,7 @@
             <div class="mb-3 me-4">
 
                 <label for="LrVehicleId" >Vehicle No:<a @onclick="ShowVehiModal" style="color: black; font-size: 1.7rem; position: relative; bottom: -4px;">+</a></label>
-                <InputSelect id="LrVehicleId" @bind-Value="LR.LrVehicleId"@onclick="LoadVehicles"
+                <InputSelect id="LrVehicleId" @bind-Value="LR.LrVehicleId" @onclick="LoadVehicles"
 
                 class="form-control"
 
@@ -118,8 +128,8 @@
 
                 <label for="party">Bill To Party:<a @onclick="ShowAccModal" style="color: black; font-size: 1.7rem; position: relative; bottom: -4px;"> + </a></label>
 
-                <InputSelect id="party" @bind-Value="LR.LrPartyAccountId" class="form-control" @onclick="LoadParty"
-                style="width: 230px; font-size: 0.9rem; padding: 0.25rem;">
+                <InputSelect id="partyName" @bind-Value="LR.Party_Name" class="form-control" @onclick="LoadParty"
+                style="width: 290px; font-size: 0.9rem; padding: 0.25rem;">
 
                     <option value="">-- Select Party --</option>
 
@@ -141,7 +151,7 @@
 
                 <label for="party">From Location: <a @onclick="ShowLocationModal" style="color: black; font-size: 1.7rem; position: relative; bottom: -4px;">+</a></label>
 
-                <InputSelect id="party" @bind-Value="LR.LrFromLocationId" class="form-control" @onclick="Loadlocation"
+                <InputSelect id="LrFromLocationId" @bind-Value="LR.LrFromLocationId" class="form-control" @onclick="Loadlocation"
                 style="width: 150px; font-size: 0.9rem; padding: 0.25rem;">
 
                     <option value="">-- Select location --</option>
@@ -166,7 +176,7 @@
 
                 <label for="party"> To Location:<a @onclick="ShowLocationModal" style="color: black; font-size: 1.7rem; position: relative; bottom: -4px;">+</a></label>
 
-                <InputSelect id="party" @bind-Value="LR.LrToLocationId" class="form-control" @onclick="Loadlocation"
+                <InputSelect id="LrToLocationId" @bind-Value="LR.LrToLocationId" class="form-control" @onclick="Loadlocation"
                 style="width: 150px; font-size: 0.9rem; padding: 0.25rem;">
 
                     <option value="">-- Select location --</option>
@@ -183,7 +193,29 @@
 
             </div>
 
+            <!-- BACK Location -->
 
+
+            <div class="mb-3 me-4">
+
+                <label for="party"> Back Location:<a @onclick="ShowLocationModal" style="color: black; font-size: 1.7rem; position: relative; bottom: -4px;">+</a></label>
+
+                <InputSelect id="LrBackLocationId" @bind-Value="LR.LrBackLocationId" class="form-control" @onclick="Loadlocation"
+                style="width: 150px; font-size: 0.9rem; padding: 0.25rem;">
+
+                    <option value="">-- Select location --</option>
+
+                    @foreach (var Locations in locations)
+
+                    {
+
+                        <option value="@Locations.LocationId">@Locations.LocationName</option>
+
+                    }
+
+                </InputSelect>
+
+            </div>
 
             <!-- Product -->
 
@@ -195,7 +227,7 @@
                     @onclick="ShowProductModal"> + </a>
                 </label>
 
-                <InputSelect id="Product" @bind-Value="LR.LrProductId" class="form-control"  @onclick="Loadcargo"
+                <InputSelect id="LrProductId" @bind-Value="LR.LrProductId" class="form-control" @onclick="Loadcargo"
                 style="width: 150px; font-size: 0.9rem; padding: 0.25rem; top:30cm " >
                     @foreach (var cargos in cargos)
 
@@ -208,8 +240,132 @@
                 </InputSelect>
 
             </div>
+            <!-- Container 1 -->
 
+            <div class="mb-3 me-4">
 
+                <label for="con1">Container 1:</label>
+
+                <InputText id="LrContainer1" @bind-Value="LR.LrContainer1" class="form-control"
+                style="width: 150px; font-size: 0.9rem; padding: 0.30rem;" />
+
+            </div>
+
+            <!-- Container 2 -->
+
+            <div class="mb-3 me-4">
+
+                <label for="con2">Container 2:</label>
+
+                <InputText id="LrContainer2" @bind-Value="LR.LrContainer2" class="form-control"
+                style="width: 150px; font-size: 0.9rem; padding: 0.30rem;" />
+
+            </div>
+
+            <!-- Consignee Name -->
+
+            <div class="mb-3 me-4">
+                <label>
+                    Consignee Name:
+                    <a style="color: black; font-size: 1.7rem; padding: 0.25rem;  position: relative; bottom: -2px;"
+                       @onclick="ShowNotifyModal"> + </a>
+                </label>
+                <InputSelect id="LrConsigneeNotifyId" @bind-Value="LR.LrConsigneeNotifyId" class="form-control" @onclick="LoadNotifyConsignee"
+                style="width: 150px; font-size: 0.9rem; padding: 0.30rem;" >
+                    <label for="con2">Container Name:</label>
+                 @foreach (var notifi in Notifc)
+
+                    {
+
+                        <option value="@notifi.NotifyId">@notifi.NotifyName</option>
+
+                    }
+                    </InputSelect>
+            </div>
+            <!-- Consignee Address -->
+            <div class="mb-3 me-4">
+                <label for="LrConsigneeNotifyId">Consignee Address:</label>
+                <InputSelect id="LrConsigneeNotifyId" @bind-Value="LR.LrConsigneeNotifyId" class="form-control"
+                             style="width: 150px; font-size: 0.9rem; padding: 0.30rem;" readonly>
+                    @foreach (var notifi in Notifc)
+                    {
+                        <option value="@notifi.NotifyId">@notifi.NotifyAddressfull</option>
+                    }
+                </InputSelect>
+            </div>
+
+            <!-- Consignee GST -->
+
+            <div class="mb-3 me-4">
+
+                <label for="con2">Consignee GST:</label>
+
+                <InputSelect id="LrConsigneeNotifyId" @bind-Value="LR.LrConsigneeNotifyId" class="form-control"
+                             style="width: 150px; font-size: 0.9rem; padding: 0.30rem;" readonly>
+
+                @foreach (var notifi in Notifc)
+
+                    {
+
+                        <option value="@notifi.NotifyId">@notifi.NotifyGstNo</option>
+
+                    }
+                </InputSelect>
+            </div>
+
+            <!-- Consignor Name -->
+
+            <div class="mb-3 me-4">
+                <label>
+                    Consignor Name:
+                    <a style="color: black; font-size: 1.7rem; padding: 0.25rem;  position: relative; bottom: -2px;"
+                       @onclick="ShowNotifyModal"> + </a>
+                </label>
+                <InputSelect id="LrConsignorNotifyId" @bind-Value="LR.LrConsignorNotifyId" class="form-control" @onclick="LoadNotifyConsignor"
+                style="width: 150px; font-size: 0.9rem; padding: 0.30rem;" >
+                    @foreach (var notifi in Notif)
+
+                    {
+
+                        <option value="@notifi.NotifyId">@notifi.NotifyName</option>
+
+                    }
+                </InputSelect>
+            </div>
+            <!-- Consignor Address -->
+
+            <div class="mb-3 me-4">
+
+                <label for="con2">Consignor Address:</label>
+
+                <InputSelect id="LrConsignorNotifyId" @bind-Value="LR.LrConsignorNotifyId" class="form-control"
+                             style="width: 150px; font-size: 0.9rem; padding: 0.30rem;" readonly>
+                  @foreach (var notifi in Notif)
+
+                    {
+
+                        <option value="@notifi.NotifyId">@notifi.NotifyAddressfull</option>
+
+                    }
+                </InputSelect>
+            </div>
+            <!-- Consignor GST -->
+
+            <div class="mb-3 me-4">
+
+                <label for="con2">Consignor GST:</label>
+
+                <InputSelect id="LrConsignorNotifyId" @bind-Value="LR.LrConsignorNotifyId" class="form-control"
+                             style="width: 150px; font-size: 0.9rem; padding: 0.30rem;" readonly>
+                 @foreach (var notifi in Notif)
+
+                    {
+
+                        <option value="@notifi.NotifyId">@notifi.NotifyGstNo</option>
+
+                    }
+                </InputSelect>
+            </div>
             <!-- Reference By -->
 
             <div class="mb-3 me-4">
@@ -219,7 +375,7 @@
                 <InputText id="LrRefby" @bind-Value="LR.LrRefby" class="form-control"
                 style="width: 150px; font-size: 0.9rem; padding: 0.30rem;" />
 
-            </div>
+            </div> 
 
             <!-- Custom Field -->
 
@@ -227,7 +383,7 @@
 
                 <label for="LrCustom1">Gross Weight:</label>
 
-                <InputNumber id="LrCustom1" @bind-Value="LR.LrGrosswt"
+                <InputNumber id="LrGrosswt" @bind-Value="LR.LrGrosswt"
                 class="form-control" step="0.01"
                 style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
@@ -275,8 +431,8 @@
 
                 <label for="LrInvoicevalue">Invoice Value:</label>
 
-                <InputNumber id="LrInvoicevalue" @bind-Value="LR.LrInvoicevalue" class="form-control" 
-                style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+                <InputNumber id="LrInvoicevalue" @bind-Value="LR.LrInvoicevalue" class="form-control"
+                             style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
             </div>
 
@@ -290,23 +446,23 @@
                 style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
             </div>
-            <!-- E-Way Bill Date -->
+            <!-- E-Way Bill Date  
 
             <div class="mb-3 me-4">
 
-                <label for="Ewaybilldate">E-Way Bill Date:</label>
+            <label for="Ewaybilldate">E-Way Bill Date:</label>
 
-                <InputDate id="Ewaybilldate" @bind-Value="LR.ewaybilldate" class="form-control"
-                style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+            <InputDate id="Ewaybilldate" @bind-Value="LR.LrEwaybillno" class="form-control"
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
-            </div>
+            </div> -->
             <!-- GP/BE NO -->
 
             <div class="mb-3 me-4">
 
                 <label for="LrEwaybillno">GP/BE NO :</label>
 
-                <InputText id="LrEwaybillno" @bind-Value="LR.LrCustom1" class="form-control"
+                <InputText id="LrEwaybillno" @bind-Value="LR.LrEwaybillno" class="form-control"
                 style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
             </div>
@@ -318,17 +474,18 @@
 
                 <label for="billtype" class="form-label">Bill Type:</label>
 
-                <InputSelect id="billtype" @bind-Value="LR.LrTriptype"
+                <InputSelect id="LrTriptype" @bind-Value="LR.LrTriptype" @onclick="Loadpaytype"
                 class="form-control"
                 style="width: 150px; font-size: 0.9rem; padding: 0.25rem;">
 
-                    <option value="RATE * WT">RATE * WT</option>
 
-                    <option value="FIXED">FIXED</option>
+                    @foreach (var paytype in paytype)
+                    {
 
-                    <option value="RATE * KM">RATE * KM</option>
 
-                    <option value="RATE * UNLOADWT">RATE * UNLOADWT</option>
+                        <option value="@paytype.PayTypeName">@paytype.PayTypeName</option>
+
+                    }
 
                 </InputSelect>
 
@@ -341,7 +498,7 @@
 
                 <label for="LrLoadwt">Load Weight:</label>
 
-                <InputNumber id="LrLoadwt" @bind-Value="LR.LrLoadwt" class="form-control"
+                <InputNumber id="LrLoadwt" @bind-Value="LR.LoadWt" class="form-control"
                 style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
             </div>
@@ -352,16 +509,16 @@
 
             <div class="mb-3 me-4">
 
-            <label for="LrUnloadwt">Unload Weight:</label>
+                <label for="LrUnloadwt">Unload Weight:</label>
 
-            <InputNumber id="LrUnloadwt" @bind-Value="LR.LrUnloadwt" class="form-control"
-            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+                <InputNumber id="LrUnloadwt" @bind-Value="LR.un" class="form-control"
+                style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
             </div>
-            -->
 
 
 
+             -->
 
 
 
@@ -385,7 +542,7 @@
 
                 <label for="LrGrossfreighttruck">Gross Freight:</label>
 
-                <InputNumber id="LrGrossfreighttruck" @bind-Value="LR.LrGrossfreightbill" class="form-control"
+                <InputNumber id="LrGrossfreightbill" @bind-Value="LR.LrGrossfreightbill" class="form-control"
                 style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
             </div>
@@ -397,7 +554,7 @@
 
                 <label for="othercharges">Other Charges:</label>
 
-                <InputText id="othercharges" @bind-Value="LR.LrCustom2" class="form-control"
+                <InputText id="LrCustom2" @bind-Value="LR.LrCustom2" class="form-control"
                 style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
             </div>
@@ -410,7 +567,7 @@
 
                 <label for="netfreight">Net Freight Bill:</label>
 
-                <InputNumber id="netfreight" @bind-Value="LR.LrGrossfreightbill" class="form-control" @onchange="CalculateNetFreight"
+                <InputNumber id="LrGrossfreightbill" @bind-Value="LR.LrGrossfreightbill" class="form-control" @onchange="CalculateNetFreight"
                 style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" readonly />
 
             </div>
@@ -444,7 +601,7 @@
 
                     <!-- Assuming Supplier Name is a text input -->
 
-                    <InputSelect id="SupplierName" @bind-Value="LR.LrSupplierAccountId" class="form-control me-3" @onclick="LoadParty"
+                    <InputSelect id="LrSupplierAccountId" @bind-Value="LR.LrSupplierAccountId" class="form-control me-3" @onclick="LoadParty"
 
                     style="width: 230px; font-size: 0.9rem; padding: 0.25rem;" >
 
@@ -474,16 +631,16 @@
 
                 <label for="paybletype">Payable Type:</label>
 
-                <InputSelect id="paybletype" @bind-Value="LR.LrBilltypetruck" class="form-control"
-                             style="width: 150px; font-size: 0.9rem; padding: 0.25rem;">
+                <InputSelect id="LrBilltypetruck" @bind-Value="LR.LrBilltypetruck" class="form-control" @onclick="Loadpaytype"
+                style="width: 150px; font-size: 0.9rem; padding: 0.25rem;">
 
-                    <option value="RATE * WT">RATE * WT</option>
+                    @foreach (var paytype in paytype)
+                    {
 
-                    <option value="FIXED">FIXED</option>
 
-                    <option value="RATE * KM">RATE * KM</option>
+                        <option value="@paytype.PayTypeId">@paytype.PayTypeName</option>
 
-                    <option value="RATE * UNLOADWT">RATE * UNLOADWT</option>
+                    }
 
                 </InputSelect>
 
@@ -499,7 +656,7 @@
 
                 <label for="PayableRate">Payable Rate:</label>
 
-                <InputNumber id="PayableRatePayableRate" @bind-Value="LR.LrBillratetruck" class="form-control" step="0.01" @onclick="CalculatepayableFreight"
+                <InputNumber id="LrBillratetruck" @bind-Value="LR.LrBillratetruck" class="form-control" step="0.01" @onclick="CalculatepayableFreight"
 
                 style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
@@ -515,7 +672,7 @@
 
                 <label for="DriverName">Driver Name: <a @onclick="ShowAccModal" style="color: black; font-size: 1.7rem; position: relative; bottom: -4px;"> + </a>  </label>
 
-                <InputSelect id="DriverName" @bind-Value="LR.LrVehicleId" class="form-control"
+                <InputSelect id="LrDriverId" @bind-Value="LR.LrDriverId" class="form-control"
 
                 style="width: 230px; font-size: 0.9rem; padding: 0.25rem;" >
 
@@ -542,7 +699,7 @@
 
                 <label for="PayTYPE">Pay Type:</label>
 
-                <InputSelect id="PayTYPE" @bind-Value="LR.LrPaymenttype" class="form-control"
+                <InputSelect id="LrPaymenttype" @bind-Value="LR.LrPaymenttype" class="form-control"
 
                 style="width: 150px; font-size: 0.9rem; padding: 0.700rem;">
 
@@ -564,7 +721,7 @@
 
                 <label for="Bhatta">Bhatta:</label>
 
-                <InputText id="Bhatta" @bind-Value="LR.LrCustom4" class="form-control"
+                <InputText id="LrCustom4" @bind-Value="LR.LrCustom4" class="form-control"
 
                 style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
@@ -572,17 +729,17 @@
 
 
 
-            <!-- Diesel -->
+            <!-- Diesel
 
             <div class="mb-3 me-4">
 
-                <label for="Diesel">Diesel:</label>
+            <label for="Diesel">Diesel:</label>
 
-                <InputNumber id="Diesel" @bind-Value="LR.LrAllowDieselQty" class="form-control"
+            <InputNumber id="Diesel" @bind-Value="LR.Die" class="form-control"
 
-                style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+            style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
-            </div>
+            </div>  -->
 
 
 
@@ -592,7 +749,7 @@
 
                 <label for="Urea">Urea:</label>
 
-                <InputText id="Urea" @bind-Value="LR.LrCustom1" class="form-control"
+                <InputText id="LrCustom1" @bind-Value="LR.LrCustom1" class="form-control"
 
                 style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
@@ -608,7 +765,7 @@
 
                 <div class="d-flex">
 
-                    <InputText id="OpeningDiesel" @bind-Value="LR.LrCustom1" class="form-control me-3"
+                    <InputText id="LrCustom1" @bind-Value="LR.LrCustom1" class="form-control me-3"
 
                     style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
@@ -630,7 +787,7 @@
 
                 <div class="d-flex">
 
-                    <InputNumber id="PayableFreight1" @bind-Value="LR.LrGrossfreighttruck" class="form-control me-3" @onchange="CalculatepayableFreight"
+                    <InputNumber id="LrGrossfreighttruck" @bind-Value="LR.LrGrossfreighttruck" class="form-control me-3" @onchange="CalculatepayableFreight"
                     style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" readonly />
 
                     <InputNumber id="PayableFreight2" @bind-Value="LR.LrGrossfreighttruck" class="form-control" @onchange="CalculatepayableFreight"
@@ -660,7 +817,7 @@
 
                 <label for="ReportDate">ReportDate:</label>
 
-                <InputText id="ReportDate" @bind-Value="LR.LrReportDate" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+                <InputText id="LrReportDate" @bind-Value="LR.LrReportDate" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
             </div>
 
@@ -670,7 +827,7 @@
 
                 <label for="unoadDate">Unoad Date:</label>
 
-                <InputText id="unoadDate" @bind-Value="LR.LrUnloadDate" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+                <InputText id="LrUnloadDate" @bind-Value="LR.LrUnloadDate" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
             </div>
 
@@ -680,7 +837,7 @@
 
                 <label for="POD">POD Rec.Dt:</label>
 
-                <InputText id="POD" @bind-Value="LR.LrPodDate" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+                <InputText id="LrPodDate" @bind-Value="LR.LrPodDate" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
             </div>
 
@@ -690,7 +847,7 @@
 
                 <label for="Day(Party)">Day(Party):</label>
 
-                <InputText id="Day(Party)" @bind-Value="LR.LrCustom4" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+                <InputText id="LrCustom4" @bind-Value="LR.LrCustom4" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
             </div>
 
@@ -698,7 +855,7 @@
 
                 <label for="Rate">Rate(Party)</label>
 
-                <InputText id="Rate" @bind-Value="LR.LrCustom4" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+                <InputText id="LrCustom4" @bind-Value="LR.LrCustom4" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
             </div>
 
@@ -706,7 +863,7 @@
 
                 <label for="POD">Amount:</label>
 
-                <InputText id="POD" @bind-Value="LR.LrCustom4" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+                <InputText id="LrCustom4" @bind-Value="LR.LrCustom4" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
             </div>
 
@@ -717,7 +874,7 @@
 
                 <label for="POD">Return Date:</label>
 
-                <InputText id="POD" @bind-Value="LR.LrReturnDate" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+                <InputText id="LrReturnDate" @bind-Value="LR.LrReturnDate" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
             </div>
 
@@ -733,7 +890,7 @@
 
                 <label for="POD">Day(Supplier)</label>
 
-                <InputText id="POD" @bind-Value="LR.LrCustom1" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+                <InputText id="LrCustom1" @bind-Value="LR.LrCustom1" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
             </div>
 
@@ -741,7 +898,7 @@
 
                 <label for="POD">Rate(Supplier)</label>
 
-                <InputText id="POD" @bind-Value="LR.LrCustom1" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+                <InputText id="LrCustom1" @bind-Value="LR.LrCustom1" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
             </div>
 
@@ -749,7 +906,7 @@
 
                 <label for="POD">Amount</label>
 
-                <InputText id="POD" @bind-Value="LR.LrCustom1" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
+                <InputText id="LrCustom1" @bind-Value="LR.LrCustom1" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
             </div>
 
@@ -758,7 +915,7 @@
     }
 
 
-    <button type="submit" class="btn btn-primary" @onclick="SaveLRGrid">@ButtonText</button>
+    <button type="submit" class="btn btn-primary" >@ButtonText</button>
 
     <button type="button" class="btn btn-secondary" @onclick="Close">Cancel</button>
 
@@ -767,7 +924,12 @@
 
 
 </EditForm>
-
+<NotifyAddEdit Notification="selectedNotification"
+               Title="@modalTitle"
+               ButtonText="@modalButtonText"
+               IsVisible="@isModalVisible"
+               OnClose="CloseModal"
+               OnSubmit="SaveNotification" />
 <AccountsAddEdit Account="selectedAccount"
 Title="@modalTitle"
 ButtonText="@modalButtonText"
@@ -795,6 +957,7 @@ ButtonText="@modalButtonText"
 IsVisible="@IsCargoModalVisible"
 OnClose="CloseModal"
 OnSubmit="SaveCargo" />
+
 
 @code {
 
@@ -837,7 +1000,7 @@ OnSubmit="SaveCargo" />
 
     {
 
-        await OnSubmit.InvokeAsync();
+        await SaveLRGrid();
 
     }
 
@@ -845,16 +1008,18 @@ OnSubmit="SaveCargo" />
     {
         NavigationManager.NavigateTo("/LrGRid");
     }
-
     private Cargo selectedCargo = new Cargo();
     private Locations selectedLocation = new Locations();
     private Vehicles selectedVehicle = new Vehicles();
     private Account selectedAccount = new Account();
+    private Notify selectedNotification = new Notify();
+    private bool IsNotifyModalVisible => isModalVisible && activeModal == "Notification";
     private bool IsAccountModalVisible => isModalVisible && activeModal == "Account";
     private bool IsVehicleModalVisible => isModalVisible && activeModal == "Vehicle";
     private bool IsLocationModalVisible => isModalVisible && activeModal == "Location";
+ 
     private bool IsCargoModalVisible => isModalVisible && activeModal == "Product";
-
+    
 
     private string modalTitle = string.Empty;
     private string modalButtonText = string.Empty;
@@ -895,7 +1060,14 @@ OnSubmit="SaveCargo" />
         isModalVisible = true;
         activeModal = "Product";
     }
-
+    private void ShowNotifyModal()
+    {
+        selectedNotification = new Notify();
+        modalTitle = "Add Consignee/Consignor";
+        modalButtonText = "Add";
+        isModalVisible = true;
+        activeModal = "Consignee/Consignor";
+    }
     private void CloseModal()
     {
         isModalVisible = false;
@@ -986,13 +1158,36 @@ OnSubmit="SaveCargo" />
             errorMessage = $"Error saving cargo: {ex.Message}";
         }
     }
-    // The list of vehicles
 
+
+    private async Task SaveNotification()
+    {
+        try
+        {
+            if (selectedNotification.NotifyId == 0) // Add new notification
+            {
+                await NotificationService.AddNotifyAsync(selectedNotification);
+            }
+            else // Update existing notification
+            {
+                await NotificationService.UpdateNotifyAsync(selectedNotification);
+            }
+
+            // Refresh the list
+            CloseModal();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error saving notification: {ex.Message}";
+        }
+    }    // The list of vehicles
+    private List<Notify> Notif = new List<Notify>();
+    private List<Notify> Notifc = new List<Notify>();
     private List<Vehicles> vehicles = new List<Vehicles>();
     private List<Account> Accounts = new List<Account>();
     private List<Locations> locations = new List<Locations>();
     private List<Cargo> cargos = new List<Cargo>();
-
+     private List<Paytype> paytype = new List<Paytype>();
     private Lr selectedLRGrid = new Lr();
     private string? errorMessage;
 
@@ -1050,6 +1245,32 @@ OnSubmit="SaveCargo" />
 
 
     }
+    private async Task LoadNotifyConsignee()
+    {
+
+        var response = await NotificationService.GetNotifyConsigneeAsync();
+        Notifc = response;
+
+
+
+    }
+    private async Task LoadNotifyConsignor()
+    {
+
+        var response = await NotificationService.GetNotifyConsignorAsync();
+        Notif = response;
+
+
+
+    }
+    private async Task Loadpaytype()
+    {
+
+        var response = await paytypeService.GetPaytypesAsync();
+            paytype = response.payTypes;
+
+
+    }
 
     private async Task LoadParty()
     {
@@ -1081,25 +1302,35 @@ OnSubmit="SaveCargo" />
     {
         try
         {
-            if (selectedLRGrid.LRId == 0) // Add new LRGrid
+            if (selectedLRGrid.LrID == null)
             {
+                errorMessage = "selectedLRGrid is null!";
+                Console.WriteLine("selectedLRGrid is null!");
+                return;
+            }
+
+            Console.WriteLine($"selectedLRGrid: {System.Text.Json.JsonSerializer.Serialize(selectedLRGrid)}");
+
+            if (selectedLRGrid.LrID == 0) // Add new LRGrid
+            {
+                Console.WriteLine("Adding new LRGrid...");
                 await LRGridService.AddLRAsync(selectedLRGrid);
             }
             else // Update existing LRGrid
             {
+                Console.WriteLine($"Updating LRGrid with LrID: {selectedLRGrid.LrID}");
                 await LRGridService.UpdateLRAsync(selectedLRGrid);
             }
 
             // Refresh the list
             Close();
         }
-
         catch (Exception ex)
         {
             errorMessage = $"Error saving LRGrid: {ex.Message}";
+            Console.WriteLine($"Exception: {ex.Message}");
         }
     }
-
 
 
 
@@ -1112,11 +1343,11 @@ OnSubmit="SaveCargo" />
         // Update based on the selected Bill Type
         @if (LR.LrTriptype == "RATE * WT"){
             // Calculate Net Freight Bill using Rate and Load Weight
-            LR.LrGrossfreightbill = LR.LrRatebill.GetValueOrDefault() * LR.LrLoadwt.GetValueOrDefault();
+            LR.LrGrossfreightbill = LR.LrRatebill * LR.LoadWt;
         }
         else if(LR.LrTriptype=="FIXED")
         {
-            LR.LrGrossfreightbill = LR.LrRatebill.GetValueOrDefault();
+            LR.LrGrossfreightbill = LR.LrBillratetruck;
         }
         
         
@@ -1126,118 +1357,72 @@ OnSubmit="SaveCargo" />
         // Update based on the selected Bill Type
 
         // Calculate Net Freight Bill using Rate and Load Weight
-        LR.LrGrossfreighttruck = LR.LrBillratetruck.GetValueOrDefault() * LR.LrLoadwt.GetValueOrDefault();
+        LR.LrGrossfreighttruck = LR.LrBillratetruck * LR.LoadWt;
 
     }
-
+   
 
 }
 
 
 
             <style>
-
-
-    /* Style for tab buttons */
+    /* ====== GENERAL STYLES ====== */
+    body {
+        background: linear-gradient(135deg, #E3F2FD, #90CAF9);
+        font-family: 'Poppins', sans-serif;
+    }
+    /* ====== TAB STYLING ====== */
     .tabs {
         display: flex;
-        border-bottom: 2px solid #ddd;
-        padding-bottom: 10px;
+        gap: 10px;
+        padding-bottom: 15px;
+        justify-content: center;
     }
 
     .tab-button {
-        padding: 12px 18px;
+        flex: 1;
+        padding: 14px 20px;
+        font-size: 1rem;
+        font-weight: 600;
         cursor: pointer;
-        background-color: #f8f9fa;
+        background: linear-gradient(135deg, #42a5f5, #1e88e5);
+        color: white;
         border: none;
-        border-radius: 6px 6px 0 0;
-        font-weight: bold;
-        transition: background-color 0.3s ease;
+        border-radius: 10px 10px 0 0;
+        transition: all 0.3s ease-in-out;
     }
 
-        .tab-button:hover, .tab-button:focus {
-            background-color: #e2e6ea;
+        .tab-button:hover {
+            background: linear-gradient(135deg, #1e88e5, #1565c0);
         }
 
         .tab-button.active {
-            background-color: #007bff;
-            color: white;
+            background: linear-gradient(135deg, #0d47a1, #1565c0);
+            transform: scale(1.05);
         }
 
-    /* Container for form */
-    .form-container {
-        padding: 20px;
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Style for labels */
-    label {
-        font-weight: 600;
-        margin-bottom: 5px;
-        display: block;
-    }
-
-    /* Style for inputs */
-    .form-control {
-        width: 100%;
-        padding: 8px 10px;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-        transition: border 0.3s ease;
-    }
-
-        .form-control:focus {
-            border-color: #007bff;
-            outline: none;
-        }
-
-    /* Style for buttons */
-    .btn-primary {
-        background-color: #007bff;
-        color: white;
-        padding: 10px 15px;
-        border: none;
-        border-radius: 6px;
-        font-weight: bold;
-        transition: background 0.3s ease;
-    }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
-
-    .btn-secondary {
-        background-color: #6c757d;
-        color: white;
-        padding: 10px 15px;
-        border: none;
-        border-radius: 6px;
-        transition: background 0.3s ease;
-    }
-
-        .btn-secondary:hover {
-            background-color: #545b62;
-        }
-
-    /* Small circular button */
+    /* ====== CIRCULAR ADD BUTTONS 
     .small-circle-button {
-        background-color: #007bff;
+        background: linear-gradient(135deg, #1e88e5, #1565c0);
         color: white;
         border: none;
         border-radius: 50%;
-        width: 30px;
-        height: 30px;
+        width: 35px;
+        height: 35px;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        transition: background 0.3s ease;
+        transition: all 0.3s ease-in-out;
+        font-size: 1.2rem;
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
     }
 
         .small-circle-button:hover {
-            background-color: #0056b3;
+            background: linear-gradient(135deg, #0d47a1, #1565c0);
+            transform: scale(1.15);
         }
-
-            </style>
+            ====== */
+   
+</style>

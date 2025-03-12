@@ -22,20 +22,22 @@ else
         <button class="btn btn-primary mt-2" @onclick="ApplyFilters">Apply Filters</button>
         <button class="btn btn-success mt-2" @onclick="ShowAddModal">Add Cargo</button>
     </div>
-
-    <table class="table-striped table">
+   
+        <table class="table-striped table">
         <thead>
             <tr>
-                <th>Cargo ID</th>
+                
                 <th>Cargo Name</th>
                 <th>Cargo Type</th>
                 <th>Remarks</th>
+                
                 <th>Actions</th>
+
             </tr>
         </thead>
         @if (cargos == null || !cargos.Any())
         {
-            <div style="text-align:center;left:300px; position:relative; font-weight: bold; margin-top: 20px; color:red">
+            <div class="no-data-message" style="text-align:center;left:300px; position:relative; font-weight: bold; margin-top: 20px; color:red">
                 <p>No cargos available.</p>
             </div>
         
@@ -45,18 +47,21 @@ else
             @foreach (var cargo in cargos)
             {
                 <tr>
-                    <td>@cargo.CargoId</td>
+                   
                     <td>@cargo.CargoName</td>
                     <td>@cargo.CargoType</td>
                     <td>@cargo.CargoRemarks</td>
-                    <td>
-                        <button class="btn btn-warning btn-sm" @onclick="() => ShowEditModal(cargo)">
-                            <i class="fas fa-edit"></i> Edit
+                        <td class="actions">
+                        <button  @onclick="() => ShowEditModal(cargo)" >
+                                <img src="Icon/icons8-edit-50.png"  style="height:25px" />
                         </button>
-                        <button class="btn btn-danger btn-sm" @onclick="() => ConfirmDelete(cargo.CargoId)">
-                            <i class="fas fa-trash"></i> Delete
+                      
+
+                        
+                        <button @onclick="() => ConfirmDelete(cargo.CargoId)">
+                                <img src="Icon/icons8-delete-50.png"  style="height:25px" />
                         </button>
-                    </td>
+                        </td>
                 </tr>
             }
         </tbody>
@@ -233,3 +238,7 @@ else
         }
     }
 }
+    <style>
+    
+
+    </style>

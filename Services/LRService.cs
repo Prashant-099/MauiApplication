@@ -41,7 +41,7 @@ namespace MauiAppFB.Services
             try
             {
                 await SetAuthorizationHeaderIfNeeded();
-                var response = await _httpClient.GetAsync($"api/Lr?page={page}&pageSize={pageSize}");
+                var response = await _httpClient.GetAsync($"api/Challan?page={page}&pageSize={pageSize}");
                 response.EnsureSuccessStatusCode();
 
                 var lrResponse = await response.Content.ReadFromJsonAsync<LRResponse>();
@@ -66,7 +66,7 @@ namespace MauiAppFB.Services
             try
             {
                 await SetAuthorizationHeaderIfNeeded();
-                var response = await _httpClient.PostAsJsonAsync("api/Lr", lr);
+                var response = await _httpClient.PostAsJsonAsync("api/Challan", lr);
                 response.EnsureSuccessStatusCode();
 
                 var newLR = await response.Content.ReadFromJsonAsync<Lr>();
@@ -91,12 +91,17 @@ namespace MauiAppFB.Services
             try
             {
                 await SetAuthorizationHeaderIfNeeded();
-                var response = await _httpClient.PutAsJsonAsync($"api/Lr/{lr.LRId}", lr);
+                var response = await _httpClient.PutAsJsonAsync($"api/Challan/{lr.LrID}", lr);
                 response.EnsureSuccessStatusCode();
+                if (!response.IsSuccessStatusCode)
+                {
+                    var errorMessage = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine($"Error: {errorMessage}");
+                }
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error updating LR with ID {lr.LRId}: {ex.Message}", ex);
+                throw new Exception($"Error updating LR with ID {lr.LrID}: {ex.Message}", ex);
             }
         }
 
@@ -108,7 +113,7 @@ namespace MauiAppFB.Services
             try
             {
                 await SetAuthorizationHeaderIfNeeded();
-                var response = await _httpClient.DeleteAsync($"api/lr/{lrId}");
+                var response = await _httpClient.DeleteAsync($"api/Challan/{lrId}");
                 response.EnsureSuccessStatusCode();
             }
             catch (Exception ex)
@@ -124,7 +129,7 @@ namespace MauiAppFB.Services
             try
             {
                 await SetAuthorizationHeaderIfNeeded();
-                var response = await _httpClient.GetAsync($"api/Lr/{lrId}");
+                var response = await _httpClient.GetAsync($"api/Challan/{lrId}");
                 response.EnsureSuccessStatusCode();
 
                 var lrResponse = await response.Content.ReadFromJsonAsync<Lr>();

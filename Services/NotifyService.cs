@@ -6,6 +6,7 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+
 using MauiAppFB.Models;
 namespace MauiAppFB.Services
 {
@@ -46,9 +47,7 @@ namespace MauiAppFB.Services
                 var response = await _httpClient.GetAsync($"api/Notify?page={page}&pageSize={pageSize}");
                 response.EnsureSuccessStatusCode();  // Ensure the request was successful
 
-                // Read the response content as a string (for logging and debugging)
-                var rawJson = await response.Content.ReadAsStringAsync();
-                Console.WriteLine($"Raw JSON Response: {rawJson}");  // Log the raw JSON
+               
 
                 // Deserialize the JSON response to the AccountsResponse model
                 var options = new JsonSerializerOptions
@@ -143,7 +142,159 @@ namespace MauiAppFB.Services
                     throw new Exception($"Error deleting notification with ID {notifyId}: {ex.Message}", ex);
                 }
             }
+
+
+
+
+
+        public async Task<List<Notify>> GetNotifyConsigneeAsync()
+        {
+            try
+            {
+                // Ensure the authorization header is set
+                await SetAuthorizationHeaderIfNeeded();
+
+                // Perform the API request
+                var response = await _httpClient.GetAsync($"api/Notify/consignee");
+                response.EnsureSuccessStatusCode();  // Ensure the request was successful
+
+
+
+                // Deserialize the JSON response to the AccountsResponse model
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true  // Make property names case-insensitive
+                };
+
+                var NotifyResponse = await response.Content.ReadFromJsonAsync<List<Notify>>(options);
+
+                // If the deserialization fails (returns null), throw an exception
+                if (NotifyResponse == null)
+                {
+                    throw new Exception("Failed to parse accounts data. The response may have an unexpected structure.");
+                }
+
+                return NotifyResponse;
+            }
+            catch (JsonException ex)
+            {
+                // Handle JSON-specific deserialization issues
+                throw new Exception("Error deserializing the JSON response. The structure may not match the expected format.", ex);
+            }
+            catch (HttpRequestException ex)
+            {
+                // Handle HTTP request errors (e.g., network issues, 4xx/5xx responses)
+                throw new Exception($"HTTP request error while fetching accounts: {ex.Message}", ex);
+            }
+            catch (Exception ex)
+            {
+                // Catch any other unexpected errors
+                throw new Exception($"Unexpected error while fetching accounts: {ex.Message}", ex);
+            }
         }
+
+
+
+
+
+        public async Task<List<Notify>>GetNotifyConsignorAsync()
+        {
+            try
+            {
+                // Ensure the authorization header is set
+                await SetAuthorizationHeaderIfNeeded();
+
+                // Perform the API request
+                var response = await _httpClient.GetAsync($"api/Notify/consignor");
+                response.EnsureSuccessStatusCode();  // Ensure the request was successful
+
+
+
+                // Deserialize the JSON response to the AccountsResponse model
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true  // Make property names case-insensitive
+                };
+
+                var NotifyResponse = await response.Content.ReadFromJsonAsync<List<Notify>>(options);
+
+                // If the deserialization fails (returns null), throw an exception
+                if (NotifyResponse == null)
+                {
+                    throw new Exception("Failed to parse accounts data. The response may have an unexpected structure.");
+                }
+
+                return NotifyResponse;
+            }
+            catch (JsonException ex)
+            {
+                // Handle JSON-specific deserialization issues
+                throw new Exception("Error deserializing the JSON response. The structure may not match the expected format.", ex);
+            }
+            catch (HttpRequestException ex)
+            {
+                // Handle HTTP request errors (e.g., network issues, 4xx/5xx responses)
+                throw new Exception($"HTTP request error while fetching accounts: {ex.Message}", ex);
+            }
+            catch (Exception ex)
+            {
+                // Catch any other unexpected errors
+                throw new Exception($"Unexpected error while fetching accounts: {ex.Message}", ex);
+            }
+        }
+
+
+        public async Task<List<Notify>> GetNotifyIdAsync(Notify  notification)
+        {
+            try
+            {
+                // Ensure the authorization header is set
+                await SetAuthorizationHeaderIfNeeded();
+
+                // Perform the API request
+                var response = await _httpClient.GetAsync($"api/Notify/{notification.NotifyId}");
+                response.EnsureSuccessStatusCode();  // Ensure the request was successful
+
+
+
+                // Deserialize the JSON response to the AccountsResponse model
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true  // Make property names case-insensitive
+                };
+
+                var NotifyResponse = await response.Content.ReadFromJsonAsync<List<Notify>>(options);
+
+                // If the deserialization fails (returns null), throw an exception
+                if (NotifyResponse == null)
+                {
+                    throw new Exception("Failed to parse accounts data. The response may have an unexpected structure.");
+                }
+
+                return NotifyResponse;
+            }
+            catch (JsonException ex)
+            {
+                // Handle JSON-specific deserialization issues
+                throw new Exception("Error deserializing the JSON response. The structure may not match the expected format.", ex);
+            }
+            catch (HttpRequestException ex)
+            {
+                // Handle HTTP request errors (e.g., network issues, 4xx/5xx responses)
+                throw new Exception($"HTTP request error while fetching accounts: {ex.Message}", ex);
+            }
+            catch (Exception ex)
+            {
+                // Catch any other unexpected errors
+                throw new Exception($"Unexpected error while fetching accounts: {ex.Message}", ex);
+            }
+        }
+
+
+
+
+
+    }
 
         /// <summary>
         /// Represents the response for fetching notifications.
@@ -153,7 +304,23 @@ namespace MauiAppFB.Services
         /// Represents a single notification.
         /// </summary>
        
-    }
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
  
 
 

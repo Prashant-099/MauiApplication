@@ -26,9 +26,10 @@ else
     <table class="table-striped table">
         <thead>
             <tr>
-                <th>User ID</th>
+
                 <th>UserFirstName</th>
                 <th>UserLastName</th>
+                <th>User Contact No</th>
                 <th>UserEmail</th>
                 <th>Actions</th>
             </tr>
@@ -38,28 +39,29 @@ else
             <div style="text-align:center;left:300px; position:relative; font-weight: bold; margin-top: 20px; color:red">
                 <p>No Users available.</p>
             </div>
-       
+
         }
         else{
-        <tbody>
-            @foreach (var user in data)
-            {
-                <tr>
-                    <td>@user.UserId</td>
-                            <td>@user.UserFirstName</td>
-                            <td>@user.UserLastName</td>
-                            <td>@user.UserEmail</td>
-                    <td>
-                        <button class="btn btn-warning btn-sm" @onclick="() => ShowEditModal(user)">
-                            <i class="fas fa-edit"></i> Edit
-                        </button>
-                        <button class="btn btn-danger btn-sm" @onclick="() => ConfirmDelete(user.UserId)">
-                            <i class="fas fa-trash"></i> Delete
-                        </button>
-                    </td>
-                </tr>
-            }
-        </tbody>
+            <tbody>
+                @foreach (var user in data)
+                {
+                    <tr>
+
+                        <td>@user.UserFirstName</td>
+                        <td>@user.UserLastName</td>
+                        <td>@user.UserMobile</td>
+                        <td>@user.UserEmail</td>
+                        <td>
+                            <button  @onclick="() => ShowEditModal(user)">
+                                <img src="Icon/icons8-edit-50.png" style="height:25px" />
+                            </button>
+                            <button  @onclick="() => ConfirmDelete(user.UserId)">
+                                <img src="Icon/icons8-delete-50.png" style="height:25px" />
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
         }
     </table>
 
@@ -72,11 +74,11 @@ else
 }
 
 <UserAddEdit User="selectedUser"
-             Title="@modalTitle"
-             ButtonText="@modalButtonText"
-             IsVisible="@isModalVisible"
-             OnClose="CloseModal"
-             OnSubmit="SaveUser" />
+Title="@modalTitle"
+ButtonText="@modalButtonText"
+IsVisible="@isModalVisible"
+OnClose="CloseModal"
+OnSubmit="SaveUser" />
 
 @code {
     private List<User> data = new();
@@ -87,7 +89,7 @@ else
     private bool isLoading = true;
     private string? errorMessage;
     private string filterUserName = string.Empty;
-
+    [Inject] private NavigationManager NavigationManager { get; set; }
     // Pagination variables
     private int currentPage = 1;
     private int totalPages = 1;
@@ -139,16 +141,32 @@ else
 
     private void ShowEditModal(User user)
     {
-        selectedUser = new User
+        try
         {
-            UserId = user.UserId,
-            UserName = user.UserName,
-                UserEmail = user.UserEmail,
-                UserRoleName = user.UserRoleName
-        };
-        modalTitle = "Edit User";
-        modalButtonText = "Save";
-        isModalVisible = true;
+            if (user?.UserId > 0) // Ensure LRId exists
+            {
+                selectedUser = new User
+                    {
+                        UserId = user.UserId,
+                        UserName = user.UserFirstName,
+                        UserLastName = user.UserLastName,
+                        UserGender = user.UserGender,
+                        UserAddress = user.UserAddress,
+                        UserMobile = user.UserMobile,
+                        UserEmail = user.UserEmail,
+                        UserRoleName = user.UserRoleName
+                    };
+                modalTitle = "Edit User";
+                modalButtonText = "Save";
+                isModalVisible = true;
+               
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error loading LRGrids: {ex.Message}";
+        }
+
     }
 
     private async Task SaveUser()
