@@ -1,5 +1,9 @@
 ﻿@page "/"
-
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+<p style="color: red;">Error: @errorMessage</p>
+}
+else{
     <div class="flex-layout">
 
         <h1 class="page-title">Welcome Back SIR  </h1>
@@ -8,7 +12,7 @@
         <p class="card-value">@LRGrids.Count</p>
     </div>
     </div>
-
+}
 
 
 @code {
@@ -17,7 +21,7 @@
     @using MauiAppFB.Components.Pages
     private List<Lr> LRGrids = new(); // Initialize the list for storing fetched data
     private Login loginModel = new ();
-
+ 
     private string? token;
     private string? errorMessage;
     private bool isLoading = true;
@@ -30,6 +34,8 @@
     {
         // Retrieve authentication token
         var token = await SecureStorage.GetAsync("authToken");
+        try
+        {
 
         // Redirect to login if token is missing
         @if (string.IsNullOrEmpty(token))
@@ -38,7 +44,25 @@
             
 
         }
-
+         var response = await LRGridService.GetLRsAsync();
+            @if (response != null)
+            {
+                LRGrids = response.challans; // Assuming LRGrids is the list to hold the fetched data
+                                             // totalPages = response.TotalPages;        // totalPages = (int)Math.Ceiling((double)totalCount / pageSize); // if your API provides the total count
+            }
+            else
+            {
+                errorMessage = "No LRGrids found.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error loading LRGrids: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
         // Fetch LR data from the service
      
       //  var response = await LRGridService.GetLRsAsync();

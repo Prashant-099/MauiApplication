@@ -34,7 +34,7 @@
 
         //  <h5 class="">--Booking Details--</h5>
         <div class="d-flex align-items-center mb-3 flex-wrap">
-
+          
             <!-- LrNo -->
 
             <div class="mb-3 me-4">
@@ -915,7 +915,7 @@
     }
 
 
-    <button type="submit" class="btn btn-primary" >@ButtonText</button>
+    <button type="button" class="btn btn-primary"@onclick="SaveLRGrid" >@ButtonText</button>
 
     <button type="button" class="btn btn-secondary" @onclick="Close">Cancel</button>
 
@@ -996,13 +996,15 @@ OnSubmit="SaveCargo" />
     [Inject] private NavigationManager NavigationManager { get; set; }
 
 
-    private async Task HandleValidSubmit()
+   private async Task HandleValidSubmit()
 
     {
 
-        await SaveLRGrid();
-
     }
+
+       // await SaveLRGrid();
+
+    
 
     private void Close()
     {
@@ -1302,24 +1304,24 @@ OnSubmit="SaveCargo" />
     {
         try
         {
-            if (selectedLRGrid.LrID == null)
+            if (LR.LrID == null)
             {
                 errorMessage = "selectedLRGrid is null!";
                 Console.WriteLine("selectedLRGrid is null!");
                 return;
             }
 
-            Console.WriteLine($"selectedLRGrid: {System.Text.Json.JsonSerializer.Serialize(selectedLRGrid)}");
+            Console.WriteLine($"selectedLRGrid: {System.Text.Json.JsonSerializer.Serialize(LR.LrID)}");
 
-            if (selectedLRGrid.LrID == 0) // Add new LRGrid
+            if (LR.LrID == 0) // Add new LRGrid
             {
                 Console.WriteLine("Adding new LRGrid...");
-                await LRGridService.AddLRAsync(selectedLRGrid);
+                await LRGridService.AddLRAsync(LR);
             }
             else // Update existing LRGrid
             {
-                Console.WriteLine($"Updating LRGrid with LrID: {selectedLRGrid.LrID}");
-                await LRGridService.UpdateLRAsync(selectedLRGrid);
+                Console.WriteLine($"Updating LRGrid with LrID: {LR.LrID}");
+                await LRGridService.UpdateLRAsync(LR);
             }
 
             // Refresh the list

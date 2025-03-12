@@ -7,7 +7,7 @@ namespace MauiAppFB.Models
     {
 
         public int LrID { get; set; }
-        public int LrNo { get; set; } = 147;
+        public int LrNo { get; set; }
         public DateTime LrDate { get; set; } = DateTime.Now;
 
         //[Required(ErrorMessage = "Vehicle No is required")]
@@ -22,9 +22,9 @@ namespace MauiAppFB.Models
         public string To_Location { get; set; }
         public string Product_Name { get; set; }
         public string Driver_Name { get; set; }
-        public string Lr_Nostr { get; set; } = "1222";
-        public string LrContainer1 { get; set; } = "cooo1";
-        public string LrContainer2 { get; set; } = "cooo2";
+        public string Lr_Nostr { get; set; } 
+        public string LrContainer1 { get; set; }
+        public string LrContainer2 { get; set; }
         public double LoadWt { get; set; }
         public double UnloadWt { get; set; }
         public double ChargeWt { get; set; }
@@ -35,30 +35,30 @@ namespace MauiAppFB.Models
         public DateTime? AddedDate { get; set; } = DateTime.UtcNow.Date;
 
         //[JsonConverter(typeof(StringToIntConverter))]
-        public string? LrNostr { get; set; }="test";
+        public string? LrNostr { get; set; }
         public int LrVoucherId { get; set; } = 1;
         public int LrConsigneeNotifyId { get; set; }
         public int LrConsignorNotifyId { get; set; }
-        public int LrProductId { get; set; } = 1;
+        public int LrProductId { get; set; }
         public int LrVehicleId { get; set; }
-        public int LrSupplierAccountId { get; set; } = 1;
+        public int LrSupplierAccountId { get; set; } 
         public int LrDriverId { get; set; }
-        public int LrPartyAccountId { get; set; } = 1;
+        public int LrPartyAccountId { get; set; }
 
 
         public string? LrTime { get; set; }
         public int LrTripno { get; set; }
         public int LrFromLocationId { get; set; }
         public int LrToLocationId { get; set; }
-        public int? LrBackLocationId { get; set; } = 1;
+        public int? LrBackLocationId { get; set; } 
 
         public double LrGrosswt { get; set; }
         public double LrTarewt { get; set; }
         public double LrLoadwt { get; set; }
         public double LrChargeqty { get; set; }
-        public string LrPaymenttype { get; set; } = "To Be Billed To";
+        public string LrPaymenttype { get; set; } 
         public double LrRatebill { get; set; }
-        public double LrBilltypebill { get; set; } = 1;
+        public double LrBilltypebill { get; set; } 
         public double LrGrossfreightbill { get; set; }
         public string LrRefby { get; set; }
         public string LrStartkm { get; set; }

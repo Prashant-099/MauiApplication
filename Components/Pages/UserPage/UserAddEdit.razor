@@ -48,8 +48,8 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="UserRole">Role:</label>
-                            <InputSelect id="UserRole" @bind-Value="User.UserRoleId" class="form-control"  @onclick="LoadUserRoles">
+                            <label for="UserRoleId">Role:</label>
+                            <InputSelect id="UserRoleId" @bind-Value="User.UserRoleId" class="form-control" @onclick="LoadUserRoles">
                                 @foreach (var role in roles)
                                 {
 

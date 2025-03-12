@@ -148,13 +148,15 @@ OnSubmit="SaveUser" />
                 selectedUser = new User
                     {
                         UserId = user.UserId,
-                        UserName = user.UserFirstName,
+                        UserFirstName = user.UserFirstName,
                         UserLastName = user.UserLastName,
                         UserGender = user.UserGender,
                         UserAddress = user.UserAddress,
                         UserMobile = user.UserMobile,
                         UserEmail = user.UserEmail,
-                        UserRoleName = user.UserRoleName
+                        UserRoleName = user.UserRoleName,
+                        UserRoleId = user.UserRoleId,      
+                        UserPassword = user.UserPassword,
                     };
                 modalTitle = "Edit User";
                 modalButtonText = "Save";
