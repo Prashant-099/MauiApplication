@@ -49,7 +49,7 @@
                         <!-- print Name -->
                         <div class="mb-3" style="flex: 1; min-width: 200px;">
                             <label for="AccountPrintName" style="display: block; font-weight: bold;">Print Name:</label>
-                            <InputText id="AccountPrintName" @bind-Value="Account.AccountPrintName" class="form-control"
+                            <InputText id="AccountPrintName" @bind-Value="Account.AccountName" class="form-control"
                                        style="width: 100%;" />
                         </div>
                         <!-- print Name -->
@@ -87,8 +87,8 @@
                         <div style="display: flex; gap: 1rem; align-items: flex-start; flex-wrap: wrap;">
                             <!-- state Field -->
                             <div class="mb-3" style="flex: 1; min-width: 200px;">
-                                <label for="city" style="display: block; font-weight: bold;">State:</label>
-                                <InputSelect id="city" @bind-Value="Account.AccountStateId" class="form-control" @onclick="Loadstate"
+                                <label for="AccountStateId" style="display: block; font-weight: bold;">State:</label>
+                                <InputSelect id="AccountStateId" @bind-Value="Account.AccountStateId" class="form-control" @onclick="Loadstate"
                                              style="width: 100%;">
                                     <option value="Select State">Select State</option>
                                     @foreach (var states in states)
@@ -113,34 +113,34 @@
                             </div>
                         </div>
 
-                        <div class="mb-3" style="flex: 1; min-width: 200px;">
-                            <label for="AccountContactPerson" style="display: block; font-weight: bold;">Contact Person:</label>
+                    <!-- <div class="mb-3" style="flex: 1; min-width: 200px;">
+                           <label for="AccountContactPerson" style="display: block; font-weight: bold;">Contact Person:</label>
                             <InputText id="AccountContactPerson" @bind-Value="Account.AccountContactPerson" class="form-control"
-                                       style="width: 100%;" />
-                        </div>
+                                       style="width: 100%;" />  
+                      </div> -->
                         <div class="mb-3" style="flex: 1; min-width: 200px;">
                             <label for="AccountMobile" style="display: block; font-weight: bold;">Contact No:</label>
                             <InputText id="AccountMobile" @bind-Value="Account.AccountMobile" class="form-control"
                                        style="width: 100%;" />
                         </div>
-                        <div class="mb-3" style="flex: 1; min-width: 200px;">
+                        <!--  <div class="mb-3" style="flex: 1; min-width: 200px;">
                             <label for="AccountPhone" style="display: block; font-weight: bold;">Phone No:</label>
                             <InputText id="AccountPhone" @bind-Value="Account.AccountPhone" class="form-control"
                                        style="width: 100%;" />
-                        </div>
-                        <div class="mb-3" style="flex: 1; min-width: 200px;">
+                        </div>   -->
+                           <div class="mb-3" style="flex: 1; min-width: 200px;">
                             <label for="AccountEmail" style="display: block; font-weight: bold;">Email Id:</label>
                             <InputText id="AccountEmail" @bind-Value="Account.AccountEmail" class="form-control"
                                        style="width: 100%;" />
                         </div>
-                        <div class="mb-3" style="flex: 1; min-width: 200px;">
+                        <!--  <div class="mb-3" style="flex: 1; min-width: 200px;">
                             <label for="Website" style="display: block; font-weight: bold;">Website:</label>
                             <InputText id="Website" @bind-Value="Account.AccountWebsite" class="form-control"
                                        style="width: 100%;" />
-                        </div>
-                        <div class="mb-3" style="flex: 1; min-width: 200px;">
+                        </div> -->
+                      <!--    <div class="mb-3" style="flex: 1; min-width: 200px;">
                             <label for="Country" style="display: block; font-weight: bold;">Country:</label>
-                            <InputSelect id="Country" @bind-Value="Account.AccountCountry" class="form-control" @onclick="Loadcountry"
+                            <InputSelect id="Country" @bind-Value="Account.country" class="form-control" @onclick="Loadcountry"
                                          style="width: 100%;">
                                 <option value="Select Country">Select Country</option>
                                 @foreach (var country in Countries)
@@ -148,11 +148,11 @@
                                     <option value="@country.CountryId">@country.CountryName</option>
                                 }
                             </InputSelect>
-                        </div>
+                        </div> -->
 
                         <div class="mb-3" style="flex: 1; min-width: 200px;">
                             <label for="AccountTanNo" style="display: block; font-weight: bold;">Register Type:</label>
-                            <InputSelect id="AccountTanNo" @bind-Value="Account.AccountRegisterType" class="form-control"
+                            <InputSelect id="AccountTanNo" @bind-Value="Account.AccountBalanceType" class="form-control"
                                  style="width: 100%;">
                                 <option>N/A</option>
                                 <option>OVERSEA</option>
@@ -176,16 +176,16 @@
                             <InputText id="AccountPan" @bind-Value="Account.AccountPan" class="form-control"
                                        style="width: 100%;" />
                         </div>
-                        <div class="mb-3" style="flex: 1; min-width: 200px;">
+                    <!--    <div class="mb-3" style="flex: 1; min-width: 200px;">
                             <label for="AccountTanNo" style="display: block; font-weight: bold;">TAN No:</label>
                             <InputText id="AccountTanNo" @bind-Value="Account.AccountTanNo" class="form-control"
                                        style="width: 100%;" />
-                        </div>
-                        <div class="mb-3" style="flex: 1; min-width: 200px;">
+                            </div> -->
+                        <!--  <div class="mb-3" style="flex: 1; min-width: 200px;">
                             <label for="AccountTanNo" style="display: block; font-weight: bold;">MSME No:</label>
                             <InputText id="AccountTanNo" @bind-Value="Account.AccountMsmeNo" class="form-control"
                                        style="width: 100%;" />
-                        </div>
+                        </div> -->
 
                     </div>
                     <div class="modal-footer">

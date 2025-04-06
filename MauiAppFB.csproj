@@ -41,8 +41,17 @@
         <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
     </PropertyGroup>
+	<PropertyGroup>
+		<GenerateDependencyFile>true</GenerateDependencyFile>
+	</PropertyGroup>
+	<PropertyGroup>
+		<AndroidSupportedAbis>armeabi-v7a;arm64-v8a;x86;x86_64</AndroidSupportedAbis>
+	</PropertyGroup>
+	<PropertyGroup>
+		<AndroidFastDeploymentEnabled>false</AndroidFastDeploymentEnabled>
+	</PropertyGroup>
 
-    <ItemGroup>
+	<ItemGroup>
         <!-- App Icon -->
         <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 	
@@ -62,11 +71,47 @@
 
     <ItemGroup>
         
+        <PackageReference Include="DevExpress.Blazor" Version="24.1.3" />
+        
+        <PackageReference Include="DevExpress.Blazor.Reporting.Viewer" Version="24.1.3" />
+        
+        <PackageReference Include="DevExpress.Blazor.Reporting.Viewer.de" Version="24.1.3" />
+        
+        <PackageReference Include="DevExpress.Blazor.Reporting.Viewer.es" Version="24.1.3" />
+        
+        <PackageReference Include="DevExpress.Blazor.Reporting.Viewer.ja" Version="24.1.3" />
+        
+        
+        <PackageReference Include="DevExpress.Drawing.Skia" Version="24.1.3" />
+        
+        
+        <PackageReference Include="DevExpress.Reporting.Core" Version="24.1.3" />
+        
         <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid" Version="9.0.1" />
         <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.30" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="9.0.30" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.1" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
         <PackageReference Include="ServiceStack.Common" Version="8.5.2" />
+        <PackageReference Include="SkiaSharp" Version="3.116.1" />
+        <PackageReference Include="SkiaSharp.HarfBuzz" Version="3.116.1" />
+        <PackageReference Include="SkiaSharp.NativeAssets.WebAssembly" Version="3.116.1" />
+        <PackageReference Include="SkiaSharp.Views.Blazor" Version="3.116.1" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)' == 'net9.0-android'">
+      <PackageReference Include="HarfBuzzSharp.NativeAssets.Android">
+        <Version>8.3.0.1</Version>
+      </PackageReference>
+      <PackageReference Include="SkiaSharp.NativeAssets.Android">
+        <Version>3.116.1</Version>
+      </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="ChallanReport.resx">
+        <Generator></Generator>
+      </EmbeddedResource>
     </ItemGroup>
 
 </Project>

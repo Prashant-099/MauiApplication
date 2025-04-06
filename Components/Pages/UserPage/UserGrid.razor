@@ -22,7 +22,7 @@ else
         <button class="btn btn-primary mt-2" @onclick="ApplyFilters">Apply Filters</button>
         <button class="btn btn-success mt-2" @onclick="ShowAddModal">Add User</button>
     </div>
-
+     <div class="table-responsive">
     <table class="table-striped table">
         <thead>
             <tr>
@@ -64,7 +64,7 @@ else
             </tbody>
         }
     </table>
-
+    </div>
     <!-- Pagination Controls -->
     <div class="pagination">
         <button class="btn btn-secondary" @onclick="GoToPreviousPage" disabled="@(!CanGoToPreviousPage)">Previous</button>

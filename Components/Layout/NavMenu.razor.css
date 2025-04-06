@@ -121,3 +121,13 @@
 .dropdown:hover .dropdown-content {
     display: block;
 }
+.dropdown-content {
+    display: none;
+    padding-left: 1rem;
+    transition: max-height 0.3s ease;
+    overflow: hidden;
+}
+
+.dropdown.open .dropdown-content {
+    display: block;
+}

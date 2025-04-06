@@ -30,7 +30,16 @@
                 
      
         </div>
-        <div class="dropdown">
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="dateedit">
+                <img src="Icon/icons8-form-50.png" class="menu-icon" style="height:25px" />&nbsp; devdate
+            </NavLink>
+
+
+
+        </div>
+      @*   <div class="dropdown">
              <div class="nav-item px-3">
      
                   <NavLink class="nav-link" >
@@ -104,8 +113,47 @@
       
         </div>
         </div>
+ *@
 
-
+ <div class="dropdown" onclick="toggleDropdown(this).click()">
+    <div class="nav-item px-3" >
+        <NavLink class="nav-link">
+            <img src="Icon/icons8-arrow-50.png" class="menu-icon" style="height:25px;" />&nbsp; Master
+        </NavLink>
+    </div>
+    <div class="dropdown-content">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="cargolist">
+                <img src="Icon/products.png" class="menu-icon" style="height:25px;" />&nbsp; Cargo list
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="country">
+                <img src="Icon/icons8-asia-50.png" class="menu-icon" style="height:25px;" />&nbsp; Country
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="location">
+                <img src="Icon/map.png" class="menu-icon" style="height:25px;" />&nbsp; Location
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="notifyGrid">
+                <img src="Icon/bell.png" class="menu-icon" style="height:25px;" />&nbsp; Notify
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="vehicle">
+                <img src="Icon/icons8-vehicle-100.png" class="menu-icon" style="height:30px;" />&nbsp; Vehicle
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="vehicleType">
+                <img src="Icon/vehicles.png" class="menu-icon" style="height:30px;" />&nbsp; Vehicle Type
+            </NavLink>
+        </div>
+    </div>
+</div>
 
 
     </nav>
@@ -115,3 +163,8 @@
 
 
 }
+<script>
+    function toggleDropdown(element) {
+        element.parentElement.classList.toggle("open");
+    }
+</script>

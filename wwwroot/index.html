@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <title>FreightBook</title>
     <base href="/" />
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
     <link rel="stylesheet" href="css/app.css" />
     <link rel="stylesheet" href="MauiAppFB.styles.css" />
     <link rel="icon" href="data:,">
-    
+    <link rel="stylesheet" href="_content/DevExpress.Blazor.Reporting.Viewer/css/dx-blazor-reporting-components.bs5.css" />
+    <!--<link href="_content/DevExpress.Blazor/styles.css" rel="stylesheet" />-->
+    <!--<script src="_content/DevExpress.Blazor/dx-blazor.js"></script>-->
 </head>
 
 <body>
@@ -19,11 +21,47 @@
     <div id="app">Loading...</div>
 
     <div id="blazor-error-ui">
-     
+
     </div>
 
     <script src="_framework/blazor.webview.js" autostart="false"></script>
-
+    <footer class="mobile-footer">
+        <button onclick="history.back()">🔙 Back</button>
+        <button onclick="location.reload()">🔄 Refresh</button>
+        <button onclick="history.forward()">🔜 Forward</button>
+    </footer>
 </body>
 
 </html>
+
+<style>
+    .mobile-footer {
+        display: flex;
+        justify-content: space-around;
+        padding: 10px;
+        background-color: #333;
+        color: white;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+
+    /* Hide on desktop */
+    @media screen and (min-width: 768px) {
+        .mobile-footer {
+            display: none;
+        }
+    }
+
+    button {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+        button:hover {
+            opacity: 0.8;
+        }
+</style>

@@ -53,7 +53,11 @@ main {
     .page {
         flex-direction: row;
     }
-
+    .table {
+    display:flex;
+        flex-grow:1;
+    flex-wrap:nowrap;
+    }
     .sidebar {
         width: 250px;
         height: 100vh;

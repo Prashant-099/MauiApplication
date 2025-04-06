@@ -38,8 +38,8 @@
                             <InputText id="UserEmail" @bind-Value="User.UserEmail" class="form-control" />
                         </div>
                         <div class="mb-3">
-                            <label for="UserAddress">Address:</label>
-                            <InputText id="UserAddress" @bind-Value="User.UserAddress" class="form-control" />
+                            <label for="userAddress">Address:</label>
+                            <InputText id="userAddress" @bind-Value="User.UserAddress" class="form-control" />
                         </div>
 
                         <div class="mb-3">
@@ -48,8 +48,8 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="UserRoleId">Role:</label>
-                            <InputSelect id="UserRoleId" @bind-Value="User.UserRoleId" class="form-control" @onclick="LoadUserRoles">
+                            <label for="UserRoleName">Role:</label>
+                            <InputSelect id="UserRoleName" @bind-Value="User.UserRoleId" class="form-control" @onclick="LoadUserRoles" placeholder="enter role">
                                 @foreach (var role in roles)
                                 {
 

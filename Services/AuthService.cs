@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Json;
@@ -19,13 +20,22 @@ namespace MauiAppFB.Services
         public async Task<string> LoginAsync(string email, string password)
         {
             var response = await _httpClient.PostAsJsonAsync("api/auth/login", new { Email = email, Password = password });
-
-            if (!response.IsSuccessStatusCode)
+            try
             {
-                var error = await response.Content.ReadAsStringAsync();
-                throw new Exception($"Login failed: {error}");
+                if (!response.IsSuccessStatusCode)
+                {
+                    var error = await response.Content.ReadAsStringAsync();
+                    throw new Exception($"Login failed: {error}");
+                }
+                else
+                {
+                   // var result = await response.Content.ReadFromJsonAsync<AuthResult>();
+                   // return result.Token;
+                }
             }
-
+            catch (Exception e) {
+                Console.WriteLine($"Error:{e.Message}");
+            }
             var result = await response.Content.ReadFromJsonAsync<AuthResult>();
             return result.Token;
         }

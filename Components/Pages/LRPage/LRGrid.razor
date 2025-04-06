@@ -1,6 +1,7 @@
 ﻿@page "/LrGRid"
 @using System.Collections.Generic;
 @using MauiAppFB.Models
+@using MauiAppFB.Components
 @using MauiAppFB.Services
 @inject LRService LRGridService
 @inject IJSRuntime JS
@@ -24,33 +25,35 @@ else
         <button class="btn btn-success mt-2" @onclick="NavigateToLRGrid">
             Add LRGrid
         </button>
+        <button class="btn btn-success mt-2" @onclick="PRINT">
+            PRINT
+        </button>
     </div>
-
-    <table class="table-striped table">
-        <thead>
-            <tr>
-                <th>LR ID</th>
-                <th>LR No</th>
-                <th>LR Nostr</th>
-                <th>Container1</th>
-                <th>Container2</th>
-                
-                <th>Consignee</th>
-                <th>Consignor</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        @if (LRGrids == null || !LRGrids.Any())
-        {
-            <div class="no-data-message">
-                <p>No LR available.</p>
-            </div>
-        
-        }
-        else{
-        <tbody>
-            @foreach (var lrgrid in LRGrids)
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>LR ID</th>
+                    <th>LR No</th>
+                    <th>LR Nostr</th>
+                    <th>Container1</th>
+                    <th>Container2</th>
+                    <th>Consignee</th>
+                    <th>Consignor</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            @if (LRGrids == null || !LRGrids.Any())
             {
+                    <div class="no-data-message">
+                        <p>No LR available.</p>
+                    </div>
+            }
+            else
+            {
+                    <tbody>
+                    @foreach (var lrgrid in LRGrids)
+                    {
                 <tr>
                         <td>@lrgrid.LrID</td>
                         <td>@lrgrid.LrNo</td>
@@ -62,17 +65,18 @@ else
                         <td>@lrgrid.Consignor_Name</td>
                         <td class="actions">
                         <button  @onclick="() => ShowEditModal(lrgrid)">
-                                <img src="Icon/icons8-edit-50.png" style="height:25px" />
-                        </button>
-                            <button @onclick="() => ConfirmDelete(lrgrid.LrID)">
-                                <img src="Icon/icons8-delete-50.png"  style="height:25px" />
-                        </button>
-                    </td>
-                </tr>
+                                <img src="Icon/icons8-edit-50.png" style="height:25px;" />
+                                        </button>
+                                        <button @onclick="() => ConfirmDelete(lrgrid.LrID)">
+                                            <img src="Icon/icons8-delete-50.png" style="height:25px;" />
+                                        </button>
+                                    </td>
+                                </tr>
+                    }
+                    </tbody>
             }
-        </tbody>
-        }
-    </table>
+        </table>
+    </div>
 
     <!-- Pagination Controls -->
     <div class="pagination">
@@ -96,7 +100,10 @@ else
         NavigationManager.NavigateTo("/LRAddEdit");
     }
 
-
+    private void PRINT()
+    {
+        NavigationManager.NavigateTo("/print");
+    }
 
 
 

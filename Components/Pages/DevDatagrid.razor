@@ -1,0 +1,25 @@
+﻿@page "/dateedit"
+
+@using Models
+@using Services
+@inject CargoService CargoService
+
+<label for="cbFiltering" class="demo-text cw-480 mb-1">
+    Cargo
+</label>
+<DxComboBox Data="@Data"
+            TextFieldName="@nameof(Cargo.CargoName)"
+            @bind-Value="@SelectedEmployee.CargoName"
+            CssClass="cw-480"
+            InputId="cbFiltering" />
+
+@code {
+    private List<Cargo> Data = new();
+    Cargo SelectedEmployee { get; set; } = new Cargo();  // Initialize to avoid null reference
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await CargoService.GetCargoslistAsync();
+        Data  = response.Cargos;
+    }
+}

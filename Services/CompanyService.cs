@@ -1,4 +1,5 @@
 ﻿using MauiAppFB.Models;
+using Microsoft.AspNetCore.Components.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -96,15 +97,65 @@ namespace MauiAppFB.Services
             try
             {
                 await SetAuthorizationHeaderIfNeeded();
-                var response = await _httpClient.PostAsJsonAsync("api/Company", company);
-                response.EnsureSuccessStatusCode();
 
+                using var content = new MultipartFormDataContent();
+
+                // ✅ Add text fields as form-data
+                content.Add(new StringContent(company.CompanyName ?? ""), "CompanyName");
+                content.Add(new StringContent(company.CompanyPrintName ?? ""), "CompanyPrintName");
+                content.Add(new StringContent(company.CompanyRegNo ?? ""), "CompanyRegNo");
+                content.Add(new StringContent(company.CompanyCode ?? ""), "CompanyCode");
+                content.Add(new StringContent(company.CompanyEmail ?? ""), "CompanyEmail");
+                content.Add(new StringContent(company.CompanyMobile ?? ""), "CompanyMobile");
+                content.Add(new StringContent(company.CompanyGstin ?? ""), "CompanyGstin");
+                content.Add(new StringContent(company.CompanyPanNo ?? ""), "CompanyPanNo");
+                content.Add(new StringContent(company.CompanyIsGstApplicable.ToString()), "CompanyIsGstApplicable");
+                content.Add(new StringContent(company.CompanyGstApplicableFrom ?? ""), "CompanyGstApplicableFrom");
+                content.Add(new StringContent(company.CompanyIsLutBond.ToString()), "CompanyIsLutBond");
+                content.Add(new StringContent(company.CompanyLutBondNo ?? ""), "CompanyLutBondNo");
+                content.Add(new StringContent(company.CompanyLutBondTo ?? ""), "CompanyLutBondTo");
+                content.Add(new StringContent(company.CompanyIsEWayBill.ToString()), "CompanyIsEWayBill");
+                content.Add(new StringContent(company.CompanyEWayBillFrom ?? ""), "CompanyEWayBillFrom");
+                content.Add(new StringContent(company.CompanyAddedByUserId ?? ""), "CompanyAddedByUserId");
+                content.Add(new StringContent(company.CompanyAddress1 ?? ""), "CompanyAddress");
+                content.Add(new StringContent(company.CompanyStateId ?? ""), "CompanyStateId");
+                content.Add(new StringContent(company.CompanyPincode ?? ""), "CompanyPincode");
+                content.Add(new StringContent(company.CompanyContactPerson ?? ""), "CompanyContactPerson");
+                content.Add(new StringContent(company.CompanyTelephone ?? ""), "CompanyTelephone");
+                content.Add(new StringContent(company.CompanyFax ?? ""), "CompanyFax");
+                content.Add(new StringContent(company.CompanyWebsite ?? ""), "CompanyWebsite");
+                content.Add(new StringContent(company.CompanyAddress2 ?? ""), "CompanyAddress2");
+                content.Add(new StringContent(company.CompanyAddress3 ?? ""), "CompanyAddress3");
+                content.Add(new StringContent(company.CompanyStateCode ?? ""), "CompanyStateCode");
+                content.Add(new StringContent(company.CompanyCurrency ?? ""), "CompanyCurrency");
+                content.Add(new StringContent(company.CompanyEWayBillLimit.ToString()), "CompanyEWayBillLimit");
+                content.Add(new StringContent(company.CompanyBeginningDate.ToString()), "CompanyBeginningDate");
+                content.Add(new StringContent(company.CompanyDecimal ?? ""), "CompanyDecimal");
+
+                //if (file != null)
+                //{
+                //    var fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.Name)}"; // Unique naam de diya
+                //    var fileStream = file.OpenReadStream(10485760); // Max 10MB
+                //    var fileContent = new StreamContent(fileStream);
+                //    fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(file.ContentType);
+
+                //    content.Add(fileContent, "CompanyLogo", fileName);
+
+                //    company.CompanyLogo = fileName;
+                //}
+
+                var response = await _httpClient.PostAsync("api/Company", content);
+                // ✅ Print Response Content (Debugging)
+                string responseJson = await response.Content.ReadAsStringAsync();
+                Console.WriteLine("⬅️ Response JSON:\n" + responseJson);
+                response.EnsureSuccessStatusCode();
                 var newCompany = await response.Content.ReadFromJsonAsync<Company>();
                 if (newCompany == null)
                 {
                     throw new Exception("Failed to parse the added company data.");
                 }
 
+                //Console.WriteLine($"Company added successfully: {newCompany.CompanyId}, Logo: {newCompany.CompanyLogo}");
                 return newCompany;
             }
             catch (Exception ex)
@@ -121,13 +172,76 @@ namespace MauiAppFB.Services
             try
             {
                 await SetAuthorizationHeaderIfNeeded();
-                var response = await _httpClient.PutAsJsonAsync($"api/Company/{company.CompanyId}", company);
+                string currentUserId = await SecureStorage.GetAsync("userId");
+
+                if (string.IsNullOrEmpty(currentUserId))
+                {
+                    currentUserId = "DefaultUser";
+                }
+
+                company.CompanyUpdatedByUserId = currentUserId;
+
+                using var content = new MultipartFormDataContent();
+
+                // ✅ Add text fields as form-data
+                content.Add(new StringContent(company.CompanyUpdatedByUserId), "CompanyUpdatedByUserId");
+                content.Add(new StringContent(company.CompanyName ?? ""), "CompanyName");
+                content.Add(new StringContent(company.CompanyPrintName ?? ""), "CompanyPrintName");
+                content.Add(new StringContent(company.CompanyId.ToString()), "CompanyId");
+                content.Add(new StringContent(company.CompanyRegNo ?? ""), "CompanyRegNo");
+                content.Add(new StringContent(company.CompanyCode ?? ""), "CompanyCode");
+                content.Add(new StringContent(company.CompanyEmail ?? ""), "CompanyEmail");
+                content.Add(new StringContent(company.CompanyMobile ?? ""), "CompanyMobile");
+                content.Add(new StringContent(company.CompanyGstin ?? ""), "CompanyGstin");
+                content.Add(new StringContent(company.CompanyPanNo ?? ""), "CompanyPanNo");
+                content.Add(new StringContent(company.CompanyIsGstApplicable.ToString()), "CompanyIsGstApplicable");
+                content.Add(new StringContent(company.CompanyGstApplicableFrom ?? ""), "CompanyGstApplicableFrom");
+                content.Add(new StringContent(company.CompanyIsLutBond.ToString()), "CompanyIsLutBond");
+                content.Add(new StringContent(company.CompanyLutBondNo ?? ""), "CompanyLutBondNo");
+                content.Add(new StringContent(company.CompanyLutBondTo ?? ""), "CompanyLutBondTo");
+                content.Add(new StringContent(company.CompanyIsEWayBill.ToString()), "CompanyIsEWayBill");
+                content.Add(new StringContent(company.CompanyEWayBillFrom ?? ""), "CompanyEWayBillFrom");
+                content.Add(new StringContent(company.CompanyAddedByUserId ?? ""), "CompanyAddedByUserId");
+                content.Add(new StringContent(company.CompanyAddress1 ?? ""), "CompanyAddress");
+                content.Add(new StringContent(company.CompanyStateId ?? ""), "CompanyStateId");
+                content.Add(new StringContent(company.CompanyPincode ?? ""), "CompanyPincode");
+                content.Add(new StringContent(company.CompanyContactPerson ?? ""), "CompanyContactPerson");
+                content.Add(new StringContent(company.CompanyTelephone ?? ""), "CompanyTelephone");
+                content.Add(new StringContent(company.CompanyFax ?? ""), "CompanyFax");
+                content.Add(new StringContent(company.CompanyWebsite ?? ""), "CompanyWebsite");
+                content.Add(new StringContent(company.CompanyAddress2 ?? ""), "CompanyAddress2");
+                content.Add(new StringContent(company.CompanyAddress3 ?? ""), "CompanyAddress3");
+                content.Add(new StringContent(company.CompanyStateCode ?? ""), "CompanyStateCode");
+                content.Add(new StringContent(company.CompanyCurrency ?? ""), "CompanyCurrency");
+                content.Add(new StringContent(company.CompanyEWayBillLimit.ToString()), "CompanyEWayBillLimit");
+                content.Add(new StringContent(company.CompanyBeginningDate.ToString()), "CompanyBeginningDate");
+                content.Add(new StringContent(company.CompanyDecimal ?? ""), "CompanyDecimal");
+
+                // ✅ File Upload Logic
+                //if (file != null)
+                //{
+                //    var fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.Name)}"; // Unique naam de diya
+                //    var fileStream = file.OpenReadStream(10485760); // Max 10MB
+                //    var fileContent = new StreamContent(fileStream);
+                //    fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(file.ContentType);
+
+                //    content.Add(fileContent, "CompanyLogo", fileName);
+
+                //    company.CompanyLogo = fileName; // ✅ Database me file ka naam store hoga
+                //}
+
+                var response = await _httpClient.PutAsync($"api/Company/{company.CompanyId}", content);
+
+                string responseJson = await response.Content.ReadAsStringAsync();
+                //Console.WriteLine("⬅️ Response JSON:\n" + responseJson);
+
                 response.EnsureSuccessStatusCode();
             }
             catch (Exception ex)
             {
                 throw new Exception($"Error updating company with ID {company.CompanyId}: {ex.Message}", ex);
             }
+
         }
 
         /// <summary>
@@ -146,6 +260,23 @@ namespace MauiAppFB.Services
                 throw new Exception($"Error deleting company with ID {companyId}: {ex.Message}", ex);
             }
         }
+
+
+
+
+        public async Task<Company> GetCompanyByIdAsync(int companyId)
+        {
+            var company = await _httpClient.GetFromJsonAsync<Company>($"api/Company/{companyId}");
+
+            if (company != null && !string.IsNullOrEmpty(company.CompanyLogo) && !company.CompanyLogo.StartsWith("data:image"))
+            {
+                company.CompanyLogo = $"data:image/jpeg;base64,{company.CompanyLogo}";
+            }
+
+            return company;
+        }
+   
+    
     }
 
     /// <summary>

@@ -1,5 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
 using MauiAppFB.Services;
+using DevExpress.Blazor;
+using DevExpress.XtraReports.UI;
+using DevExpress.XtraReports.Web.ReportDesigner;
+using DevExpress.AspNetCore;
+using Devexpress.Blazor.Internal;
 
 namespace MauiAppFB
 {
@@ -30,10 +35,12 @@ namespace MauiAppFB
                 };
                 return client;
             });
+            builder.Services.AddDevExpressBlazor();
+            builder.Services.AddDevExpressWebAssemblyBlazorReportViewer();
+            builder.Services.AddDevExpressServerSideBlazorReportViewer();
           
-
-            // Register the AuthService as Singleton (uses HttpClient)
-            builder.Services.AddSingleton<AuthService>();
+      // Register the AuthService as Singleton (uses HttpClient)
+      builder.Services.AddSingleton<AuthService>();
 
             // Register the CargoService with the HttpClient dependency injected
             builder.Services.AddScoped<CargoService>();
@@ -52,7 +59,7 @@ namespace MauiAppFB
             builder.Services.AddScoped<LRService>();
             builder.Services.AddScoped<PrintService>();
             builder.Services.AddScoped<PaytypeService>();
-
+            builder.Services.AddScoped<Reportservice>();
             // Register Maui Blazor WebView
             builder.Services.AddMauiBlazorWebView();
             

@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="customJsonSource1.Json" xml:space="preserve">
+    <value>[{"lrID": 4,
+      "lrNo": 0,
+      "lrDate": "2025-03-03T00:00:00",
+      "vehicle_No": null,
+      "party_Name": "VIRAJ TRANSCORP",
+      "consignor_Name": null,
+      "consignee_Name": null,
+      "from_Location": null,
+      "to_Location": null,
+      "product_Name": null,
+      "driver_Name": "",
+      "supplier_Name": null,
+      "lr_Nostr": "123456",
+      "lrContainer1": "CON1",
+      "lrContainer2": "CON2",
+      "loadWt": 12,
+      "unloadWt": 0,
+      "chargeWt": 21,
+      "freight": 0,
+      "addedBy": "rajesh",
+      "updatedBy": null,
+      "updatedDate": "2025-02-28T11:14:01+00:00",
+      "addedDate": null
+    },
+    {
+      "lrID": 7,
+      "lrNo": 0,
+      "lrDate": "2024-03-01T00:00:00",
+      "vehicle_No": "GJ36V5504",
+      "party_Name": "VISHAL SHIPPING AGENCIES PVT LTD",
+      "consignor_Name": null,
+      "consignee_Name": null,
+      "from_Location": null,
+      "to_Location": "fjsduifhdsf",
+      "product_Name": "41 FT",
+      "driver_Name": "",
+      "supplier_Name": "SHREE RAMANAND ROADWAYSsss",
+      "lr_Nostr": "1192",
+      "lrContainer1": "TRHU4699580",
+      "lrContainer2": "",
+      "loadWt": 0,
+      "unloadWt": 0,
+      "chargeWt": 0,
+      "freight": 0,
+      "addedBy": "rajesh",
+      "updatedBy": null,
+      "updatedDate": "2025-02-24T16:06:49+00:00",
+      "addedDate": null}]</value>
+  </data>
+  <data name="customJsonSource2.Json" xml:space="preserve">
+    <value> {"companyId": 0,
+    "companyUpdatedByUserId": "string",
+    "companyAddedByUserId": "string",
+    "companyName": "string",
+    "companyCode": "string",
+    "companyPrintName": "string",
+    "companyAddress1": "string",
+    "companyAddress2": "string",
+    "companyAddress3": "string",
+    "companyStateId": "string",
+    "companyStateCode": "strin",
+    "companyEmail": "string",
+    "companyMobile": "string",
+    "companyTelephone": "string",
+    "companyWebsite": "string",
+    "companyFax": "string",
+    "companyPincode": "string",
+    "companyContactPerson": "string",
+    "companyCurrency": "string",
+    "companyBeginningDate": "2025-03-29T10:46:43.741Z",
+    "companyIsGstApplicable": true,
+    "companyGstApplicableFrom": "string",
+    "companyGstin": "string",
+    "companyPanNo": "string",
+    "companyIsLutBond": true,
+    "companyLutBondNo": "string",
+    "companyLutBondTo": "string",
+    "companyIsEWayBill": true,
+    "companyEWayBillFrom": "string",
+    "companyEWayBillLimit": 0,
+    "companyIsEInvoice": true,
+    "companyEInvoiceFrom": "string",
+    "companyRegNo": "string",
+    "companyCurSymbol": "string",
+    "companyDecimal": "string",
+    "companyDateFormat": "string",
+    "companyStatus": true,
+    "companyCreated": "2025-03-29T10:46:43.741Z",
+    "companyUpdated": "2025-03-29T10:46:43.741Z",
+    "companyRemarks": "string",
+    "companyUsername": "string",
+    "companyPassword": "string",
+    "companyLogo": "string",
+    "companyThemeName": "string",
+    "companyServiceType": "string",
+    "companyIsOnline": true,
+    "companyCity": "string",
+    "companyCountry": "string",
+    "companyFssExpiry": "2025-03-29T10:46:43.741Z",
+    "companyExtendDays": 0,
+    "companyTagline1": "string",
+    "companyTagline2": "string",
+    "companyMsmeNo": "string",
+    "companyIsMultiBranch": true
+}</value>
+  </data>
+</root>

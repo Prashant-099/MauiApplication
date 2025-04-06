@@ -1,0 +1,26 @@
+﻿@page "/print"
+@inject IJSRuntime JS
+@using MauiAppFB.Services
+
+<h3>Challan Report</h3>
+@if (pdfData != null)
+{
+    <iframe src="@pdfBase64Url" width="100%" height="1000px" />
+}
+else
+{
+    <p>Loading...</p>
+}
+
+@code {
+    private string? pdfBase64Url;
+    private byte[]? pdfData;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Normally you would call a service or API to get this data.
+        pdfData = Reportservice.GenerateChallanReportPdf();
+        string base64 = Convert.ToBase64String(pdfData);
+        pdfBase64Url = $"data:application/pdf;base64,{base64}";
+    }
+}

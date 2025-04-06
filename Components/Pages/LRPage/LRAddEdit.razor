@@ -100,21 +100,19 @@
 
                 <label for="LrVehicleId" >Vehicle No:<a @onclick="ShowVehiModal" style="color: black; font-size: 1.7rem; position: relative; bottom: -4px;">+</a></label>
                 <InputSelect id="LrVehicleId" @bind-Value="LR.LrVehicleId" @onclick="LoadVehicles"
-
+                
                 class="form-control"
-
+                      
                 style="width: 150px; font-size: 0.9rem; padding: 0.25rem;">
 
-                    <option value="">-- Select Vehicle --</option>
-
+                   
                     @foreach (var vehicle in vehicles)
                     {
 
 
                         <option value="@vehicle.VehicleId">@vehicle.VehicleNo</option>
-
                     }
-
+                    
                 </InputSelect>
 
             </div>
@@ -1362,6 +1360,10 @@ OnSubmit="SaveCargo" />
         LR.LrGrossfreighttruck = LR.LrBillratetruck * LR.LoadWt;
 
     }
+
+   
+}
+
    
 
 }
@@ -1426,5 +1428,14 @@ OnSubmit="SaveCargo" />
             transform: scale(1.15);
         }
             ====== */
-   
+    .dropdown {
+        max-height: 200px;
+        overflow-y: auto;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+        .dropdown li:hover {
+            background: #f0f0f0;
+        }
 </style>
