@@ -10,15 +10,20 @@ namespace MauiAppFB.Services
     
     public class Reportservice
     {
-
-        public static byte[] GenerateChallanReportPdf()
+        public static async Task<XtraReport?> LoadChallanReportAsync()
         {
-            string reportPath = Path.Combine(AppContext.BaseDirectory, "Reports", "ChallanReport.repx");
-            XtraReport report = XtraReport.FromFile(reportPath, true);
-
-            using var ms = new MemoryStream();
-            report.ExportToPdf(ms);
-            return ms.ToArray();
+            try
+            {
+                using Stream stream = await FileSystem.OpenAppPackageFileAsync("Components/Reports/ChallanReport.repx");
+                var report = new XtraReport();
+                report.LoadLayoutFromXml(stream);
+                return report;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading report: {ex.Message}");
+                return null;
+            }
         }
     }
 

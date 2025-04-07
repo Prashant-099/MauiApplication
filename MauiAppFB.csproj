@@ -51,6 +51,8 @@
 		<AndroidFastDeploymentEnabled>false</AndroidFastDeploymentEnabled>
 	</PropertyGroup>
 
+
+
 	<ItemGroup>
         <!-- App Icon -->
         <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
@@ -112,6 +114,11 @@
       <EmbeddedResource Update="ChallanReport.resx">
         <Generator></Generator>
       </EmbeddedResource>
+		<MauiAsset Include="Components\Reports\ChallanReport.repx" />
+			
+		<Content Include="Components\Reports\ChallanReport.repx">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
     </ItemGroup>
 
 </Project>

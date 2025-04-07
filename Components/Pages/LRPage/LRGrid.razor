@@ -93,19 +93,45 @@ else
 
     [Inject] private NavigationManager NavigationManager { get; set; }
 
-
+    private string? reportPath;
 
     private void NavigateToLRGrid()
     {
         NavigationManager.NavigateTo("/LRAddEdit");
     }
 
-    private void PRINT()
+
+    private async Task PRINT()
     {
-        NavigationManager.NavigateTo("/print");
+        try
+        {
+            var report = await Reportservice.LoadChallanReportAsync();
+            if (report == null)
+            {
+                Console.WriteLine("Report is null");
+                return;
+            }
+
+            using var ms = new MemoryStream();
+            report.ExportToPdf(ms);
+            var pdfBytes = ms.ToArray();
+
+            var fileName = $"challan_{DateTime.Now:yyyyMMddHHmmss}.pdf";
+            var filePath = Path.Combine(FileSystem.CacheDirectory, fileName);
+            File.WriteAllBytes(filePath, pdfBytes);
+
+            await Launcher.Default.OpenAsync(new OpenFileRequest
+                {
+                    File = new ReadOnlyFile(filePath)
+                });
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"PRINT Exception: {ex.Message}");
+        }
     }
 
-
+    
 
 
 
@@ -126,6 +152,18 @@ else
     protected override async Task OnInitializedAsync()
     {
         await LoadLRGrids();
+        try
+        {
+            var reportPath = await Reportservice.LoadChallanReportAsync();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = ex.Message;
+        }
+        finally
+        {
+            isLoading = false;
+        }
     }
 
     private async Task LoadLRGrids()
