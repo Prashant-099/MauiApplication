@@ -17,10 +17,17 @@ else if (!string.IsNullOrEmpty(errorMessage))
 
 else
 {
-    <div class="mb-3">
+  @*   <div class="mb-3">
         <input type="text" placeholder="Search User Name" @bind="filterUserName" class="form-control" />
         <button class="btn btn-primary mt-2" @onclick="ApplyFilters">Apply Filters</button>
         <button class="btn btn-success mt-2" @onclick="ShowAddModal">Add User</button>
+    </div> *@
+    <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+        <input type="text" placeholder="Search LRGrid Name" @bind="filterUserName" style="width:80%;" class="form-control" />
+        <button class="rounded-circle d-flex align-items-center justify-content-center"
+                style="width: 40px; height: 40px;" @onclick="ShowAddModal">
+            <img src="Icon/add.png" style="height:20px;" />
+        </button>
     </div>
      <div class="table-responsive">
     <table class="table-striped table">
@@ -43,7 +50,7 @@ else
         }
         else{
             <tbody>
-                @foreach (var user in data)
+                    @foreach (var user in FilteredGrids)
                 {
                     <tr>
 
@@ -94,7 +101,12 @@ OnSubmit="SaveUser" />
     private int currentPage = 1;
     private int totalPages = 1;
     private int pageSize = 10;
-
+    private IEnumerable<User> FilteredGrids =>
+    string.IsNullOrWhiteSpace(filterUserName)
+    ? data
+    : data.Where(usr =>
+        (!string.IsNullOrEmpty(usr.UserFirstName) && usr.UserFirstName.Contains(filterUserName, StringComparison.OrdinalIgnoreCase))
+    );
     // Sorting variables
     private string sortColumn = "UserId";
     private bool isSortDescending = false;

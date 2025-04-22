@@ -6,7 +6,7 @@
 @inject LRService LRGridService
 @inject IJSRuntime JS
 
-<h3>LR  List</h3>
+
 
 @if (isLoading)
 {
@@ -19,22 +19,27 @@ else if (!string.IsNullOrEmpty(errorMessage))
 
 else
 {
-    <div class="mb-3">
-        <input type="text" placeholder="Search LRGrid Name" @bind="filterLRGridName" class="form-control" />
-        <button class="btn btn-primary mt-2" @onclick="ApplyFilters">Apply Filters</button>
-        <button class="btn btn-success mt-2" @onclick="NavigateToLRGrid">
-            Add LRGrid
+    <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+        <input type="text" placeholder="Search LRGrid Name" @bind="filterLRGridName" style="width:80%;" class="form-control" />
+        <button class="rounded-circle d-flex align-items-center justify-content-center"
+        style="width: 40px; height: 40px;" @onclick="NavigateToLRGrid">
+            <img src="Icon/add.png" style="height:20px;" />
         </button>
-        <button class="btn btn-success mt-2" @onclick="PRINT">
-            PRINT
-        </button>
+        <select id="pageSizeSelect" class="form-select" style="width: auto; display: inline-block;"
+                @onchange="OnPageSizeChanged">
+            <option value="5" selected="@IsSelectedPageSize(5)">5</option>
+            <option value="10" selected="@IsSelectedPageSize(10)">10</option>
+            <option value="10" selected="@IsSelectedPageSize(100)">100</option>
+            <option value="20" selected="@IsSelectedPageSize(200)">200</option>
+            <option value="50" selected="@IsSelectedPageSize(500)">500</option>
+        </select>
     </div>
+
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>LR ID</th>
-                    <th>LR No</th>
+                    
                     <th>LR Nostr</th>
                     <th>Container1</th>
                     <th>Container2</th>
@@ -45,35 +50,37 @@ else
             </thead>
             @if (LRGrids == null || !LRGrids.Any())
             {
-                    <div class="no-data-message">
-                        <p>No LR available.</p>
-                    </div>
+                <div class="no-data-message">
+                    <p>No LR available.</p>
+                </div>
             }
             else
             {
-                    <tbody>
-                    @foreach (var lrgrid in LRGrids)
+                <tbody>
+                    @foreach (var lrgrid in FilteredLRGrids)
                     {
-                <tr>
-                        <td>@lrgrid.LrID</td>
-                        <td>@lrgrid.LrNo</td>
-                        <td>@lrgrid.Lr_Nostr</td>
-                    <td>@lrgrid.LrContainer1</td>
-                        <td>@lrgrid.LrContainer2</td>
-                        
-                        <td>@lrgrid.Consignee_Name</td>
-                        <td>@lrgrid.Consignor_Name</td>
-                        <td class="actions">
-                        <button  @onclick="() => ShowEditModal(lrgrid)">
-                                <img src="Icon/icons8-edit-50.png" style="height:25px;" />
-                                        </button>
-                                        <button @onclick="() => ConfirmDelete(lrgrid.LrID)">
-                                            <img src="Icon/icons8-delete-50.png" style="height:25px;" />
-                                        </button>
-                                    </td>
-                                </tr>
+                        <tr>
+                            
+                            <td>@lrgrid.Lr_Nostr</td>
+                            <td>@lrgrid.LrContainer1</td>
+                            <td>@lrgrid.LrContainer2</td>
+
+                            <td>@lrgrid.Consignee_Name</td>
+                            <td>@lrgrid.Consignor_Name</td>
+                            <td class="actions">
+                                <button  @onclick="() => ShowEditModal(lrgrid)">
+                                    <img src="Icon/icons8-edit-50.png" style="height:20px;" />
+                                </button>
+                                <button @onclick="() => ConfirmDelete(lrgrid.LrID)">
+                                    <img src="Icon/icons8-delete-50.png" style="height:20px;" />
+                                </button>
+                                <button @onclick="() => PRINT(lrgrid)">
+                                    <img src="Icon/printer.png" style="height:20px;" />
+                                </button>
+                            </td>
+                        </tr>
                     }
-                    </tbody>
+                </tbody>
             }
         </table>
     </div>
@@ -99,12 +106,27 @@ else
     {
         NavigationManager.NavigateTo("/LRAddEdit");
     }
+    private async Task OnPageSizeChanged(Microsoft.AspNetCore.Components.ChangeEventArgs e)
+
+    {
+        if (int.TryParse(e.Value?.ToString(), out int newSize))
+        {
+            pageSize = newSize;
+            // currentPage = 1; // Reset to the first page
+            await LoadLRGrids();
+        }
+    }
+
+    private string? IsSelectedPageSize(int size) => pageSize == size ? "selected" : null;
 
 
-    private async Task PRINT()
+
+
+    private async Task PRINT(Models.Lr lrgrid)
     {
         try
         {
+            // Load the report definition
             var report = await Reportservice.LoadChallanReportAsync();
             if (report == null)
             {
@@ -112,11 +134,28 @@ else
                 return;
             }
 
+            // Load your data by LR ID
+
+            var reportdata = await LRGridService.GetLRsidAsync(lrgrid.LrID);
+
+            if (reportdata == null)
+            {
+                Console.WriteLine("Report data is null");
+                return;
+            }
+
+            // Bind the data to the report
+            report.DataSource = reportdata;
+
+        
+
+            // Export to PDF
             using var ms = new MemoryStream();
             report.ExportToPdf(ms);
             var pdfBytes = ms.ToArray();
 
-            var fileName = $"challan_{DateTime.Now:yyyyMMddHHmmss}.pdf";
+            // Save and open the PDF
+            var fileName = $"challan_{lrgrid.LrID}.pdf";
             var filePath = Path.Combine(FileSystem.CacheDirectory, fileName);
             File.WriteAllBytes(filePath, pdfBytes);
 
@@ -127,9 +166,10 @@ else
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"PRINT Exception: {ex.Message}");
+            Console.WriteLine("Export failed: " + ex.ToString());
         }
     }
+
 
     
 
@@ -146,24 +186,36 @@ else
 
     // Pagination variables
     private int currentPage = 1;
-    private int totalPages = 1;
-    private int pageSize = 10;
+    private int totalPages =1;
+    private int pageSize = 5;
+    private IEnumerable<Lr> FilteredLRGrids =>
+    string.IsNullOrWhiteSpace(filterLRGridName)
+        ? LRGrids
+        : LRGrids.Where(lr =>
+            (!string.IsNullOrEmpty(lr.Vehicle_No) && lr.Vehicle_No.Contains(filterLRGridName, StringComparison.OrdinalIgnoreCase)) ||
+            (!string.IsNullOrEmpty(lr.Party_Name) && lr.Party_Name.Contains(filterLRGridName, StringComparison.OrdinalIgnoreCase)) ||
+            (!string.IsNullOrEmpty(lr.Consignor_Name) && lr.Consignor_Name.Contains(filterLRGridName, StringComparison.OrdinalIgnoreCase)) ||
+            (!string.IsNullOrEmpty(lr.Consignee_Name) && lr.Consignee_Name.Contains(filterLRGridName, StringComparison.OrdinalIgnoreCase)) ||
+            (!string.IsNullOrEmpty(lr.Lr_Nostr) && lr.Lr_Nostr.Contains(filterLRGridName, StringComparison.OrdinalIgnoreCase)) ||
+            (!string.IsNullOrEmpty(lr.LrContainer1) && lr.LrContainer1.Contains(filterLRGridName, StringComparison.OrdinalIgnoreCase)) ||
+            (!string.IsNullOrEmpty(lr.LrContainer2) && lr.LrContainer2.Contains(filterLRGridName, StringComparison.OrdinalIgnoreCase))
+        );
 
     protected override async Task OnInitializedAsync()
     {
         await LoadLRGrids();
-        try
-        {
-            var reportPath = await Reportservice.LoadChallanReportAsync();
-        }
-        catch (Exception ex)
-        {
-            errorMessage = ex.Message;
-        }
-        finally
-        {
-            isLoading = false;
-        }
+        // try
+        // {
+        //     var reportPath = await Reportservice.LoadChallanReportAsync();
+        // }
+        // catch (Exception ex)
+        // {
+        //     errorMessage = ex.Message;
+        // }
+        // finally
+        // {
+        //     isLoading = false;
+        // }
     }
 
     private async Task LoadLRGrids()
@@ -177,7 +229,7 @@ else
             if (response != null)
             {
                 LRGrids = response.challans; // Assuming LRGrids is the list to hold the fetched data
-                                            // totalPages = response.TotalPages;        // totalPages = (int)Math.Ceiling((double)totalCount / pageSize); // if your API provides the total count
+               totalPages = response.TotalPages;        // totalPages = (int)Math.Ceiling((double)totalCount / pageSize); // if your API provides the total count
             }
             else
             {

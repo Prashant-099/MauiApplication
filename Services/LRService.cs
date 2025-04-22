@@ -36,7 +36,7 @@ namespace MauiAppFB.Services
         /// <summary>
         /// Fetches a paginated list of LRs from the API.
         /// </summary>
-        public async Task<LRResponse> GetLRsAsync(int page = 1, int pageSize = 10)
+        public async Task<LRResponse> GetLRsAsync(int page=1 , int pageSize=4 )
         {
             try
             {
@@ -147,7 +147,36 @@ namespace MauiAppFB.Services
         }
 
 
+        public async Task<List<Lr>> GetLRsidAsync(int lrId)
+        {
+            try
+            {
+                await SetAuthorizationHeaderIfNeeded();
+                var response = await _httpClient.GetAsync($"api/Challan/{lrId}");
+                response.EnsureSuccessStatusCode();
 
+                //var lrResponse = await response.Content.ReadFromJsonAsync<List<Lr>>();
+                //if (lrResponse == null)
+                //{
+                //    throw new Exception("Failed to parse LR data.");
+                //}
+
+                //return lrResponse;
+                var lr = await response.Content.ReadFromJsonAsync<Lr>();
+                if (lr == null)
+                {
+                    throw new Exception("Failed to parse LR data.");
+                }
+
+                // Wrap the single Lr in a list to match report.DataSource expectations
+                return new List<Lr> { lr };
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error fetching LRs: {lrId}: {ex.Message}", ex);
+            }
+        }
 
 
 

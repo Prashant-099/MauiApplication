@@ -23,27 +23,87 @@
     <div id="blazor-error-ui">
 
     </div>
+    <!-- Toast container -->
+    <!--<div id="swipe-toast" class="swipe-toast">Action</div>-->
+
 
     <script src="_framework/blazor.webview.js" autostart="false"></script>
-    <footer class="mobile-footer">
-        <button onclick="history.back()">🔙 Back</button>
-        <button onclick="location.reload()">🔄 Refresh</button>
-        <button onclick="history.forward()">🔜 Forward</button>
-    </footer>
+    <!--<footer class="mobile-footer">
+        <button onclick="history.back()">🔙</button>
+        <button onclick="location.reload()">🔄</button>
+        <button onclick="history.forward()">🔜</button>
+    </footer>-->
+    <!--<script>
+        let xStart = null;
+        let yStart = null;
+
+        function handleTouchStart(evt) {
+            const firstTouch = evt.touches[0];
+            xStart = firstTouch.clientX;
+            yStart = firstTouch.clientY;
+        }
+
+        function handleTouchMove(evt) {
+            if (!xStart || !yStart) return;
+
+            let xEnd = evt.touches[0].clientX;
+            let yEnd = evt.touches[0].clientY;
+
+            let xDiff = xStart - xEnd;
+            let yDiff = yStart - yEnd;
+
+            if (Math.abs(xDiff) > Math.abs(yDiff)) {
+                // Horizontal Swipe
+                if (xDiff > 50) {
+                    showToast("Next →");
+                    history.forward();
+                } else if (xDiff < -50) {
+                    showToast("← Back");
+                    history.back();
+                }
+            } else {
+                // Vertical Swipe
+                if (yDiff < -50) {
+                    showToast("🔄 Reload");
+                    location.reload();
+                }
+            }
+
+            // Reset
+            xStart = null;
+            yStart = null;
+        }
+
+        function handleTouchEnd() {
+            xStart = null;
+            yStart = null;
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById("swipe-toast");
+            toast.textContent = message;
+            toast.classList.add("show");
+            setTimeout(() => toast.classList.remove("show"), 1500);
+        }
+    </script>-->
+
+
+
 </body>
 
 </html>
 
-<style>
+<!--<style>
     .mobile-footer {
         display: flex;
         justify-content: space-around;
-        padding: 10px;
+        padding: 0px;
         background-color: #333;
         color: white;
         position: fixed;
         bottom: 0;
         width: 100%;
+        height: 30px
     }
 
     /* Hide on desktop */
@@ -64,4 +124,25 @@
         button:hover {
             opacity: 0.8;
         }
-</style>
+</style>-->
+<!--<style>
+    .swipe-toast {
+        position: fixed;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.75);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 16px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease-in-out;
+        z-index: 9999;
+    }
+
+        .swipe-toast.show {
+            opacity: 1;
+        }
+</style>-->

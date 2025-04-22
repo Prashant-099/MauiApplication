@@ -17,10 +17,17 @@ else if (!string.IsNullOrEmpty(errorMessage))
 
 else
 {
-    <div class="mb-3">
+   @*  <div class="mb-3">
         <input type="text" placeholder="Search Role Name" @bind="filterRoleName" class="form-control" />
         <button class="btn btn-primary mt-2" @onclick="ApplyFilters">Apply Filters</button>
         <button class="btn btn-success mt-2" @onclick="ShowAddModal">Add Role</button>
+    </div> *@
+    <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+        <input type="text" placeholder="Search LRGrid Name" @bind="filterRoleName" style="width:80%;" class="form-control" />
+        <button class="rounded-circle d-flex align-items-center justify-content-center"
+                style="width: 40px; height: 40px;" @onclick="ShowAddModal">
+            <img src="Icon/add.png" style="height:20px;" />
+        </button>
     </div>
      <div class="table-responsive">
     <table class="table-striped table">
@@ -41,7 +48,7 @@ else
         }
         else{
         <tbody>
-            @foreach (var role in roles)
+                    @foreach (var role in FilteredGrids)
             {
                 <tr>
                    
@@ -90,7 +97,12 @@ else
     private int currentPage = 1;
     private int totalPages = 1;
     private int pageSize = 10;
-
+    private IEnumerable<UserRoles> FilteredGrids =>
+    string.IsNullOrWhiteSpace(filterRoleName)
+    ? roles
+    : roles.Where(UR =>
+        (!string.IsNullOrEmpty(UR.RoleName) && UR.RoleName.Contains(filterRoleName, StringComparison.OrdinalIgnoreCase))
+    );
     protected override async Task OnInitializedAsync()
     {
         await LoadUserRoles();

@@ -23,19 +23,19 @@ namespace MauiAppFB.Models
     public class Company
     {
         public int CompanyId { get; set; }
-        public string CompanyUpdatedByUserId { get; set; }
+        public string CompanyUpdatedByUserId { get; set; } = "1";
         public string CompanyAddedByUserId { get; set; } = "1";
   
         public string CompanyName { get; set; }
         public string? CompanyCode { get; set; }
-       
-        public string CompanyPrintName { get; set; }
+
+        public string CompanyPrintName { get; set; } = "test";
         public string? CompanyAddress1 { get; set; }
         public string? CompanyAddress2 { get; set; }
         public string? CompanyAddress3 { get; set; }
-       
-        
-        public string CompanyStateId { get; set; }
+
+
+        public string CompanyStateId { get; set; } = "1";
         public string CompanyStateCode { get; set; } = "2";
         public string? CompanyEmail { get; set; }
         public string? CompanyMobile { get; set; }

@@ -108,7 +108,7 @@ h1:focus {
     align-items: center;
     justify-content: space-between;
     /* Adjust based on layout */
-    margin: 20px auto;
+    margin: .0px auto;
     padding: 10px;
     border-radius: 8px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
@@ -157,7 +157,7 @@ button {
 }
 
     .table-striped th, .table-striped td {
-        padding: 0.75rem;
+        /*padding: 0.75rem;*/
         text-align: left;
         border: 1px solid #ddd;
     }
@@ -175,7 +175,7 @@ button {
     .grid-row td {
         display: block;
         flex: 1 1 100%;
-        padding: 0.5rem;
+       /* padding: 0.5rem;*/
         margin: 0;
         border: none;
     }

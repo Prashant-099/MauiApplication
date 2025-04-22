@@ -17,10 +17,18 @@ else if (!string.IsNullOrEmpty(errorMessage))
 
 else
 {
-    <div class="mb-3">
+   @*  <div class="mb-3">
         <input type="text" placeholder="Search Cargo Name" @bind="filterCargoName" class="form-control" />
         <button class="btn btn-primary mt-2" @onclick="ApplyFilters">Apply Filters</button>
         <button class="btn btn-success mt-2" @onclick="ShowAddModal">Add Cargo</button>
+    </div> *@
+    <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+        <input type="text" placeholder="Search Name" @bind="filterCargoName" style="width:80%;" class="form-control" />
+
+        <button class="rounded-circle d-flex align-items-center justify-content-center"
+                style="width: 40px; height: 40px;" @onclick="ShowAddModal">
+            <img src="Icon/add.png" style="height:20px;" />
+        </button>
     </div>
     <div class="table-responsive">
         <table class="table-striped table">
@@ -44,7 +52,7 @@ else
         }
         else{
         <tbody>
-            @foreach (var cargo in cargos)
+                    @foreach (var cargo in FilteredGrids)
             {
                 <tr>
                    
@@ -85,6 +93,7 @@ else
 
 @code {
     private List<Cargo> cargos = new();
+    private List<Cargo> cargosSearch = new();
     private Cargo selectedCargo = new Cargo();
     private string modalTitle = string.Empty;
     private string modalButtonText = string.Empty;
@@ -97,7 +106,12 @@ else
     private int currentPage = 1;
     private int totalPages = 1;
     private int pageSize = 10;
-
+    private IEnumerable<Cargo> FilteredGrids =>
+    string.IsNullOrWhiteSpace(filterCargoName)
+    ? cargos
+    : cargos.Where(c =>
+        (!string.IsNullOrEmpty(c.CargoName) && c.CargoName.Contains(filterCargoName, StringComparison.OrdinalIgnoreCase))
+    );
     // Sorting variables
     private string sortColumn = "CargoId";
     private bool isSortDescending = false;
@@ -117,6 +131,11 @@ else
             var response = await CargoService.GetCargosAsync(currentPage, pageSize);
             cargos = response.Cargos;
             totalPages = response.TotalPages;
+
+            //for search
+            var Search = await CargoService.GetCargoslistAsync();
+            cargosSearch = Search.Cargos;
+         
         }
         catch (Exception ex)
         {

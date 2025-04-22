@@ -17,10 +17,18 @@ else if (!string.IsNullOrEmpty(errorMessage))
 
 else
 {
-    <div class="mb-3">
+    @* <div class="mb-3">
         <input type="text" placeholder="Search State Name" @bind="filterStateName" class="form-control" />
         <button class="btn btn-primary mt-2" @onclick="ApplyFilters">Apply Filters</button>
         <button class="btn btn-success mt-2" @onclick="ShowAddModal">Add State</button>
+    </div> *@
+    <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+        <input type="text" placeholder="Search LRGrid Name" @bind="filterStateName" style="width:80%;" class="form-control" />
+
+        <button class="rounded-circle d-flex align-items-center justify-content-center"
+                style="width: 40px; height: 40px;" @onclick="ShowAddModal">
+            <img src="Icon/add.png" style="height:20px;" />
+        </button>
     </div>
      <div class="table-responsive">
     <table class="table-striped table">
@@ -41,7 +49,7 @@ else
         }
         else{
         <tbody>
-            @foreach (var state in state)
+                    @foreach (var state in FilteredGrids)
             {
                 <tr>
                    
@@ -90,7 +98,12 @@ OnSubmit="SaveState" />
     private int currentPage = 1;
     private int totalPages = 1;
     private int pageSize = 10;
-
+    private IEnumerable<States> FilteredGrids =>
+    string.IsNullOrWhiteSpace(filterStateName)
+    ? state
+    : state.Where(stat =>
+        (!string.IsNullOrEmpty(stat.StateName) && stat.StateName.Contains(filterStateName, StringComparison.OrdinalIgnoreCase))
+    );
     protected override async Task OnInitializedAsync()
     {
         await LoadStates();

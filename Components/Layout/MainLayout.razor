@@ -41,12 +41,15 @@
             </div>
 
 
-            
 
 
 
+            <button onclick="history.back()" style="height:20px;">🔙</button>
+            <button onclick="location.reload()" style="height:20px;">🔄</button>
+            <button onclick="history.forward()" style="height:20px;">🔜</button>
 
         </div>
+  
         <article class="content px-4">
             @Body
             
@@ -146,4 +149,19 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
 
+
+
+
+
+    button {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+        button:hover {
+            opacity: 0.8;
+        }
 </style>

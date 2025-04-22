@@ -22,7 +22,7 @@
         <Nullable>enable</Nullable>
 
         <!-- Display name -->
-        <ApplicationTitle>MauiAppFB</ApplicationTitle>
+        <ApplicationTitle>FreightBook</ApplicationTitle>
 
         <!-- App Identifier -->
         <ApplicationId>com.companyname.mauiappfb</ApplicationId>
@@ -40,17 +40,49 @@
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
         <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
-    </PropertyGroup>
-	<PropertyGroup>
-		<GenerateDependencyFile>true</GenerateDependencyFile>
+
+		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+<SelfContained>true</SelfContained>
 	</PropertyGroup>
+	
+
+	<!-- RuntimeIdentifiers for Android -->
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net9.0-android'">
+    <AndroidSupportedAbis>armeabi-v7a;arm64-v8a;x86;x86_64</AndroidSupportedAbis>
+    <RuntimeIdentifiers>android-arm;android-arm64;android-x86;android-x64</RuntimeIdentifiers>
+  </PropertyGroup>
+
+  <!-- RuntimeIdentifiers for Windows -->
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net9.0-windows10.0.19041.0'">
+	 <RuntimeIdentifiers>win-x64;win-arm64</RuntimeIdentifiers>
+
+	  <!-- Use win-x64 only unless you explicitly support win-arm, etc -->
+  </PropertyGroup>
+	
+	<!-- iOS Simulator RuntimeIdentifiers -->
+<PropertyGroup Condition="'$(TargetFramework)' == 'net9.0-ios'">
+  <RuntimeIdentifiers>ios-arm64</RuntimeIdentifiers>
+</PropertyGroup>
+
+
+<!-- Mac Catalyst RuntimeIdentifiers -->
+<PropertyGroup Condition="'$(TargetFramework)' == 'net9.0-maccatalyst'">
+  <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers>
+</PropertyGroup>
+
 	<PropertyGroup>
 		<AndroidSupportedAbis>armeabi-v7a;arm64-v8a;x86;x86_64</AndroidSupportedAbis>
 	</PropertyGroup>
+
 	<PropertyGroup>
-		<AndroidFastDeploymentEnabled>false</AndroidFastDeploymentEnabled>
+		<GenerateDependencyFile>true</GenerateDependencyFile>
 	</PropertyGroup>
 
+
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+	</PropertyGroup>
 
 
 	<ItemGroup>
@@ -58,7 +90,7 @@
         <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 	
 		<!-- Splash Screen -->
-        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="" BaseSize="128,128" />
 
         <!-- Images -->
         <MauiImage Include="Resources\Images\*" />
@@ -70,6 +102,8 @@
         <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
         <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
     </ItemGroup>
+
+
 
     <ItemGroup>
         
@@ -111,14 +145,23 @@
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Update="ChallanReport.resx">
+      <EmbeddedResource Update="Components\Reports\ChallanReport.repx">
         <Generator></Generator>
       </EmbeddedResource>
-		<MauiAsset Include="Components\Reports\ChallanReport.repx" />
 			
-		<Content Include="Components\Reports\ChallanReport.repx">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
+		
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Components\Reports\ChallanReport.repx" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Resources\AppIcon\freightboo.png">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        <CopyToOutputDirectory></CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>

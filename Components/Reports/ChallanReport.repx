@@ -6,571 +6,587 @@
     <Item3 Ref="4" ControlType="BottomMarginBand" Name="BottomMargin" HeightF="25" TextAlignment="TopLeft" Padding="0,0,0,0,100" />
     <Item4 Ref="5" ControlType="GroupHeaderBand" Name="GroupHeader1" HeightF="636.1111">
       <Controls>
-        <Item1 Ref="6" ControlType="XRLabel" Name="xrLabel10" Text="____________________________" SizeF="260.7857,25.00002" LocationFloat="760.8271,254.627" />
-        <Item2 Ref="7" ControlType="XRLabel" Name="xrLabel9" Multiline="true" Text="Surya Trans &amp; Logistic" TextAlignment="TopCenter" SizeF="548.125,36.65596" LocationFloat="231.3195,32.22221" Font="Times New Roman, 26pt, style=Bold" ForeColor="Black" BackColor="0,0,0,0" Padding="2,2,0,0,100">
-          <StylePriority Ref="8" UseFont="false" UseForeColor="false" UseBackColor="false" UseTextAlignment="false" />
-        </Item2>
-        <Item3 Ref="9" ControlType="XRLabel" Name="xrLabel8" Multiline="true" Text="Consignee" SizeF="134.5833,23" LocationFloat="737.971,594.0928" Padding="2,2,0,0,100" />
-        <Item4 Ref="10" ControlType="XRLabel" Name="xrLabel7" Multiline="true" Text="Consignor" SizeF="139.5333,23" LocationFloat="539.8694,594.0928" Padding="2,2,0,0,100" />
-        <Item5 Ref="11" ControlType="XRTable" Name="xrTable17" SizeF="32.93256,25.83337" LocationFloat="694.2837,594.0928" Padding="2,2,0,0,96">
+        <Item1 Ref="6" ControlType="XRPictureBox" Name="xrPictureBox1" Sizing="StretchImage" SizeF="86.25475,77.11118" LocationFloat="225.0647,0">
+          <ExpressionBindings>
+            <Item1 Ref="7" EventName="BeforePrint" PropertyName="ImageSource" Expression="[companyLogo]" />
+          </ExpressionBindings>
+        </Item1>
+        <Item2 Ref="8" ControlType="XRLabel" Name="xrLabel10" Text="____________________________" SizeF="260.7857,25.00002" LocationFloat="760.8271,254.627" />
+        <Item3 Ref="9" ControlType="XRLabel" Name="xrLabel9" Multiline="true" Text="Surya Trans &amp; Logistic" TextAlignment="TopCenter" SizeF="468.125,36.65596" LocationFloat="311.3195,32.22221" Font="Times New Roman, 26pt, style=Bold" ForeColor="Black" BackColor="0,0,0,0" Padding="2,2,0,0,100">
+          <StylePriority Ref="10" UseFont="false" UseForeColor="false" UseBackColor="false" UseTextAlignment="false" />
+        </Item3>
+        <Item4 Ref="11" ControlType="XRLabel" Name="xrLabel8" Multiline="true" Text="Consignee" SizeF="134.5833,23" LocationFloat="737.971,594.0928" Padding="2,2,0,0,100" />
+        <Item5 Ref="12" ControlType="XRLabel" Name="xrLabel7" Multiline="true" Text="Consignor" SizeF="139.5333,23" LocationFloat="539.8694,594.0928" Padding="2,2,0,0,100" />
+        <Item6 Ref="13" ControlType="XRTable" Name="xrTable17" SizeF="32.93256,25.83337" LocationFloat="694.2837,594.0928" Padding="2,2,0,0,96">
           <Rows>
-            <Item1 Ref="12" ControlType="XRTableRow" Name="xrTableRow37" Weight="1">
+            <Item1 Ref="14" ControlType="XRTableRow" Name="xrTableRow37" Weight="1">
               <Cells>
-                <Item1 Ref="13" ControlType="XRTableCell" Name="xrTableCell80" Weight="1" Multiline="true" Borders="All">
-                  <StylePriority Ref="14" UseBorders="false" />
-                </Item1>
-              </Cells>
-            </Item1>
-          </Rows>
-        </Item5>
-        <Item6 Ref="15" ControlType="XRTable" Name="xrTable16" SizeF="27.86893,25.83337" LocationFloat="498.4662,594.0928" Padding="2,2,0,0,96">
-          <Rows>
-            <Item1 Ref="16" ControlType="XRTableRow" Name="xrTableRow36" Weight="1">
-              <Cells>
-                <Item1 Ref="17" ControlType="XRTableCell" Name="xrTableCell78" Weight="1" Multiline="true" Borders="All">
-                  <StylePriority Ref="18" UseBorders="false" />
+                <Item1 Ref="15" ControlType="XRTableCell" Name="xrTableCell80" Weight="1" Multiline="true" Borders="All">
+                  <StylePriority Ref="16" UseBorders="false" />
                 </Item1>
               </Cells>
             </Item1>
           </Rows>
         </Item6>
-        <Item7 Ref="19" ControlType="XRLabel" Name="xrLabel6" Multiline="true" Text="For ,Surya Trans &amp; Logistic" TextAlignment="TopCenter" SizeF="234.5833,16.51849" LocationFloat="782.1946,560.2595" Padding="2,2,0,0,100">
-          <StylePriority Ref="20" UseTextAlignment="false" />
-        </Item7>
-        <Item8 Ref="21" ControlType="XRLabel" Name="xrLabel5" Multiline="true" Text="GST Should Be Paid By" SizeF="228.75,23" LocationFloat="498.4662,560.2595" Padding="2,2,0,0,100" />
-        <Item9 Ref="22" ControlType="XRTable" Name="xrTable15" SizeF="431.1434,25" LocationFloat="46.99081,606.1299" Padding="2,2,0,0,96">
+        <Item7 Ref="17" ControlType="XRTable" Name="xrTable16" SizeF="27.86893,25.83337" LocationFloat="498.4662,594.0928" Padding="2,2,0,0,96">
           <Rows>
-            <Item1 Ref="23" ControlType="XRTableRow" Name="xrTableRow35" Weight="1">
+            <Item1 Ref="18" ControlType="XRTableRow" Name="xrTableRow36" Weight="1">
               <Cells>
-                <Item1 Ref="24" ControlType="XRTableCell" Name="xrTableCell67" Weight="1.9625089125667021" Text="Owener's Name &amp; Lic. No,  :" />
-                <Item2 Ref="25" ControlType="XRTableCell" Name="xrTableCell73" Weight="2.2374910874332978" Font="Times New Roman, 9.75pt, style=Underline">
-                  <StylePriority Ref="26" UseFont="false" />
-                </Item2>
+                <Item1 Ref="19" ControlType="XRTableCell" Name="xrTableCell78" Weight="1" Multiline="true" Borders="All">
+                  <StylePriority Ref="20" UseBorders="false" />
+                </Item1>
               </Cells>
             </Item1>
           </Rows>
-        </Item9>
-        <Item10 Ref="27" ControlType="XRTable" Name="xrTable14" SizeF="431.1434,25" LocationFloat="46.99078,573.1296" Padding="2,2,0,0,96">
+        </Item7>
+        <Item8 Ref="21" ControlType="XRLabel" Name="xrLabel6" Multiline="true" Text="For ,Surya Trans &amp; Logistic" TextAlignment="TopCenter" SizeF="234.5833,16.51849" LocationFloat="782.1946,560.2595" Padding="2,2,0,0,100">
+          <StylePriority Ref="22" UseTextAlignment="false" />
+        </Item8>
+        <Item9 Ref="23" ControlType="XRLabel" Name="xrLabel5" Multiline="true" Text="GST Should Be Paid By" SizeF="228.75,23" LocationFloat="498.4662,560.2595" Padding="2,2,0,0,100" />
+        <Item10 Ref="24" ControlType="XRTable" Name="xrTable15" SizeF="431.1434,25" LocationFloat="46.99081,606.1299" Padding="2,2,0,0,96">
           <Rows>
-            <Item1 Ref="28" ControlType="XRTableRow" Name="xrTableRow34" Weight="1">
+            <Item1 Ref="25" ControlType="XRTableRow" Name="xrTableRow35" Weight="1">
               <Cells>
-                <Item1 Ref="29" ControlType="XRTableCell" Name="xrTableCell65" Weight="1.9625092622332951" Text="Owener's Name &amp; Address :" />
-                <Item2 Ref="30" ControlType="XRTableCell" Name="xrTableCell66" Weight="2.2374907377667048" Font="Times New Roman, 9.75pt, style=Underline">
-                  <StylePriority Ref="31" UseFont="false" />
+                <Item1 Ref="26" ControlType="XRTableCell" Name="xrTableCell67" Weight="1.9625089125667021" Text="Owener's Name &amp; Lic. No,  :" />
+                <Item2 Ref="27" ControlType="XRTableCell" Name="xrTableCell73" Weight="2.2374910874332978" Font="Times New Roman, 9.75pt, style=Underline">
+                  <StylePriority Ref="28" UseFont="false" />
                 </Item2>
               </Cells>
             </Item1>
           </Rows>
         </Item10>
-        <Item11 Ref="32" ControlType="XRTable" Name="xrTable13" SizeF="238.2682,66.66666" LocationFloat="782.1946,9.222237" Padding="2,2,0,0,96" Borders="All">
+        <Item11 Ref="29" ControlType="XRTable" Name="xrTable14" SizeF="431.1434,25" LocationFloat="46.99078,573.1296" Padding="2,2,0,0,96">
           <Rows>
-            <Item1 Ref="33" ControlType="XRTableRow" Name="xrTableRow24" Weight="1">
+            <Item1 Ref="30" ControlType="XRTableRow" Name="xrTableRow34" Weight="1">
               <Cells>
-                <Item1 Ref="34" ControlType="XRTableCell" Name="xrTableCell43" Weight="0.28278173521336064" Multiline="true" Text="Tel. :" Font="Times New Roman, 9.75pt, style=Bold" Borders="None">
-                  <StylePriority Ref="35" UseFont="false" UseBorders="false" />
-                </Item1>
-                <Item2 Ref="36" ControlType="XRTableCell" Name="xrTableCell60" Weight="0.77485395897050813" Multiline="true" Text="+91 999999999" Font="Times New Roman, 9.75pt, style=Bold" Borders="None">
-                  <StylePriority Ref="37" UseFont="false" UseBorders="false" />
+                <Item1 Ref="31" ControlType="XRTableCell" Name="xrTableCell65" Weight="1.9625092622332951" Text="Owener's Name &amp; Address :" />
+                <Item2 Ref="32" ControlType="XRTableCell" Name="xrTableCell66" Weight="2.2374907377667048" Font="Times New Roman, 9.75pt, style=Underline">
+                  <StylePriority Ref="33" UseFont="false" />
                 </Item2>
               </Cells>
             </Item1>
-            <Item2 Ref="38" ControlType="XRTableRow" Name="xrTableRow25" Weight="1">
+          </Rows>
+        </Item11>
+        <Item12 Ref="34" ControlType="XRTable" Name="xrTable13" SizeF="238.2682,66.66666" LocationFloat="782.1946,9.222237" Padding="2,2,0,0,96" Borders="All">
+          <Rows>
+            <Item1 Ref="35" ControlType="XRTableRow" Name="xrTableRow24" Weight="1">
               <Cells>
-                <Item1 Ref="39" ControlType="XRTableCell" Name="xrTableCell59" Weight="0.31231537630854039" RowSpan="2" Multiline="true" Text="Mobile :" Font="Times New Roman, 9.75pt, style=Bold" Borders="None">
-                  <StylePriority Ref="40" UseFont="false" UseBorders="false" />
+                <Item1 Ref="36" ControlType="XRTableCell" Name="xrTableCell43" Weight="0.28278173521336064" Multiline="true" Text="Tel. :" Font="Times New Roman, 9.75pt, style=Bold" Borders="None">
+                  <StylePriority Ref="37" UseFont="false" UseBorders="false" />
                 </Item1>
-                <Item2 Ref="41" ControlType="XRTableCell" Name="xrTableCell62" Weight="0.74532031787532838" Multiline="true" Text="9999999999&#xD;&#xA;" Borders="None">
-                  <StylePriority Ref="42" UseBorders="false" />
+                <Item2 Ref="38" ControlType="XRTableCell" Name="xrTableCell60" Weight="0.77485395897050813" Multiline="true" Text="+91 999999999" Font="Times New Roman, 9.75pt, style=Bold" Borders="None">
+                  <StylePriority Ref="39" UseFont="false" UseBorders="false" />
+                </Item2>
+              </Cells>
+            </Item1>
+            <Item2 Ref="40" ControlType="XRTableRow" Name="xrTableRow25" Weight="1">
+              <Cells>
+                <Item1 Ref="41" ControlType="XRTableCell" Name="xrTableCell59" Weight="0.31231537630854039" RowSpan="2" Multiline="true" Text="Mobile :" Font="Times New Roman, 9.75pt, style=Bold" Borders="None">
+                  <StylePriority Ref="42" UseFont="false" UseBorders="false" />
+                </Item1>
+                <Item2 Ref="43" ControlType="XRTableCell" Name="xrTableCell62" Weight="0.74532031787532838" Multiline="true" Text="9999999999&#xD;&#xA;" Borders="None">
+                  <StylePriority Ref="44" UseBorders="false" />
                 </Item2>
               </Cells>
             </Item2>
-            <Item3 Ref="43" ControlType="XRTableRow" Name="xrTableRow26" Weight="1">
+            <Item3 Ref="45" ControlType="XRTableRow" Name="xrTableRow26" Weight="1">
               <Cells>
-                <Item1 Ref="44" ControlType="XRTableCell" Name="xrTableCell64" Weight="0.31231537630854039" Multiline="true" Text="xrTableCell64" />
-                <Item2 Ref="45" ControlType="XRTableCell" Name="xrTableCell63" Weight="0.74532031787532838" Multiline="true" Text="999999999" Borders="None">
-                  <StylePriority Ref="46" UseBorders="false" />
+                <Item1 Ref="46" ControlType="XRTableCell" Name="xrTableCell64" Weight="0.31231537630854039" Multiline="true" Text="xrTableCell64" />
+                <Item2 Ref="47" ControlType="XRTableCell" Name="xrTableCell63" Weight="0.74532031787532838" Multiline="true" Text="999999999" Borders="None">
+                  <StylePriority Ref="48" UseBorders="false" />
                 </Item2>
               </Cells>
             </Item3>
           </Rows>
-          <StylePriority Ref="47" UseBorders="false" />
-        </Item11>
-        <Item12 Ref="48" ControlType="XRTable" Name="xrTable12" SizeF="975.7169,177.9485" LocationFloat="44.74561,378.3333" Padding="2,2,0,0,96">
+          <StylePriority Ref="49" UseBorders="false" />
+        </Item12>
+        <Item13 Ref="50" ControlType="XRTable" Name="xrTable12" SizeF="975.7169,177.9485" LocationFloat="44.74561,378.3333" Padding="2,2,0,0,96">
           <Rows>
-            <Item1 Ref="49" ControlType="XRTableRow" Name="xrTableRow27" Weight="1">
+            <Item1 Ref="51" ControlType="XRTableRow" Name="xrTableRow27" Weight="1">
               <Cells>
-                <Item1 Ref="50" ControlType="XRTableCell" Name="xrTableCell69" Weight="0.52472109626584218" RowSpan="2" Multiline="true" Text="No. of&#xD;&#xA; pkgs" Borders="All">
-                  <StylePriority Ref="51" UseBorders="false" />
+                <Item1 Ref="52" ControlType="XRTableCell" Name="xrTableCell69" Weight="0.52472109626584218" RowSpan="2" Multiline="true" Text="No. of&#xD;&#xA; pkgs" Borders="All">
+                  <StylePriority Ref="53" UseBorders="false" />
                 </Item1>
-                <Item2 Ref="52" ControlType="XRTableCell" Name="xrTableCell70" Weight="2.1682601016936562" RowSpan="2" Multiline="true" Text="DESCRIPTION" TextAlignment="TopCenter" Borders="All">
-                  <StylePriority Ref="53" UseBorders="false" UseTextAlignment="false" />
-                </Item2>
-                <Item3 Ref="54" ControlType="XRTableCell" Name="xrTableCell71" Weight="1.3070184004934213" Multiline="true" Text="WEIGHT" TextAlignment="TopCenter" Borders="Left, Top, Right">
+                <Item2 Ref="54" ControlType="XRTableCell" Name="xrTableCell70" Weight="2.1682601016936562" RowSpan="2" Multiline="true" Text="DESCRIPTION" TextAlignment="TopCenter" Borders="All">
                   <StylePriority Ref="55" UseBorders="false" UseTextAlignment="false" />
-                </Item3>
-                <Item4 Ref="56" ControlType="XRTableCell" Name="xrTableCell72" Weight="0.77671412256935335" RowSpan="2" Multiline="true" Text="RATE" TextAlignment="TopCenter" Borders="All">
+                </Item2>
+                <Item3 Ref="56" ControlType="XRTableCell" Name="xrTableCell71" Weight="1.3070184004934213" Multiline="true" Text="WEIGHT" TextAlignment="TopCenter" Borders="Left, Top, Right">
                   <StylePriority Ref="57" UseBorders="false" UseTextAlignment="false" />
-                </Item4>
-                <Item5 Ref="58" ControlType="XRTableCell" Name="xrTableCell41" Weight="2.3987241316989971" Multiline="true" Text="FREIGHT" TextAlignment="TopCenter" Borders="All">
+                </Item3>
+                <Item4 Ref="58" ControlType="XRTableCell" Name="xrTableCell72" Weight="0.77671412256935335" RowSpan="2" Multiline="true" Text="RATE" TextAlignment="TopCenter" Borders="All">
                   <StylePriority Ref="59" UseBorders="false" UseTextAlignment="false" />
+                </Item4>
+                <Item5 Ref="60" ControlType="XRTableCell" Name="xrTableCell41" Weight="2.3987241316989971" Multiline="true" Text="FREIGHT" TextAlignment="TopCenter" Borders="All">
+                  <StylePriority Ref="61" UseBorders="false" UseTextAlignment="false" />
                 </Item5>
               </Cells>
             </Item1>
-            <Item2 Ref="60" ControlType="XRTableRow" Name="xrTableRow22" Weight="1">
+            <Item2 Ref="62" ControlType="XRTableRow" Name="xrTableRow22" Weight="1">
               <Cells>
-                <Item1 Ref="61" ControlType="XRTableCell" Name="xrTableCell34" Weight="0.52472109626584218" Multiline="true" Text="xrTableCell34" />
-                <Item2 Ref="62" ControlType="XRTableCell" Name="xrTableCell35" Weight="2.1682601016936562" Multiline="true" Text="xrTableCell35" />
-                <Item3 Ref="63" ControlType="XRTableCell" Name="xrTableCell38" Weight="0.675440095600329" Multiline="true" Text="Actual" TextAlignment="TopCenter" Borders="Bottom">
-                  <StylePriority Ref="64" UseBorders="false" UseTextAlignment="false" />
-                </Item3>
-                <Item4 Ref="65" ControlType="XRTableCell" Name="xrTableCell40" Weight="0.63157870644017278" Multiline="true" Text="Charged" TextAlignment="TopCenter" Borders="Right, Bottom">
+                <Item1 Ref="63" ControlType="XRTableCell" Name="xrTableCell34" Weight="0.52472109626584218" Multiline="true" Text="xrTableCell34" />
+                <Item2 Ref="64" ControlType="XRTableCell" Name="xrTableCell35" Weight="2.1682601016936562" Multiline="true" Text="xrTableCell35" />
+                <Item3 Ref="65" ControlType="XRTableCell" Name="xrTableCell38" Weight="0.675440095600329" Multiline="true" Text="Actual" TextAlignment="TopCenter" Borders="Bottom">
                   <StylePriority Ref="66" UseBorders="false" UseTextAlignment="false" />
+                </Item3>
+                <Item4 Ref="67" ControlType="XRTableCell" Name="xrTableCell40" Weight="0.63157870644017278" Multiline="true" Text="Charged" TextAlignment="TopCenter" Borders="Right, Bottom">
+                  <StylePriority Ref="68" UseBorders="false" UseTextAlignment="false" />
                 </Item4>
-                <Item5 Ref="67" ControlType="XRTableCell" Name="xrTableCell39" Weight="0.77671405368451363" Multiline="true" Text="Rate" />
-                <Item6 Ref="68" ControlType="XRTableCell" Name="xrTableCell37" Weight="0.68556215422055011" Multiline="true" Text="Rs.&#x9;&#x9;" Borders="Bottom">
-                  <StylePriority Ref="69" UseBorders="false" />
-                </Item6>
-                <Item7 Ref="70" ControlType="XRTableCell" Name="xrTableCell54" Weight="0.62544271845557131" Multiline="true" Text="Ps.&#xD;&#xA;" Borders="Bottom">
+                <Item5 Ref="69" ControlType="XRTableCell" Name="xrTableCell39" Weight="0.77671405368451363" Multiline="true" Text="Rate" />
+                <Item6 Ref="70" ControlType="XRTableCell" Name="xrTableCell37" Weight="0.68556215422055011" Multiline="true" Text="Rs.&#x9;&#x9;" Borders="Bottom">
                   <StylePriority Ref="71" UseBorders="false" />
-                </Item7>
-                <Item8 Ref="72" ControlType="XRTableCell" Name="xrTableCell36" Weight="0.54385946318031753" Multiline="true" Text="Rs." Borders="Bottom">
+                </Item6>
+                <Item7 Ref="72" ControlType="XRTableCell" Name="xrTableCell54" Weight="0.62544271845557131" Multiline="true" Text="Ps.&#xD;&#xA;" Borders="Bottom">
                   <StylePriority Ref="73" UseBorders="false" />
-                </Item8>
-                <Item9 Ref="74" ControlType="XRTableCell" Name="xrTableCell47" Weight="0.54385946318031753" Multiline="true" Text="Ps." Borders="Right, Bottom">
+                </Item7>
+                <Item8 Ref="74" ControlType="XRTableCell" Name="xrTableCell36" Weight="0.54385946318031753" Multiline="true" Text="Rs." Borders="Bottom">
                   <StylePriority Ref="75" UseBorders="false" />
+                </Item8>
+                <Item9 Ref="76" ControlType="XRTableCell" Name="xrTableCell47" Weight="0.54385946318031753" Multiline="true" Text="Ps." Borders="Right, Bottom">
+                  <StylePriority Ref="77" UseBorders="false" />
                 </Item9>
               </Cells>
             </Item2>
-            <Item3 Ref="76" ControlType="XRTableRow" Name="xrTableRow33" Weight="1">
+            <Item3 Ref="78" ControlType="XRTableRow" Name="xrTableRow33" Weight="1">
               <Cells>
-                <Item1 Ref="77" ControlType="XRTableCell" Name="xrTableCell117" Weight="0.52472061440936657" Multiline="true" Borders="Left, Top, Right">
-                  <StylePriority Ref="78" UseBorders="false" />
+                <Item1 Ref="79" ControlType="XRTableCell" Name="xrTableCell117" Weight="0.52472061440936657" Multiline="true" Borders="Left, Top, Right">
+                  <StylePriority Ref="80" UseBorders="false" />
                 </Item1>
-                <Item2 Ref="79" ControlType="XRTableCell" Name="xrTableCell118" Weight="2.1682605835501314" RowSpan="2" Multiline="true" Borders="All">
+                <Item2 Ref="81" ControlType="XRTableCell" Name="xrTableCell118" Weight="2.1682605835501314" RowSpan="2" Multiline="true" Borders="All">
                   <ExpressionBindings>
-                    <Item1 Ref="80" EventName="BeforePrint" PropertyName="Text" Expression="[product_Name]" />
+                    <Item1 Ref="82" EventName="BeforePrint" PropertyName="Text" Expression="[lrProductId]" />
                   </ExpressionBindings>
-                  <StylePriority Ref="81" UseBorders="false" />
-                </Item2>
-                <Item3 Ref="82" ControlType="XRTableCell" Name="xrTableCell119" Weight="0.675440095600329" RowSpan="2" Multiline="true" Borders="All">
                   <StylePriority Ref="83" UseBorders="false" />
-                </Item3>
-                <Item4 Ref="84" ControlType="XRTableCell" Name="xrTableCell120" Weight="0.63157870644017278" RowSpan="2" Multiline="true" Borders="All">
+                </Item2>
+                <Item3 Ref="84" ControlType="XRTableCell" Name="xrTableCell119" Weight="0.675440095600329" RowSpan="2" Multiline="true" Borders="All">
                   <StylePriority Ref="85" UseBorders="false" />
-                </Item4>
-                <Item5 Ref="86" ControlType="XRTableCell" Name="xrTableCell121" Weight="0.77671469615981437" Multiline="true" Borders="All">
+                </Item3>
+                <Item4 Ref="86" ControlType="XRTableCell" Name="xrTableCell120" Weight="0.63157870644017278" RowSpan="2" Multiline="true" Borders="All">
                   <StylePriority Ref="87" UseBorders="false" />
-                </Item5>
-                <Item6 Ref="88" ControlType="XRTableCell" Name="xrTableCell122" Weight="1.3110042302008207" Multiline="true" Borders="All">
+                </Item4>
+                <Item5 Ref="88" ControlType="XRTableCell" Name="xrTableCell121" Weight="0.77671469615981437" Multiline="true" Borders="All">
                   <StylePriority Ref="89" UseBorders="false" />
-                </Item6>
-                <Item7 Ref="90" ControlType="XRTableCell" Name="xrTableCell124" Weight="1.0877189263606351" Multiline="true" Borders="All">
+                </Item5>
+                <Item6 Ref="90" ControlType="XRTableCell" Name="xrTableCell122" Weight="1.3110042302008207" Multiline="true" Borders="All">
                   <StylePriority Ref="91" UseBorders="false" />
+                </Item6>
+                <Item7 Ref="92" ControlType="XRTableCell" Name="xrTableCell124" Weight="1.0877189263606351" Multiline="true" Borders="All">
+                  <StylePriority Ref="93" UseBorders="false" />
                 </Item7>
               </Cells>
             </Item3>
-            <Item4 Ref="92" ControlType="XRTableRow" Name="xrTableRow28" Weight="1">
+            <Item4 Ref="94" ControlType="XRTableRow" Name="xrTableRow28" Weight="1">
               <Cells>
-                <Item1 Ref="93" ControlType="XRTableCell" Name="xrTableCell61" Weight="0.52472061440936657" Multiline="true" Borders="Left, Right">
-                  <StylePriority Ref="94" UseBorders="false" />
+                <Item1 Ref="95" ControlType="XRTableCell" Name="xrTableCell61" Weight="0.52472061440936657" Multiline="true" Borders="Left, Right">
+                  <StylePriority Ref="96" UseBorders="false" />
                 </Item1>
-                <Item2 Ref="95" ControlType="XRTableCell" Name="xrTableCell68" Weight="2.1682605835501314" Multiline="true" Text="xrTableCell68" />
-                <Item3 Ref="96" ControlType="XRTableCell" Name="xrTableCell74" Weight="0.675440095600329" Multiline="true" Text="xrTableCell74" Borders="All">
-                  <StylePriority Ref="97" UseBorders="false" />
-                </Item3>
-                <Item4 Ref="98" ControlType="XRTableCell" Name="xrTableCell75" Weight="0.63157870644017278" Multiline="true" Text="xrTableCell75" Borders="All">
+                <Item2 Ref="97" ControlType="XRTableCell" Name="xrTableCell68" Weight="2.1682605835501314" Multiline="true" Text="xrTableCell68" />
+                <Item3 Ref="98" ControlType="XRTableCell" Name="xrTableCell74" Weight="0.675440095600329" Multiline="true" Text="xrTableCell74" Borders="All">
                   <StylePriority Ref="99" UseBorders="false" />
+                </Item3>
+                <Item4 Ref="100" ControlType="XRTableCell" Name="xrTableCell75" Weight="0.63157870644017278" Multiline="true" Text="xrTableCell75" Borders="All">
+                  <StylePriority Ref="101" UseBorders="false" />
                 </Item4>
-                <Item5 Ref="100" ControlType="XRTableCell" Name="xrTableCell76" Weight="0.77671469615981437" Multiline="true" Text="Freight" TextAlignment="TopRight" Borders="None">
-                  <StylePriority Ref="101" UseBorders="false" UseTextAlignment="false" />
+                <Item5 Ref="102" ControlType="XRTableCell" Name="xrTableCell76" Weight="0.77671469615981437" Multiline="true" Text="Freight" TextAlignment="TopRight" Borders="None">
+                  <StylePriority Ref="103" UseBorders="false" UseTextAlignment="false" />
                 </Item5>
-                <Item6 Ref="102" ControlType="XRTableCell" Name="xrTableCell77" Weight="1.3110042302008207" Multiline="true" Borders="All">
-                  <StylePriority Ref="103" UseBorders="false" />
-                </Item6>
-                <Item7 Ref="104" ControlType="XRTableCell" Name="xrTableCell79" Weight="1.0877189263606351" Multiline="true" Borders="All">
+                <Item6 Ref="104" ControlType="XRTableCell" Name="xrTableCell77" Weight="1.3110042302008207" Multiline="true" Borders="All">
                   <StylePriority Ref="105" UseBorders="false" />
+                </Item6>
+                <Item7 Ref="106" ControlType="XRTableCell" Name="xrTableCell79" Weight="1.0877189263606351" Multiline="true" Borders="All">
+                  <StylePriority Ref="107" UseBorders="false" />
                 </Item7>
               </Cells>
             </Item4>
-            <Item5 Ref="106" ControlType="XRTableRow" Name="xrTableRow29" Weight="1">
+            <Item5 Ref="108" ControlType="XRTableRow" Name="xrTableRow29" Weight="1">
               <Cells>
-                <Item1 Ref="107" ControlType="XRTableCell" Name="xrTableCell81" Weight="0.52472061440936657" Multiline="true" Borders="Left, Right">
-                  <StylePriority Ref="108" UseBorders="false" />
+                <Item1 Ref="109" ControlType="XRTableCell" Name="xrTableCell81" Weight="0.52472061440936657" Multiline="true" Borders="Left, Right">
+                  <StylePriority Ref="110" UseBorders="false" />
                 </Item1>
-                <Item2 Ref="109" ControlType="XRTableCell" Name="xrTableCell82" Weight="0.58971229978784245" Multiline="true" Text="G. P. No.  " />
-                <Item3 Ref="110" ControlType="XRTableCell" Name="xrTableCell49" Weight="0.10745544064827661" Multiline="true" Text=":" TextAlignment="TopCenter">
-                  <StylePriority Ref="111" UseTextAlignment="false" />
-                </Item3>
-                <Item4 Ref="112" ControlType="XRTableCell" Name="xrTableCell51" Weight="1.471092521876362" Multiline="true" TextAlignment="TopRight">
+                <Item2 Ref="111" ControlType="XRTableCell" Name="xrTableCell82" Weight="0.58971229978784245" Multiline="true" Text="G. P. No.  " />
+                <Item3 Ref="112" ControlType="XRTableCell" Name="xrTableCell49" Weight="0.10745544064827661" Multiline="true" Text=":" TextAlignment="TopCenter">
                   <StylePriority Ref="113" UseTextAlignment="false" />
+                </Item3>
+                <Item4 Ref="114" ControlType="XRTableCell" Name="xrTableCell51" Weight="1.471092521876362" Multiline="true" TextAlignment="TopRight">
+                  <StylePriority Ref="115" UseTextAlignment="false" />
                 </Item4>
-                <Item5 Ref="114" ControlType="XRTableCell" Name="xrTableCell83" Weight="0.67544041683797928" Multiline="true" Borders="All">
-                  <StylePriority Ref="115" UseBorders="false" />
-                </Item5>
-                <Item6 Ref="116" ControlType="XRTableCell" Name="xrTableCell84" Weight="0.63157870644017278" Multiline="true" Borders="All">
+                <Item5 Ref="116" ControlType="XRTableCell" Name="xrTableCell83" Weight="0.67544041683797928" Multiline="true" Borders="All">
                   <StylePriority Ref="117" UseBorders="false" />
+                </Item5>
+                <Item6 Ref="118" ControlType="XRTableCell" Name="xrTableCell84" Weight="0.63157870644017278" Multiline="true" Borders="All">
+                  <StylePriority Ref="119" UseBorders="false" />
                 </Item6>
-                <Item7 Ref="118" ControlType="XRTableCell" Name="xrTableCell85" Weight="0.77671469615981437" Multiline="true" Text="GST" TextAlignment="TopRight" Borders="None">
-                  <StylePriority Ref="119" UseBorders="false" UseTextAlignment="false" />
+                <Item7 Ref="120" ControlType="XRTableCell" Name="xrTableCell85" Weight="0.77671469615981437" Multiline="true" Text="GST" TextAlignment="TopRight" Borders="None">
+                  <StylePriority Ref="121" UseBorders="false" UseTextAlignment="false" />
                 </Item7>
-                <Item8 Ref="120" ControlType="XRTableCell" Name="xrTableCell86" Weight="1.3110042302008207" Multiline="true" Borders="All">
-                  <StylePriority Ref="121" UseBorders="false" />
-                </Item8>
-                <Item9 Ref="122" ControlType="XRTableCell" Name="xrTableCell88" Weight="1.0877189263606351" Multiline="true" Borders="All">
+                <Item8 Ref="122" ControlType="XRTableCell" Name="xrTableCell86" Weight="1.3110042302008207" Multiline="true" Borders="All">
                   <StylePriority Ref="123" UseBorders="false" />
+                </Item8>
+                <Item9 Ref="124" ControlType="XRTableCell" Name="xrTableCell88" Weight="1.0877189263606351" Multiline="true" Borders="All">
+                  <StylePriority Ref="125" UseBorders="false" />
                 </Item9>
               </Cells>
             </Item5>
-            <Item6 Ref="124" ControlType="XRTableRow" Name="xrTableRow30" Weight="1">
+            <Item6 Ref="126" ControlType="XRTableRow" Name="xrTableRow30" Weight="1">
               <Cells>
-                <Item1 Ref="125" ControlType="XRTableCell" Name="xrTableCell90" Weight="0.52472061440936657" Multiline="true" Borders="Left, Right">
-                  <StylePriority Ref="126" UseBorders="false" />
+                <Item1 Ref="127" ControlType="XRTableCell" Name="xrTableCell90" Weight="0.52472061440936657" Multiline="true" Borders="Left, Right">
+                  <StylePriority Ref="128" UseBorders="false" />
                 </Item1>
-                <Item2 Ref="127" ControlType="XRTableCell" Name="xrTableCell91" Weight="0.58971254071608015" Multiline="true" Text="C.S.T No. " />
-                <Item3 Ref="128" ControlType="XRTableCell" Name="xrTableCell52" Weight="0.10745493871444789" Multiline="true" Text=":" TextAlignment="TopCenter">
-                  <StylePriority Ref="129" UseTextAlignment="false" />
-                </Item3>
-                <Item4 Ref="130" ControlType="XRTableCell" Name="xrTableCell53" Weight="1.4710931041196034" Multiline="true" TextAlignment="TopRight">
+                <Item2 Ref="129" ControlType="XRTableCell" Name="xrTableCell91" Weight="0.58971254071608015" Multiline="true" Text="C.S.T No. " />
+                <Item3 Ref="130" ControlType="XRTableCell" Name="xrTableCell52" Weight="0.10745493871444789" Multiline="true" Text=":" TextAlignment="TopCenter">
                   <StylePriority Ref="131" UseTextAlignment="false" />
+                </Item3>
+                <Item4 Ref="132" ControlType="XRTableCell" Name="xrTableCell53" Weight="1.4710931041196034" Multiline="true" TextAlignment="TopRight">
+                  <StylePriority Ref="133" UseTextAlignment="false" />
                 </Item4>
-                <Item5 Ref="132" ControlType="XRTableCell" Name="xrTableCell92" Weight="0.675440095600329" Multiline="true" Borders="All">
-                  <StylePriority Ref="133" UseBorders="false" />
-                </Item5>
-                <Item6 Ref="134" ControlType="XRTableCell" Name="xrTableCell93" Weight="0.63157870644017278" Multiline="true" Borders="All">
+                <Item5 Ref="134" ControlType="XRTableCell" Name="xrTableCell92" Weight="0.675440095600329" Multiline="true" Borders="All">
                   <StylePriority Ref="135" UseBorders="false" />
+                </Item5>
+                <Item6 Ref="136" ControlType="XRTableCell" Name="xrTableCell93" Weight="0.63157870644017278" Multiline="true" Borders="All">
+                  <StylePriority Ref="137" UseBorders="false" />
                 </Item6>
-                <Item7 Ref="136" ControlType="XRTableCell" Name="xrTableCell94" Weight="0.77671469615981437" Multiline="true" Text="Hamali" TextAlignment="TopRight" Borders="None">
-                  <StylePriority Ref="137" UseBorders="false" UseTextAlignment="false" />
+                <Item7 Ref="138" ControlType="XRTableCell" Name="xrTableCell94" Weight="0.77671469615981437" Multiline="true" Text="Hamali" TextAlignment="TopRight" Borders="None">
+                  <StylePriority Ref="139" UseBorders="false" UseTextAlignment="false" />
                 </Item7>
-                <Item8 Ref="138" ControlType="XRTableCell" Name="xrTableCell95" Weight="1.3110042302008207" Multiline="true" Borders="All">
-                  <StylePriority Ref="139" UseBorders="false" />
-                </Item8>
-                <Item9 Ref="140" ControlType="XRTableCell" Name="xrTableCell97" Weight="1.0877189263606351" Multiline="true" Borders="All">
+                <Item8 Ref="140" ControlType="XRTableCell" Name="xrTableCell95" Weight="1.3110042302008207" Multiline="true" Borders="All">
                   <StylePriority Ref="141" UseBorders="false" />
+                </Item8>
+                <Item9 Ref="142" ControlType="XRTableCell" Name="xrTableCell97" Weight="1.0877189263606351" Multiline="true" Borders="All">
+                  <StylePriority Ref="143" UseBorders="false" />
                 </Item9>
               </Cells>
             </Item6>
-            <Item7 Ref="142" ControlType="XRTableRow" Name="xrTableRow31" Weight="1">
+            <Item7 Ref="144" ControlType="XRTableRow" Name="xrTableRow31" Weight="1">
               <Cells>
-                <Item1 Ref="143" ControlType="XRTableCell" Name="xrTableCell99" Weight="0.52472061440936657" Multiline="true" Borders="Left, Right">
-                  <StylePriority Ref="144" UseBorders="false" />
+                <Item1 Ref="145" ControlType="XRTableCell" Name="xrTableCell99" Weight="0.52472061440936657" Multiline="true" Borders="Left, Right">
+                  <StylePriority Ref="146" UseBorders="false" />
                 </Item1>
-                <Item2 Ref="145" ControlType="XRTableCell" Name="xrTableCell100" Weight="0.58971205885960476" Multiline="true" Text="B.E. No.  " />
-                <Item3 Ref="146" ControlType="XRTableCell" Name="xrTableCell55" Weight="0.10745622366504948" Multiline="true" Text=":" TextAlignment="TopCenter">
-                  <StylePriority Ref="147" UseTextAlignment="false" />
-                </Item3>
-                <Item4 Ref="148" ControlType="XRTableCell" Name="xrTableCell56" Weight="1.4710923010254773" Multiline="true" TextAlignment="TopRight">
+                <Item2 Ref="147" ControlType="XRTableCell" Name="xrTableCell100" Weight="0.58971205885960476" Multiline="true" Text="B.E. No.  " />
+                <Item3 Ref="148" ControlType="XRTableCell" Name="xrTableCell55" Weight="0.10745622366504948" Multiline="true" Text=":" TextAlignment="TopCenter">
                   <StylePriority Ref="149" UseTextAlignment="false" />
+                </Item3>
+                <Item4 Ref="150" ControlType="XRTableCell" Name="xrTableCell56" Weight="1.4710923010254773" Multiline="true" TextAlignment="TopRight">
+                  <StylePriority Ref="151" UseTextAlignment="false" />
                 </Item4>
-                <Item5 Ref="150" ControlType="XRTableCell" Name="xrTableCell101" Weight="0.675440095600329" Multiline="true" Borders="All">
-                  <StylePriority Ref="151" UseBorders="false" />
-                </Item5>
-                <Item6 Ref="152" ControlType="XRTableCell" Name="xrTableCell102" Weight="0.63157870644017278" Multiline="true" Borders="All">
+                <Item5 Ref="152" ControlType="XRTableCell" Name="xrTableCell101" Weight="0.675440095600329" Multiline="true" Borders="All">
                   <StylePriority Ref="153" UseBorders="false" />
+                </Item5>
+                <Item6 Ref="154" ControlType="XRTableCell" Name="xrTableCell102" Weight="0.63157870644017278" Multiline="true" Borders="All">
+                  <StylePriority Ref="155" UseBorders="false" />
                 </Item6>
-                <Item7 Ref="154" ControlType="XRTableCell" Name="xrTableCell103" Weight="0.77671469615981437" Multiline="true" Text="Advance" TextAlignment="TopRight" Borders="None">
-                  <StylePriority Ref="155" UseBorders="false" UseTextAlignment="false" />
+                <Item7 Ref="156" ControlType="XRTableCell" Name="xrTableCell103" Weight="0.77671469615981437" Multiline="true" Text="Advance" TextAlignment="TopRight" Borders="None">
+                  <StylePriority Ref="157" UseBorders="false" UseTextAlignment="false" />
                 </Item7>
-                <Item8 Ref="156" ControlType="XRTableCell" Name="xrTableCell104" Weight="1.3110042302008207" Multiline="true" Borders="All">
-                  <StylePriority Ref="157" UseBorders="false" />
-                </Item8>
-                <Item9 Ref="158" ControlType="XRTableCell" Name="xrTableCell106" Weight="1.0877189263606351" Multiline="true" Borders="All">
+                <Item8 Ref="158" ControlType="XRTableCell" Name="xrTableCell104" Weight="1.3110042302008207" Multiline="true" Borders="All">
                   <StylePriority Ref="159" UseBorders="false" />
+                </Item8>
+                <Item9 Ref="160" ControlType="XRTableCell" Name="xrTableCell106" Weight="1.0877189263606351" Multiline="true" Borders="All">
+                  <StylePriority Ref="161" UseBorders="false" />
                 </Item9>
               </Cells>
             </Item7>
-            <Item8 Ref="160" ControlType="XRTableRow" Name="xrTableRow32" Weight="1">
+            <Item8 Ref="162" ControlType="XRTableRow" Name="xrTableRow32" Weight="1">
               <Cells>
-                <Item1 Ref="161" ControlType="XRTableCell" Name="xrTableCell108" Weight="0.52472061440936657" Multiline="true" Borders="Left, Right">
-                  <StylePriority Ref="162" UseBorders="false" />
+                <Item1 Ref="163" ControlType="XRTableCell" Name="xrTableCell108" Weight="0.52472061440936657" Multiline="true" Borders="Left, Right">
+                  <StylePriority Ref="164" UseBorders="false" />
                 </Item1>
-                <Item2 Ref="163" ControlType="XRTableCell" Name="xrTableCell109" Weight="0.69716725754325148" Multiline="true" Text="Values Rs. " Font="Times New Roman, 9.44pt" Borders="All">
-                  <StylePriority Ref="164" UseFont="false" UseBorders="false" />
+                <Item2 Ref="165" ControlType="XRTableCell" Name="xrTableCell109" Weight="0.69716725754325148" Multiline="true" Text="Values Rs. " Font="Times New Roman, 9.44pt" Borders="All">
+                  <StylePriority Ref="166" UseFont="false" UseBorders="false" />
                 </Item2>
-                <Item3 Ref="165" ControlType="XRTableCell" Name="xrTableCell57" Weight="1.47109332600688" Multiline="true" TextAlignment="TopRight" Borders="Left, Top, Right">
-                  <StylePriority Ref="166" UseBorders="false" UseTextAlignment="false" />
+                <Item3 Ref="167" ControlType="XRTableCell" Name="xrTableCell57" Weight="1.47109332600688" Multiline="true" TextAlignment="TopRight" Borders="Left, Top, Right">
+                  <StylePriority Ref="168" UseBorders="false" UseTextAlignment="false" />
                 </Item3>
-                <Item4 Ref="167" ControlType="XRTableCell" Name="xrTableCell110" Weight="0.675440095600329" Multiline="true" Borders="All">
-                  <StylePriority Ref="168" UseBorders="false" />
-                </Item4>
-                <Item5 Ref="169" ControlType="XRTableCell" Name="xrTableCell111" Weight="0.63157870644017278" Multiline="true" Borders="All">
+                <Item4 Ref="169" ControlType="XRTableCell" Name="xrTableCell110" Weight="0.675440095600329" Multiline="true" Borders="All">
                   <StylePriority Ref="170" UseBorders="false" />
+                </Item4>
+                <Item5 Ref="171" ControlType="XRTableCell" Name="xrTableCell111" Weight="0.63157870644017278" Multiline="true" Borders="All">
+                  <StylePriority Ref="172" UseBorders="false" />
                 </Item5>
-                <Item6 Ref="171" ControlType="XRTableCell" Name="xrTableCell112" Weight="0.77671469615981437" Multiline="true" Text="Balance" TextAlignment="TopRight" Borders="None">
-                  <StylePriority Ref="172" UseBorders="false" UseTextAlignment="false" />
+                <Item6 Ref="173" ControlType="XRTableCell" Name="xrTableCell112" Weight="0.77671469615981437" Multiline="true" Text="Balance" TextAlignment="TopRight" Borders="None">
+                  <StylePriority Ref="174" UseBorders="false" UseTextAlignment="false" />
                 </Item6>
-                <Item7 Ref="173" ControlType="XRTableCell" Name="xrTableCell113" Weight="1.3110042302008207" Multiline="true" Borders="All">
-                  <StylePriority Ref="174" UseBorders="false" />
-                </Item7>
-                <Item8 Ref="175" ControlType="XRTableCell" Name="xrTableCell115" Weight="1.0877189263606351" Multiline="true" Borders="All">
+                <Item7 Ref="175" ControlType="XRTableCell" Name="xrTableCell113" Weight="1.3110042302008207" Multiline="true" Borders="All">
                   <StylePriority Ref="176" UseBorders="false" />
+                </Item7>
+                <Item8 Ref="177" ControlType="XRTableCell" Name="xrTableCell115" Weight="1.0877189263606351" Multiline="true" Borders="All">
+                  <StylePriority Ref="178" UseBorders="false" />
                 </Item8>
               </Cells>
             </Item8>
-            <Item9 Ref="177" ControlType="XRTableRow" Name="xrTableRow23" Weight="1">
+            <Item9 Ref="179" ControlType="XRTableRow" Name="xrTableRow23" Weight="1">
               <Cells>
-                <Item1 Ref="178" ControlType="XRTableCell" Name="xrTableCell42" Weight="0.52472051240854589" Multiline="true" Borders="Left, Right, Bottom">
-                  <StylePriority Ref="179" UseBorders="false" />
-                </Item1>
-                <Item2 Ref="180" ControlType="XRTableCell" Name="xrTableCell58" Weight="2.168260381767817" Multiline="true" Borders="Left, Right, Bottom">
+                <Item1 Ref="180" ControlType="XRTableCell" Name="xrTableCell42" Weight="0.52472051240854589" Multiline="true" Borders="Left, Right, Bottom">
                   <StylePriority Ref="181" UseBorders="false" />
-                </Item2>
-                <Item3 Ref="182" ControlType="XRTableCell" Name="xrTableCell44" Weight="0.67544039938346412" Multiline="true" Borders="All">
+                </Item1>
+                <Item2 Ref="182" ControlType="XRTableCell" Name="xrTableCell58" Weight="2.168260381767817" Multiline="true" Borders="Left, Right, Bottom">
                   <StylePriority Ref="183" UseBorders="false" />
-                </Item3>
-                <Item4 Ref="184" ControlType="XRTableCell" Name="xrTableCell45" Weight="0.63157870644017278" Multiline="true" Borders="All">
+                </Item2>
+                <Item3 Ref="184" ControlType="XRTableCell" Name="xrTableCell44" Weight="0.67544039938346412" Multiline="true" Borders="All">
                   <StylePriority Ref="185" UseBorders="false" />
+                </Item3>
+                <Item4 Ref="186" ControlType="XRTableCell" Name="xrTableCell45" Weight="0.63157870644017278" Multiline="true" Borders="All">
+                  <StylePriority Ref="187" UseBorders="false" />
                 </Item4>
-                <Item5 Ref="186" ControlType="XRTableCell" Name="xrTableCell46" Weight="0.77671469615981437" Multiline="true" Text="TOTAL" TextAlignment="TopRight" Borders="Left, Right, Bottom">
-                  <StylePriority Ref="187" UseBorders="false" UseTextAlignment="false" />
+                <Item5 Ref="188" ControlType="XRTableCell" Name="xrTableCell46" Weight="0.77671469615981437" Multiline="true" Text="TOTAL" TextAlignment="TopRight" Borders="Left, Right, Bottom">
+                  <StylePriority Ref="189" UseBorders="false" UseTextAlignment="false" />
                 </Item5>
-                <Item6 Ref="188" ControlType="XRTableCell" Name="xrTableCell48" Weight="1.3110042302008207" Multiline="true" Borders="All">
-                  <StylePriority Ref="189" UseBorders="false" />
-                </Item6>
-                <Item7 Ref="190" ControlType="XRTableCell" Name="xrTableCell50" Weight="1.0877189263606351" Multiline="true" Borders="All">
+                <Item6 Ref="190" ControlType="XRTableCell" Name="xrTableCell48" Weight="1.3110042302008207" Multiline="true" Borders="All">
                   <StylePriority Ref="191" UseBorders="false" />
+                </Item6>
+                <Item7 Ref="192" ControlType="XRTableCell" Name="xrTableCell50" Weight="1.0877189263606351" Multiline="true" Borders="All">
+                  <StylePriority Ref="193" UseBorders="false" />
                 </Item7>
               </Cells>
             </Item9>
           </Rows>
-        </Item12>
-        <Item13 Ref="192" ControlType="XRLabel" Name="xrLabel4" Multiline="true" Text="AT &#xD;&#xA;OWNER'S Risk" TextAlignment="TopCenter" SizeF="142.2685,58.09256" LocationFloat="444.242,301.2938" Padding="2,2,0,0,100" Borders="All">
-          <StylePriority Ref="193" UseBorders="false" UseTextAlignment="false" />
         </Item13>
-        <Item14 Ref="194" ControlType="XRTable" Name="xrTable11" SizeF="323.0092,87.96295" LocationFloat="697.8242,284.627" Padding="2,2,0,0,96">
-          <Rows>
-            <Item1 Ref="195" ControlType="XRTableRow" Name="xrTableRow21" Weight="1">
-              <Cells>
-                <Item1 Ref="196" ControlType="XRTableCell" Name="xrTableCell32" Weight="1.0583337402343749" Multiline="true" Text="Consignee :" Font="Times New Roman, 9.75pt, style=Bold" Borders="Left, Top, Bottom">
-                  <StylePriority Ref="197" UseFont="false" UseBorders="false" />
-                </Item1>
-                <Item2 Ref="198" ControlType="XRTableCell" Name="xrTableCell33" Weight="2.1833331298828127" Multiline="true" Borders="Top, Right, Bottom">
-                  <ExpressionBindings>
-                    <Item1 Ref="199" EventName="BeforePrint" PropertyName="Text" Expression="[consignee_Name]" />
-                  </ExpressionBindings>
-                  <StylePriority Ref="200" UseBorders="false" />
-                </Item2>
-              </Cells>
-            </Item1>
-          </Rows>
+        <Item14 Ref="194" ControlType="XRLabel" Name="xrLabel4" Multiline="true" Text="AT &#xD;&#xA;OWNER'S Risk" TextAlignment="TopCenter" SizeF="142.2685,58.09256" LocationFloat="444.242,301.2938" Padding="2,2,0,0,100" Borders="All">
+          <StylePriority Ref="195" UseBorders="false" UseTextAlignment="false" />
         </Item14>
-        <Item15 Ref="201" ControlType="XRTable" Name="xrTable10" SizeF="326.3426,87.96295" LocationFloat="44.74561,284.627" Padding="2,2,0,0,96" Borders="All">
+        <Item15 Ref="196" ControlType="XRTable" Name="xrTable11" SizeF="323.0092,87.96295" LocationFloat="697.8242,284.627" Padding="2,2,0,0,96">
           <Rows>
-            <Item1 Ref="202" ControlType="XRTableRow" Name="xrTableRow20" Weight="1">
+            <Item1 Ref="197" ControlType="XRTableRow" Name="xrTableRow21" Weight="1">
               <Cells>
-                <Item1 Ref="203" ControlType="XRTableCell" Name="xrTableCell30" Weight="1.0583337402343749" Multiline="true" Text="Consignor : " Font="Times New Roman, 9.75pt, style=Bold" Borders="Left, Top, Bottom">
-                  <StylePriority Ref="204" UseFont="false" UseBorders="false" />
+                <Item1 Ref="198" ControlType="XRTableCell" Name="xrTableCell32" Weight="1.0583337402343749" Multiline="true" Text="Consignee :" Font="Times New Roman, 9.75pt, style=Bold" Borders="Left, Top, Bottom">
+                  <StylePriority Ref="199" UseFont="false" UseBorders="false" />
                 </Item1>
-                <Item2 Ref="205" ControlType="XRTableCell" Name="xrTableCell31" Weight="2.1833331298828127" Multiline="true" Borders="Top, Right, Bottom">
+                <Item2 Ref="200" ControlType="XRTableCell" Name="xrTableCell33" Weight="2.1833331298828127" Multiline="true" Borders="Top, Right, Bottom">
                   <ExpressionBindings>
-                    <Item1 Ref="206" EventName="BeforePrint" PropertyName="Text" Expression="[consignor_Name]" />
+                    <Item1 Ref="201" EventName="BeforePrint" PropertyName="Text" Expression="[lrConsigneeName]" />
                   </ExpressionBindings>
-                  <StylePriority Ref="207" UseBorders="false" />
+                  <StylePriority Ref="202" UseBorders="false" />
                 </Item2>
               </Cells>
             </Item1>
           </Rows>
-          <StylePriority Ref="208" UseBorders="false" />
         </Item15>
-        <Item16 Ref="209" ControlType="XRTable" Name="xrTable9" SizeF="353.6309,24.99998" LocationFloat="269.8611,254.627" Padding="2,2,0,0,96">
+        <Item16 Ref="203" ControlType="XRTable" Name="xrTable10" SizeF="326.3426,87.96295" LocationFloat="44.74561,284.627" Padding="2,2,0,0,96" Borders="All">
           <Rows>
-            <Item1 Ref="210" ControlType="XRTableRow" Name="xrTableRow19" Weight="1">
+            <Item1 Ref="204" ControlType="XRTableRow" Name="xrTableRow20" Weight="1">
               <Cells>
-                <Item1 Ref="211" ControlType="XRTableCell" Name="xrTableCell28" Weight="0.95714263916015618" Multiline="true" Text="Container No.  :" />
-                <Item2 Ref="212" ControlType="XRTableCell" Name="xrTableCell29" Weight="2.0074339140549267" Multiline="true" Text="_________________________________" Font="Times New Roman, 9.75pt" Borders="None">
-                  <StylePriority Ref="213" UseFont="false" UseBorders="false" />
+                <Item1 Ref="205" ControlType="XRTableCell" Name="xrTableCell30" Weight="1.0583337402343749" Multiline="true" Text="Consignor : " Font="Times New Roman, 9.75pt, style=Bold" Borders="Left, Top, Bottom">
+                  <StylePriority Ref="206" UseFont="false" UseBorders="false" />
+                </Item1>
+                <Item2 Ref="207" ControlType="XRTableCell" Name="xrTableCell31" Weight="2.1833331298828127" Multiline="true" Borders="Top, Right, Bottom">
+                  <ExpressionBindings>
+                    <Item1 Ref="208" EventName="BeforePrint" PropertyName="Text" Expression="[lrConsignorName]" />
+                  </ExpressionBindings>
+                  <StylePriority Ref="209" UseBorders="false" />
                 </Item2>
               </Cells>
             </Item1>
           </Rows>
+          <StylePriority Ref="210" UseBorders="false" />
         </Item16>
-        <Item17 Ref="214" ControlType="XRTable" Name="xrTable8" SizeF="126.9185,24.99998" LocationFloat="633.9086,254.627" Padding="2,2,0,0,96">
+        <Item17 Ref="211" ControlType="XRTable" Name="xrTable9" SizeF="353.6309,24.99998" LocationFloat="269.8611,254.627" Padding="2,2,0,0,96">
           <Rows>
-            <Item1 Ref="215" ControlType="XRTableRow" Name="xrTableRow18" Weight="1">
+            <Item1 Ref="212" ControlType="XRTableRow" Name="xrTableRow19" Weight="1">
               <Cells>
-                <Item1 Ref="216" ControlType="XRTableCell" Name="xrTableCell26" Weight="1.0583337402343749" Multiline="true" Text="Delivery Address :" />
+                <Item1 Ref="213" ControlType="XRTableCell" Name="xrTableCell28" Weight="0.95714263916015618" Multiline="true" Text="Container No.  :" />
+                <Item2 Ref="214" ControlType="XRTableCell" Name="xrTableCell29" Weight="2.0074339140549267" Multiline="true" Text="_________________________________" Font="Times New Roman, 9.75pt" Borders="None">
+                  <StylePriority Ref="215" UseFont="false" UseBorders="false" />
+                </Item2>
               </Cells>
             </Item1>
           </Rows>
         </Item17>
-        <Item18 Ref="217" ControlType="XRTable" Name="xrTable7" SizeF="249.2772,150" LocationFloat="771.1855,98.83336" Padding="2,2,0,0,96" CanPublish="false">
+        <Item18 Ref="216" ControlType="XRTable" Name="xrTable8" SizeF="126.9185,24.99998" LocationFloat="633.9086,254.627" Padding="2,2,0,0,96">
           <Rows>
-            <Item1 Ref="218" ControlType="XRTableRow" Name="xrTableRow12" Weight="1">
+            <Item1 Ref="217" ControlType="XRTableRow" Name="xrTableRow18" Weight="1">
               <Cells>
-                <Item1 Ref="219" ControlType="XRTableCell" Name="xrTableCell14" Weight="1" Multiline="true" Text="Date :" TextAlignment="TopRight" Borders="Left, Top, Bottom">
-                  <StylePriority Ref="220" UseBorders="false" UseTextAlignment="false" />
+                <Item1 Ref="218" ControlType="XRTableCell" Name="xrTableCell26" Weight="1.0583337402343749" Multiline="true" Text="Delivery Address :" />
+              </Cells>
+            </Item1>
+          </Rows>
+        </Item18>
+        <Item19 Ref="219" ControlType="XRTable" Name="xrTable7" SizeF="249.2772,150" LocationFloat="771.1855,98.83336" Padding="2,2,0,0,96" CanPublish="false">
+          <Rows>
+            <Item1 Ref="220" ControlType="XRTableRow" Name="xrTableRow12" Weight="1">
+              <Cells>
+                <Item1 Ref="221" ControlType="XRTableCell" Name="xrTableCell14" Weight="1" Multiline="true" Text="Date :" TextAlignment="TopRight" Borders="Left, Top, Bottom">
+                  <StylePriority Ref="222" UseBorders="false" UseTextAlignment="false" />
                 </Item1>
-                <Item2 Ref="221" ControlType="XRTableCell" Name="xrTableCell15" Weight="2.4285714285714284" Multiline="true" Borders="Top, Right, Bottom">
+                <Item2 Ref="223" ControlType="XRTableCell" Name="xrTableCell15" Weight="2.4285714285714284" Multiline="true" Borders="Top, Right, Bottom">
                   <ExpressionBindings>
-                    <Item1 Ref="222" EventName="BeforePrint" PropertyName="Text" Expression="[lrDate]" />
+                    <Item1 Ref="224" EventName="BeforePrint" PropertyName="Text" Expression="[lrDate]" />
                   </ExpressionBindings>
-                  <StylePriority Ref="223" UseBorders="false" />
+                  <StylePriority Ref="225" UseBorders="false" />
                 </Item2>
               </Cells>
             </Item1>
-            <Item2 Ref="224" ControlType="XRTableRow" Name="xrTableRow13" Weight="1">
+            <Item2 Ref="226" ControlType="XRTableRow" Name="xrTableRow13" Weight="1">
               <Cells>
-                <Item1 Ref="225" ControlType="XRTableCell" Name="xrTableCell16" Weight="1" Multiline="true" Text="Truck No. :" TextAlignment="TopRight" Borders="Left, Top, Bottom">
-                  <StylePriority Ref="226" UseBorders="false" UseTextAlignment="false" />
+                <Item1 Ref="227" ControlType="XRTableCell" Name="xrTableCell16" Weight="1" Multiline="true" Text="Truck No. :" TextAlignment="TopRight" Borders="Left, Top, Bottom">
+                  <StylePriority Ref="228" UseBorders="false" UseTextAlignment="false" />
                 </Item1>
-                <Item2 Ref="227" ControlType="XRTableCell" Name="xrTableCell17" Weight="2.4285714285714284" Multiline="true" Borders="Top, Right, Bottom">
-                  <StylePriority Ref="228" UseBorders="false" />
+                <Item2 Ref="229" ControlType="XRTableCell" Name="xrTableCell17" Weight="2.4285714285714284" Multiline="true" Borders="Top, Right, Bottom">
+                  <StylePriority Ref="230" UseBorders="false" />
                 </Item2>
               </Cells>
             </Item2>
-            <Item3 Ref="229" ControlType="XRTableRow" Name="xrTableRow14" Weight="1">
+            <Item3 Ref="231" ControlType="XRTableRow" Name="xrTableRow14" Weight="1">
               <Cells>
-                <Item1 Ref="230" ControlType="XRTableCell" Name="xrTableCell18" Weight="1" Multiline="true" Text="From :" TextAlignment="TopRight" Borders="Left, Top, Bottom">
-                  <StylePriority Ref="231" UseBorders="false" UseTextAlignment="false" />
+                <Item1 Ref="232" ControlType="XRTableCell" Name="xrTableCell18" Weight="1" Multiline="true" Text="From :" TextAlignment="TopRight" Borders="Left, Top, Bottom">
+                  <StylePriority Ref="233" UseBorders="false" UseTextAlignment="false" />
                 </Item1>
-                <Item2 Ref="232" ControlType="XRTableCell" Name="xrTableCell19" Weight="2.4285714285714284" Multiline="true" Borders="Top, Right, Bottom">
-                  <StylePriority Ref="233" UseBorders="false" />
+                <Item2 Ref="234" ControlType="XRTableCell" Name="xrTableCell19" Weight="2.4285714285714284" Multiline="true" Borders="Top, Right, Bottom">
+                  <ExpressionBindings>
+                    <Item1 Ref="235" EventName="BeforePrint" PropertyName="Text" Expression="[lrFromLocationId]" />
+                  </ExpressionBindings>
+                  <StylePriority Ref="236" UseBorders="false" />
                 </Item2>
               </Cells>
             </Item3>
-            <Item4 Ref="234" ControlType="XRTableRow" Name="xrTableRow15" Weight="1">
+            <Item4 Ref="237" ControlType="XRTableRow" Name="xrTableRow15" Weight="1">
               <Cells>
-                <Item1 Ref="235" ControlType="XRTableCell" Name="xrTableCell20" Weight="1" Multiline="true" Text="To :" TextAlignment="TopRight" Borders="Left, Top, Bottom">
-                  <StylePriority Ref="236" UseBorders="false" UseTextAlignment="false" />
+                <Item1 Ref="238" ControlType="XRTableCell" Name="xrTableCell20" Weight="1" Multiline="true" Text="To :" TextAlignment="TopRight" Borders="Left, Top, Bottom">
+                  <StylePriority Ref="239" UseBorders="false" UseTextAlignment="false" />
                 </Item1>
-                <Item2 Ref="237" ControlType="XRTableCell" Name="xrTableCell21" Weight="2.4285714285714284" Multiline="true" Borders="Top, Right, Bottom">
-                  <StylePriority Ref="238" UseBorders="false" />
+                <Item2 Ref="240" ControlType="XRTableCell" Name="xrTableCell21" Weight="2.4285714285714284" Multiline="true" Borders="Top, Right, Bottom">
+                  <ExpressionBindings>
+                    <Item1 Ref="241" EventName="BeforePrint" PropertyName="Text" Expression="[lrToLocationId]" />
+                  </ExpressionBindings>
+                  <StylePriority Ref="242" UseBorders="false" />
                 </Item2>
               </Cells>
             </Item4>
-            <Item5 Ref="239" ControlType="XRTableRow" Name="xrTableRow16" Weight="1">
+            <Item5 Ref="243" ControlType="XRTableRow" Name="xrTableRow16" Weight="1">
               <Cells>
-                <Item1 Ref="240" ControlType="XRTableCell" Name="xrTableCell22" Weight="1" Multiline="true" Text="Bsck :" TextAlignment="TopRight" Borders="Left, Top, Bottom">
-                  <StylePriority Ref="241" UseBorders="false" UseTextAlignment="false" />
+                <Item1 Ref="244" ControlType="XRTableCell" Name="xrTableCell22" Weight="1" Multiline="true" Text="Bsck :" TextAlignment="TopRight" Borders="Left, Top, Bottom">
+                  <StylePriority Ref="245" UseBorders="false" UseTextAlignment="false" />
                 </Item1>
-                <Item2 Ref="242" ControlType="XRTableCell" Name="xrTableCell23" Weight="2.4285714285714284" Multiline="true" Borders="Top, Right, Bottom">
-                  <StylePriority Ref="243" UseBorders="false" />
+                <Item2 Ref="246" ControlType="XRTableCell" Name="xrTableCell23" Weight="2.4285714285714284" Multiline="true" Borders="Top, Right, Bottom">
+                  <StylePriority Ref="247" UseBorders="false" />
                 </Item2>
               </Cells>
             </Item5>
-            <Item6 Ref="244" ControlType="XRTableRow" Name="xrTableRow17" Weight="1">
+            <Item6 Ref="248" ControlType="XRTableRow" Name="xrTableRow17" Weight="1">
               <Cells>
-                <Item1 Ref="245" ControlType="XRTableCell" Name="xrTableCell24" Weight="1" Multiline="true" Text="POD :" TextAlignment="TopRight" Borders="Left, Top, Bottom">
-                  <StylePriority Ref="246" UseBorders="false" UseTextAlignment="false" />
+                <Item1 Ref="249" ControlType="XRTableCell" Name="xrTableCell24" Weight="1" Multiline="true" Text="POD :" TextAlignment="TopRight" Borders="Left, Top, Bottom">
+                  <StylePriority Ref="250" UseBorders="false" UseTextAlignment="false" />
                 </Item1>
-                <Item2 Ref="247" ControlType="XRTableCell" Name="xrTableCell25" Weight="2.4285714285714284" Multiline="true" Borders="Top, Right, Bottom">
-                  <StylePriority Ref="248" UseBorders="false" />
+                <Item2 Ref="251" ControlType="XRTableCell" Name="xrTableCell25" Weight="2.4285714285714284" Multiline="true" Borders="Top, Right, Bottom">
+                  <StylePriority Ref="252" UseBorders="false" />
                 </Item2>
               </Cells>
             </Item6>
           </Rows>
-        </Item18>
-        <Item19 Ref="249" ControlType="XRTable" Name="xrTable6" SizeF="312.7883,88.66664" LocationFloat="352.437,158" Padding="2,2,0,0,96">
-          <Rows>
-            <Item1 Ref="250" ControlType="XRTableRow" Name="xrTableRow11" Weight="2">
-              <Cells>
-                <Item1 Ref="251" ControlType="XRTableCell" Name="xrTableCell13" Weight="1" Multiline="true" Text="Goods Booked As Per The Term &amp; Conditions Printed OverLeaf" TextAlignment="TopCenter" Borders="All">
-                  <StylePriority Ref="252" UseBorders="false" UseTextAlignment="false" />
-                </Item1>
-              </Cells>
-            </Item1>
-          </Rows>
         </Item19>
-        <Item20 Ref="253" ControlType="XRTable" Name="xrTable5" SizeF="302.7885,86.9444" LocationFloat="46.99078,159.7222" Padding="2,2,0,0,96">
+        <Item20 Ref="253" ControlType="XRTable" Name="xrTable6" SizeF="312.7883,88.66664" LocationFloat="352.437,158" Padding="2,2,0,0,96">
           <Rows>
-            <Item1 Ref="254" ControlType="XRTableRow" Name="xrTableRow8" Weight="0.52813940640099633">
+            <Item1 Ref="254" ControlType="XRTableRow" Name="xrTableRow11" Weight="2">
               <Cells>
-                <Item1 Ref="255" ControlType="XRTableCell" Name="xrTableCell10" Weight="1" Multiline="true" Text="NOTICE" TextAlignment="TopCenter" Borders="Left, Top, Right">
+                <Item1 Ref="255" ControlType="XRTableCell" Name="xrTableCell13" Weight="1" Multiline="true" Text="Goods Booked As Per The Term &amp; Conditions Printed OverLeaf" TextAlignment="TopCenter" Borders="All">
                   <StylePriority Ref="256" UseBorders="false" UseTextAlignment="false" />
                 </Item1>
               </Cells>
             </Item1>
-            <Item2 Ref="257" ControlType="XRTableRow" Name="xrTableRow9" Weight="1.4718605935990037">
+          </Rows>
+        </Item20>
+        <Item21 Ref="257" ControlType="XRTable" Name="xrTable5" SizeF="302.7885,86.9444" LocationFloat="46.99078,159.7222" Padding="2,2,0,0,96">
+          <Rows>
+            <Item1 Ref="258" ControlType="XRTableRow" Name="xrTableRow8" Weight="0.52813940640099633">
               <Cells>
-                <Item1 Ref="258" ControlType="XRTableCell" Name="xrTableCell11" Weight="1" Multiline="true" Text="Goods Booked As Per The Term &amp; Conditions Printed OverLeaf" TextAlignment="TopCenter" Borders="Left, Right, Bottom">
-                  <StylePriority Ref="259" UseBorders="false" UseTextAlignment="false" />
+                <Item1 Ref="259" ControlType="XRTableCell" Name="xrTableCell10" Weight="1" Multiline="true" Text="NOTICE" TextAlignment="TopCenter" Borders="Left, Top, Right">
+                  <StylePriority Ref="260" UseBorders="false" UseTextAlignment="false" />
+                </Item1>
+              </Cells>
+            </Item1>
+            <Item2 Ref="261" ControlType="XRTableRow" Name="xrTableRow9" Weight="1.4718605935990037">
+              <Cells>
+                <Item1 Ref="262" ControlType="XRTableCell" Name="xrTableCell11" Weight="1" Multiline="true" Text="Goods Booked As Per The Term &amp; Conditions Printed OverLeaf" TextAlignment="TopCenter" Borders="Left, Right, Bottom">
+                  <StylePriority Ref="263" UseBorders="false" UseTextAlignment="false" />
                 </Item1>
               </Cells>
             </Item2>
           </Rows>
-        </Item20>
-        <Item21 Ref="260" ControlType="XRLabel" Name="xrLabel3" Multiline="true" Text="INSURANCE" TextAlignment="TopCenter" SizeF="288.7499,24.99998" LocationFloat="352.437,125.5833" Font="Times New Roman, 9.75pt, style=Italic" Padding="2,2,0,0,100">
-          <StylePriority Ref="261" UseFont="false" UseTextAlignment="false" />
         </Item21>
-        <Item22 Ref="262" ControlType="XRLabel" Name="xrLabel2" Multiline="true" Text="E-mail : Office@gmail.com" TextAlignment="TopCenter" SizeF="267.9166,23.00001" LocationFloat="375.6945,102.5833" Padding="2,2,0,0,100">
-          <StylePriority Ref="263" UseTextAlignment="false" />
+        <Item22 Ref="264" ControlType="XRLabel" Name="xrLabel3" Multiline="true" Text="INSURANCE" TextAlignment="TopCenter" SizeF="288.7499,24.99998" LocationFloat="352.437,125.5833" Font="Times New Roman, 9.75pt, style=Italic" Padding="2,2,0,0,100">
+          <StylePriority Ref="265" UseFont="false" UseTextAlignment="false" />
         </Item22>
-        <Item23 Ref="264" ControlType="XRTable" Name="xrTable4" SizeF="459.5833,22.16669" LocationFloat="269.8611,80.41665" Padding="2,2,0,0,96">
+        <Item23 Ref="266" ControlType="XRLabel" Name="xrLabel2" Multiline="true" Text="E-mail : Office@gmail.com" TextAlignment="TopCenter" SizeF="267.9166,23.00001" LocationFloat="375.6945,102.5833" Padding="2,2,0,0,100">
+          <StylePriority Ref="267" UseTextAlignment="false" />
+        </Item23>
+        <Item24 Ref="268" ControlType="XRTable" Name="xrTable4" SizeF="459.5833,22.16669" LocationFloat="282.541,76.66669" Padding="2,2,0,0,96">
           <Rows>
-            <Item1 Ref="265" ControlType="XRTableRow" Name="xrTableRow7" Weight="1">
+            <Item1 Ref="269" ControlType="XRTableRow" Name="xrTableRow7" Weight="1">
               <Cells>
-                <Item1 Ref="266" ControlType="XRTableCell" Name="xrTableCell9" Weight="3" RowSpan="3" Multiline="true" Text="Surya Heights ,Plot.211 ,DC-2,GAndhidham Kutch, Gujarat" TextAlignment="TopCenter">
-                  <StylePriority Ref="267" UseTextAlignment="false" />
+                <Item1 Ref="270" ControlType="XRTableCell" Name="xrTableCell9" Weight="3" RowSpan="3" Multiline="true" Text="Surya Heights ,Plot.211 ,DC-2,GAndhidham Kutch, Gujarat" TextAlignment="TopCenter">
+                  <StylePriority Ref="271" UseTextAlignment="false" />
                 </Item1>
               </Cells>
             </Item1>
           </Rows>
-        </Item23>
-        <Item24 Ref="268" ControlType="XRLabel" Name="xrLabel1" Multiline="true" Text="Subject To Gandhidham Jurisdiction" TextAlignment="TopCenter" SizeF="288.75,13.27778" LocationFloat="347.7148,12.97221" Padding="2,2,0,0,100">
-          <StylePriority Ref="269" UseTextAlignment="false" />
         </Item24>
-        <Item25 Ref="270" ControlType="XRTable" Name="xrTable3" SizeF="164.5833,38.75" LocationFloat="47.95466,85.91671" Padding="2,2,0,0,96" Borders="All">
+        <Item25 Ref="272" ControlType="XRLabel" Name="xrLabel1" Multiline="true" Text="Subject To Gandhidham Jurisdiction" TextAlignment="TopCenter" SizeF="288.75,13.27778" LocationFloat="347.7148,12.97221" Padding="2,2,0,0,100">
+          <StylePriority Ref="273" UseTextAlignment="false" />
+        </Item25>
+        <Item26 Ref="274" ControlType="XRTable" Name="xrTable3" SizeF="164.5833,38.75" LocationFloat="47.95466,85.91671" Padding="2,2,0,0,96" Borders="All">
           <Rows>
-            <Item1 Ref="271" ControlType="XRTableRow" Name="xrTableRow4" Weight="1">
+            <Item1 Ref="275" ControlType="XRTableRow" Name="xrTableRow4" Weight="1">
               <Cells>
-                <Item1 Ref="272" ControlType="XRTableCell" Name="xrTableCell6" Weight="1" Multiline="true" Text="L R No." />
+                <Item1 Ref="276" ControlType="XRTableCell" Name="xrTableCell6" Weight="1" Multiline="true" Text="L R No." />
               </Cells>
             </Item1>
-            <Item2 Ref="273" ControlType="XRTableRow" Name="xrTableRow5" Weight="1">
+            <Item2 Ref="277" ControlType="XRTableRow" Name="xrTableRow5" Weight="1">
               <Cells>
-                <Item1 Ref="274" ControlType="XRTableCell" Name="xrTableCell7" Weight="1" RowSpan="2" Multiline="true">
+                <Item1 Ref="278" ControlType="XRTableCell" Name="xrTableCell7" Weight="1" RowSpan="2" Multiline="true">
                   <ExpressionBindings>
-                    <Item1 Ref="275" EventName="BeforePrint" PropertyName="Text" Expression="[lr_Nostr]" />
+                    <Item1 Ref="279" EventName="BeforePrint" PropertyName="Text" Expression="[lrNostr]" />
                   </ExpressionBindings>
                 </Item1>
               </Cells>
             </Item2>
-            <Item3 Ref="276" ControlType="XRTableRow" Name="xrTableRow6" Weight="1">
+            <Item3 Ref="280" ControlType="XRTableRow" Name="xrTableRow6" Weight="1">
               <Cells>
-                <Item1 Ref="277" ControlType="XRTableCell" Name="xrTableCell8" Weight="1" Multiline="true" Text="xrTableCell8" />
+                <Item1 Ref="281" ControlType="XRTableCell" Name="xrTableCell8" Weight="1" Multiline="true" Text="xrTableCell8" />
               </Cells>
             </Item3>
           </Rows>
-          <StylePriority Ref="278" UseBorders="false" />
-        </Item25>
-        <Item26 Ref="279" ControlType="XRTable" Name="xrTable2" SizeF="164.5833,25" LocationFloat="47.95466,47.91665" Padding="2,2,0,0,96">
+          <StylePriority Ref="282" UseBorders="false" />
+        </Item26>
+        <Item27 Ref="283" ControlType="XRTable" Name="xrTable2" SizeF="164.5833,25" LocationFloat="47.95466,47.91665" Padding="2,2,0,0,96">
           <Rows>
-            <Item1 Ref="280" ControlType="XRTableRow" Name="xrTableRow3" Weight="1">
+            <Item1 Ref="284" ControlType="XRTableRow" Name="xrTableRow3" Weight="1">
               <Cells>
-                <Item1 Ref="281" ControlType="XRTableCell" Name="xrTableCell3" Weight="0.81240980561982779" Multiline="true" Text="Pan No." Font="Times New Roman, 9.75pt, style=Bold" Borders="Left, Top, Bottom">
-                  <StylePriority Ref="282" UseFont="false" UseBorders="false" />
+                <Item1 Ref="285" ControlType="XRTableCell" Name="xrTableCell3" Weight="0.81240980561982779" Multiline="true" Text="Pan No." Font="Times New Roman, 9.75pt, style=Bold" Borders="Left, Top, Bottom">
+                  <StylePriority Ref="286" UseFont="false" UseBorders="false" />
                 </Item1>
-                <Item2 Ref="283" ControlType="XRTableCell" Name="xrTableCell4" Weight="0.30130531830345031" Multiline="true" Text=":" TextAlignment="TopCenter" Borders="Top, Bottom">
-                  <StylePriority Ref="284" UseBorders="false" UseTextAlignment="false" />
+                <Item2 Ref="287" ControlType="XRTableCell" Name="xrTableCell4" Weight="0.30130531830345031" Multiline="true" Text=":" TextAlignment="TopCenter" Borders="Top, Bottom">
+                  <StylePriority Ref="288" UseBorders="false" UseTextAlignment="false" />
                 </Item2>
-                <Item3 Ref="285" ControlType="XRTableCell" Name="xrTableCell5" Weight="0.44472615252065706" Multiline="true" Borders="Top, Right, Bottom">
-                  <StylePriority Ref="286" UseBorders="false" />
+                <Item3 Ref="289" ControlType="XRTableCell" Name="xrTableCell5" Weight="0.44472615252065706" Multiline="true" Borders="Top, Right, Bottom">
+                  <StylePriority Ref="290" UseBorders="false" />
                 </Item3>
               </Cells>
             </Item1>
           </Rows>
-        </Item26>
-        <Item27 Ref="287" ControlType="XRTable" Name="xrTable1" SizeF="164.5833,25" LocationFloat="46.99081,9.222214" Padding="2,2,0,0,96" Borders="All">
+        </Item27>
+        <Item28 Ref="291" ControlType="XRTable" Name="xrTable1" SizeF="163.9074,38.69443" LocationFloat="46.99081,9.222209" Padding="2,2,0,0,96" Borders="All">
           <Rows>
-            <Item1 Ref="288" ControlType="XRTableRow" Name="xrTableRow1" Weight="1">
+            <Item1 Ref="292" ControlType="XRTableRow" Name="xrTableRow1" Weight="1">
               <Cells>
-                <Item1 Ref="289" ControlType="XRTableCell" Name="xrTableCell1" Weight="1" Multiline="true" Text="GST NO." Font="Times New Roman, 9.75pt, style=Bold">
-                  <StylePriority Ref="290" UseFont="false" />
+                <Item1 Ref="293" ControlType="XRTableCell" Name="xrTableCell1" Weight="1" Multiline="true" Text="GST NO." Font="Times New Roman, 9.75pt, style=Bold">
+                  <ExpressionBindings>
+                    <Item1 Ref="294" EventName="BeforePrint" PropertyName="Text" Expression="[lrId]" />
+                  </ExpressionBindings>
+                  <StylePriority Ref="295" UseFont="false" />
                 </Item1>
               </Cells>
             </Item1>
-            <Item2 Ref="291" ControlType="XRTableRow" Name="xrTableRow2" Weight="1">
+            <Item2 Ref="296" ControlType="XRTableRow" Name="xrTableRow2" Weight="1">
               <Cells>
-                <Item1 Ref="292" ControlType="XRTableCell" Name="xrTableCell2" Weight="1" Multiline="true" />
+                <Item1 Ref="297" ControlType="XRTableCell" Name="xrTableCell2" Weight="1" Multiline="true" />
               </Cells>
             </Item2>
           </Rows>
-          <StylePriority Ref="293" UseBorders="false" />
-        </Item27>
+          <StylePriority Ref="298" UseBorders="false" />
+        </Item28>
       </Controls>
     </Item4>
   </Bands>
   <ComponentStorage>
-    <Item1 Ref="0" ObjectType="DevExpress.DataAccess.Json.JsonDataSource,DevExpress.DataAccess.v24.1" Name="jsonDataSource1" Base64="PEpzb25EYXRhU291cmNlIE5hbWU9Impzb25EYXRhU291cmNlMSI+PFNvdXJjZSBTb3VyY2VUeXBlPSJEZXZFeHByZXNzLkRhdGFBY2Nlc3MuSnNvbi5DdXN0b21Kc29uU291cmNlIiBKc29uPSJbeyZxdW90O2xySUQmcXVvdDs6IDQsJiN4RDsmI3hBOyAgICAgICZxdW90O2xyTm8mcXVvdDs6IDAsJiN4RDsmI3hBOyAgICAgICZxdW90O2xyRGF0ZSZxdW90OzogJnF1b3Q7MjAyNS0wMy0wM1QwMDowMDowMCZxdW90OywmI3hEOyYjeEE7ICAgICAgJnF1b3Q7dmVoaWNsZV9ObyZxdW90OzogbnVsbCwmI3hEOyYjeEE7ICAgICAgJnF1b3Q7cGFydHlfTmFtZSZxdW90OzogJnF1b3Q7VklSQUogVFJBTlNDT1JQJnF1b3Q7LCYjeEQ7JiN4QTsgICAgICAmcXVvdDtjb25zaWdub3JfTmFtZSZxdW90OzogbnVsbCwmI3hEOyYjeEE7ICAgICAgJnF1b3Q7Y29uc2lnbmVlX05hbWUmcXVvdDs6IG51bGwsJiN4RDsmI3hBOyAgICAgICZxdW90O2Zyb21fTG9jYXRpb24mcXVvdDs6IG51bGwsJiN4RDsmI3hBOyAgICAgICZxdW90O3RvX0xvY2F0aW9uJnF1b3Q7OiBudWxsLCYjeEQ7JiN4QTsgICAgICAmcXVvdDtwcm9kdWN0X05hbWUmcXVvdDs6IG51bGwsJiN4RDsmI3hBOyAgICAgICZxdW90O2RyaXZlcl9OYW1lJnF1b3Q7OiAmcXVvdDsmcXVvdDssJiN4RDsmI3hBOyAgICAgICZxdW90O3N1cHBsaWVyX05hbWUmcXVvdDs6IG51bGwsJiN4RDsmI3hBOyAgICAgICZxdW90O2xyX05vc3RyJnF1b3Q7OiAmcXVvdDsxMjM0NTYmcXVvdDssJiN4RDsmI3hBOyAgICAgICZxdW90O2xyQ29udGFpbmVyMSZxdW90OzogJnF1b3Q7Q09OMSZxdW90OywmI3hEOyYjeEE7ICAgICAgJnF1b3Q7bHJDb250YWluZXIyJnF1b3Q7OiAmcXVvdDtDT04yJnF1b3Q7LCYjeEQ7JiN4QTsgICAgICAmcXVvdDtsb2FkV3QmcXVvdDs6IDEyLCYjeEQ7JiN4QTsgICAgICAmcXVvdDt1bmxvYWRXdCZxdW90OzogMCwmI3hEOyYjeEE7ICAgICAgJnF1b3Q7Y2hhcmdlV3QmcXVvdDs6IDIxLCYjeEQ7JiN4QTsgICAgICAmcXVvdDtmcmVpZ2h0JnF1b3Q7OiAwLCYjeEQ7JiN4QTsgICAgICAmcXVvdDthZGRlZEJ5JnF1b3Q7OiAmcXVvdDtyYWplc2gmcXVvdDssJiN4RDsmI3hBOyAgICAgICZxdW90O3VwZGF0ZWRCeSZxdW90OzogbnVsbCwmI3hEOyYjeEE7ICAgICAgJnF1b3Q7dXBkYXRlZERhdGUmcXVvdDs6ICZxdW90OzIwMjUtMDItMjhUMTE6MTQ6MDErMDA6MDAmcXVvdDssJiN4RDsmI3hBOyAgICAgICZxdW90O2FkZGVkRGF0ZSZxdW90OzogbnVsbCYjeEQ7JiN4QTsgICAgfSwmI3hEOyYjeEE7ICAgIHsmI3hEOyYjeEE7ICAgICAgJnF1b3Q7bHJJRCZxdW90OzogNywmI3hEOyYjeEE7ICAgICAgJnF1b3Q7bHJObyZxdW90OzogMCwmI3hEOyYjeEE7ICAgICAgJnF1b3Q7bHJEYXRlJnF1b3Q7OiAmcXVvdDsyMDI0LTAzLTAxVDAwOjAwOjAwJnF1b3Q7LCYjeEQ7JiN4QTsgICAgICAmcXVvdDt2ZWhpY2xlX05vJnF1b3Q7OiAmcXVvdDtHSjM2VjU1MDQmcXVvdDssJiN4RDsmI3hBOyAgICAgICZxdW90O3BhcnR5X05hbWUmcXVvdDs6ICZxdW90O1ZJU0hBTCBTSElQUElORyBBR0VOQ0lFUyBQVlQgTFREJnF1b3Q7LCYjeEQ7JiN4QTsgICAgICAmcXVvdDtjb25zaWdub3JfTmFtZSZxdW90OzogbnVsbCwmI3hEOyYjeEE7ICAgICAgJnF1b3Q7Y29uc2lnbmVlX05hbWUmcXVvdDs6IG51bGwsJiN4RDsmI3hBOyAgICAgICZxdW90O2Zyb21fTG9jYXRpb24mcXVvdDs6IG51bGwsJiN4RDsmI3hBOyAgICAgICZxdW90O3RvX0xvY2F0aW9uJnF1b3Q7OiAmcXVvdDtmanNkdWlmaGRzZiZxdW90OywmI3hEOyYjeEE7ICAgICAgJnF1b3Q7cHJvZHVjdF9OYW1lJnF1b3Q7OiAmcXVvdDs0MSBGVCZxdW90OywmI3hEOyYjeEE7ICAgICAgJnF1b3Q7ZHJpdmVyX05hbWUmcXVvdDs6ICZxdW90OyZxdW90OywmI3hEOyYjeEE7ICAgICAgJnF1b3Q7c3VwcGxpZXJfTmFtZSZxdW90OzogJnF1b3Q7U0hSRUUgUkFNQU5BTkQgUk9BRFdBWVNzc3MmcXVvdDssJiN4RDsmI3hBOyAgICAgICZxdW90O2xyX05vc3RyJnF1b3Q7OiAmcXVvdDsxMTkyJnF1b3Q7LCYjeEQ7JiN4QTsgICAgICAmcXVvdDtsckNvbnRhaW5lcjEmcXVvdDs6ICZxdW90O1RSSFU0Njk5NTgwJnF1b3Q7LCYjeEQ7JiN4QTsgICAgICAmcXVvdDtsckNvbnRhaW5lcjImcXVvdDs6ICZxdW90OyZxdW90OywmI3hEOyYjeEE7ICAgICAgJnF1b3Q7bG9hZFd0JnF1b3Q7OiAwLCYjeEQ7JiN4QTsgICAgICAmcXVvdDt1bmxvYWRXdCZxdW90OzogMCwmI3hEOyYjeEE7ICAgICAgJnF1b3Q7Y2hhcmdlV3QmcXVvdDs6IDAsJiN4RDsmI3hBOyAgICAgICZxdW90O2ZyZWlnaHQmcXVvdDs6IDAsJiN4RDsmI3hBOyAgICAgICZxdW90O2FkZGVkQnkmcXVvdDs6ICZxdW90O3JhamVzaCZxdW90OywmI3hEOyYjeEE7ICAgICAgJnF1b3Q7dXBkYXRlZEJ5JnF1b3Q7OiBudWxsLCYjeEQ7JiN4QTsgICAgICAmcXVvdDt1cGRhdGVkRGF0ZSZxdW90OzogJnF1b3Q7MjAyNS0wMi0yNFQxNjowNjo0OSswMDowMCZxdW90OywmI3hEOyYjeEE7ICAgICAgJnF1b3Q7YWRkZWREYXRlJnF1b3Q7OiBudWxsfV0iIC8+PFNjaGVtYT48Tm9kZSBOYW1lPSJyb290IiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IkFycmF5Ij48Tm9kZSBOYW1lPSJscklEIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyTm8iIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJEYXRlIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uRGF0ZVRpbWVdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9InBhcnR5X05hbWUiIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iY29uc2lnbm9yX05hbWUiIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iY29uc2lnbmVlX05hbWUiIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iZnJvbV9Mb2NhdGlvbiIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJkcml2ZXJfTmFtZSIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJscl9Ob3N0ciIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsckNvbnRhaW5lcjEiIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJDb250YWluZXIyIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxvYWRXdCIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJ1bmxvYWRXdCIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJjaGFyZ2VXdCIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJmcmVpZ2h0IiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImFkZGVkQnkiIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0idXBkYXRlZEJ5IiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9InVwZGF0ZWREYXRlIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uRGF0ZVRpbWVdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImFkZGVkRGF0ZSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJ2ZWhpY2xlX05vIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9InRvX0xvY2F0aW9uIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9InByb2R1Y3RfTmFtZSIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJzdXBwbGllcl9OYW1lIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjwvTm9kZT48L1NjaGVtYT48L0pzb25EYXRhU291cmNlPg==" />
+    <Item1 Ref="299" ObjectType="DevExpress.DataAccess.Json.JsonDataSource,DevExpress.DataAccess.v24.1" Name="jsonDataSource1" Base64="PEpzb25EYXRhU291cmNlIE5hbWU9Impzb25EYXRhU291cmNlMSI+PFNvdXJjZSBTb3VyY2VUeXBlPSJEZXZFeHByZXNzLkRhdGFBY2Nlc3MuSnNvbi5DdXN0b21Kc29uU291cmNlIiBKc29uPSJbeyZxdW90O2xySUQmcXVvdDs6IDQsJiN4RDsmI3hBOyAgICAgICZxdW90O2xyTm8mcXVvdDs6IDAsJiN4RDsmI3hBOyAgICAgICZxdW90O2xyRGF0ZSZxdW90OzogJnF1b3Q7MjAyNS0wMy0wM1QwMDowMDowMCZxdW90OywmI3hEOyYjeEE7ICAgICAgJnF1b3Q7dmVoaWNsZV9ObyZxdW90OzogbnVsbCwmI3hEOyYjeEE7ICAgICAgJnF1b3Q7cGFydHlfTmFtZSZxdW90OzogJnF1b3Q7VklSQUogVFJBTlNDT1JQJnF1b3Q7LCYjeEQ7JiN4QTsgICAgICAmcXVvdDtjb25zaWdub3JfTmFtZSZxdW90OzogbnVsbCwmI3hEOyYjeEE7ICAgICAgJnF1b3Q7Y29uc2lnbmVlX05hbWUmcXVvdDs6IG51bGwsJiN4RDsmI3hBOyAgICAgICZxdW90O2Zyb21fTG9jYXRpb24mcXVvdDs6IG51bGwsJiN4RDsmI3hBOyAgICAgICZxdW90O3RvX0xvY2F0aW9uJnF1b3Q7OiBudWxsLCYjeEQ7JiN4QTsgICAgICAmcXVvdDtwcm9kdWN0X05hbWUmcXVvdDs6IG51bGwsJiN4RDsmI3hBOyAgICAgICZxdW90O2RyaXZlcl9OYW1lJnF1b3Q7OiAmcXVvdDsmcXVvdDssJiN4RDsmI3hBOyAgICAgICZxdW90O3N1cHBsaWVyX05hbWUmcXVvdDs6IG51bGwsJiN4RDsmI3hBOyAgICAgICZxdW90O2xyX05vc3RyJnF1b3Q7OiAmcXVvdDsxMjM0NTYmcXVvdDssJiN4RDsmI3hBOyAgICAgICZxdW90O2xyQ29udGFpbmVyMSZxdW90OzogJnF1b3Q7Q09OMSZxdW90OywmI3hEOyYjeEE7ICAgICAgJnF1b3Q7bHJDb250YWluZXIyJnF1b3Q7OiAmcXVvdDtDT04yJnF1b3Q7LCYjeEQ7JiN4QTsgICAgICAmcXVvdDtsb2FkV3QmcXVvdDs6IDEyLCYjeEQ7JiN4QTsgICAgICAmcXVvdDt1bmxvYWRXdCZxdW90OzogMCwmI3hEOyYjeEE7ICAgICAgJnF1b3Q7Y2hhcmdlV3QmcXVvdDs6IDIxLCYjeEQ7JiN4QTsgICAgICAmcXVvdDtmcmVpZ2h0JnF1b3Q7OiAwLCYjeEQ7JiN4QTsgICAgICAmcXVvdDthZGRlZEJ5JnF1b3Q7OiAmcXVvdDtyYWplc2gmcXVvdDssJiN4RDsmI3hBOyAgICAgICZxdW90O3VwZGF0ZWRCeSZxdW90OzogbnVsbCwmI3hEOyYjeEE7ICAgICAgJnF1b3Q7dXBkYXRlZERhdGUmcXVvdDs6ICZxdW90OzIwMjUtMDItMjhUMTE6MTQ6MDErMDA6MDAmcXVvdDssJiN4RDsmI3hBOyAgICAgICZxdW90O2FkZGVkRGF0ZSZxdW90OzogbnVsbCYjeEQ7JiN4QTsgICAgfSwmI3hEOyYjeEE7ICAgIHsmI3hEOyYjeEE7ICAgICAgJnF1b3Q7bHJJRCZxdW90OzogNywmI3hEOyYjeEE7ICAgICAgJnF1b3Q7bHJObyZxdW90OzogMCwmI3hEOyYjeEE7ICAgICAgJnF1b3Q7bHJEYXRlJnF1b3Q7OiAmcXVvdDsyMDI0LTAzLTAxVDAwOjAwOjAwJnF1b3Q7LCYjeEQ7JiN4QTsgICAgICAmcXVvdDt2ZWhpY2xlX05vJnF1b3Q7OiAmcXVvdDtHSjM2VjU1MDQmcXVvdDssJiN4RDsmI3hBOyAgICAgICZxdW90O3BhcnR5X05hbWUmcXVvdDs6ICZxdW90O1ZJU0hBTCBTSElQUElORyBBR0VOQ0lFUyBQVlQgTFREJnF1b3Q7LCYjeEQ7JiN4QTsgICAgICAmcXVvdDtjb25zaWdub3JfTmFtZSZxdW90OzogbnVsbCwmI3hEOyYjeEE7ICAgICAgJnF1b3Q7Y29uc2lnbmVlX05hbWUmcXVvdDs6IG51bGwsJiN4RDsmI3hBOyAgICAgICZxdW90O2Zyb21fTG9jYXRpb24mcXVvdDs6IG51bGwsJiN4RDsmI3hBOyAgICAgICZxdW90O3RvX0xvY2F0aW9uJnF1b3Q7OiAmcXVvdDtmanNkdWlmaGRzZiZxdW90OywmI3hEOyYjeEE7ICAgICAgJnF1b3Q7cHJvZHVjdF9OYW1lJnF1b3Q7OiAmcXVvdDs0MSBGVCZxdW90OywmI3hEOyYjeEE7ICAgICAgJnF1b3Q7ZHJpdmVyX05hbWUmcXVvdDs6ICZxdW90OyZxdW90OywmI3hEOyYjeEE7ICAgICAgJnF1b3Q7c3VwcGxpZXJfTmFtZSZxdW90OzogJnF1b3Q7U0hSRUUgUkFNQU5BTkQgUk9BRFdBWVNzc3MmcXVvdDssJiN4RDsmI3hBOyAgICAgICZxdW90O2xyX05vc3RyJnF1b3Q7OiAmcXVvdDsxMTkyJnF1b3Q7LCYjeEQ7JiN4QTsgICAgICAmcXVvdDtsckNvbnRhaW5lcjEmcXVvdDs6ICZxdW90O1RSSFU0Njk5NTgwJnF1b3Q7LCYjeEQ7JiN4QTsgICAgICAmcXVvdDtsckNvbnRhaW5lcjImcXVvdDs6ICZxdW90OyZxdW90OywmI3hEOyYjeEE7ICAgICAgJnF1b3Q7bG9hZFd0JnF1b3Q7OiAwLCYjeEQ7JiN4QTsgICAgICAmcXVvdDt1bmxvYWRXdCZxdW90OzogMCwmI3hEOyYjeEE7ICAgICAgJnF1b3Q7Y2hhcmdlV3QmcXVvdDs6IDAsJiN4RDsmI3hBOyAgICAgICZxdW90O2ZyZWlnaHQmcXVvdDs6IDAsJiN4RDsmI3hBOyAgICAgICZxdW90O2FkZGVkQnkmcXVvdDs6ICZxdW90O3JhamVzaCZxdW90OywmI3hEOyYjeEE7ICAgICAgJnF1b3Q7dXBkYXRlZEJ5JnF1b3Q7OiBudWxsLCYjeEQ7JiN4QTsgICAgICAmcXVvdDt1cGRhdGVkRGF0ZSZxdW90OzogJnF1b3Q7MjAyNS0wMi0yNFQxNjowNjo0OSswMDowMCZxdW90OywmI3hEOyYjeEE7ICAgICAgJnF1b3Q7YWRkZWREYXRlJnF1b3Q7OiBudWxsfV0iIC8+PFNjaGVtYT48Tm9kZSBOYW1lPSJyb290IiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IkFycmF5Ij48Tm9kZSBOYW1lPSJscklEIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyTm8iIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJEYXRlIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uRGF0ZVRpbWVdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9InBhcnR5X05hbWUiIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iY29uc2lnbm9yX05hbWUiIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iY29uc2lnbmVlX05hbWUiIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iZnJvbV9Mb2NhdGlvbiIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJkcml2ZXJfTmFtZSIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJscl9Ob3N0ciIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsckNvbnRhaW5lcjEiIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJDb250YWluZXIyIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxvYWRXdCIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJ1bmxvYWRXdCIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJjaGFyZ2VXdCIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJmcmVpZ2h0IiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImFkZGVkQnkiIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0idXBkYXRlZEJ5IiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9InVwZGF0ZWREYXRlIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uRGF0ZVRpbWVdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImFkZGVkRGF0ZSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJ2ZWhpY2xlX05vIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9InRvX0xvY2F0aW9uIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9InByb2R1Y3RfTmFtZSIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJzdXBwbGllcl9OYW1lIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjwvTm9kZT48L1NjaGVtYT48L0pzb25EYXRhU291cmNlPg==" />
+    <Item2 Ref="300" ObjectType="DevExpress.DataAccess.Json.JsonDataSource,DevExpress.DataAccess.v24.1" Name="jsonDataSource2" Base64="PEpzb25EYXRhU291cmNlIE5hbWU9Impzb25EYXRhU291cmNlMiI+PFNvdXJjZSBTb3VyY2VUeXBlPSJEZXZFeHByZXNzLkRhdGFBY2Nlc3MuSnNvbi5DdXN0b21Kc29uU291cmNlIiBKc29uPSIgeyZxdW90O2NvbXBhbnlJZCZxdW90OzogMCwmI3hEOyYjeEE7ICAgICZxdW90O2NvbXBhbnlVcGRhdGVkQnlVc2VySWQmcXVvdDs6ICZxdW90O3N0cmluZyZxdW90OywmI3hEOyYjeEE7ICAgICZxdW90O2NvbXBhbnlBZGRlZEJ5VXNlcklkJnF1b3Q7OiAmcXVvdDtzdHJpbmcmcXVvdDssJiN4RDsmI3hBOyAgICAmcXVvdDtjb21wYW55TmFtZSZxdW90OzogJnF1b3Q7c3RyaW5nJnF1b3Q7LCYjeEQ7JiN4QTsgICAgJnF1b3Q7Y29tcGFueUNvZGUmcXVvdDs6ICZxdW90O3N0cmluZyZxdW90OywmI3hEOyYjeEE7ICAgICZxdW90O2NvbXBhbnlQcmludE5hbWUmcXVvdDs6ICZxdW90O3N0cmluZyZxdW90OywmI3hEOyYjeEE7ICAgICZxdW90O2NvbXBhbnlBZGRyZXNzMSZxdW90OzogJnF1b3Q7c3RyaW5nJnF1b3Q7LCYjeEQ7JiN4QTsgICAgJnF1b3Q7Y29tcGFueUFkZHJlc3MyJnF1b3Q7OiAmcXVvdDtzdHJpbmcmcXVvdDssJiN4RDsmI3hBOyAgICAmcXVvdDtjb21wYW55QWRkcmVzczMmcXVvdDs6ICZxdW90O3N0cmluZyZxdW90OywmI3hEOyYjeEE7ICAgICZxdW90O2NvbXBhbnlTdGF0ZUlkJnF1b3Q7OiAmcXVvdDtzdHJpbmcmcXVvdDssJiN4RDsmI3hBOyAgICAmcXVvdDtjb21wYW55U3RhdGVDb2RlJnF1b3Q7OiAmcXVvdDtzdHJpbiZxdW90OywmI3hEOyYjeEE7ICAgICZxdW90O2NvbXBhbnlFbWFpbCZxdW90OzogJnF1b3Q7c3RyaW5nJnF1b3Q7LCYjeEQ7JiN4QTsgICAgJnF1b3Q7Y29tcGFueU1vYmlsZSZxdW90OzogJnF1b3Q7c3RyaW5nJnF1b3Q7LCYjeEQ7JiN4QTsgICAgJnF1b3Q7Y29tcGFueVRlbGVwaG9uZSZxdW90OzogJnF1b3Q7c3RyaW5nJnF1b3Q7LCYjeEQ7JiN4QTsgICAgJnF1b3Q7Y29tcGFueVdlYnNpdGUmcXVvdDs6ICZxdW90O3N0cmluZyZxdW90OywmI3hEOyYjeEE7ICAgICZxdW90O2NvbXBhbnlGYXgmcXVvdDs6ICZxdW90O3N0cmluZyZxdW90OywmI3hEOyYjeEE7ICAgICZxdW90O2NvbXBhbnlQaW5jb2RlJnF1b3Q7OiAmcXVvdDtzdHJpbmcmcXVvdDssJiN4RDsmI3hBOyAgICAmcXVvdDtjb21wYW55Q29udGFjdFBlcnNvbiZxdW90OzogJnF1b3Q7c3RyaW5nJnF1b3Q7LCYjeEQ7JiN4QTsgICAgJnF1b3Q7Y29tcGFueUN1cnJlbmN5JnF1b3Q7OiAmcXVvdDtzdHJpbmcmcXVvdDssJiN4RDsmI3hBOyAgICAmcXVvdDtjb21wYW55QmVnaW5uaW5nRGF0ZSZxdW90OzogJnF1b3Q7MjAyNS0wMy0yOVQxMDo0Njo0My43NDFaJnF1b3Q7LCYjeEQ7JiN4QTsgICAgJnF1b3Q7Y29tcGFueUlzR3N0QXBwbGljYWJsZSZxdW90OzogdHJ1ZSwmI3hEOyYjeEE7ICAgICZxdW90O2NvbXBhbnlHc3RBcHBsaWNhYmxlRnJvbSZxdW90OzogJnF1b3Q7c3RyaW5nJnF1b3Q7LCYjeEQ7JiN4QTsgICAgJnF1b3Q7Y29tcGFueUdzdGluJnF1b3Q7OiAmcXVvdDtzdHJpbmcmcXVvdDssJiN4RDsmI3hBOyAgICAmcXVvdDtjb21wYW55UGFuTm8mcXVvdDs6ICZxdW90O3N0cmluZyZxdW90OywmI3hEOyYjeEE7ICAgICZxdW90O2NvbXBhbnlJc0x1dEJvbmQmcXVvdDs6IHRydWUsJiN4RDsmI3hBOyAgICAmcXVvdDtjb21wYW55THV0Qm9uZE5vJnF1b3Q7OiAmcXVvdDtzdHJpbmcmcXVvdDssJiN4RDsmI3hBOyAgICAmcXVvdDtjb21wYW55THV0Qm9uZFRvJnF1b3Q7OiAmcXVvdDtzdHJpbmcmcXVvdDssJiN4RDsmI3hBOyAgICAmcXVvdDtjb21wYW55SXNFV2F5QmlsbCZxdW90OzogdHJ1ZSwmI3hEOyYjeEE7ICAgICZxdW90O2NvbXBhbnlFV2F5QmlsbEZyb20mcXVvdDs6ICZxdW90O3N0cmluZyZxdW90OywmI3hEOyYjeEE7ICAgICZxdW90O2NvbXBhbnlFV2F5QmlsbExpbWl0JnF1b3Q7OiAwLCYjeEQ7JiN4QTsgICAgJnF1b3Q7Y29tcGFueUlzRUludm9pY2UmcXVvdDs6IHRydWUsJiN4RDsmI3hBOyAgICAmcXVvdDtjb21wYW55RUludm9pY2VGcm9tJnF1b3Q7OiAmcXVvdDtzdHJpbmcmcXVvdDssJiN4RDsmI3hBOyAgICAmcXVvdDtjb21wYW55UmVnTm8mcXVvdDs6ICZxdW90O3N0cmluZyZxdW90OywmI3hEOyYjeEE7ICAgICZxdW90O2NvbXBhbnlDdXJTeW1ib2wmcXVvdDs6ICZxdW90O3N0cmluZyZxdW90OywmI3hEOyYjeEE7ICAgICZxdW90O2NvbXBhbnlEZWNpbWFsJnF1b3Q7OiAmcXVvdDtzdHJpbmcmcXVvdDssJiN4RDsmI3hBOyAgICAmcXVvdDtjb21wYW55RGF0ZUZvcm1hdCZxdW90OzogJnF1b3Q7c3RyaW5nJnF1b3Q7LCYjeEQ7JiN4QTsgICAgJnF1b3Q7Y29tcGFueVN0YXR1cyZxdW90OzogdHJ1ZSwmI3hEOyYjeEE7ICAgICZxdW90O2NvbXBhbnlDcmVhdGVkJnF1b3Q7OiAmcXVvdDsyMDI1LTAzLTI5VDEwOjQ2OjQzLjc0MVomcXVvdDssJiN4RDsmI3hBOyAgICAmcXVvdDtjb21wYW55VXBkYXRlZCZxdW90OzogJnF1b3Q7MjAyNS0wMy0yOVQxMDo0Njo0My43NDFaJnF1b3Q7LCYjeEQ7JiN4QTsgICAgJnF1b3Q7Y29tcGFueVJlbWFya3MmcXVvdDs6ICZxdW90O3N0cmluZyZxdW90OywmI3hEOyYjeEE7ICAgICZxdW90O2NvbXBhbnlVc2VybmFtZSZxdW90OzogJnF1b3Q7c3RyaW5nJnF1b3Q7LCYjeEQ7JiN4QTsgICAgJnF1b3Q7Y29tcGFueVBhc3N3b3JkJnF1b3Q7OiAmcXVvdDtzdHJpbmcmcXVvdDssJiN4RDsmI3hBOyAgICAmcXVvdDtjb21wYW55TG9nbyZxdW90OzogJnF1b3Q7c3RyaW5nJnF1b3Q7LCYjeEQ7JiN4QTsgICAgJnF1b3Q7Y29tcGFueVRoZW1lTmFtZSZxdW90OzogJnF1b3Q7c3RyaW5nJnF1b3Q7LCYjeEQ7JiN4QTsgICAgJnF1b3Q7Y29tcGFueVNlcnZpY2VUeXBlJnF1b3Q7OiAmcXVvdDtzdHJpbmcmcXVvdDssJiN4RDsmI3hBOyAgICAmcXVvdDtjb21wYW55SXNPbmxpbmUmcXVvdDs6IHRydWUsJiN4RDsmI3hBOyAgICAmcXVvdDtjb21wYW55Q2l0eSZxdW90OzogJnF1b3Q7c3RyaW5nJnF1b3Q7LCYjeEQ7JiN4QTsgICAgJnF1b3Q7Y29tcGFueUNvdW50cnkmcXVvdDs6ICZxdW90O3N0cmluZyZxdW90OywmI3hEOyYjeEE7ICAgICZxdW90O2NvbXBhbnlGc3NFeHBpcnkmcXVvdDs6ICZxdW90OzIwMjUtMDMtMjlUMTA6NDY6NDMuNzQxWiZxdW90OywmI3hEOyYjeEE7ICAgICZxdW90O2NvbXBhbnlFeHRlbmREYXlzJnF1b3Q7OiAwLCYjeEQ7JiN4QTsgICAgJnF1b3Q7Y29tcGFueVRhZ2xpbmUxJnF1b3Q7OiAmcXVvdDtzdHJpbmcmcXVvdDssJiN4RDsmI3hBOyAgICAmcXVvdDtjb21wYW55VGFnbGluZTImcXVvdDs6ICZxdW90O3N0cmluZyZxdW90OywmI3hEOyYjeEE7ICAgICZxdW90O2NvbXBhbnlNc21lTm8mcXVvdDs6ICZxdW90O3N0cmluZyZxdW90OywmI3hEOyYjeEE7ICAgICZxdW90O2NvbXBhbnlJc011bHRpQnJhbmNoJnF1b3Q7OiB0cnVlJiN4RDsmI3hBO30iIC8+PFNjaGVtYT48Tm9kZSBOYW1lPSJyb290IiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9Ik9iamVjdCI+PE5vZGUgTmFtZT0iY29tcGFueUlkIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImNvbXBhbnlVcGRhdGVkQnlVc2VySWQiIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iY29tcGFueUFkZGVkQnlVc2VySWQiIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iY29tcGFueU5hbWUiIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iY29tcGFueUNvZGUiIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iY29tcGFueVByaW50TmFtZSIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJjb21wYW55QWRkcmVzczEiIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iY29tcGFueUFkZHJlc3MyIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImNvbXBhbnlBZGRyZXNzMyIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJjb21wYW55U3RhdGVJZCIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJjb21wYW55U3RhdGVDb2RlIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImNvbXBhbnlFbWFpbCIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJjb21wYW55TW9iaWxlIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImNvbXBhbnlUZWxlcGhvbmUiIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iY29tcGFueVdlYnNpdGUiIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iY29tcGFueUZheCIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJjb21wYW55UGluY29kZSIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJjb21wYW55Q29udGFjdFBlcnNvbiIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJjb21wYW55Q3VycmVuY3kiIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iY29tcGFueUJlZ2lubmluZ0RhdGUiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5EYXRlVGltZV0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iY29tcGFueUlzR3N0QXBwbGljYWJsZSIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkJvb2xlYW5dIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImNvbXBhbnlHc3RBcHBsaWNhYmxlRnJvbSIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJjb21wYW55R3N0aW4iIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iY29tcGFueVBhbk5vIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImNvbXBhbnlJc0x1dEJvbmQiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5Cb29sZWFuXSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJjb21wYW55THV0Qm9uZE5vIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImNvbXBhbnlMdXRCb25kVG8iIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iY29tcGFueUlzRVdheUJpbGwiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5Cb29sZWFuXSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJjb21wYW55RVdheUJpbGxGcm9tIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImNvbXBhbnlFV2F5QmlsbExpbWl0IiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImNvbXBhbnlJc0VJbnZvaWNlIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uQm9vbGVhbl0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iY29tcGFueUVJbnZvaWNlRnJvbSIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJjb21wYW55UmVnTm8iIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iY29tcGFueUN1clN5bWJvbCIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJjb21wYW55RGVjaW1hbCIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJjb21wYW55RGF0ZUZvcm1hdCIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJjb21wYW55U3RhdHVzIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uQm9vbGVhbl0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iY29tcGFueUNyZWF0ZWQiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5EYXRlVGltZV0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iY29tcGFueVVwZGF0ZWQiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5EYXRlVGltZV0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iY29tcGFueVJlbWFya3MiIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iY29tcGFueVVzZXJuYW1lIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImNvbXBhbnlQYXNzd29yZCIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJjb21wYW55TG9nbyIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJjb21wYW55VGhlbWVOYW1lIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImNvbXBhbnlTZXJ2aWNlVHlwZSIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJjb21wYW55SXNPbmxpbmUiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5Cb29sZWFuXSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJjb21wYW55Q2l0eSIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJjb21wYW55Q291bnRyeSIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJjb21wYW55RnNzRXhwaXJ5IiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uRGF0ZVRpbWVdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImNvbXBhbnlFeHRlbmREYXlzIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImNvbXBhbnlUYWdsaW5lMSIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJjb21wYW55VGFnbGluZTIiIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iY29tcGFueU1zbWVObyIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJjb21wYW55SXNNdWx0aUJyYW5jaCIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkJvb2xlYW5dIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjwvTm9kZT48L1NjaGVtYT48L0pzb25EYXRhU291cmNlPg==" />
+    <Item3 Ref="0" ObjectType="DevExpress.DataAccess.Json.JsonDataSource,DevExpress.DataAccess.v24.1" Name="jsonDataSource3" Base64="PEpzb25EYXRhU291cmNlIE5hbWU9Impzb25EYXRhU291cmNlMyI+PFNvdXJjZSBTb3VyY2VUeXBlPSJEZXZFeHByZXNzLkRhdGFBY2Nlc3MuSnNvbi5DdXN0b21Kc29uU291cmNlIiBKc29uPSJ7JiN4RDsmI3hBOyAgJnF1b3Q7bHJJZCZxdW90OzogMSwmI3hEOyYjeEE7ICAmcXVvdDtsckNvbXBhbnlJZCZxdW90OzogMSwmI3hEOyYjeEE7ICAmcXVvdDtsckFkZGVkQnlVc2VySWQmcXVvdDs6IDEsJiN4RDsmI3hBOyAgJnF1b3Q7bHJVcGRhdGVkQnlVc2VySWQmcXVvdDs6IDEsJiN4RDsmI3hBOyAgJnF1b3Q7bHJWb3VjaGVySWQmcXVvdDs6IDEsJiN4RDsmI3hBOyAgJnF1b3Q7bHJQYXJ0eUFjY291bnRJZCZxdW90OzogMSwmI3hEOyYjeEE7ICAmcXVvdDtsckNvbnNpZ25lZU5vdGlmeUlkJnF1b3Q7OiAxNCwmI3hEOyYjeEE7ICAmcXVvdDtsckNvbnNpZ25vck5vdGlmeUlkJnF1b3Q7OiA1NiwmI3hEOyYjeEE7ICAmcXVvdDtsclByb2R1Y3RJZCZxdW90OzogMSwmI3hEOyYjeEE7ICAmcXVvdDtsclZlaGljbGVJZCZxdW90OzogMiwmI3hEOyYjeEE7ICAmcXVvdDtsclN1cHBsaWVyQWNjb3VudElkJnF1b3Q7OiAxLCYjeEQ7JiN4QTsgICZxdW90O2xyRHJpdmVySWQmcXVvdDs6IDEsJiN4RDsmI3hBOyAgJnF1b3Q7bHJObyZxdW90OzogMCwmI3hEOyYjeEE7ICAmcXVvdDtsck5vc3RyJnF1b3Q7OiAmcXVvdDs1NSZxdW90OywmI3hEOyYjeEE7ICAmcXVvdDtsckRhdGUmcXVvdDs6ICZxdW90OzIwMjUtMDMtMTdUMDA6MDA6MDAmcXVvdDssJiN4RDsmI3hBOyAgJnF1b3Q7bHJUaW1lJnF1b3Q7OiAmcXVvdDswMDowMCZxdW90OywmI3hEOyYjeEE7ICAmcXVvdDtsclRyaXBubyZxdW90OzogMSwmI3hEOyYjeEE7ICAmcXVvdDtsckZyb21Mb2NhdGlvbklkJnF1b3Q7OiAxLCYjeEQ7JiN4QTsgICZxdW90O2xyVG9Mb2NhdGlvbklkJnF1b3Q7OiAyLCYjeEQ7JiN4QTsgICZxdW90O2xyQmFja0xvY2F0aW9uSWQmcXVvdDs6IDEsJiN4RDsmI3hBOyAgJnF1b3Q7bHJDb250YWluZXIxJnF1b3Q7OiAmcXVvdDt0Z2hzNDVxcXEmcXVvdDssJiN4RDsmI3hBOyAgJnF1b3Q7bHJDb250YWluZXIyJnF1b3Q7OiAmcXVvdDtlcnQ0JnF1b3Q7LCYjeEQ7JiN4QTsgICZxdW90O2xyR3Jvc3N3dCZxdW90OzogNDQsJiN4RDsmI3hBOyAgJnF1b3Q7bHJUYXJld3QmcXVvdDs6IDQzLCYjeEQ7JiN4QTsgICZxdW90O2xyTG9hZHd0JnF1b3Q7OiA1NjUsJiN4RDsmI3hBOyAgJnF1b3Q7bHJDaGFyZ2VxdHkmcXVvdDs6IDAsJiN4RDsmI3hBOyAgJnF1b3Q7bHJVbmxvYWR3dCZxdW90OzogMCwmI3hEOyYjeEE7ICAmcXVvdDtsclNob3J0d3QmcXVvdDs6IDAsJiN4RDsmI3hBOyAgJnF1b3Q7bHJTaG9ydGFsbG93QmlsbCZxdW90OzogMCwmI3hEOyYjeEE7ICAmcXVvdDtsclNob3J0UGVyQmlsbCZxdW90OzogMCwmI3hEOyYjeEE7ICAmcXVvdDtsclNob3J0UGVyVHJ1Y2smcXVvdDs6IDAsJiN4RDsmI3hBOyAgJnF1b3Q7bHJTaG9ydGFsbG93dHlwZSZxdW90OzogbnVsbCwmI3hEOyYjeEE7ICAmcXVvdDtsclNob3J0bmV0QmlsbCZxdW90OzogMCwmI3hEOyYjeEE7ICAmcXVvdDtsclNob3J0cmF0ZWJpbGwmcXVvdDs6IDAsJiN4RDsmI3hBOyAgJnF1b3Q7bHJTaG9ydHJhdGV0cnVjayZxdW90OzogMCwmI3hEOyYjeEE7ICAmcXVvdDtsclNob3J0YW10YmlsbCZxdW90OzogMCwmI3hEOyYjeEE7ICAmcXVvdDtsclNob3J0YW10dHJ1Y2smcXVvdDs6IDAsJiN4RDsmI3hBOyAgJnF1b3Q7bHJQYXltZW50dHlwZSZxdW90OzogJnF1b3Q7VG8gYmUgQmlsbGVkJnF1b3Q7LCYjeEQ7JiN4QTsgICZxdW90O2xyUmF0ZWJpbGwmcXVvdDs6IDY3NywmI3hEOyYjeEE7ICAmcXVvdDtsckJpbGx0eXBlYmlsbCZxdW90OzogMSwmI3hEOyYjeEE7ICAmcXVvdDtsckdyb3NzZnJlaWdodGJpbGwmcXVvdDs6IDAsJiN4RDsmI3hBOyAgJnF1b3Q7bHJUcmlwY2hhcmdlYmlsbCZxdW90OzogMCwmI3hEOyYjeEE7ICAmcXVvdDtsckFkdmFuY2ViaWxsJnF1b3Q7OiAwLCYjeEQ7JiN4QTsgICZxdW90O2xyTmV0ZnJlaWdodGJpbGwmcXVvdDs6IDAsJiN4RDsmI3hBOyAgJnF1b3Q7bHJSZWZieSZxdW90OzogbnVsbCwmI3hEOyYjeEE7ICAmcXVvdDtsclN0YXJ0a20mcXVvdDs6ICZxdW90OzAmcXVvdDssJiN4RDsmI3hBOyAgJnF1b3Q7bHJFbmRrbSZxdW90OzogJnF1b3Q7MCZxdW90OywmI3hEOyYjeEE7ICAmcXVvdDtsckJpbGx0eXBldHJ1Y2smcXVvdDs6IDEsJiN4RDsmI3hBOyAgJnF1b3Q7bHJCaWxscmF0ZXRydWNrJnF1b3Q7OiAwLCYjeEQ7JiN4QTsgICZxdW90O2xyR3Jvc3NmcmVpZ2h0dHJ1Y2smcXVvdDs6IDAsJiN4RDsmI3hBOyAgJnF1b3Q7bHJUcmlwY2hhcmdldHJ1Y2smcXVvdDs6IDAsJiN4RDsmI3hBOyAgJnF1b3Q7bHJUcmlwYWR2YW5jZSZxdW90OzogMCwmI3hEOyYjeEE7ICAmcXVvdDtsckNhc2hiYW5rJnF1b3Q7OiAwLCYjeEQ7JiN4QTsgICZxdW90O2xyTmV0ZnJlaWdodHRydWNrJnF1b3Q7OiAwLCYjeEQ7JiN4QTsgICZxdW90O2xyQ3VzdG9tMSZxdW90OzogbnVsbCwmI3hEOyYjeEE7ICAmcXVvdDtsckN1c3RvbTImcXVvdDs6IG51bGwsJiN4RDsmI3hBOyAgJnF1b3Q7bHJDdXN0b20zJnF1b3Q7OiBudWxsLCYjeEQ7JiN4QTsgICZxdW90O2xyQ3VzdG9tNCZxdW90OzogbnVsbCwmI3hEOyYjeEE7ICAmcXVvdDtsckludm9pY2VubyZxdW90OzogJnF1b3Q7NGVyNCZxdW90OywmI3hEOyYjeEE7ICAmcXVvdDtsckludm9pY2V2YWx1ZSZxdW90OzogNTY0LCYjeEQ7JiN4QTsgICZxdW90O2xySW52b2ljZWRhdGUmcXVvdDs6ICZxdW90OzQmcXVvdDssJiN4RDsmI3hBOyAgJnF1b3Q7bHJEb25vJnF1b3Q7OiBudWxsLCYjeEQ7JiN4QTsgICZxdW90O2xyRG9kYXRlJnF1b3Q7OiBudWxsLCYjeEQ7JiN4QTsgICZxdW90O2xyRXdheWJpbGxubyZxdW90OzogJnF1b3Q7NDRyJnF1b3Q7LCYjeEQ7JiN4QTsgICZxdW90O2xyRXdheWJpbGxFeHBkdCZxdW90OzogbnVsbCwmI3hEOyYjeEE7ICAmcXVvdDtsclJlbWFya3MmcXVvdDs6ICZxdW90O29rJnF1b3Q7LCYjeEQ7JiN4QTsgICZxdW90O2xyU3RhdHVzJnF1b3Q7OiB0cnVlLCYjeEQ7JiN4QTsgICZxdW90O2xyQ3JlYXRlZCZxdW90OzogbnVsbCwmI3hEOyYjeEE7ICAmcXVvdDtsclVwZGF0ZWQmcXVvdDs6IG51bGwsJiN4RDsmI3hBOyAgJnF1b3Q7bHJSZXBvcnREYXRlJnF1b3Q7OiBudWxsLCYjeEQ7JiN4QTsgICZxdW90O2xyUmVwb3J0VGltZSZxdW90OzogbnVsbCwmI3hEOyYjeEE7ICAmcXVvdDtsclVubG9hZERhdGUmcXVvdDs6IG51bGwsJiN4RDsmI3hBOyAgJnF1b3Q7bHJVbmxvYWRUaW1lJnF1b3Q7OiBudWxsLCYjeEQ7JiN4QTsgICZxdW90O2xyUG9kRGF0ZSZxdW90OzogbnVsbCwmI3hEOyYjeEE7ICAmcXVvdDtsclJldHVybkRhdGUmcXVvdDs6IG51bGwsJiN4RDsmI3hBOyAgJnF1b3Q7bHJEZXRlbnRpb25SYXRlYmlsbCZxdW90OzogMCwmI3hEOyYjeEE7ICAmcXVvdDtsckRldGVudGlvblJhdGV0cnVjayZxdW90OzogMCwmI3hEOyYjeEE7ICAmcXVvdDtsckRldGVudGlvbkRheWJpbGwmcXVvdDs6IDAsJiN4RDsmI3hBOyAgJnF1b3Q7bHJEZXRlbnRpb25EYXl0cnVjayZxdW90OzogMCwmI3hEOyYjeEE7ICAmcXVvdDtsckRldGVudGlvbkFtdGJpbGwmcXVvdDs6IDAsJiN4RDsmI3hBOyAgJnF1b3Q7bHJEZXRlbnRpb25BbXR0cnVjayZxdW90OzogMCwmI3hEOyYjeEE7ICAmcXVvdDtsckFwcHJvdmVkQnkmcXVvdDs6IG51bGwsJiN4RDsmI3hBOyAgJnF1b3Q7bHJHYXRlcGFzc25vJnF1b3Q7OiBudWxsLCYjeEQ7JiN4QTsgICZxdW90O2xyUGFydHlCaWxsSWQmcXVvdDs6IG51bGwsJiN4RDsmI3hBOyAgJnF1b3Q7bHJTdXBwbGllckJpbGxJZCZxdW90OzogbnVsbCwmI3hEOyYjeEE7ICAmcXVvdDtsckFsbG93YW5jZVBheUlkJnF1b3Q7OiBudWxsLCYjeEQ7JiN4QTsgICZxdW90O2xyQWR2YW5jZVBheUlkJnF1b3Q7OiBudWxsLCYjeEQ7JiN4QTsgICZxdW90O2xyQWR2YW5jZVJlY0lkJnF1b3Q7OiBudWxsLCYjeEQ7JiN4QTsgICZxdW90O2xyVG90a20mcXVvdDs6IDAsJiN4RDsmI3hBOyAgJnF1b3Q7bHJUb3RhbGJhZ3MmcXVvdDs6IDM0LCYjeEQ7JiN4QTsgICZxdW90O2xyVHJpcHR5cGUmcXVvdDs6IG51bGwsJiN4RDsmI3hBOyAgJnF1b3Q7bHJHcm91cG5vJnF1b3Q7OiBudWxsLCYjeEQ7JiN4QTsgICZxdW90O2xyQWxsb3dBbXQmcXVvdDs6IDAsJiN4RDsmI3hBOyAgJnF1b3Q7bHJBbGxvd0RpZXNlbFF0eSZxdW90OzogMCwmI3hEOyYjeEE7ICAmcXVvdDtsckNvbnNpZ25lZU5hbWUmcXVvdDs6IG51bGwsJiN4RDsmI3hBOyAgJnF1b3Q7bHJDb25zaWduZWVBZGRyZXNzJnF1b3Q7OiBudWxsLCYjeEQ7JiN4QTsgICZxdW90O2xyQ29uc2lnbmVlR3N0aW4mcXVvdDs6IG51bGwsJiN4RDsmI3hBOyAgJnF1b3Q7bHJDb25zaWdub3JOYW1lJnF1b3Q7OiBudWxsLCYjeEQ7JiN4QTsgICZxdW90O2xyQ29uc2lnbm9yQWRkcmVzcyZxdW90OzogbnVsbCwmI3hEOyYjeEE7ICAmcXVvdDtsckNvbnNpZ25vckdzdGluJnF1b3Q7OiBudWxsLCYjeEQ7JiN4QTsgICZxdW90O2xyRHJpdmVyTW9iaWxlJnF1b3Q7OiBudWxsLCYjeEQ7JiN4QTsgICZxdW90O2xyRHJpdmVyTmFtZSZxdW90OzogbnVsbCwmI3hEOyYjeEE7ICAmcXVvdDtsck90aGVyQ2hhcmdlYmlsbCZxdW90OzogMCwmI3hEOyYjeEE7ICAmcXVvdDthZGRlZEJ5VXNlciZxdW90OzogbnVsbCwmI3hEOyYjeEE7ICAmcXVvdDtkcml2ZXImcXVvdDs6IG51bGwsJiN4RDsmI3hBOyAgJnF1b3Q7ZnJvbUxvY2F0aW9uJnF1b3Q7OiBudWxsLCYjeEQ7JiN4QTsgICZxdW90O3RvTG9jYXRpb24mcXVvdDs6IG51bGwsJiN4RDsmI3hBOyAgJnF1b3Q7dmVoaWNsZSZxdW90OzogbnVsbCwmI3hEOyYjeEE7ICAmcXVvdDtwYXJ0eSZxdW90OzogbnVsbCwmI3hEOyYjeEE7ICAmcXVvdDtwcm9kdWN0JnF1b3Q7OiBudWxsLCYjeEQ7JiN4QTsgICZxdW90O3N1cHBsaWVyJnF1b3Q7OiBudWxsLCYjeEQ7JiN4QTsgICZxdW90O2NvbnNpZ25lZSZxdW90OzogbnVsbCwmI3hEOyYjeEE7ICAmcXVvdDtjb25zaWdub3ImcXVvdDs6IG51bGwmI3hEOyYjeEE7fSIgLz48U2NoZW1hPjxOb2RlIE5hbWU9InJvb3QiIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iT2JqZWN0Ij48Tm9kZSBOYW1lPSJscklkIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyQ29tcGFueUlkIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyQWRkZWRCeVVzZXJJZCIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsclVwZGF0ZWRCeVVzZXJJZCIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsclZvdWNoZXJJZCIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsclBhcnR5QWNjb3VudElkIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyQ29uc2lnbmVlTm90aWZ5SWQiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJDb25zaWdub3JOb3RpZnlJZCIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsclByb2R1Y3RJZCIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsclZlaGljbGVJZCIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsclN1cHBsaWVyQWNjb3VudElkIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyRHJpdmVySWQiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJObyIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsck5vc3RyIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyRGF0ZSIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkRhdGVUaW1lXSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsclRpbWUiIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJUcmlwbm8iIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJGcm9tTG9jYXRpb25JZCIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsclRvTG9jYXRpb25JZCIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsckJhY2tMb2NhdGlvbklkIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyQ29udGFpbmVyMSIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsckNvbnRhaW5lcjIiIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJHcm9zc3d0IiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyVGFyZXd0IiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyTG9hZHd0IiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyQ2hhcmdlcXR5IiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyVW5sb2Fkd3QiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJTaG9ydHd0IiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyU2hvcnRhbGxvd0JpbGwiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJTaG9ydFBlckJpbGwiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJTaG9ydFBlclRydWNrIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyU2hvcnRhbGxvd3R5cGUiIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJTaG9ydG5ldEJpbGwiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJTaG9ydHJhdGViaWxsIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyU2hvcnRyYXRldHJ1Y2siIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJTaG9ydGFtdGJpbGwiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJTaG9ydGFtdHRydWNrIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyUGF5bWVudHR5cGUiIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJSYXRlYmlsbCIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsckJpbGx0eXBlYmlsbCIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsckdyb3NzZnJlaWdodGJpbGwiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJUcmlwY2hhcmdlYmlsbCIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsckFkdmFuY2ViaWxsIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyTmV0ZnJlaWdodGJpbGwiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJSZWZieSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsclN0YXJ0a20iIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJFbmRrbSIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsckJpbGx0eXBldHJ1Y2siIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJCaWxscmF0ZXRydWNrIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyR3Jvc3NmcmVpZ2h0dHJ1Y2siIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJUcmlwY2hhcmdldHJ1Y2siIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJUcmlwYWR2YW5jZSIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsckNhc2hiYW5rIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyTmV0ZnJlaWdodHRydWNrIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyQ3VzdG9tMSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsckN1c3RvbTIiIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJDdXN0b20zIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyQ3VzdG9tNCIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsckludm9pY2VubyIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsckludm9pY2V2YWx1ZSIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsckludm9pY2VkYXRlIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyRG9ubyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsckRvZGF0ZSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsckV3YXliaWxsbm8iIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJFd2F5YmlsbEV4cGR0IiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyUmVtYXJrcyIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsclN0YXR1cyIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkJvb2xlYW5dIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyQ3JlYXRlZCIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsclVwZGF0ZWQiIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJSZXBvcnREYXRlIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyUmVwb3J0VGltZSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsclVubG9hZERhdGUiIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJVbmxvYWRUaW1lIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyUG9kRGF0ZSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsclJldHVybkRhdGUiIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJEZXRlbnRpb25SYXRlYmlsbCIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsckRldGVudGlvblJhdGV0cnVjayIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsckRldGVudGlvbkRheWJpbGwiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJEZXRlbnRpb25EYXl0cnVjayIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsckRldGVudGlvbkFtdGJpbGwiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJEZXRlbnRpb25BbXR0cnVjayIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsckFwcHJvdmVkQnkiIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJHYXRlcGFzc25vIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyUGFydHlCaWxsSWQiIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJTdXBwbGllckJpbGxJZCIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsckFsbG93YW5jZVBheUlkIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyQWR2YW5jZVBheUlkIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyQWR2YW5jZVJlY0lkIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyVG90a20iIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJUb3RhbGJhZ3MiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJUcmlwdHlwZSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsckdyb3Vwbm8iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJBbGxvd0FtdCIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsckFsbG93RGllc2VsUXR5IiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyQ29uc2lnbmVlTmFtZSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsckNvbnNpZ25lZUFkZHJlc3MiIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJDb25zaWduZWVHc3RpbiIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJsckNvbnNpZ25vck5hbWUiIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJDb25zaWdub3JBZGRyZXNzIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyQ29uc2lnbm9yR3N0aW4iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJEcml2ZXJNb2JpbGUiIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ibHJEcml2ZXJOYW1lIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImxyT3RoZXJDaGFyZ2ViaWxsIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImFkZGVkQnlVc2VyIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImRyaXZlciIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJmcm9tTG9jYXRpb24iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0idG9Mb2NhdGlvbiIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJ2ZWhpY2xlIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9InBhcnR5IiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9InByb2R1Y3QiIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0ic3VwcGxpZXIiIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iY29uc2lnbmVlIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9ImNvbnNpZ25vciIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48L05vZGU+PC9TY2hlbWE+PC9Kc29uRGF0YVNvdXJjZT4=" />
   </ComponentStorage>
 </XtraReportsLayoutSerializer>

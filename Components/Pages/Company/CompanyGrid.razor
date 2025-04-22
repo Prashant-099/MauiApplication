@@ -7,7 +7,6 @@
 @using Services
 @inject CompanyService CompanyService
 @inject IJSRuntime JS
-
 <h3>Company List</h3>
 
 @if (isLoading)
@@ -21,10 +20,17 @@ else if (!string.IsNullOrEmpty(errorMessage))
 
 else
 {
-    <div class="mb-3">
+  @*<div class="mb-3">
         <input type="text" placeholder="Search Company Name" @bind="filterCompanyName" class="form-control" />
         <button class="btn btn-primary mt-2" @onclick="ApplyFilters">Apply Filters</button>
-        <!--  <button class="btn btn-success mt-2" @onclick="ShowAddModal">Add Company</button> -->
+        <button class="btn btn-success mt-2" @onclick="ShowAddModal">Add Company</button>
+    </div>*@
+    <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+        <input type="text" placeholder="Search" @bind="filterCompanyName" style="width:80%;" class="form-control" />
+        <button class="rounded-circle d-flex align-items-center justify-content-center"
+                style="width: 40px; height: 40px;" @onclick="ShowAddModal">
+            <img src="Icon/add.png" style="height:20px;" />
+        </button>
     </div>
     <div class="table-responsive">
         <table class="table-striped table">
@@ -32,7 +38,7 @@ else
                 <tr>
 
                     <th>Company Name</th>
-
+                     <th>logo</th>
                     <th>Remarks</th>
                     <th>Actions</th>
                 </tr>
@@ -46,12 +52,20 @@ else
             }
             else{
                 <tbody>
-                    @foreach (var company in company)
+                    @foreach (var company in FilteredGrids)
                     {
                         <tr>
 
                             <td>@company.CompanyName</td>
-
+                                                   <td>  @if (!string.IsNullOrEmpty(company.CompanyLogo))
+                                {
+                                    string base64Image = "data:image/jpeg;base64," + company.CompanyLogo;
+                                    <img src="@base64Image" alt="Company Logo" style="max-width: 100px; max-height: 100px;" />
+                                }
+                                else
+                                {
+                                    <span>No Image</span>
+                                }</td>
                             <td>@company.CompanyRemarks</td>
                             <td>
                                 <button  @onclick="() => ShowEditModal(company)">
@@ -91,13 +105,18 @@ OnSubmit="SaveCompany" />
     private bool isLoading = true;
     private string? errorMessage;
     private string filterCompanyName = string.Empty;
-   private Company file = new Company();
- 
+    private IBrowserFile? file;
+    
     // Pagination variables
     private int currentPage = 1;
     private int totalPages = 1;
     private int pageSize = 10;
-
+    private IEnumerable<Company> FilteredGrids =>
+       string.IsNullOrWhiteSpace(filterCompanyName)
+       ? company
+       : company.Where(compy =>
+           (!string.IsNullOrEmpty(compy.CompanyName) && compy.CompanyName.Contains(filterCompanyName, StringComparison.OrdinalIgnoreCase))
+       );
     // Sorting variables
     private string sortColumn = "CompanyId";
     private bool isSortDescending = false;

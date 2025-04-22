@@ -34,7 +34,7 @@
                         </div>
 
                         <div class="mt-3">
-                            <button type="submit" @onclick="PrintAfterSave" class="btn btn-primary">@ButtonText</button>
+                            <button type="submit"  class="btn btn-primary">@ButtonText</button>
                             <button type="button" class="btn btn-secondary" @onclick="CloseModal">Cancel</button>
                         </div>
                     </EditForm>
@@ -56,15 +56,15 @@
     {
         await OnSubmit.InvokeAsync();
     }
-    private async Task PrintAfterSave()
-    {
-        await PrintService.SaveAndPrintAsync();
-    }
+    // private async Task PrintAfterSave()
+    // {
+    //     await PrintService.SaveAndPrintAsync();
+    // }
     private async Task CloseModal() => await OnClose.InvokeAsync();
 }
-<script>
+@* <script>
         window.printDocument = () => {
         window.print();
     };
 
-</script>
+</script> *@

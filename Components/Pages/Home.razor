@@ -20,11 +20,13 @@ else{
     @using MauiAppFB.Components.Pages
     private List<Lr> LRGrids = new(); // Initialize the list for storing fetched data
     private Login loginModel = new ();
-    
+    private int currentPage = 1;
+    private int totalPages = 1;
+    private int pageSize=10;
     private string? token;
     private string? errorMessage;
     private bool isLoading = true;
-
+    private Lr selectedLRGrid = new Lr();
 
     [Inject] private LRService LRGridService { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
@@ -43,7 +45,7 @@ else{
                 NavigationManager.NavigateTo("/login");
 
             }
-            var response = await LRGridService.GetLRsAsync();
+            var response = await LRGridService.GetLRsAsync(currentPage, pageSize);
             @if (response != null)
             {
                 
