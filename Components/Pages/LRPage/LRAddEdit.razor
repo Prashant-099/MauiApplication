@@ -16,13 +16,8 @@
 
 
 <EditForm Model="@LR" OnValidSubmit="HandleValidSubmit">
-
-
-
     <DataAnnotationsValidator />
-
     <ValidationSummary />
-
     <div class="tabs">
         <button class="tab-button" @onclick="t1">BASIC</button>
         <button class="tab-button" @onclick="t2">SUPPLIER</button>
@@ -30,45 +25,26 @@
     </div>
     @if (activeTab == "TAB1")
     {
-
-
         //  <h5 class="">--Booking Details--</h5>
         <div class="d-flex align-items-center mb-3 flex-wrap">
-
             <!-- LrNo -->
-
             <div class="mb-3 me-4">
-
                 <label for="LrNo" >Challan/LR Nostr:</label>
-
                 <InputText id="LrNostr" @bind-Value="LR.LrNostr" step="0.01"
                 class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
-
             </div>
-
-
-            <!-- LrNo -->
-
+         @*    <!-- LrNo -->
             <div class="mb-3 me-4">
-
                 <label for="LrNo">Challan/LR No:</label>
-
                 <InputNumber id="LrNo" @bind-Value="LR.LrNo" step="0.01"
                 class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
-
-            </div>
-
+            </div> *@
             <!-- LrDate -->
-
             <div class="mb-3 me-4">
-
                 <label for="LRDate" >LrDate:</label>
-
                 <InputDate id="LRDate" @bind-Value="LR.LrDate"
-
                 class="form-control"
                 style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
-
             </div>
 
 
@@ -105,7 +81,7 @@
 
                 style="width: 150px; font-size: 0.9rem; padding: 0.25rem;">
 
-
+                 <option value="">-- Select Vehicle --</option>
                     @foreach (var vehicle in vehicles)
                     {
 
@@ -152,7 +128,7 @@
                 <InputSelect id="LrFromLocationId" @bind-Value="LR.LrFromLocationId" class="form-control" @onclick="Loadlocation"
                 style="width: 150px; font-size: 0.9rem; padding: 0.25rem;">
 
-                    <option value="">-- Select location --</option>
+                        <option value="Select location">-- Select location --</option>
 
                     @foreach (var Locations in locations)
 
@@ -227,6 +203,7 @@
 
                 <InputSelect id="LrProductId" @bind-Value="LR.LrProductId" class="form-control" @onclick="Loadcargo"
                 style="width: 150px; font-size: 0.9rem; padding: 0.25rem; top:30cm " >
+                     <option value="">-- Select Product --</option>
                     @foreach (var cargos in cargos)
 
                     {
@@ -270,7 +247,7 @@
                 </label>
                 <InputSelect id="LrConsigneeNotifyId" @bind-Value="LR.LrConsigneeNotifyId" class="form-control" @onclick="LoadNotifyConsignee"
                 style="width: 150px; font-size: 0.9rem; padding: 0.30rem;" >
-                    <label for="con2">Container Name:</label>
+                       <option value="">-- Container Name: --</option>
                     @foreach (var notifi in Notifc)
 
                     {
@@ -321,6 +298,7 @@
                 </label>
                 <InputSelect id="LrConsignorNotifyId" @bind-Value="LR.LrConsignorNotifyId" class="form-control" @onclick="LoadNotifyConsignor"
                 style="width: 150px; font-size: 0.9rem; padding: 0.30rem;" >
+                         <option value="">-- Consignor Name: --</option>
                     @foreach (var notifi in Notif)
 
                     {
@@ -513,15 +491,7 @@
             style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
 
             </div>
-
-
-
-            -->
-
-
-
-
-
+-->
             <!-- Lr Ratebill -->
 
             <div class="mb-3 me-4">
@@ -897,31 +867,18 @@
                 <label for="POD">Rate(Supplier)</label>
 
                 <InputText id="LrCustom1" @bind-Value="LR.LrCustom1" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
-
             </div>
-
             <div class="mb-3 me-4">
-
                 <label for="POD">Amount</label>
-
                 <InputText id="LrCustom1" @bind-Value="LR.LrCustom1" class="form-control" style="width: 150px; font-size: 0.9rem; padding: 0.25rem;" />
-
             </div>
-
-
         </div>
     }
-
-
     <button type="button" class="btn btn-primary"@onclick="SaveLRGrid" >@ButtonText</button>
-
     <button type="button" class="btn btn-secondary" @onclick="Close">Cancel</button>
-
-
-
-
-
 </EditForm>
+
+
 <NotifyAddEdit Notification="selectedNotification"
                Title="@modalTitle"
                ButtonText="@modalButtonText"

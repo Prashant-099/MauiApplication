@@ -167,25 +167,29 @@ OnSubmit="SaveCompany" />
             {
                 CompanyId = company.CompanyId,
                 CompanyName = company.CompanyName,
-            
-                CompanyRemarks = company.CompanyRemarks
+                CompanyRemarks = company.CompanyRemarks,
+                CompanyAddress1 = company.CompanyAddress1,
+                CompanyAddress2 = company.CompanyAddress2,
+                CompanyAddress3 = company.CompanyAddress3,
+                CompanyGstin = company.CompanyGstin,
+             
             };
         modalTitle = "Edit Company";
         modalButtonText = "Save";
         isModalVisible = true;
     }
 
-    private async Task SaveCompany()
+    private async Task SaveCompany(IBrowserFile file)
     {
         try
         {
             if (selectedCompany.CompanyId == 0) // Add new company
             {
-                await CompanyService.AddCompanyAsync(selectedCompany);
+                await CompanyService.AddCompanyAsync(selectedCompany, file);
             }
             else // Update existing company
             {
-                await CompanyService.UpdateCompanyAsync(selectedCompany);
+                await CompanyService.UpdateCompanyAsync(selectedCompany, file);
             }
 
             await LoadCompanies(); // Refresh the list

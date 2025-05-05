@@ -92,7 +92,7 @@ namespace MauiAppFB.Services
         /// <summary>
         /// Adds a new company to the API.
         /// </summary>
-        public async Task<Company> AddCompanyAsync(Company company)
+        public async Task<Company> AddCompanyAsync(Company company, IBrowserFile file)
         {
             try
             {
@@ -129,7 +129,7 @@ namespace MauiAppFB.Services
                 content.Add(new StringContent(company.CompanyStateCode ?? ""), "CompanyStateCode");
                 content.Add(new StringContent(company.CompanyCurrency ?? ""), "CompanyCurrency");
                 content.Add(new StringContent(company.CompanyEWayBillLimit.ToString()), "CompanyEWayBillLimit");
-                content.Add(new StringContent(company.CompanyBeginningDate.ToString()), "CompanyBeginningDate");
+                //content.Add(new StringContent(company.CompanyBeginningDate.ToString()), "CompanyBeginningDate");
                 content.Add(new StringContent(company.CompanyDecimal ?? ""), "CompanyDecimal");
 
                 //if (file != null)
@@ -167,7 +167,7 @@ namespace MauiAppFB.Services
         /// <summary>
         /// Updates an existing company in the API.
         /// </summary>
-       public async Task UpdateCompanyAsync(Company company)
+       public async Task UpdateCompanyAsync(Company company, IBrowserFile file)
         {
             try
             {
@@ -177,68 +177,74 @@ namespace MauiAppFB.Services
 
                 using var content = new MultipartFormDataContent();
 
-                // ✅ Required fields
-                content.Add(new StringContent(company.CompanyId.ToString()), "companyId");
-                content.Add(new StringContent(company.CompanyAddedByUserId ?? "1"), "companyAddedByUserId");
-                content.Add(new StringContent(company.CompanyUpdatedByUserId ?? "1"), "CompanyUpdatedByUserId");
-                content.Add(new StringContent(company.CompanyName ?? ""), "companyName");
-                content.Add(new StringContent(company.CompanyPrintName ?? ""), "companyPrintName");
-                content.Add(new StringContent(company.CompanyStateId ?? ""), "companyStateId");
+                // ✅ Add text fields as form-data
+                content.Add(new StringContent(company.CompanyName ?? ""), "CompanyName");
+                content.Add(new StringContent(company.CompanyPrintName ?? ""), "CompanyPrintName");
+                content.Add(new StringContent(company.CompanyRegNo ?? ""), "CompanyRegNo");
+                content.Add(new StringContent(company.CompanyCode ?? ""), "CompanyCode");
+                content.Add(new StringContent(company.CompanyEmail ?? ""), "CompanyEmail");
+                content.Add(new StringContent(company.CompanyMobile ?? ""), "CompanyMobile");
+                content.Add(new StringContent(company.CompanyGstin ?? ""), "CompanyGstin");
+                content.Add(new StringContent(company.CompanyPanNo ?? ""), "CompanyPanNo");
+                content.Add(new StringContent(company.CompanyTagline1 ?? ""), "CompanyTagline1");
+                content.Add(new StringContent(company.CompanyTagline2 ?? ""), "CompanyTagline2");
+                content.Add(new StringContent(company.CompanyCity ?? ""), "CompanyCity");
+                content.Add(new StringContent(company.CompanyCountry ?? ""), "CompanyCountry");
+                content.Add(new StringContent(company.CompanyMsmeNo ?? ""), "CompanyMsmeNo");
+                content.Add(new StringContent(company.CompanyIsEInvoice.ToString()), "CompanyIsEInvoice");
+                content.Add(new StringContent(company.CompanyIsGstApplicable.ToString()), "CompanyIsGstApplicable");
+                content.Add(new StringContent(company.CompanyGstApplicableFrom ?? ""), "CompanyGstApplicableFrom");
+                content.Add(new StringContent(company.CompanyIsLutBond.ToString()), "CompanyIsLutBond");
+                content.Add(new StringContent(company.CompanyLutBondNo ?? ""), "CompanyLutBondNo");
+                content.Add(new StringContent(company.CompanyLutBondTo ?? ""), "CompanyLutBondTo");
+                content.Add(new StringContent(company.CompanyIsEWayBill.ToString()), "CompanyIsEWayBill");
+                content.Add(new StringContent(company.CompanyEWayBillFrom ?? ""), "CompanyEWayBillFrom");
+                content.Add(new StringContent(company.CompanyAddedByUserId ?? ""), "CompanyAddedByUserId");
+                content.Add(new StringContent(company.CompanyAddress1 ?? ""), "CompanyAddress");
+                content.Add(new StringContent(company.CompanyStateId ?? ""), "CompanyStateId");
+                content.Add(new StringContent(company.CompanyPincode ?? ""), "CompanyPincode");
+                content.Add(new StringContent(company.CompanyContactPerson ?? ""), "CompanyContactPerson");
+                content.Add(new StringContent(company.CompanyTelephone ?? ""), "CompanyTelephone");
+                content.Add(new StringContent(company.CompanyFax ?? ""), "CompanyFax");
+                content.Add(new StringContent(company.CompanyWebsite ?? ""), "CompanyWebsite");
+                content.Add(new StringContent(company.CompanyAddress2 ?? ""), "CompanyAddress2");
+                content.Add(new StringContent(company.CompanyAddress3 ?? ""), "CompanyAddress3");
+                content.Add(new StringContent(company.CompanyStateCode ?? ""), "CompanyStateCode");
+                content.Add(new StringContent(company.CompanyCurrency ?? ""), "CompanyCurrency");
+                content.Add(new StringContent(company.CompanyEWayBillLimit.ToString()), "CompanyEWayBillLimit");
+                //content.Add(new StringContent(company.CompanyBeginningDate.ToString()), "CompanyBeginningDate");
+                content.Add(new StringContent(company.CompanyUpdatedByUserId ?? ""), "CompanyUpdatedByUserId");
+                content.Add(new StringContent(company.CompanyId.ToString() ?? ""), "CompanyId");
+                content.Add(new StringContent(company.CompanyDecimal ?? ""), "CompanyDecimal");
 
-                // 🆗 Optional fields
-                content.Add(new StringContent(company.CompanyCode ?? ""), "companyCode");
-                content.Add(new StringContent(company.CompanyAddress1 ?? ""), "companyAddress1");
-                content.Add(new StringContent(company.CompanyRemarks ?? ""), "companyRemarks");
-                content.Add(new StringContent(company.CompanyEmail ?? ""), "companyEmail");
-                content.Add(new StringContent(company.CompanyMobile ?? ""), "companyMobile");
-                content.Add(new StringContent(company.CompanyTelephone ?? ""), "companyTelephone");
-                content.Add(new StringContent(company.CompanyWebsite ?? ""), "companyWebsite");
-                content.Add(new StringContent(company.CompanyDecimal ?? "2"), "companyDecimal");
-                content.Add(new StringContent(company.CompanyServiceType ?? "ALL"), "companyServiceType");
 
-                // ✅ Booleans
-                content.Add(new StringContent(company.CompanyIsGstApplicable.ToString()), "companyIsGstApplicable");
-                content.Add(new StringContent(company.CompanyIsLutBond.ToString()), "companyIsLutBond");
-                content.Add(new StringContent(company.CompanyIsEWayBill.ToString()), "companyIsEWayBill");
-                content.Add(new StringContent(company.CompanyIsEInvoice.ToString()), "companyIsEInvoice");
-                content.Add(new StringContent(company.CompanyStatus?.ToString() ?? "true"), "companyStatus");
-
-                // ✅ Dates
-                if (company.CompanyBeginningDate.HasValue)
-                    content.Add(new StringContent(company.CompanyBeginningDate.Value.ToString("o")), "companyBeginningDate");
-
-                // ✅ Float
-                if (company.CompanyEWayBillLimit.HasValue)
-                    content.Add(new StringContent(company.CompanyEWayBillLimit.Value.ToString("0.00")), "companyEWayBillLimit");
-
-                // ✅ File
-                //if (file != null)
-                //{
-                //    var fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.Name)}";
-                //    var stream = file.OpenReadStream(10 * 1024 * 1024);
-                //    var fileContent = new StreamContent(stream);
-                //    fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(file.ContentType);
-                //    content.Add(fileContent, "CompanyLogo", fileName);
-
-                //    company.CompanyLogo = fileName; // Just keeping it in sync if needed
-                //}
-                foreach ( var Content in content)
+                // ✅ File Upload Logic
+                if (file != null)
                 {
-                    Console.WriteLine($"Key: {Content.Headers.ContentDisposition?.Name}, Value: {Content.ReadAsStringAsync().Result}");
+                    var fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.Name)}"; // Unique naam de diya
+                    var fileStream = file.OpenReadStream(10485760); // Max 10MB
+                    var fileContent = new StreamContent(fileStream);
+                    fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(file.ContentType);
+
+                    content.Add(fileContent, "CompanyLogo", fileName);
+
+                    company.CompanyLogo = fileName; // ✅ Database me file ka naam store hoga
                 }
 
                 var response = await _httpClient.PutAsync($"api/Company/{company.CompanyId}", content);
-                if (!response.IsSuccessStatusCode)
-                {
-                    var errorContent = await response.Content.ReadAsStringAsync(); // This is awaitable
-                    Console.WriteLine("API Error: " + errorContent);
-                    throw new HttpRequestException($"API returned error {response.StatusCode}: {errorContent}");
-                }
+
+                string responseJson = await response.Content.ReadAsStringAsync();
+                Console.WriteLine("⬅️ Response JSON:\n" + responseJson);
+
+                response.EnsureSuccessStatusCode();
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error adding company: {ex.Message}", ex);
+                throw new Exception($"Error updating company with ID {company.CompanyId}: {ex.Message}", ex);
             }
+
+
+
 
         }
 

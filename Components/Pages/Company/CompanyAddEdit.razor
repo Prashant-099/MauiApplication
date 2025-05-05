@@ -1,6 +1,8 @@
-﻿@page "/CompanyAddEdit"
+﻿ @page "/CompanyAddEdit"
 @using Models
 @using Services
+
+@inject StatesService StateService
 @inject CompanyService CompanyService
 @inject IJSRuntime JS
 
@@ -22,21 +24,59 @@
                                 <label for="CompanyName">Company Name:</label>
                                 <InputText id="CompanyName" @bind-Value="Company.CompanyName" class="form-control" />
                             </div>
+                        <div class="mb-3">
+                            <label for="CompanyPrintName">Company Print Name:</label>
+                            <input id="CompanyPrintName" value="@Company.CompanyName" class="form-control" readonly />
+
+                        </div>
                             <div class="mb-3">
-                            <label for="CompanyAddress1">Company Code:</label>
+                            <label for="CompanyAddress1">Address1:</label>
                             <InputText id="CompanyAddress1" @bind-Value="Company.CompanyAddress1" class="form-control" />
                             </div>
                         <div class="mb-3">
-                            <label for="CompanyAddress2">Company Code:</label>
+                            <label for="CompanyAddress2">Address2:</label>
                             <InputText id="CompanyAddress2" @bind-Value="Company.CompanyAddress2" class="form-control" />
                         </div>
                         <div class="mb-3">
-                            <label for="CompanyAddress3">Company Code:</label>
+                            <label for="CompanyAddress3">Address3:</label>
                             <InputText id="CompanyAddress3" @bind-Value="Company.CompanyAddress3" class="form-control" />
                         </div>
                         <div class="mb-3">
-                            <label for="CompanyGstin">Company Code:</label>
+                            <label for="CompanyCity">City:</label>
+                            <InputText id="CompanyCity" @bind-Value="Company.CompanyCity" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="CompanyCountry">Country:</label>
+                            <InputText id="CompanyCountry" @bind-Value="Company.CompanyCountry" class="form-control" />
+                        </div>
+                         <div class="mb-3">
+                         <label for="AccountStateId" style="display: block; font-weight: bold;">State:</label>
+                            <InputSelect id="AccountStateId" @bind-Value="Company.CompanyStateId" class="form-control" @onclick="Loadstate"
+                                             style="width: 100%;">
+                                    <option value="Select State">Select State</option>
+                                    @foreach (var states in states)
+
+                                    {
+
+                                        <option value="@states.StateId">@states.StateName</option>
+
+                                    }
+
+
+
+                                </InputSelect>
+                               </div>
+                        <div class="mb-3">
+                            <label for="companypanno">panno:</label>
+                            <InputText id="companypanno" @bind-Value="Company.companypanno" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="CompanyGstin">Gstin:</label>
                             <InputText id="CompanyGstin" @bind-Value="Company.CompanyGstin" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="CompanyMsmeNo">MsmeNo:</label>
+                            <InputText id="CompanyMsmeNo" @bind-Value="Company.CompanyMsmeNo" class="form-control" />
                         </div>
                             <div class="mb-3">
                                 <label for="CompanyRemarks">Remarks:</label>
@@ -44,10 +84,11 @@
                             </div>
                         <div class="mb-3">
                             <label for="CompanyLogo">logo:</label>
-                            <Input type="""" OnChange="HandleFileSelected" class="form-control" />
+                            <InputFile OnChange="HandleFileSelected" class="form-control" />
                             @if (!string.IsNullOrEmpty(Company.CompanyLogo))
                             {
-                                <img src="@Company.CompanyLogo" alt="Company Logo" style="max-width: 100px; max-height: 100px;" />
+                                string base64Image = "data:image/jpeg;base64," + Company.CompanyLogo;
+                                <img src="@base64Image" alt="Company Logo" style="max-width: 100px; max-height: 100px;" />
                             }
 
                                        
@@ -71,53 +112,52 @@
     [Parameter] public EventCallback OnClose { get; set; }
     // [Parameter] public EventCallback OnSubmit { get; set; }
     [Parameter] public EventCallback<IBrowserFile?> OnSubmit { get; set; }
-
+    private Company selectedCompany = new Company();
+    private List<States> states = new();
+    private string? errorMessage;
+    private IBrowserFile file;
     private async Task HandleValidSubmit()
     {
         await OnSubmit.InvokeAsync(file);
     }
+    private async Task Loadstate()
+    {
+        var response = await StateService.GetStatesAsync();
+        states = response.states;
+    }
+    // private async Task SaveCompany(IBrowserFile file)
+    // {
+    //     try
+    //     {
+    //         if (Company.CompanyId == 0) // Add new company
+    //         {
+    //             await CompanyService.AddCompanyAsync(Company, file);
+    //         }
+    //         else // Update existing company
+    //         {
+    //             await CompanyService.UpdateCompanyAsync(Company, file);
+    //         }
 
+    //         // await LoadCompanies(); // Refresh the list
+    //         CloseModal();
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         errorMessage = $"Error saving company: {ex.Message}";
+    //     }
+    // }
     private async Task CloseModal() => await OnClose.InvokeAsync();
-    private IBrowserFile? file;
+ 
 
 
 
     private async Task HandleFileSelected(InputFileChangeEventArgs e)
     
     {
-        var file = e.File;
+         file = e.File;
         try
         {
-            // using var stream = file.OpenReadStream(10 * 1024 * 1024); // 10 MB
-            // using var ms = new MemoryStream();
-            // await stream.CopyToAsync(ms);
-            // var bytes = ms.ToArray();
-            // var base64 = Convert.ToBase64String(bytes);
-            // Company.CompanyLogo = $"data:{file.ContentType};base64,{base64}";
-            // using var content = new MultipartFormDataContent();
-
-            // content.Add(new StringContent(Company.CompanyLogo ?? ""), "CompanyLogo");
-            // if (file != null)
-            // {
-            //    var fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.Name)}"; // Unique naam de diya
-            //    var fileStream = file.OpenReadStream(10485760); // Max 10MB
-            //    var fileContent = new StreamContent(fileStream);
-            //    fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(file.ContentType);
-
-            //    content.Add(fileContent, "CompanyLogo", fileName);
-
-            //     Company.CompanyLogo = fileName; // ✅ Database me file ka naam store hoga
-            // }
-             // if (file != null)
-             //    {
-             //       var fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.Name)}";
-             //       var stream = file.OpenReadStream(10485760); // 10MB max
-             //       var fileContent = new StreamContent(stream);
-             //       fileContent.Headers.ContentType = new MediaTypeHeaderValue(file.ContentType);
-             //       content.Add(fileContent, "CompanyLogo", fileName);
-
-             //       company.CompanyLogo = fileName;
-             //    }
+           
             if (file != null)
             {
                 var fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.Name)}";
