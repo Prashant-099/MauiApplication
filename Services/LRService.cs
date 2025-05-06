@@ -180,7 +180,12 @@ namespace MauiAppFB.Services
 
 
 
-
+        public async Task<List<ReportData>> GetReportDataAsync()
+        {
+            await SetAuthorizationHeaderIfNeeded();
+            var data = await _httpClient.GetFromJsonAsync<List<ReportData>>("api/ReportData");
+            return data ?? new();
+        }
 
 
     }
