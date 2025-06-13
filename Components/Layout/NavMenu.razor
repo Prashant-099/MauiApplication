@@ -1,171 +1,129 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@using Microsoft.AspNetCore.Components
+<!-- Mobile Toggle Button -->
+<input type="checkbox" id="navbarToggle" class="navbar-toggler" @onchange="ToggleNavMenu" checked="@(!collapseNavMenu)" />
+<label for="navbarToggle" class="custom-toggler">
+   @*  <span class="custom-bar"></span>
+    <span class="custom-bar"></span>
+    <span class="custom-bar"></span> *@
+</label>
+
+<!-- Header Row -->
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <div class="navbar-brand">
             <img src="css/img/freightboo.png"
                  alt="FreightBook Logo"
-                 style="width: 70px; height: 70px; object-fit: contain;position: relative; top: -20px; background:radial-gradient();" />
+                 style="width: 70px; height: 70px; object-fit: contain; position: relative; top: -20px;" />
         </div>
     </div>
 </div>
 
-<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
-
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+<!-- Sidebar Menu -->
+<div class="@NavMenuCssClass nav-scrollable">
     <nav class="flex-column">
-     
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <img src="Icon/house.png" class="menu-icon" style="height:25px"/>&nbsp;Home
-            </NavLink>
-        </div>
-
-
-      
-
-             <div class="nav-item px-3">
-            <NavLink class="nav-link" href="LrGRid">
-                <img src="Icon/icons8-form-50.png" class="menu-icon" style="height:25px" />&nbsp; LR
-            </NavLink>
-           
-                
-     
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="dateedit">
-                <img src="Icon/icons8-form-50.png" class="menu-icon" style="height:25px" />&nbsp; devdate
-            </NavLink>
-
-
-
-        </div>
-      @*   <div class="dropdown">
-             <div class="nav-item px-3">
-     
-                  <NavLink class="nav-link" >
-                <img src="Icon/icons8-arrow-50.png" class="menu-icon" style="height:25px" />&nbsp; Master
-           </NavLink>
-           
-        </div>
-            <div class="dropdown-content">
-           <div class="nav-item px-3" >
-            <NavLink class="nav-link" href="cargolist" >
-
-                <img src="Icon/products.png" class="menu-icon" style="height:25px" />&nbsp; Cargo list
-          
-            </NavLink>
-        </div>
-
-
-        
-        
-           
-     
-
-       
-        <!-- <div class="nav-item px-3"style="visibility:@CssStyle">
-            <NavLink class="nav-link" href="accounts">
-                <img src="Icon/users.png" class="menu-icon" style="height:25px" />&nbsp; Accounts
-            </NavLink>
-        </div> -->
-      
-        <div class="nav-item px-3" >
-            <NavLink class="nav-link" href="country">
-                <img src="Icon/icons8-asia-50.png" class="menu-icon" style="height:25px" />&nbsp; Country
-            </NavLink>
-        </div>
-        <!--  <div class="nav-item px-3"style="visibility:@CssStyle">
-            <NavLink class="nav-link" href="GroupGrid">
-                <img src="Icon/people.png" class="menu-icon" style="height:25px" />&nbsp; AccountGroup
-            </NavLink>
-        </div> -->
-       <!--  <div class="nav-item px-3" style="visibility:@CssStyle">
-            <NavLink class="nav-link" href="currencies">
-                <img src="Icon/money.png" class="menu-icon" style="height:25px" />&nbsp; Currency
-            </NavLink>
-        </div>   -->
-        <div class="nav-item px-3" >
-            <NavLink class="nav-link" href="location">
-                <img src="Icon/map.png" class="menu-icon" style="height:25px" />&nbsp;  Location
-            </NavLink>
-        </div>
-        <div class="nav-item px-3" >
-            <NavLink class="nav-link" href="notifyGrid">
-                <img src="Icon/bell.png" class="menu-icon" style="height:25px" />&nbsp; Notify
-            </NavLink>
-        </div>
-     <!--   <div class="nav-item px-3"style="visibility:@CssStyle">
-            <NavLink class="nav-link" href="state">
-                <img src="Icon/india.png" class="menu-icon" style="height:25px" />&nbsp;  State
-            </NavLink>
-           </div> -->
-           <div class="nav-item px-3" >
-            <NavLink class="nav-link" href="vehicle">
-                <img src="Icon/icons8-vehicle-100.png" class="menu-icon" style="height:30px" />&nbsp;  Vehicle
-            </NavLink>
-        </div>
-        <div class="nav-item px-3" >
-            <NavLink class="nav-link" href="vehicleType">
-                <img src="Icon/vehicles.png" class="menu-icon" style="height:30px" />&nbsp; Vehicle Type
-            </NavLink>
-        </div>
-    
-      
-        </div>
-        </div>
- *@
-
- <div class="dropdown" onclick="toggleDropdown(this).click()">
-    <div class="nav-item px-3" >
-        <NavLink class="nav-link">
-            <img src="Icon/icons8-arrow-50.png" class="menu-icon" style="height:25px;" />&nbsp; Master
-        </NavLink>
-    </div>
-    <div class="dropdown-content">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="cargolist">
-                <img src="Icon/products.png" class="menu-icon" style="height:25px;" />&nbsp; Cargo list
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All" @onclick='() => { HandleMenuClick("Home"); HandleNavLinkClick(); }'>
+                <img src="Icon/house.png" class="menu-icon" style="font-size: 1.5rem; height:25px; margin-right: 10px; vertical-align: middle;" />Home
             </NavLink>
         </div>
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="country">
-                <img src="Icon/icons8-asia-50.png" class="menu-icon" style="height:25px;" />&nbsp; Country
+            <NavLink class="nav-link" href="LrGRid" @onclick='() => { HandleMenuClick("Home"); HandleNavLinkClick(); }'>
+                <img src="Icon/icons8-form-50.png" class="menu-icon" style="font-size: 1.5rem;height:25px; margin-right: 10px; vertical-align: middle;" />LR
             </NavLink>
         </div>
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="location">
-                <img src="Icon/map.png" class="menu-icon" style="height:25px;" />&nbsp; Location
+            <NavLink class="nav-link" href="Reprt" @onclick='() => { HandleMenuClick("Home"); HandleNavLinkClick(); }'>
+                <img src="Icon/icons8-form-50.png" class="menu-icon" style="font-size: 1.5rem;height:25px; margin-right: 10px; vertical-align: middle;" />test
             </NavLink>
         </div>
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="notifyGrid">
-                <img src="Icon/bell.png" class="menu-icon" style="height:25px;" />&nbsp; Notify
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="vehicle">
-                <img src="Icon/icons8-vehicle-100.png" class="menu-icon" style="height:30px;" />&nbsp; Vehicle
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="vehicleType">
-                <img src="Icon/vehicles.png" class="menu-icon" style="height:30px;" />&nbsp; Vehicle Type
-            </NavLink>
-        </div>
-    </div>
-</div>
+            <a class="nav-link" href="#" @onclick:preventDefault="true" @onclick='() => HandleMenuClick("Master")'>
+                <span class="bi bi-folder" style="font-size: 1.5rem; margin-right: 10px; vertical-align: middle;"></span>Master ▾
+            </a>
 
-
+            <div class="submenu" style="display: @(menuStates["Master"] ? "block" : "none"); margin-left: 20px;">
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="cargo-list" @onclick="HandleNavLinkClick">
+                        <img src="Icon/products.png" class="menu-icon" style="font-size: 1.5rem;height:25px; margin-right: 10px;" />Cargo
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="country" @onclick="HandleNavLinkClick">
+                        <img src="Icon/icons8-asia-50.png" class="menu-icon" style="font-size: 1.5rem;height:25px; margin-right: 10px;" />Country
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="location" @onclick="HandleNavLinkClick">
+                        <img src="Icon/map.png" class="menu-icon" style="font-size: 1.5rem;height:25px; margin-right: 10px;" />Location
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="notifyGrid" @onclick="HandleNavLinkClick">
+                        <img src="Icon/bell.png" class="menu-icon" style="font-size: 1.5rem;height:25px; margin-right: 10px;" />Notify
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="vehicle" @onclick="HandleNavLinkClick">
+                        <img src="Icon/icons8-vehicle-100.png" class="menu-icon" style="font-size: 1.5rem;height:25px; margin-right: 10px;" />Vehicle
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="vehicleType" @onclick="HandleNavLinkClick">
+                        <img src="Icon/vehicles.png" class="menu-icon" style="height:25px; " />VehicleType
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="tracking" @onclick="HandleNavLinkClick">
+                        <img src="Icon/vehicles.png" class="menu-icon" style="height:25px; " />VehicleTrack
+                    </NavLink>
+                </div>
+            </div>
+        </div>
     </nav>
 </div>
 
 @code {
+    private bool collapseNavMenu = true;
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
+    private Dictionary<string, bool> menuStates = new()
+    {
+        {"Home", false},
+        {"Master", false}
+        
+    };
 
-}
-<script>
-   function toggleDropdown(element) {
-        element.parentElement.classList.toggle("open");
+    private void ToggleNavMenu(Microsoft.AspNetCore.Components.ChangeEventArgs e)
+
+    {
+        if (e?.Value is bool value)
+        {
+            collapseNavMenu = !value;
+            if (collapseNavMenu)
+            {
+                foreach (var key in menuStates.Keys.ToList())
+                {
+                    menuStates[key] = false;
+                }
             }
-</script>
+        }
+    }
 
+    private void HandleMenuClick(string menuKey)
+    {
+        foreach (var key in menuStates.Keys.ToList())
+        {
+            menuStates[key] = key == menuKey ? !menuStates[key] : false;
+        }
+
+        // Don't collapse the full menu when toggling submenus
+        StateHasChanged();
+    }
+
+    private void HandleNavLinkClick()
+    {
+        // Only collapse on mobile; rely on CSS media query behavior
+        collapseNavMenu = true;
+        StateHasChanged();
+    }
+}

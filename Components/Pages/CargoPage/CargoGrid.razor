@@ -23,26 +23,54 @@ else
         <button class="btn btn-success mt-2" @onclick="ShowAddModal">Add Cargo</button>
     </div> *@
     <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
-        <input type="text" placeholder="Search Name" @bind="filterCargoName" style="width:80%;" class="form-control" />
-
+        <input type="text" placeholder="Search Name" @bind="filterCargoName" @bind:event="oninput" style="width:80%;" class="form-control" />
         <button class="rounded-circle d-flex align-items-center justify-content-center"
                 style="width: 40px; height: 40px;" @onclick="ShowAddModal">
             <img src="Icon/add.png" style="height:20px;" />
         </button>
+        <div class="dropdown mb-3">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Choose Columns
+            </button>
+            <ul class="dropdown-menu p-3" style="min-width: 250px;">
+                @foreach (var column in columnVisibility.Keys.ToList())
+                {
+                    <li class="form-check mb-1">
+                        <input class="form-check-input"
+                               type="checkbox"
+                               id="@column"
+                               checked="@columnVisibility[column]"
+                               @onchange="() => ToggleColumn(column)" />
+                        <label class="form-check-label" for="@column">@column</label>
+                    </li>
+                }
+            </ul>
+        </div>
+
     </div>
     <div class="table-responsive">
         <table class="table-striped table">
-        <thead>
-            <tr>
-                
-                <th>Cargo Name</th>
-                <th>Cargo Type</th>
-                <th>Remarks</th>
-                
-                <th>Actions</th>
+            <thead>
+                <tr>
+                    @if (columnVisibility["CargoName"])
+                    {
+                        <th>Cargo Name</th>
+                    }
+                    @if (columnVisibility["CargoType"])
+                    {
+                        <th>Cargo Type</th>
+                    }
+                    @if (columnVisibility["CargoRemarks"])
+                    {
+                        <th>Remarks</th>
+                    }
+                    @if (columnVisibility["Actions"])
+                    {
+                        <th>Actions</th>
+                    }
+                </tr>
+            </thead>
 
-            </tr>
-        </thead>
         @if (cargos == null || !cargos.Any())
         {
             <div class="no-data-message" style="text-align:center;left:300px; position:relative; font-weight: bold; margin-top: 20px; color:red">
@@ -51,28 +79,38 @@ else
         
         }
         else{
-        <tbody>
-                    @foreach (var cargo in FilteredGrids)
+       <tbody>
+    @foreach (var cargo in FilteredGrids)
+    {
+        <tr>
+            @if (columnVisibility["CargoName"])
             {
-                <tr>
-                   
-                    <td>@cargo.CargoName</td>
-                    <td>@cargo.CargoType</td>
-                    <td>@cargo.CargoRemarks</td>
-                        <td class="actions">
-                        <button  @onclick="() => ShowEditModal(cargo)" >
-                                <img src="Icon/icons8-edit-50.png"  style="height:25px" />
-                        </button>
-                      
-
-                        
-                        <button @onclick="() => ConfirmDelete(cargo.CargoId)">
-                                <img src="Icon/icons8-delete-50.png"  style="height:25px" />
-                        </button>
-                        </td>
-                </tr>
+                <td>@cargo.CargoName</td>
             }
-        </tbody>
+            @if (columnVisibility["CargoType"])
+            {
+                <td>@cargo.CargoType</td>
+            }
+            @if (columnVisibility["CargoRemarks"])
+            {
+                <td>@cargo.CargoRemarks</td>
+            }
+            @if (columnVisibility["Actions"])
+            {
+                <td>
+                    <button @onclick="() => ShowEditModal(cargo)">
+                        <img src="Icon/icons8-edit-50.png" style="height:25px" />
+                    </button>
+                    <button @onclick="() => ConfirmDelete(cargo.CargoId)">
+                        <img src="Icon/icons8-delete-50.png" style="height:25px" />
+                    </button>
+                </td>
+            }
+        </tr>
+    }
+</tbody>
+
+
         }
     </table>
     </div>
@@ -92,6 +130,21 @@ else
               OnSubmit="SaveCargo" />
 
 @code {
+    // Add this dictionary to control which columns are visible
+    private Dictionary<string, bool> columnVisibility = new()
+    {
+        { "CargoName", true },
+        { "CargoType", true },
+        { "CargoRemarks", true },
+        { "Actions", true }
+    };
+
+    private void ToggleColumn(string column)
+    {
+        columnVisibility[column] = !columnVisibility[column];
+    }
+
+
     private List<Cargo> cargos = new();
     private List<Cargo> cargosSearch = new();
     private Cargo selectedCargo = new Cargo();

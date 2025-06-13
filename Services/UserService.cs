@@ -101,7 +101,9 @@ namespace MauiAppFB.Services
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception($"Error adding user: {ex.Message}", ex);
+                    throw new Exception($"Error adding" +
+                        $"" +
+                        $" user: {ex.Message}", ex);
                 }
             }
 
@@ -138,11 +140,51 @@ namespace MauiAppFB.Services
                     throw new Exception($"Error deleting user with ID {userId}: {ex.Message}", ex);
                 }
             }
+
+        public async Task<User> GetUserByIdAsync(int userId)
+        {
+            try
+            {
+                await SetAuthorizationHeaderIfNeeded();
+                var response = await _httpClient.GetAsync($"api/User/{userId}");
+                response.EnsureSuccessStatusCode();
+
+                var rawJson = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"Raw JSON Response: {rawJson}");  // Debug Log
+
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+
+                var user = await response.Content.ReadFromJsonAsync<User>(options);
+
+                if (user == null)
+                {
+                    throw new Exception("Failed to parse user data.");
+                }
+
+                return user;
+            }
+            catch (JsonException ex)
+            {
+                throw new Exception("Error deserializing the JSON response. The structure may not match the expected format.", ex);
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new Exception($"HTTP request error while fetching user: {ex.Message}", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Unexpected error while fetching user: {ex.Message}", ex);
+            }
         }
 
-        // <summary>
-        // Represents the response for fetching users.
-        // </summary>
     }
+
+    // <summary>
+    // Represents the response for fetching users.
+    // </summary>
+}
 
 

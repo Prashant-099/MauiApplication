@@ -5,6 +5,7 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
+using DevExpress.XtraReports;
 using MauiAppFB.Models;
 namespace MauiAppFB.Services
 {
@@ -188,15 +189,59 @@ namespace MauiAppFB.Services
         }
 
 
+
+
+        //public async Task<Lr> PrintLRAsync(int lr)
+        //{
+        //    try
+        //    {
+        //        await SetAuthorizationHeaderIfNeeded();
+        //        var response = await _httpClient.PutAsJsonAsync($"api/Challan/print/{lr.LrID}", lr);
+        //        response.EnsureSuccessStatusCode();
+        //        if (!response.IsSuccessStatusCode)
+        //        {
+        //            var errorMessage = await response.Content.ReadAsStringAsync();
+        //            Console.WriteLine($"Error: {errorMessage}");
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception($"Error updating LR with ID {lr.LrID}: {ex.Message}", ex);
+        //    }
+        //}
+        public async Task <Lr> PrintLRAsync(Lr lr)
+        {
+            try
+            {
+                await SetAuthorizationHeaderIfNeeded();
+                var response = await _httpClient.GetAsync($"api/Challan/print/{lr.LrID}");
+                response.EnsureSuccessStatusCode();
+
+                var lrResponse = await response.Content.ReadFromJsonAsync<Lr>();
+                if (lrResponse == null)
+                {
+                    throw new Exception("Failed to print LR data.");
+                }
+
+                return lrResponse;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error printing LRs: {ex.Message}", ex);
+            }
+        }
+
+
     }
 
 
 
 
 
-   
-        /// <summary>
-        /// Represents the response for fetching LRs.
-        /// </summary>
 
-    }
+    /// <summary>
+    /// Represents the response for fetching LRs.
+    /// </summary>
+
+}

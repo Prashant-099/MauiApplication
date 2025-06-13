@@ -29,9 +29,14 @@
                         <div class="mb-3">
                             <label for="UserGender">Gender:</label>
                             <InputSelect id="UserGender" @bind-Value="User.UserGender" class="form-control" >
-                                <option>Male</option>
-                                <option>Female</option>
+                                <option>Select your Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
                                 </InputSelect>
+                        </div>
+                        <div class="mb-3">
+                            <label for="UserDob">DOB:</label>
+                            <InputDate id="UserDob" @bind-Value="User.UserDob" class="form-control" />
                         </div>
                         <div class="mb-3">
                             <label for="UserEmail">Email:</label>
@@ -44,12 +49,12 @@
 
                         <div class="mb-3">
                             <label for="UserMobile">UserMobile:</label>
-                            <InputText id="UserMobile" @bind-Value="User.UserMobile" class="form-control" />
+                            <InputText id="UserMobile" @bind-Value="User.UserPhone" class="form-control" />
                         </div>
 
                         <div class="mb-3">
-                            <label for="UserRoleName">Role:</label>
-                            <InputSelect id="UserRoleName" @bind-Value="User.UserRoleId" class="form-control" @onclick="LoadUserRoles" placeholder="enter role">
+                            <label for="UserRoleId">Role:</label>
+                            <InputSelect id="UserRoleId" @bind-Value="User.UserRoleId" class="form-control" @onclick="LoadUserRoles" placeholder="enter role">
                                 @foreach (var role in roles)
                                 {
 
@@ -65,7 +70,7 @@
                         <div class="mb-3">
                             <label for="UserPassword">UserPassword:</label>
                             <InputText id="UserPassword" @bind-Value="User.UserPassword" class="form-control" />
-                        </div>
+</div>
                             <div class="mt-3">
                                 <button type="submit" class="btn btn-primary">@ButtonText</button>
                                 <button type="button" class="btn btn-secondary" @onclick="CloseModal">Cancel</button>

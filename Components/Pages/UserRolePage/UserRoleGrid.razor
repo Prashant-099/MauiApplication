@@ -23,7 +23,7 @@ else
         <button class="btn btn-success mt-2" @onclick="ShowAddModal">Add Role</button>
     </div> *@
     <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
-        <input type="text" placeholder="Search LRGrid Name" @bind="filterRoleName" style="width:80%;" class="form-control" />
+        <input type="text" placeholder="Search LRGrid Name" @bind="filterRoleName" @bind:event="oninput" style="width:80%;" class="form-control" />
         <button class="rounded-circle d-flex align-items-center justify-content-center"
                 style="width: 40px; height: 40px;" @onclick="ShowAddModal">
             <img src="Icon/add.png" style="height:20px;" />

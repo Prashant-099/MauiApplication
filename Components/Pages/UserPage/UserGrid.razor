@@ -17,60 +17,60 @@ else if (!string.IsNullOrEmpty(errorMessage))
 
 else
 {
-  @*   <div class="mb-3">
+    @*   <div class="mb-3">
         <input type="text" placeholder="Search User Name" @bind="filterUserName" class="form-control" />
         <button class="btn btn-primary mt-2" @onclick="ApplyFilters">Apply Filters</button>
         <button class="btn btn-success mt-2" @onclick="ShowAddModal">Add User</button>
     </div> *@
     <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
-        <input type="text" placeholder="Search LRGrid Name" @bind="filterUserName" style="width:80%;" class="form-control" />
+        <input type="text" placeholder="Search LRGrid Name" @bind="filterUserName" @bind:event="oninput" style="width:80%;" class="form-control" />
         <button class="rounded-circle d-flex align-items-center justify-content-center"
-                style="width: 40px; height: 40px;" @onclick="ShowAddModal">
+        style="width: 40px; height: 40px;" @onclick="ShowAddModal">
             <img src="Icon/add.png" style="height:20px;" />
         </button>
     </div>
-     <div class="table-responsive">
-    <table class="table-striped table">
-        <thead>
-            <tr>
+    <div class="table-responsive">
+        <table class="table-striped table">
+            <thead>
+                <tr>
 
-                <th>UserFirstName</th>
-                <th>UserLastName</th>
-                <th>User Contact No</th>
-                <th>UserEmail</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        @if (data == null || !data.Any())
-        {
-            <div style="text-align:center;left:300px; position:relative; font-weight: bold; margin-top: 20px; color:red">
-                <p>No Users available.</p>
-            </div>
+                    <th>UserFirstName</th>
+                    <th>UserLastName</th>
+                    <th>User Contact No</th>
+                    <th>UserEmail</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            @if (data == null || !data.Any())
+            {
+                <div style="text-align:center;left:300px; position:relative; font-weight: bold; margin-top: 20px; color:red">
+                    <p>No Users available.</p>
+                </div>
 
-        }
-        else{
-            <tbody>
+            }
+            else{
+                <tbody>
                     @foreach (var user in FilteredGrids)
-                {
-                    <tr>
+                    {
+                        <tr>
 
-                        <td>@user.UserFirstName</td>
-                        <td>@user.UserLastName</td>
-                        <td>@user.UserMobile</td>
-                        <td>@user.UserEmail</td>
-                        <td>
-                            <button  @onclick="() => ShowEditModal(user)">
-                                <img src="Icon/icons8-edit-50.png" style="height:25px" />
-                            </button>
-                            <button  @onclick="() => ConfirmDelete(user.UserId)">
-                                <img src="Icon/icons8-delete-50.png" style="height:25px" />
-                            </button>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        }
-    </table>
+                            <td>@user.UserFirstName</td>
+                            <td>@user.UserLastName</td>
+                            <td>@user.UserMobile</td>
+                            <td>@user.UserEmail</td>
+                            <td>
+                                <button  @onclick="() => ShowEditModal(user)">
+                                    <img src="Icon/icons8-edit-50.png" style="height:25px" />
+                                </button>
+                                <button  @onclick="() => ConfirmDelete(user.UserId)">
+                                    <img src="Icon/icons8-delete-50.png" style="height:25px" />
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            }
+        </table>
     </div>
     <!-- Pagination Controls -->
     <div class="pagination">
@@ -158,28 +158,28 @@ OnSubmit="SaveUser" />
             if (user?.UserId > 0) // Ensure LRId exists
             {
                 selectedUser = new User
-                    {
+                {
                         UserId = user.UserId,
                         UserFirstName = user.UserFirstName,
                         UserLastName = user.UserLastName,
                         UserGender = user.UserGender,
                         UserAddress = user.UserAddress,
-                        UserMobile = user.UserMobile,
+                        UserPhone = user.UserPhone,
                         UserEmail = user.UserEmail,
                         UserRoleName = user.UserRoleName,
-                        UserRoleId = user.UserRoleId,      
+                        UserRoleId = user.UserRoleId,
                         UserPassword = user.UserPassword,
+                        UserDob = user.UserDob,
                     };
-                modalTitle = "Edit User";
-                modalButtonText = "Save";
-                isModalVisible = true;
-               
-            }
+                    modalTitle = "Edit User";
+                    modalButtonText = "Save";
+                    isModalVisible = true;
+        }
         }
         catch (Exception ex)
         {
             errorMessage = $"Error loading LRGrids: {ex.Message}";
-        }
+    }
 
     }
 

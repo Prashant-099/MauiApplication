@@ -109,6 +109,13 @@ namespace MauiAppFB.Models
         public string? LrConsignorGstin { get; set; }
         public string? LrConsignorName { get; set; }
         public string? LrConsignorAddress { get; set; }
+        public string? CompanyName { get; set; }
+        public string? CompanyTitle { get; set; }
+        public string? CompanyAddress { get; set; }
+        public string? CompanyPhone { get; set; }
+        public string? CompanyGSTIN { get; set; }
+        public string? CompanyPan { get; set; }
+        public string? CompanyMSME { get; set; }
 
 
 
