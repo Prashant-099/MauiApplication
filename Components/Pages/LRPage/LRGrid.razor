@@ -20,7 +20,7 @@ else if (!string.IsNullOrEmpty(errorMessage))
 else
 {
     <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
-        <input type="text" placeholder="Search LRGrid Name" @bind="filterLRGridName" style="width:80%;" class="form-control" />
+        <input type="text" placeholder="Search LRGrid Name" @bind="filterLRGridName" @bind:event="oninput" style="width:80%;" class="form-control" />
         <button class="rounded-circle d-flex align-items-center justify-content-center"
         style="width: 40px; height: 40px;" @onclick="NavigateToLRGrid">
             <img src="Icon/add.png" style="height:20px;" />
@@ -30,8 +30,8 @@ else
             <option value="5" selected="@IsSelectedPageSize(5)">5</option>
             <option value="10" selected="@IsSelectedPageSize(10)">10</option>
             <option value="100" selected="@IsSelectedPageSize(100)">100</option>
-            <option value="20" selected="@IsSelectedPageSize(200)">200</option>
-            <option value="50" selected="@IsSelectedPageSize(500)">500</option>
+            <option value="200" selected="@IsSelectedPageSize(200)">200</option>
+            <option value="500" selected="@IsSelectedPageSize(500)">500</option>
         </select>
     </div>
 
@@ -170,8 +170,8 @@ else
                 report.LoadLayout(layoutStream);
             }
 
-            var reportdata = await LRGridService.GetLRsidAsync(lrToPrint.LrID);
-            if (reportdata == null || reportdata.Count == 0)
+            var reportdata = await LRGridService.PrintLRAsync(lrToPrint);
+            if (reportdata == null )
             {
                 await JS.InvokeVoidAsync("alert", "No report data found.");
                 return;
