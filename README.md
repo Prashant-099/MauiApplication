@@ -1,8 +1,6 @@
 
----
+##  **EmployeeAttendance/README.md**
 
-## 2️⃣ **EmployeeAttendance/README.md**
-```markdown
 <h1 align="center">📸 EmployeeAttendance</h1>
 <p align="center">📍 Live Photo & Location-based Attendance System in .NET MAUI Hybrid</p>
 
